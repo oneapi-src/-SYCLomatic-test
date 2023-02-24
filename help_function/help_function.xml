@@ -151,7 +151,7 @@
     <!-- <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" /> -->
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
-    <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_usm.xml" />
+    <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_usmnone.xml" />
     <test testName="onedpl_test_unique_by_key_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_count" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />

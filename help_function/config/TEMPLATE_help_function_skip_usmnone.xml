@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_help" name="TEMPLATE">
+    <description>test help function cases with usm switch on </description>
+    <files>
+        <file path="src/${testName}.cpp" />
+    </files>
+    <rules>
+        <optlevelRule excludeOptlevelNameString="usmnone" />
+        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+    </rules>
+</test>
