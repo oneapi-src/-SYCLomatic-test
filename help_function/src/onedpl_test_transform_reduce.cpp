@@ -50,59 +50,45 @@ int main() {
     auto dev = myQueue.get_device();
     auto ctxt = myQueue.get_context();
 
-    // create host and device arrays
-    double hostArray[8];
-    double *deviceArray = (double*) malloc_device(8 * sizeof(double), dev, ctxt);
+    // create host and device vectors
+    std::vector<double> host_vec(8);
 
-    // hostArray = { 0, 1, 2, 3, 4, 5, 6, 7 }
+    // host_vec = { 0, 1, 2, 3, 4, 5, 6, 7 }
     for (int i = 0; i != 8; ++i) {
-        hostArray[i] = i;
+        host_vec[i] = i;
     }
 
-    myQueue.submit([&](sycl::handler& h) {
-        // copy hostArray to deviceArray
-        h.memcpy(deviceArray, hostArray, 8 * sizeof(double));
-    });
-    myQueue.wait();
 
     {
-        auto dptr_begin = dpct::device_pointer<double>(deviceArray);
-        auto dptr_end = dpct::device_pointer<double>(deviceArray + 4);
+        dpct::device_vector<double> dev_vec(host_vec);
 
         // call algorithm
-        auto result = std::transform_reduce(oneapi::dpl::execution::dpcpp_default, dptr_begin, dptr_end, 0., std::plus<double>(), square());
+        auto result = std::transform_reduce(oneapi::dpl::execution::dpcpp_default, dev_vec.begin(), dev_vec.begin()+4, 0., std::plus<double>(), square());
 
-        test_name = "transform_reduce with USM allocation";
+        test_name = "transform_reduce with device_vector";
         failed_tests += ASSERT_EQUAL(test_name, result, 14);
     }
 
     // test 2/2
 
-    bool hostArray2[8];
-    bool *deviceArray2 = (bool*) malloc_device(8 * sizeof(bool), dev, ctxt);
+    std::vector<bool> host_vec2(8);
 
-    // hostArray2 = { 1, 1, 1, 1, 0, 0, 0, 0 }
+    // host_vec2 = { 1, 1, 1, 1, 0, 0, 0, 0 }
     for (int i = 0; i != 8; ++i) {
         if (i < 4)
-            hostArray2[i] = 1;
+            host_vec2[i] = 1;
         else
-            hostArray2[i] = 0;
+            host_vec2[i] = 0;
     }
 
-    myQueue.submit([&](sycl::handler& h) {
-        // copy hostArray2 to deviceArray2
-        h.memcpy(deviceArray2, hostArray2, 8 * sizeof(bool));
-    });
-    myQueue.wait();
-
     {
-        auto dptr_begin = dpct::device_pointer<bool>(deviceArray2 + 4);
-        auto dptr_end = dpct::device_pointer<bool>(deviceArray2 + 8);
+        dpct::device_vector<bool> dev_vec2(host_vec2);
+
 
         // call algorithm
-        auto result = std::transform_reduce(oneapi::dpl::execution::dpcpp_default, dptr_begin, dptr_end, 0, std::plus<bool>(), oneapi::dpl::identity());
+        auto result = std::transform_reduce(oneapi::dpl::execution::dpcpp_default, dev_vec2.begin()+4, dev_vec2.end(), 0, std::plus<bool>(), oneapi::dpl::identity());
 
-        test_name = "transform_reduce with USM allocation 2";
+        test_name = "transform_reduce with device_vector 2";
         failed_tests += ASSERT_EQUAL(test_name, result, 0);
 
     }

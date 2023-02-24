@@ -6,6 +6,7 @@
 //
 //
 // ===----------------------------------------------------------------------===//
+#define DPCT_USM_LEVEL_NONE
 
 #include <oneapi/dpl/execution>
 
@@ -144,6 +145,8 @@ int main() {
         }
     }
 
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE
     {
     // Test One, call to dpct::sort using USM allocations
         // create queue
@@ -199,6 +202,7 @@ int main() {
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif //DPCT_USM_LEVEL_NONE
 
     {
     // Test Two, test calls to dpct::sort using device vectors
@@ -218,10 +222,6 @@ int main() {
             // values is now = {19, 10, 18, 11, 13, 17, 15, 12, 16, 14}
         }
 
-        {
-            int check_keys[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-            int check_values[10] = {19, 10, 18, 11, 13, 17, 15, 12, 16, 14};
-            test_name = "sort using device_vector";
 
             // check that values and keys are correct
 
@@ -274,6 +274,8 @@ int main() {
         }
     }
 
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE
     {
     // Test Three, call to dpct::stable_sort using USM allocations
         // create queue
@@ -331,6 +333,7 @@ int main() {
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif // DPCT_USM_LEVEL_NONE
 
     { // Test Four, test calls to dpct::stable_sort with duplicate key values
         sycl::buffer<int, 1> keys_buf{ sycl::range<1>(16) };

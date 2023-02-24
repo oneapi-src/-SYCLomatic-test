@@ -7,6 +7,8 @@
 //
 // ===----------------------------------------------------------------------===//
 
+#define DPCT_USM_LEVEL_NONE
+
 #include "oneapi/dpl/execution"
 #include "oneapi/dpl/iterator"
 #include "oneapi/dpl/algorithm"
@@ -253,7 +255,9 @@ int main() {
     }
 
     // Third 3 tests: Testing call to std::fill using device_pointer<T>
-
+    
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE 
     {
         // test 1/3
 
@@ -420,19 +424,17 @@ int main() {
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif //DPCT_USM_LEVEL_NONE
 
     {
         // test 2/2: call to std::fill_n using device_vector<T>
 
         // create device_vector and src vector
-        dpct::device_vector<int> dv(8);
         std::vector<int> src(8);
 
         iota_vector(src, 0, 8);
+        dpct::device_vector<int> dv(src);
 
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            h.memcpy(dv.data(), src.data(), 8 * sizeof(int));
-        });
         dpct::get_default_queue().wait();
 
         {
@@ -440,18 +442,12 @@ int main() {
             std::fill_n(oneapi::dpl::execution::make_device_policy(dpct::get_default_queue()), dv.begin(), 4, 10);
         }
 
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            // copy dv back to src
-            h.memcpy(src.data(), dv.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
-
         std::string test_name = "std::fill_n with device_pointer<T> 2/2";
         for (int i = 0; i != 8; ++i) {
             if (i < 4)
-                num_failing += ASSERT_EQUAL(test_name, src[i], 10);
+                num_failing += ASSERT_EQUAL(test_name, dv[i], 10);
             else
-                num_failing += ASSERT_EQUAL(test_name, src[i], i);
+                num_failing += ASSERT_EQUAL(test_name, dv[i], i);
         }
 
         failed_tests += test_passed(num_failing, test_name);
