@@ -108,6 +108,7 @@ int main() {
     v4.insert(v4.begin(), 2, *(v2.begin()) - 111);
     v4.insert(v4.begin(), v2.begin(), v2.begin() + 2);
 #endif
+    //insert host side data into the vector
     std::vector<int> host_v(2, 79);
     v4.insert(v4.begin()+3, host_v.begin(), host_v.end());
 
