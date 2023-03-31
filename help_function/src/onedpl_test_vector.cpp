@@ -43,6 +43,24 @@ int test_passed(int failing_elems, std::string test_name) {
     return 1;
 }
 
+
+
+template <typename T>
+class my_allocator_with_custom_construct : public dpct::internal::usm_device_allocator<T> {
+  public:
+  my_allocator_with_custom_construct() {}
+  my_allocator_with_custom_construct(const sycl::queue &Q, const sycl::property_list &PropList = {}) 
+    : dpct::internal::usm_device_allocator<T>(Q, PropList)
+  {}
+
+  static void construct(T *p) { ::new((void*)p) T(6); }
+  template <typename _Arg>
+  static void construct(T *p, _Arg arg) { ::new((void*)p) T(arg + 3); }
+  static void destroy(T *p) { p->~T(); }
+
+};
+
+
 int main() {
 
     // used to detect failures
@@ -90,6 +108,9 @@ int main() {
     v4.insert(v4.begin(), 2, *(v2.begin()) - 111);
     v4.insert(v4.begin(), v2.begin(), v2.begin() + 2);
 #endif
+    std::vector<int> host_v(2, 79);
+    v4.insert(v4.begin()+3, host_v.begin(), host_v.end());
+
 #ifdef _VERBOSE
     std::cout << "v4.size() = " << v4.size() << std::endl;
     std::cout << "v4: ";
@@ -123,7 +144,7 @@ int main() {
     //failed_tests += ASSERT_EQUAL("v6.back() = 2", v6.back(), 2);
 #endif
     v6.pop_back();
-    v6.reserve(20);
+    v6.reserve(24);
 #ifdef _VERBOSE
     if (!v6.empty() && v6.front() == *v6.begin()) {
         std::cout << "v6.size() = " << v6.size() << ", v6.max_size() = " <<
@@ -133,19 +154,19 @@ int main() {
         std::cout << "v6[0] = " << v6[0] << std::endl; // expected: 5
     }
 #else
-    failed_tests += ASSERT_EQUAL("v6.size() = 12", v6.size(), 12);
+    failed_tests += ASSERT_EQUAL("v6.size() = 14", v6.size(), 14);
     failed_tests += ASSERT_EQUAL("v6.max_size()", v6.max_size(), 4611686018427387903);
-    failed_tests += ASSERT_EQUAL("v6.capacity() = 20", v6.capacity(), 20);
+    failed_tests += ASSERT_EQUAL("v6.capacity() = 24", v6.capacity(), 24);
     v6.shrink_to_fit();
-    failed_tests += ASSERT_EQUAL("v6.capacity() = 12", v6.capacity(), 12);
+    failed_tests += ASSERT_EQUAL("v6.capacity() = 14", v6.capacity(), 14);
     failed_tests += ASSERT_EQUAL("v6[0] = 0", v6[0], 0);
 #endif
     v6.resize(20, 99);
     auto resize_policy = oneapi::dpl::execution::make_device_policy(dpct::get_default_queue());
-    auto sum = std::reduce(resize_policy, v6.begin()+12, v6.end(), 0);
-    failed_tests += ASSERT_EQUAL("sum = 792", sum, 792);
+    auto sum = std::reduce(resize_policy, v6.begin()+14, v6.end(), 0);
+    failed_tests += ASSERT_EQUAL("sum = 594", sum, 594);
 
-    v6.erase(v6.cbegin() + 10, v6.cend());
+    v6.erase(v6.cbegin() + 14, v6.cend());
 #ifdef _VERBOSE
     for (std::size_t i = 0; i < v6.size(); ++i) {
         std::cout << v6[i] << " ";  // expected: 5 4 3 2 1 -111 -111 -111 1 0
@@ -157,13 +178,15 @@ int main() {
     num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[0], 0);
     num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[1], 1);
     num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[2], -111);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[3], -111);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[4], -111);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[5], 1);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[6], 2);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[7], 3);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[8], 4);
-    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[9], 5);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[3], 79);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[4], 79);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[5], -111);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[6], -111);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[7], 1);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[8], 2);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[9], 3);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[10], 4);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v6[11], 5);
 
     failed_tests += test_passed(num_failing, test_name);
     num_failing = 0;
@@ -209,6 +232,50 @@ int main() {
 
         failed_tests += test_passed(num_failing, test_name);
     }
+    num_failing = 0;
+    test_name = "custom_allocator default construction";
+    { // test with custom allocator which constructs default constructor of 6
+        dpct::device_vector<int64_t, my_allocator_with_custom_construct<int64_t>> default_construct(5);
+        default_construct[4] += 2;
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, default_construct[0], 6);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, default_construct[1], 6);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, default_construct[2], 6);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, default_construct[3], 6);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, default_construct[4], 8);
+        failed_tests += test_passed(num_failing, test_name);
+    }
+    num_failing = 0;
+    test_name = "custom_allocator construction from input";
+    { // test with custom allocator which whos default constructor adds of 3 when constructing from a value or iterator
+        dpct::device_vector<int64_t, my_allocator_with_custom_construct<int64_t>> construct_from_value(5, 2);
+        construct_from_value[4] += 2;
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_value[0], 5);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_value[1], 5);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_value[2], 5);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_value[3], 5);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_value[4], 7);
+
+        std::vector<int64_t> src(8);
+        src[0] = -1; src[1] = 2; src[2] = -3; src[3] = 4; src[4] = -5; src[5] = 6; src[6] = -7; src[7] = 8;
+
+        dpct::device_vector<int64_t, my_allocator_with_custom_construct<int64_t>> construct_from_iter(src.begin()+2, src.begin()+7);
+        construct_from_iter[4] += 2;
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_iter[0], 0);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_iter[1], 7);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_iter[2], -2);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_iter[3], 9);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, construct_from_iter[4], -2);
+        failed_tests += test_passed(num_failing, test_name);   
+    }
+
+    num_failing = 0;
+    test_name = "inserting host iterators";
+    {
+
+        
+    }
+
+
 
     std::cout << std::endl << failed_tests << " failing test(s) detected." << std::endl;
     if (failed_tests == 0) {
