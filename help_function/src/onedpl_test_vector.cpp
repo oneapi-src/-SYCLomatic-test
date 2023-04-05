@@ -46,13 +46,13 @@ int test_passed(int failing_elems, std::string test_name) {
 
 
 template <typename T>
-class my_allocator_with_custom_construct : public dpct::internal::usm_device_allocator<T> {
+class my_allocator_with_custom_construct : public sycl::usm_allocator<T, sycl::usm::alloc::shared> {
   public:
   my_allocator_with_custom_construct(const sycl::context &Ctxt, const sycl::device &Dev,
                                      const sycl::property_list &PropList = {}) 
-                       : dpct::internal::usm_device_allocator<T>(Ctxt, Dev, PropList) {}
+                       : sycl::usm_allocator<T, sycl::usm::alloc::shared>(Ctxt, Dev, PropList) {}
   my_allocator_with_custom_construct(const sycl::queue &Q, const sycl::property_list &PropList = {}) 
-    : dpct::internal::usm_device_allocator<T>(Q, PropList)
+    : sycl::usm_allocator<T, sycl::usm::alloc::shared>(Q, PropList)
   {}
 
   static void construct(T *p) { ::new((void*)p) T(6); }
