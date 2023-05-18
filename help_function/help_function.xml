@@ -6,6 +6,7 @@
     <test testName="array_copy" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="assign_device_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="move_device_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="swap_device_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="atomic_add_float" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="atomic_fetch_compare_inc" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="async_exception" configFile="config/TEMPLATE_help_function.xml" />
