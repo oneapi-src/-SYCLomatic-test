@@ -194,6 +194,27 @@ int main() {
     failed_tests += test_passed(num_failing, test_name);
     num_failing = 0;
 #endif
+    Vector<T> v7(v5.begin()+3, v5.end()-2);
+    dpct::get_default_queue().wait();
+#ifdef _VERBOSE
+    std::cout << std::endl << "v7: ";
+    for (std::size_t i = 0; i < v7.size(); ++i) {
+        std::cout << v7[i] << " ";  // expected: 79 79 -111 -111 -111 1 2 3
+    }
+    std::cout << std::endl;
+#else
+   test_name = "v7 = modified v5";
+
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[0], 79);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[1], 79);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[2], -111);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[3], -111);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[4], 1);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[5], 2);
+    num_failing += ASSERT_ARRAY_EQUAL(test_name, v7[6], 3);
+#endif
+
+
     { // Simple test of DPCT vector with PSTL algorithm
         // create buffer
         std::vector<int64_t> src(8);
