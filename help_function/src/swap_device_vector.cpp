@@ -22,6 +22,8 @@ verify(Vector& D, int N, int V)
     return true;
 }
 
+//adding these global variables to track construction and destruction
+// using custom allocators with different settings.
 static int num_constructed_prop = 0;
 static int num_destroyed_prop = 0;
 static int num_constructed_no_prop = 0;
@@ -118,6 +120,8 @@ main(void)
     constexpr int V2 = 98;
     dpct::device_vector<int> D1(N1, V1);
 
+  // check appropriate effect of Allocator::propagate_on_container_swap
+
     AllocWithNoSwapPropagation<int> alloc_no_swap_prop1(dpct::get_default_queue());
     AllocWithNoSwapPropagation<int> alloc_no_swap_prop2(dpct::get_default_queue());
 
@@ -141,8 +145,8 @@ main(void)
 
     if (num_constructed_no_prop != 14 && num_destroyed_no_prop != 4)
     {
-        std::cout << "Allocator without swap propagation is swaping incorrectly: [" << num_constructed_no_prop << ", "
-                  << num_destroyed_no_prop << "]" << std::endl;
+        std::cout << "Allocator without swap propagation is swaping incorrectly: [14, 4] != [" 
+                  << num_constructed_no_prop << ", "<< num_destroyed_no_prop << "]" << std::endl;
         return 1;
     }
 
@@ -172,8 +176,8 @@ main(void)
 
     if (num_constructed_prop != 10 && num_destroyed_prop != 0)
     {
-        std::cout << "Allocator with swap propagation is swaping incorrectly: [" << num_constructed_prop << ", "
-                  << num_destroyed_prop << "]" << std::endl;
+        std::cout << "Allocator with swap propagation is swaping incorrectly: [10, 0] != ["
+                  << num_constructed_prop << ", "<< num_destroyed_prop << "]" << std::endl;
         return 1;
     }
     return 0;

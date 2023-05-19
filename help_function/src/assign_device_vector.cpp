@@ -20,7 +20,8 @@ bool verify(Vector &D, int N, int V) {
   return true;
 }
 
-
+//adding these global variables to track construction and destruction
+// using custom allocators with different settings.
 static int num_constructed_prop = 0;
 static int num_destroyed_prop = 0;
 static int num_constructed_no_prop = 0;
@@ -141,6 +142,7 @@ int main(void)
     constexpr int V = 99;
     dpct::device_vector<int> D1(N, V);
 
+    // check appropriate effect of Allocator::propagate_on_container_copy_assignment
     AllocWithNoCopyPropagation<int> alloc_no_copy_prop1(dpct::get_default_queue());
     AllocWithNoCopyPropagation<int> alloc_no_copy_prop2(dpct::get_default_queue());
     
@@ -155,13 +157,14 @@ int main(void)
     //since there is no copy propagation, we only destroy the excess, not all 10 elements, and we copy the N elements
     D3 = D2; 
     if (!verify(D3, N, V)) {
-        std::cout<<"Failed move assign of AllocWithNoCopyProp"<<std::endl;
+        std::cout<<"Failed assign of AllocWithNoCopyProp"<<std::endl;
         return 1;
     }
 
     if (num_constructed_no_prop != 15 && num_destroyed_no_prop != 5)
     {
-        std::cout<<"Allocator without copy propagation is copying incorrectly: ["<<num_constructed_no_prop<<", "<<num_destroyed_no_prop<<"]"<<std::endl;
+        std::cout<<"Allocator without copy propagation is copying incorrectly: [15,5] != ["
+                 <<num_constructed_no_prop<<", "<<num_destroyed_no_prop<<"]"<<std::endl;
         return 1;
     }
 
@@ -186,14 +189,17 @@ int main(void)
 
     if (num_constructed_prop != 20 && num_destroyed_prop != 10)
     {
-        std::cout<<"Allocator with copy propagation is copying incorrectly: ["<<num_constructed_prop<<", "<<num_destroyed_prop<<"]"<<std::endl;
+        std::cout<<"Allocator with copy propagation is copying incorrectly: [20,10] != ["
+                 <<num_constructed_prop<<", "<<num_destroyed_prop<<"]"<<std::endl;
         return 1;
     }
 
+    // check appropriate effect of Allocator::select_on_container_copy_construction()
     AllocWithDefaultOnCopyConstruction<int> alloc_default_on_copy(dpct::get_default_queue(), 42);
     dpct::device_vector<int, AllocWithDefaultOnCopyConstruction<int>> D6(N, V, alloc_default_on_copy);
     if (D6.get_allocator().index != 42) {
-        std::cout<<"index not set correctly for AllocWithDefaultOnCopyConstruction "<<D6.get_allocator().index<<std::endl;
+        std::cout<<"index not set correctly for AllocWithDefaultOnCopyConstruction "
+                 <<D6.get_allocator().index<<std::endl;
         return 1;
     }
     if (!verify(D6, N, V)) {
@@ -206,7 +212,8 @@ int main(void)
         return 1;
     }
     if (D7.get_allocator().index != 0) {
-        std::cout<<"index not set correctly for copied AllocWithDefaultOnCopyConstruction "<<D7.get_allocator().index<<std::endl;
+        std::cout<<"index not set correctly for copied AllocWithDefaultOnCopyConstruction "
+                 <<D7.get_allocator().index<<std::endl;
         return 1;
     }
 
@@ -227,7 +234,8 @@ int main(void)
         return 1;
     }
     if (D9.get_allocator().index != 33) {
-        std::cout<<"index not set correctly for copied AllocWithCopyOnCopyConstruction "<<D9.get_allocator().index<<std::endl;
+        std::cout<<"index not set correctly for copied AllocWithCopyOnCopyConstruction "
+                 <<D9.get_allocator().index<<std::endl;
         return 1;
     }
   
