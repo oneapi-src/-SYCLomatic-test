@@ -71,6 +71,50 @@ class AllocWithCopyPropagation : public sycl::usm_allocator<T, sycl::usm::alloc:
   static void destroy(T *p) { p->~T(); num_destroyed_prop++;}
 };
 
+template <typename T>
+class AllocWithDefaultOnCopyConstruction : public sycl::usm_allocator<T, sycl::usm::alloc::shared> {
+  public:
+  AllocWithDefaultOnCopyConstruction(const sycl::queue &Q, int _index = 0, const sycl::property_list &PropList = {}) 
+    : sycl::usm_allocator<T, sycl::usm::alloc::shared>(Q, PropList), index(_index)
+  {}
+  
+  AllocWithDefaultOnCopyConstruction(const AllocWithDefaultOnCopyConstruction& other)
+    : sycl::usm_allocator<T, sycl::usm::alloc::shared>(other), index(other.index)
+  {}
+
+  AllocWithDefaultOnCopyConstruction():AllocWithDefaultOnCopyConstruction(dpct::get_default_queue()){}
+
+  AllocWithDefaultOnCopyConstruction select_on_container_copy_construction() const
+  {
+    AllocWithDefaultOnCopyConstruction tmp;
+    return tmp;
+  }
+  
+  int index;
+};
+
+template <typename T>
+class AllocWithCopyOnCopyConstruction : public sycl::usm_allocator<T, sycl::usm::alloc::shared> {
+  public:
+  AllocWithCopyOnCopyConstruction(const sycl::queue &Q, int _index = 0, const sycl::property_list &PropList = {}) 
+    : sycl::usm_allocator<T, sycl::usm::alloc::shared>(Q, PropList), index(_index)
+  {}
+  
+  AllocWithCopyOnCopyConstruction(const AllocWithCopyOnCopyConstruction& other)
+    : sycl::usm_allocator<T, sycl::usm::alloc::shared>(other), index(other.index)
+  {}
+
+  AllocWithCopyOnCopyConstruction():AllocWithCopyOnCopyConstruction(dpct::get_default_queue()){}
+
+  AllocWithCopyOnCopyConstruction select_on_container_copy_construction() const
+  {
+    AllocWithCopyOnCopyConstruction tmp{*this};
+    return tmp;
+  }
+
+  int index;
+};
+
 int main(void)
 {
     // H has storage for 4 integers
@@ -145,4 +189,47 @@ int main(void)
         std::cout<<"Allocator with copy propagation is copying incorrectly: ["<<num_constructed_prop<<", "<<num_destroyed_prop<<"]"<<std::endl;
         return 1;
     }
+
+    AllocWithDefaultOnCopyConstruction<int> alloc_default_on_copy(dpct::get_default_queue(), 42);
+    dpct::device_vector<int, AllocWithDefaultOnCopyConstruction<int>> D6(N, V, alloc_default_on_copy);
+    if (D6.get_allocator().index != 42) {
+        std::cout<<"index not set correctly for AllocWithDefaultOnCopyConstruction "<<D6.get_allocator().index<<std::endl;
+        return 1;
+    }
+    if (!verify(D6, N, V)) {
+        std::cout<<"Failed creation of AllocWithDefaultOnCopyConstruction"<<std::endl;
+        return 1;
+    }
+    dpct::device_vector<int,  AllocWithDefaultOnCopyConstruction<int>> D7(D6);
+    if (!verify(D7, N, V)) {
+        std::cout<<"Failed copy constructor of AllocWithDefaultOnCopyConstruction"<<std::endl;
+        return 1;
+    }
+    if (D7.get_allocator().index != 0) {
+        std::cout<<"index not set correctly for copied AllocWithDefaultOnCopyConstruction "<<D7.get_allocator().index<<std::endl;
+        return 1;
+    }
+
+    AllocWithCopyOnCopyConstruction<int> alloc_copy_on_copy(dpct::get_default_queue(), 33);
+    dpct::device_vector<int,  AllocWithCopyOnCopyConstruction<int>> D8(N, V, alloc_copy_on_copy);
+    if (!verify(D8, N, V)) {
+        std::cout<<"Failed creation of AllocWithCopyOnCopyConstruction"<<std::endl;
+        return 1;
+    }
+    if (D8.get_allocator().index != 33) {
+        std::cout<<"index not set correctly for AllocWithCopyOnCopyConstruction "<<D8.get_allocator().index<<std::endl;
+        return 1;
+    }
+
+    dpct::device_vector<int,  AllocWithCopyOnCopyConstruction<int>> D9(D8);
+    if (!verify(D9, N, V)) {
+        std::cout<<"Failed copy constructor of AllocWithCopyOnCopyConstruction"<<std::endl;
+        return 1;
+    }
+    if (D9.get_allocator().index != 33) {
+        std::cout<<"index not set correctly for copied AllocWithCopyOnCopyConstruction "<<D9.get_allocator().index<<std::endl;
+        return 1;
+    }
+  
+    return 0;
 }
