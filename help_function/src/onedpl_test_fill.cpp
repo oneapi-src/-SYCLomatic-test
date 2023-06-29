@@ -7,8 +7,6 @@
 //
 // ===----------------------------------------------------------------------===//
 
-#define DPCT_USM_LEVEL_NONE
-
 #include "oneapi/dpl/execution"
 #include "oneapi/dpl/iterator"
 #include "oneapi/dpl/algorithm"
