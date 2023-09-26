@@ -125,7 +125,7 @@ int main() {
     };
     auto *char2Input = getInput<char2>(char2Expect, char2W, char2H,
                                        cudaCreateChannelDesc<char2>());
-    short *char2Output;
+    char *char2Output;
     cudaMallocManaged(&char2Output, sizeof(char2Expect));
     auto char2Tex = getTex(char2Input);
     kernel2<char2><<<1, 1>>>(char2Output, char2Tex, char2W, char2H);
@@ -135,7 +135,7 @@ int main() {
     for (int i = 0; i < char2W * char2H; ++i) {
       if (char2Output[2 * i] != char2Expect[i].x ||
           char2Output[2 * i + 1] != char2Expect[i].y) {
-        // pass = false; // TODO: need support.
+        pass = false;
         break;
       }
     }

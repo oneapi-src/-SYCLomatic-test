@@ -215,7 +215,7 @@ def build_test():
 def run_test():
     if test_config.current_test not in exec_tests:
         return True
-    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter != "cuda:gpu":
+    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter.count("cuda") == 0:
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"
