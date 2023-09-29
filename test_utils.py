@@ -57,9 +57,9 @@ def set_default_compiler(use_cuda : bool):
         test_config.DPCXX_COM = 'clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda'
         return
     if (platform.system() == 'Windows'):
-        test_config.DPCXX_COM = "icx-cl -fsycl"
+        test_config.DPCXX_COM = "icx-cl -fsycl -fsycl-device-code-split=per_kernel"
     else:
-        test_config.DPCXX_COM = "icpx -fsycl"
+        test_config.DPCXX_COM = "icpx -fsycl -fsycl-device-code-split=per_kernel"
 
 def set_default_c_compiler(use_cuda : bool):
     if (use_cuda):
