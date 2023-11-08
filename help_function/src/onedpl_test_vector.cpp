@@ -295,8 +295,29 @@ int main() {
     num_failing = 0;
     test_name = "inserting host iterators";
     {
+        std::vector<int64_t> src(8, 99);
+        std::vector<int64_t> src2(2, 2);
+        std::vector<int64_t> src3(3, 33);
 
-        
+        dpct::device_vector<int64_t> dst = src;
+        dst.insert(dst.end(), src2.begin(), src2.end());
+
+        dst.insert(dst.begin() + 3, src3.begin(), src3.end());
+
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst.size(), 13);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[0], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[1], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[2], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[3], 33);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[4], 33);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[5], 33);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[6], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[7], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[8], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[9], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[10], 99);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[11], 2);
+        num_failing += ASSERT_ARRAY_EQUAL(test_name, dst[12], 2);
     }
 
 
