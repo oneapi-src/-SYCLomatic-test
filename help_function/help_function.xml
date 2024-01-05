@@ -107,6 +107,7 @@
     <test testName="onedpl_test_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_for_each" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_inner_product" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_iterator_adaptor" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_histogram" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_malloc_free" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_max_element" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
