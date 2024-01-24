@@ -19,13 +19,17 @@
 
 #include <iostream>
 
-template<typename String, typename _T1, typename _T2>
-int ASSERT_EQUAL(String msg, _T1&& X, _T2&& Y, bool skip_pass_msg = false) {
-    if(X!=Y) {
+template <typename String, typename _T1, typename _T2>
+int
+ASSERT_EQUAL(String msg, _T1&& X, _T2&& Y, bool skip_pass_msg = false)
+{
+    if (X != Y)
+    {
         std::cout << "FAIL: " << msg << " - (" << X << "," << Y << ")" << std::endl;
         return 1;
     }
-    else if (!skip_pass_msg){
+    else if (!skip_pass_msg)
+    {
         std::cout << "PASS: " << msg << std::endl;
     }
     return 0;
@@ -148,11 +152,11 @@ test_permutation_iterator()
     dpct::device_pointer<T> begin_res(data_res, 0);
     dpct::device_pointer<T> end_res(data_res, 1024);
 #else
-    dpct::device_pointer<T> data(1024*sizeof(T));
+    dpct::device_pointer<T> data(1024 * sizeof(T));
     dpct::device_pointer<T> begin(data);
     dpct::device_pointer<T> end(data + 1024);
 
-    dpct::device_pointer<T> data_res(1024*sizeof(T));
+    dpct::device_pointer<T> data_res(1024 * sizeof(T));
     dpct::device_pointer<T> begin_res(data_res);
     dpct::device_pointer<T> end_res(data_res + 1024);
 #endif
@@ -164,14 +168,17 @@ test_permutation_iterator()
     return ASSERT_EQUAL_N("device_ptr in permutation_iterator", begin_res, dpct::make_constant_iterator(T(1)), 1024);
 }
 
-int main() {
+int
+main()
+{
     int failed_tests = 0;
     failed_tests += test_device_ptr_manipulation();
     failed_tests += test_device_ptr_iteration();
     failed_tests += test_permutation_iterator();
 
     std::cout << std::endl << failed_tests << " failing test(s) detected." << std::endl;
-    if (failed_tests == 0) {
+    if (failed_tests == 0)
+    {
         return 0;
     }
     return 1;
