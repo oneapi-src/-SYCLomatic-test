@@ -6,6 +6,9 @@
 //
 //
 // ===----------------------------------------------------------------------===//
+
+#define ITERATOR_ADAPTOR_REQUIRED
+
 #include <oneapi/dpl/execution>
 #include "dpct.hpp"
 #include "dpl_utils.hpp"
