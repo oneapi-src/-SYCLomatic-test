@@ -45,6 +45,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
               'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
+              'curand-device2', 'curandEnum',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
               'cusolver_test1', 'cusolver_test2', 'cusolver_test3', 'cusolver_test4', 'cusolver_test5', 'thrust_op', 'cublas-extension', 'cublas_v1_runable', 'thrust_minmax_element',
               'thrust_is_sorted', 'thrust_partition', 'thrust_remove_copy', 'thrust_unique_copy', 'thrust_transform_exclusive_scan',
