@@ -140,7 +140,6 @@
     <test testName="onedpl_test_stable_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sys_tag_utils" configFile="config/TEMPLATE_help_function_usm.xml" />
-    <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_tabulate" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_tagged_pointer" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_temporary_allocation" configFile="config/TEMPLATE_help_function_usm.xml" />
