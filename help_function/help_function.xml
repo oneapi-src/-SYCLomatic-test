@@ -122,16 +122,16 @@
     <test testName="onedpl_test_remove_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_replace_copy_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sequence" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!--<test testName="onedpl_test_segmented_sort_pairs" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_segmented_sort_pairs" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_difference_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_intersection_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_symmetric_difference_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_union_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!-- <test testName="onedpl_test_sort_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_sort_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sort_keys" configFile="config/TEMPLATE_help_function_skip_double.xml" />
     <test testName="onedpl_test_sort_pairs" configFile="config/TEMPLATE_help_function_skip_double.xml" />
     <test testName="onedpl_test_null_type" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!-- <test testName="onedpl_test_segmented_sort_keys" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_segmented_sort_keys" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sys_tag_utils" configFile="config/TEMPLATE_help_function_usm.xml" />
