@@ -21,6 +21,7 @@ import json
 from pathlib import Path
 import argparse
 from argparse import RawTextHelpFormatter
+import multiprocessing as mp
 
 from test_utils import *
 
@@ -318,6 +319,8 @@ def get_gpu_split_test_suite(suite_cfg):
         elif test_config.backend_device not in test_config.support_double_gpu and not case_config.split_group:
             new_test_config_map[current_test] = case_config
     return new_test_config_map
+# def handle_result(result):
+
 def test_suite(suite_root_path, suite_name, opt):
     test_ws_root = os.path.join(os.path.dirname(suite_root_path), "test_workspace")
     # module means the test driver for a test suite.
@@ -326,12 +329,16 @@ def test_suite(suite_root_path, suite_name, opt):
     test_workspace = prepare_test_workspace(test_ws_root, suite_name, opt)
     suite_result = True
     failed_cases = []
+    pool = mf.Pool(4)
+
     test_config.suite_cfg.test_config_map = get_gpu_split_test_suite(test_config.suite_cfg)
     for current_test, single_case_config in test_config.suite_cfg.test_config_map.items():
-        ret = test_single_case(current_test, single_case_config, test_workspace, module, suite_root_path)
-        if not ret:
-            failed_cases.append(current_test + " " + test_config.test_status)
-        suite_result = ret & suite_result
+        # Mutli-thread here.
+        pool.apply_async(test_single_case, (current_test, single_case_config, test_workspace, module,suite_root_path))
+        # ret = test_single_case(current_test, single_case_config, test_workspace, module, suite_root_path)
+        # if not ret:
+        #     failed_cases.append(current_test + " " + test_config.test_status)
+        # suite_result = ret & suite_result
     if failed_cases:
         print("===============Failed case(s) ==========================")
         for case in failed_cases:
