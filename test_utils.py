@@ -26,24 +26,22 @@ from distutils import dir_util
 # Call subprocess to run migration, build and test binary. Store the command and execution result to
 # command.tst and result.md.
 def call_subprocess(cmd):
-    with open(test_config.command_file, 'a+') as f:
-        f.write(cmd + "\n")
-    with open(test_config.log_file, 'a+') as f:
-        try:
-            run_on_shell = False
-            if (platform.system() == 'Linux'):
-                run_on_shell = True
-            complete_process = subprocess.run(cmd, shell=run_on_shell, check=False,
-                                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                        encoding="utf-8", timeout=test_config.timeout)
-            test_config.command_output = complete_process.stdout
-            f.write(complete_process.stdout)
-        except subprocess.TimeoutExpired:
-            f.write("========= Execution time out(" + str(test_config.timeout) + "s) Please check. ======")
+    test_config.executed_command += cmd +"\n"
+    try:
+        run_on_shell = False
+        if (platform.system() == 'Linux'):
+            run_on_shell = True
+        complete_process = subprocess.run(cmd, shell=run_on_shell, check=False,
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                    encoding="utf-8", timeout=test_config.timeout)
+        test_config.command_output += complete_process.stdout + "\n"
+        test_config.execution_log += complete_process.stdout + "\n"
+        if complete_process.returncode != 0:
             return False
-    if complete_process.returncode != 0:
+        return True
+    except subprocess.TimeoutExpired:
+        test_config.execution_log += "========= Excuting " + cmd + " is meeting time out(" + str(test_config.timeout) + "s) Please check. ======"
         return False
-    return True
 
 def change_dir(dir):
     cmd = "cd " + dir
@@ -161,7 +159,6 @@ def append_msg_to_file(file_path, msg):
     with open(file_path, 'a+') as f:
         f.write(msg)
 
-
 def do_migrate(src, in_root, out_root, extra_args = []):
     cmd = test_config.CT_TOOL  + " --cuda-include-path=" + test_config.include_path + \
             ' ' + ' '.join(src)
@@ -194,7 +191,6 @@ def is_registered_module(test_case_workspace):
 # Print the failed test result and details in the screen.
 def print_result(case, status, details_log):
     print("============= " + case + ": " + status + " ==================\n")
-    call_subprocess("sycl-ls")
     print("========== Device Runtime Info: ===============")
     print(test_config.command_output)
     print("=============================================\n")
