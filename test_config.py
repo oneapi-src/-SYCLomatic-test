@@ -20,6 +20,7 @@ current_test = ""  # The name of current test. The test driver will automaticall
 command_file = ""  # Used to store the execution command.
 executed_command = ""
 execution_log = ""
+is_first_round = True
 log_file = ""      # Default: <workspace>/[test name].lf
 result_text = ""   # Default: <workspace>/result.md
 include_path = ""  # Specify the CUDA header file path.

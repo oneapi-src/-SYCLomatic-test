@@ -273,11 +273,11 @@ def test_single_case(current_test, single_case_config, workspace, suite_root_pat
     test_config.current_test = current_test
     test_config.executed_command = "================= " + test_config.current_test + " ==================\n"
     if single_case_config.platform_rule_list and not is_platform_supported(single_case_config.platform_rule_list):
-        append_msg_to_file(test_config.result_text, current_test + " Skip " + "\n")
+        append_log_to_file(test_config.result_text, current_test + " Skip " + "\n")
         return True, current_test, "Skip"
 
     if single_case_config.option_rule_list and not is_option_supported(single_case_config.option_rule_list):
-        append_msg_to_file(test_config.result_text, current_test + " Skip " + "\n")
+        append_log_to_file(test_config.result_text, current_test + " Skip " + "\n")
         return True, current_test, "Skip"
 
     case_workspace = os.path.join(workspace, current_test)
@@ -289,14 +289,13 @@ def test_single_case(current_test, single_case_config, workspace, suite_root_pat
     copy_source_to_ws(single_case_config.test_dep_files, case_workspace, suite_root_path)
     test_result = run_test_driver(module)
     # Write the execution command to command.tst, execution log to <test case>.lf, execution result to result.md
-    append_msg_to_file(test_config.log_file, "------------------------------------------------------------------------\n\n" + \
-                "=================== "+ test_config.current_test + " is " + test_config.test_status + " ======================\n ")
-    append_msg_to_file(test_config.log_file, test_config.execution_log)
-    append_msg_to_file(test_config.result_text, test_config.current_test + " " + test_config.test_status + "\n")
-    append_msg_to_file(test_config.command_file, test_config.executed_command + "\n")
+    write_log_to_file(test_config.log_file, "------------------------------------------------------------------------\n\n" + \
+                "=================== "+ test_config.current_test + " is " + test_config.test_status + " ======================\n " + test_config.execution_log)
+    append_log_to_file(test_config.result_text, test_config.current_test + " " + test_config.test_status + "\n")
+    append_log_to_file(test_config.command_file, test_config.executed_command + "\n")
 
     if not test_result: # When execution failed, then print the failed log in the terminal.
-        print_result(test_config.current_test, test_config.test_status, test_config.command_output)
+        print_result(test_config.current_test, test_config.test_status, test_config.execution_log)
     return test_result, current_test, test_config.test_status
 
 def prepare_test_workspace(root_path, suite_name, opt, case = ""):
@@ -327,11 +326,10 @@ def get_gpu_split_test_suite(suite_cfg):
     return new_test_config_map
 
 failed_cases = []
-
 def collect_result(result):
     global failed_cases
     if not result[0]:
-        failed_cases.append(result[1] + " " + result[2]) # Case Name + " " + Status
+        failed_cases.append(result[1]) # Case Name
 def test_suite(suite_root_path, suite_name, opt):
     test_ws_root = os.path.join(os.path.dirname(suite_root_path), "test_workspace")
     # module means the test driver for a test suite.
@@ -347,16 +345,23 @@ def test_suite(suite_root_path, suite_name, opt):
         pool.apply_async(test_single_case, args, callback=collect_result)
     pool.close()
     pool.join()
-
-    if failed_cases:
+    # Second round: single thread run the failed cases.
+    test_config.is_first_round = False
+    failed_logs = []
+    for current_test in failed_cases:
+        ret_val, test_name, test_status = test_single_case(current_test, test_config.suite_cfg.test_config_map[current_test], test_workspace, suite_root_path)
+        if not ret_val:
+            failed_logs.append(test_name + " " + test_status)
+    if failed_logs:
         print("===============Failed case(s) ==========================")
-        for case in failed_cases:
-            print(case + " \n")
+        for case_log in failed_logs:
+            print(case_log + " \n")
         print("=========================================")
         return False
     return True
 
 def test_single_case_in_suite(suite_root_path, suite_name, case, option):
+    test_config.is_first_round = False # Disable the multi-thread effect to set the is_first_round to False
     test_ws_root = os.path.join(os.path.dirname(suite_root_path), "test_workspace")
     test_config.suite_cfg = parse_suite_cfg(suite_name, suite_root_path)
     test_workspace = prepare_test_workspace(test_ws_root, suite_name, option, case)

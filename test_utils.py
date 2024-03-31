@@ -34,7 +34,7 @@ def call_subprocess(cmd):
         complete_process = subprocess.run(cmd, shell=run_on_shell, check=False,
                                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                     encoding="utf-8", timeout=test_config.timeout)
-        test_config.command_output += complete_process.stdout + "\n"
+        test_config.command_output = complete_process.stdout
         test_config.execution_log += complete_process.stdout + "\n"
         if complete_process.returncode != 0:
             return False
@@ -155,9 +155,13 @@ def get_cuda_version():
                 return int(line.split(' ')[-1])
     return 0
 
-def append_msg_to_file(file_path, msg):
+def write_log_to_file(file_path, log):
+    with open(file_path, 'w+') as f:
+        f.write(log)
+
+def append_log_to_file(file_path, log):
     with open(file_path, 'a+') as f:
-        f.write(msg)
+        f.write(log)
 
 def do_migrate(src, in_root, out_root, extra_args = []):
     cmd = test_config.CT_TOOL  + " --cuda-include-path=" + test_config.include_path + \
@@ -190,11 +194,12 @@ def is_registered_module(test_case_workspace):
 
 # Print the failed test result and details in the screen.
 def print_result(case, status, details_log):
-    print("============= " + case + ": " + status + " ==================\n")
-    print("========== Device Runtime Info: ===============")
-    print(test_config.command_output)
-    print("=============================================\n")
-    print("----------------------------\n" + details_log + "\n----------------------\n")
+    if not test_config.is_first_round:
+        print("============= " + case + ": " + status + " ==================\n")
+        print("========== Device Runtime Info: ===============")
+        print(test_config.command_output)
+        print("=============================================\n")
+        print("----------------------------\n" + details_log + "\n----------------------\n")
 
 def is_sub_string(substr, fullstr):
     if substr in fullstr:
