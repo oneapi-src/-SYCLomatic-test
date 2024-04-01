@@ -326,15 +326,17 @@ def get_gpu_split_test_suite(suite_cfg):
     return new_test_config_map
 
 failed_cases = []
+passed_cases = []
 def collect_result(result):
     global failed_cases
     if not result[0]:
         failed_cases.append(result[1]) # Case Name
+    else:
+        passed_cases.append(result[1] + " " + result[2])
 def test_suite(suite_root_path, suite_name, opt):
     test_ws_root = os.path.join(os.path.dirname(suite_root_path), "test_workspace")
     # module means the test driver for a test suite.
     module = import_test_driver(suite_root_path)
-    global failed_cases
     test_config.suite_cfg = parse_suite_cfg(suite_name, suite_root_path)
     test_workspace = prepare_test_workspace(test_ws_root, suite_name, opt)
     cpu_count = os.cpu_count()
@@ -347,16 +349,25 @@ def test_suite(suite_root_path, suite_name, opt):
     pool.join()
     # Second round: single thread run the failed cases.
     test_config.is_first_round = False
+    global failed_cases
+    global passed_cases
     failed_logs = []
     for current_test in failed_cases:
         ret_val, test_name, test_status = test_single_case(current_test, test_config.suite_cfg.test_config_map[current_test], test_workspace, suite_root_path)
         if not ret_val:
             failed_logs.append(test_name + " " + test_status)
+        else:
+            passed_cases.append(test_name + " " + test_status)
+    if passed_cases:
+        print("===============passed case(s) ==========================")
+        for case_log in passed_cases:
+            print(case_log + " \n")
+        print("========================================================")
     if failed_logs:
         print("===============Failed case(s) ==========================")
         for case_log in failed_logs:
             print(case_log + " \n")
-        print("=========================================")
+        print("========================================================")
         return False
     return True
 
