@@ -266,6 +266,7 @@
     <test testName="cudnn-dropout" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-version" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="deviceAPI" configFile="config/TEMPLATE_deviceAPI.xml" />
+    <test testName="profiler" configFile="config/TEMPLATE_profiler.xml" />
     <test testName="free-queries" configFile="config/TEMPLATE_freeQueries.xml" />
     <test testName="deviceProp" configFile="config/TEMPLATE_deviceProp.xml" />
     <test testName="gridThreads" configFile="config/TEMPLATE_gridThreads.xml" />
