@@ -295,7 +295,7 @@ def test_single_case(current_test, single_case_config, workspace, suite_root_pat
     append_log_to_file(test_config.command_file, test_config.executed_command + "\n")
 
     if not test_result: # When execution failed, then print the failed log in the terminal.
-        print_result(test_config.current_test, test_config.test_status, test_config.execution_log)
+        print_result(test_config.current_test, test_config.executed_command, test_config.test_status, test_config.execution_log)
     return test_result, current_test, test_config.test_status
 
 def prepare_test_workspace(root_path, suite_name, opt, case = ""):

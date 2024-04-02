@@ -193,10 +193,12 @@ def is_registered_module(test_case_workspace):
     return False
 
 # Print the failed test result and details in the screen.
-def print_result(case, status, details_log):
+def print_result(case, command, status, details_log):
     if not test_config.is_first_round:
         print("============= " + case + ": " + status + " ==================\n")
-        print("========== Device Runtime Info: ===============")
+        print("============= Execution command ==================\n")
+        print(command)
+        print("============= Device Runtime Info: ==================\n")
         print(test_config.command_output)
         print("=============================================\n")
         print("----------------------------\n" + details_log + "\n----------------------\n")

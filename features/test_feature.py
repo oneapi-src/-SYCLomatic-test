@@ -11,6 +11,7 @@ import re
 import sys
 from pathlib import Path
 import fileinput
+import shutil
 
 parent = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(parent)
@@ -69,7 +70,9 @@ def migrate_test():
     extra_args = []
     in_root = os.path.join(os.getcwd(), test_config.current_test)
     test_config.out_root = os.path.join(in_root, 'out_root')
-
+    # Clean the out-root when it exisits.
+    if os.path.exists(test_config.out_root):
+        shutil.rmtree(test_config.out_root)
     if test_config.current_test == 'cufft_test':
         return do_migrate([os.path.join(in_root, 'cufft_test.cu')], in_root, test_config.out_root, extra_args)
 
