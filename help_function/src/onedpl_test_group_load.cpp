@@ -10,14 +10,13 @@
 #include <dpct/dpct.hpp>
 #include <dpct/dpl_utils.hpp>
 #include <iostream>
+#include<oneapi/dpl/iterator>
 
 
 bool helper_validation_function(const int* ptr,const char* func_name){
   // Used for validation of output and expected output sequences
-  int expected[512];
-  for (int i = 0; i < 512; ++i) {
-      expected[i] = i;
-  }
+  oneapi::dpl::counting_iterator<int> expected(0);
+  
   for (int i = 0; i < 512; ++i) {
     if (ptr[i] != expected[i]) {
       std::cout << func_name <<" failed\n";
