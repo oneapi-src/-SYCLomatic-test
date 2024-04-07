@@ -112,10 +112,10 @@ void Driver_TextureObjectManagement() {
   CUDA_RESOURCE_DESC R;
   CUDA_TEXTURE_DESC T;
   // CUDA_RESOURCE_VIEW_DESC V; // TODO: need support.
-  // cuTexObjectCreate(&o, &R, &T, nullptr /*&V*/); // TODO: need support.
+  cuTexObjectCreate(&o, &R, &T, nullptr /*&V*/);
   cuTexObjectDestroy(o);
-  // cuTexObjectGetResourceDesc(&R, o); // TODO: need support.
-  // cuTexObjectGetTextureDesc(&T, o);  // TODO: need support.
+  cuTexObjectGetResourceDesc(&R, o);
+  cuTexObjectGetTextureDesc(&T, o);
 }
 
 int main() {
