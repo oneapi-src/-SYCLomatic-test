@@ -159,6 +159,7 @@
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI.xml" />
+    <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
     <test testName="cusolverDnEi" configFile="config/TEMPLATE_cusolver.xml" />
     <test testName="cusolverDnEi-part2" configFile="config/TEMPLATE_cusolver.xml" />
@@ -313,9 +314,10 @@
     <test testName="image" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
-    <!-- <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" /> -->
-    <!-- <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" /> -->
-    <!-- <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" /> -->
+    <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />

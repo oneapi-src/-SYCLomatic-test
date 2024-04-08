@@ -11,6 +11,7 @@ import re
 import sys
 from pathlib import Path
 import fileinput
+import shutil
 
 parent = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(parent)
@@ -42,6 +43,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
               'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
+              'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
               'cusolver_test1', 'cusolver_test2', 'cusolver_test3', 'cusolver_test4', 'cusolver_test5', 'thrust_op', 'cublas-extension', 'cublas_v1_runable', 'thrust_minmax_element',
@@ -57,7 +59,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr']
+              'thrust_advance_trans_op_itr', 'cuda_stream_query']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -69,7 +71,9 @@ def migrate_test():
     extra_args = []
     in_root = os.path.join(os.getcwd(), test_config.current_test)
     test_config.out_root = os.path.join(in_root, 'out_root')
-
+    # Clean the out-root when it exisits.
+    if os.path.exists(test_config.out_root):
+        shutil.rmtree(test_config.out_root)
     if test_config.current_test == 'cufft_test':
         return do_migrate([os.path.join(in_root, 'cufft_test.cu')], in_root, test_config.out_root, extra_args)
 
@@ -199,8 +203,6 @@ def build_test():
         ret = compile_and_link(srcs, cmp_options, objects, link_opts)
     elif re.match('^cufft.*', test_config.current_test) and platform.system() == 'Linux':
         ret = compile_and_link(srcs, cmp_options, objects, link_opts)
-    elif test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter == "cuda:gpu":
-        ret = compile_and_link(srcs, cmp_options, objects, link_opts)
     else:
         ret = compile_files(srcs, cmp_options)
     return ret
@@ -208,6 +210,8 @@ def build_test():
 
 def run_test():
     if test_config.current_test not in exec_tests:
+        return True
+    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter != "cuda:gpu":
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

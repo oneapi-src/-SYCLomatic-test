@@ -12,11 +12,14 @@
 __global__ void
 CppLanguageExtensions_TextureFunctions(cudaTextureObject_t tex) {
   int i = 1, t = 1;
-  float j = 1, k = 1, l = 1;
+  float j = 1, k = 1, l = 1, m = 1;
   tex1Dfetch<float4>(tex, i);
   tex1D<short2>(tex, i);
+  tex1DLod<ushort2>(tex, i, t);
   tex2D<int1>(tex, j, k);
-  // tex3D<char4>(tex, j, k, l); // TODO: need support.
+  tex2DLod<uint1>(tex, j, k, l);
+  tex3D<char4>(tex, j, k, l);
+  tex3DLod<uchar4>(tex, j, k, l, m);
   // tex1DLayered<uchar2>(tex, i, t); // TODO: need support.
   // tex2DLayered<uint2>(tex, j, k, t); // TODO: need support.
 }
@@ -26,6 +29,7 @@ void Runtime_MemoryManagement() {
   cudaExtent e;
   unsigned int u;
   cudaArray_t a = nullptr;
+  cudaMipmappedArray_t m;
   cudaPitchedPtr p;
   size_t s = 1;
   void *v;
@@ -34,9 +38,12 @@ void Runtime_MemoryManagement() {
   int i = 1;
   cudaArrayGetInfo(&d, &e, &u, a);
   cudaFreeArray(a);
+  cudaFreeMipmappedArray(m);
+  cudaGetMipmappedArrayLevel(&a, m, u);
   cudaMalloc3D(&p, e);
   cudaMalloc3DArray(&a, &d, e, u);
   cudaMallocArray(&a, &d, s, s, u);
+  cudaMallocMipmappedArray(&m, &d, e, u, i);
   cudaMallocPitch(&v, &s, s, s);
   cudaMemcpy2D(v, s, v, s, s, s, k);
   cudaMemcpy2DArrayToArray(a, s, s, a, s, s, s, s, k);

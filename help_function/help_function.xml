@@ -68,6 +68,8 @@
     <test testName="blas_utils_get_transpose" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="blas_utils_get_value" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double" />
     <test testName="blas_utils_get_value_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double" />
+    <test testName="blas_utils_parameter_wrapper_buf" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
+    <test testName="blas_utils_parameter_wrapper_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="util_cast_value_test" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="util_fast_length_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_make_index_sequence_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -112,6 +114,8 @@
     <test testName="onedpl_test_nontrivial_run_length_encode" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_flagged" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_if" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_partition_point" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_raw_pointer_cast" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double" />
     <test testName="onedpl_test_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
