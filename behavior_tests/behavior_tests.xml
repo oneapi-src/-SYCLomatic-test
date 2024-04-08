@@ -167,7 +167,7 @@
         <test testName="cmake_dpct_helper_compile_sycl_code" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="cmake_dpct_helper_sycl_compile" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="user-defined-sycl-file-extension" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="trap" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="trap" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="analysis-mode" configFile="config/TEMPLATE_behavior_tests.xml" />
     </tests>
 
