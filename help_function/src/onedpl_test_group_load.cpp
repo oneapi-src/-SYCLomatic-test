@@ -11,7 +11,8 @@
 #include <dpct/dpct.hpp>
 #include <dpct/dpl_utils.hpp>
 #include <iostream>
-#include<oneapi/dpl/iterator>
+#include <oneapi/dpl/iterator>
+
 
 
 bool helper_validation_function(const int* ptr,const char* func_name){
