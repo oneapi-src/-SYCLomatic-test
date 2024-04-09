@@ -15,7 +15,8 @@
 
 
 
-bool helper_validation_function(const int* ptr,const char* func_name){
+bool helper_validation_function(const int* ptr, const char* func_name) {
+
   // Used for validation of output and expected output sequences
   
   for (int i = 0; i < 512; ++i) {
