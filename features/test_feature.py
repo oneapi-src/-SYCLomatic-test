@@ -103,7 +103,7 @@ def migrate_test():
         src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'sync_warp_p2':
         src.append(' --use-experimental-features=masked-sub-group-operation ')
-    if test_config.current_test == 'wmma':
+    if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
         src.append(' --use-experimental-features=matrix ')
     if test_config.current_test in experimental_bfloat16_tests:
         src.append(' --use-experimental-features=bfloat16_math_functions ')
