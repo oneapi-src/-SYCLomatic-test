@@ -280,6 +280,7 @@
     <test testName="cusparse_6" configFile="config/TEMPLATE_cusparse_before_12_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_7" configFile="config/TEMPLATE_cusparse_before_11_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_8" configFile="config/TEMPLATE_cusparse_after_101_skip_double.xml" splitGroup="double"/>
+    <test testName="cusparse_9" configFile="config/TEMPLATE_cusparse_after_113_skip_double.xml" splitGroup="double"/>
     <test testName="cusolver_test1" configFile="config/TEMPLATE_solver.xml"  splitGroup="double"/>
     <test testName="cusolver_test2" configFile="config/TEMPLATE_solver_skip80.xml"  splitGroup="double"/>
     <test testName="cusolver_test3" configFile="config/TEMPLATE_solver_11.xml"  splitGroup="double"/>
