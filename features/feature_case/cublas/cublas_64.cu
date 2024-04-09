@@ -54,6 +54,18 @@ void foo() {
   int64_t incx;
   int64_t incy;
 
+  int64_t elemSize;
+  cudaStream_t stream;
+  status = cublasSetVector_64(n, elemSize, A_s, incx, C_s, incy);
+  status = cublasGetVector_64(n, elemSize, A_s, incx, C_s, incy);
+  status = cublasSetVectorAsync_64(n, elemSize, A_s, incx, C_s, incy, stream);
+  status = cublasGetVectorAsync_64(n, elemSize, A_s, incx, C_s, incy, stream);
+
+  status = cublasSetMatrix_64(m, n, elemSize, A_s, lda, C_s, ldb);
+  status = cublasGetMatrix_64(m, n, elemSize, A_s, lda, C_s, ldb);
+  status = cublasSetMatrixAsync_64(m, n, elemSize, A_s, lda, C_s, ldb, stream);
+  status = cublasGetMatrixAsync_64(m, n, elemSize, A_s, lda, C_s, ldb, stream);
+
   status = cublasIsamax_64(handle, n, A_s, lda, &result);
   status = cublasIdamax_64(handle, n, A_d, lda, &result);
   status = cublasIcamax_64(handle, n, A_c, lda, &result);
