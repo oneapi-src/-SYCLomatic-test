@@ -328,7 +328,7 @@
     <!-- <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" /> -->
     <test testName="remove_unnecessary_wait" configFile="config/TEMPLATE_remove_unnecessary_wait.xml" />
     <test testName="warp_reduce_functions" configFile="config/TEMPLATE_cpp_language_extensions.xml" />
-    <!-- <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" /> -->
+    <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" />
     <test testName="wmma_type" configFile="config/TEMPLATE_wmma.xml" />
     <test testName="peer_access" configFile="config/TEMPLATE_peer_access.xml" />
     <test testName="const_opt" configFile="config/TEMPLATE_const_opt.xml" />
