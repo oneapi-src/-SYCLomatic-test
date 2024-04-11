@@ -1,0 +1,559 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/out/cudautils.h'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          41
+    Length:          0
+    ReplacementText: "#define DPCT_COMPAT_RT_VERSION 12020\n#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          78
+    Length:          0
+    ReplacementText: "\n#include <chrono>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          323
+    Length:          9
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          376
+    Length:          165
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          608
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          612
+    Length:          9
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          628
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          655
+    Length:          175
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          832
+    Length:          0
+    ReplacementText: "\ncatch (sycl::exception const &exc) {\n  std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n  std::exit(1);\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          919
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1010:86: SYCL uses exceptions to report errors and does not use the error codes. The call was replaced with 0. You need to rewrite this code.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          921
+    Length:          11
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          939
+    Length:          18
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          961
+    Length:          176
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1205
+    Length:          32
+    ReplacementText: 'DPCT_CHECK_ERROR(deviceCount = dpct::dev_mgr::instance().device_count())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1442
+    Length:          14
+    ReplacementText: 'dpct::device_info'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1480
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_device_info'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1504
+    Length:          11
+    ReplacementText: deviceProp
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1517
+    Length:          3
+    ReplacementText: 'dpct::dev_mgr::instance().get_device(dev)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1521
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1524
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1005:88: The SYCL device version is different from CUDA Compute Compatibility. You may need to rewrite this code.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1541
+    Length:          5
+    ReplacementText: 'get_major_version()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1641
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1093:89: The \"dev\" device may be not the one intended for use. Adjust the selected device if needed.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1652
+    Length:          13
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1670
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1718
+    Length:          11
+    ReplacementText: 'dpct::event_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1742
+    Length:          0
+    ReplacementText: "\n  std::chrono::time_point<std::chrono::steady_clock> start_ct1;\n  std::chrono::time_point<std::chrono::steady_clock> stop_ct1;"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1745
+    Length:          12
+    ReplacementText: 'dpct::queue_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1777
+    Length:          12
+    ReplacementText: 'dpct::queue_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1800
+    Length:          1
+    ReplacementText: '&dpct::get_in_order_queue()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1829
+    Length:          23
+    ReplacementText: 'start = new sycl::event()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1858
+    Length:          22
+    ReplacementText: 'stop = new sycl::event()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1882
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1012:90: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1886
+    Length:          30
+    ReplacementText: "start_ct1 = std::chrono::steady_clock::now();\n    *start = stream->ext_oneapi_submit_barrier()"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1944
+    Length:          23
+    ReplacementText: 'dpct::destroy_event(start)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          1973
+    Length:          22
+    ReplacementText: 'dpct::destroy_event(stop)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2020
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1012:91: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2024
+    Length:          29
+    ReplacementText: "stop_ct1 = std::chrono::steady_clock::now();\n    *stop = stream->ext_oneapi_submit_barrier()"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2059
+    Length:          26
+    ReplacementText: 'stop->wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2107
+    Length:          40
+    ReplacementText: 'time = std::chrono::duration<float, std::milli>(stop_ct1 - start_ct1).count()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2857
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2916
+    Length:          0
+    ReplacementText: ",\n                       const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2941
+    Length:          14
+    ReplacementText: DPCT_COMPAT_RT_VERSION
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2965
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1023:0: The SYCL sub-group does not support mask options for dpct::shift_sub_group_left. You can specify \"--use-experimental-features=masked-sub-group-operation\" to use the experimental helper function to migrate __shfl_down_sync.\n  */\n  /*\n  DPCT1096:225: The right-most dimension of the work-group used in the SYCL kernel that calls this function may be less than \"32\". The function \"dpct::shift_sub_group_left\" may return an unexpected result on the CPU device. Modify the size of the work-group to ensure that the value of the right-most dimension is a multiple of \"32\".\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          2974
+    Length:          47
+    ReplacementText: 'dpct::shift_sub_group_left(item_ct1.get_sub_group(), var, delta, width)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3099
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3156
+    Length:          0
+    ReplacementText: ",\n                     const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3181
+    Length:          14
+    ReplacementText: DPCT_COMPAT_RT_VERSION
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3205
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1023:1: The SYCL sub-group does not support mask options for dpct::shift_sub_group_right. You can specify \"--use-experimental-features=masked-sub-group-operation\" to use the experimental helper function to migrate __shfl_up_sync.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3214
+    Length:          45
+    ReplacementText: 'dpct::shift_sub_group_right(item_ct1.get_sub_group(), var, delta, width)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3335
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3391
+    Length:          0
+    ReplacementText: ', const sycl::nd_item<3> &item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3416
+    Length:          14
+    ReplacementText: DPCT_COMPAT_RT_VERSION
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3440
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1023:2: The SYCL sub-group does not support mask options for dpct::select_from_sub_group. You can specify \"--use-experimental-features=masked-sub-group-operation\" to use the experimental helper function to migrate __shfl_sync.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Offset:          3449
+    Length:          41
+    ReplacementText: 'dpct::select_from_sub_group(item_ct1.get_sub_group(), var, lane, width)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/cudautils.h'
+    Digest:          127b6c30b6236cc7de6968ae1eff8ccf
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/Velocity-Bench/cudaSift/CUDA/build'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

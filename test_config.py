@@ -18,6 +18,9 @@ VERBOSE_LEVEL = 0       # Debug verbose level： 0: silent all the debug informa
 
 current_test = ""  # The name of current test. The test driver will automatically set a name for current test, if the current test is empty.
 command_file = ""  # Used to store the execution command.
+executed_command = ""
+execution_log = ""
+is_first_round = True
 log_file = ""      # Default: <workspace>/[test name].lf
 result_text = ""   # Default: <workspace>/result.md
 include_path = ""  # Specify the CUDA header file path.
@@ -49,7 +52,7 @@ mkl_link_opt_win = ["mkl_sycl_dll.lib", "mkl_intel_ilp64_dll.lib", "mkl_sequenti
 
 mkl_comp_opt = ["-DMKL_ILP64"]
 
-gpu_device = ["Gen9", "Gen12"]
+gpu_device = ["Gen9", "Gen12", "PVC"]
 
 # The gpu support double kernel type.
-support_double_gpu = ["Gen9"]
+support_double_gpu = ["Gen9", "PVC"]

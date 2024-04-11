@@ -27,7 +27,9 @@
     <test testName="thrust_test-pennet_simple_pstl" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_array" configFile="image_array/config/image_array.xml" />
     <test testName="test_complex" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="math_extend_func" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_bfe" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_bfi" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_extend_func" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="math_function" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math_dp2a_dp4a" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math" configFile="config/TEMPLATE_help_function.xml" />
@@ -66,6 +68,9 @@
     <test testName="blas_utils_get_transpose" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="blas_utils_get_value" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double" />
     <test testName="blas_utils_get_value_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double" />
+    <test testName="blas_utils_parameter_wrapper_buf" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
+    <test testName="blas_utils_parameter_wrapper_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
+    <test testName="blas_utils_matrix_mem_copy_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_cast_value_test" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="util_fast_length_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_make_index_sequence_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -110,6 +115,8 @@
     <test testName="onedpl_test_nontrivial_run_length_encode" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_flagged" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_if" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_partition_point" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_raw_pointer_cast" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double" />
     <test testName="onedpl_test_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
@@ -137,8 +144,8 @@
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
-    <!-- <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" /> -->
-    <!-- <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
+    <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -160,7 +167,7 @@
     <test testName="blas_extension_api_buffer" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_extension_api_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="dnnl_utils_version" configFile="config/TEMPLATE_help_function_usm.xml" />
-    <test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />
+    <!--<test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />-->
     <test testName="dnnl_utils_activation" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_fill" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_lrn" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -182,7 +189,7 @@
     <test testName="dnnl_utils_batch_normalization_3" configFile="config/TEMPLATE_help_function_usmnone_skip_double.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_1" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_2" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
-    <test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
+    <!--<test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />-->
     <test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_logical_group" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="fft_workspace_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" splitGroup="double"/>

@@ -11,5 +11,6 @@
         <suite name="api_coverage"  dir="api_coverage" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu"/>
         <suite name="behavior_tests"  dir="behavior_tests" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu"/>
         <suite name="applications"  dir="applications" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu"/>
+        <suite name="multi_devices"  dir="multi_devices" opts="option_gpu"/>
     </suites>
 </test_suite>

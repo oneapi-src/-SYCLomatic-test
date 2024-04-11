@@ -4,5 +4,6 @@
     <description>applications test</description>
     <tests>
         <test testName="llama" configFile="config/TEMPLATE_llama.xml" />
+        <test testName="llama_cmake_migration" configFile="config/TEMPLATE_llama_cmake_migration.xml" />
     </tests>
 </suite>

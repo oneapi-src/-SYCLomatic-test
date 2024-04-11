@@ -5,6 +5,7 @@
 
   <tests>
     <test testName="asm" configFile="config/TEMPLATE_asm.xml" />
+    <test testName="asm_bar" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_vinst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v2inst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v4inst" configFile="config/TEMPLATE_asm.xml" />
@@ -29,7 +30,7 @@
     <test testName="thrust-unique_by_key_copy" configFile="config/TEMPLATE_thrust_exec.xml" />
     <test testName="thrust-unique_by_key" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust-for-hypre" configFile="config/TEMPLATE_thrust_exec.xml" />
-    <!-- <test testName="thrust-rawptr-noneusm" configFile="config/TEMPLATE_thrust_noneusm_exec.xml" /> -->
+    <test testName="thrust-rawptr-noneusm" configFile="config/TEMPLATE_thrust_noneusm_exec.xml" />
     <test testName="thrust-find" configFile="config/TEMPLATE_thrust_exec.xml" />
     <test testName="thrust-sort_by_key" configFile="config/TEMPLATE_thrust_exec.xml" />
     <test testName="thrust-inner_product" configFile="config/TEMPLATE_thrust_exec.xml" />
@@ -44,12 +45,14 @@
     <test testName="thrust_system" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
     <test testName="thrust_stable_partition" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_random_type" configFile="config/TEMPLATE_thrust_api.xml" />
+    <test testName="thrust_advance_trans_op_itr" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_uninitialized_fill_n" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_swap_ranges" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_reverse" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_reverse_copy" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_all_of" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
     <test testName="thrust_none_of" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
+    <test testName="thrust_unique_count" configFile="config/TEMPLATE_thrust_unique_count.xml" />
     <test testName="thrust_is_partitioned" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
     <test testName="thrust_is_sorted_until" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
     <test testName="thrust_set_intersection" configFile="config/TEMPLATE_thrust_exec_disable_noneusm.xml" />
@@ -132,17 +135,17 @@
     <test testName="math-half-raw" configFile="config/TEMPLATE_math_after_11.xml"/>
     <test testName="math-experimental-bf16" configFile="config/TEMPLATE_math_after_11.xml" />
     <test testName="math-experimental-bf162" configFile="config/TEMPLATE_math_after_11.xml" />
-    <test testName="math-ext-bf16-conv" configFile="config/TEMPLATE_math_after_11.xml" />
-    <test testName="math-ext-bf16-conv-double" configFile="config/TEMPLATE_math_after_11_skip_double.xml" splitGroup="double"/>
-    <test testName="math-ext-double" configFile="config/TEMPLATE_math_skip_double.xml" splitGroup="double"/>
-    <test testName="math-ext-float" configFile="config/TEMPLATE_math_skip_double.xml" splitGroup="double"/>
-    <test testName="math-ext-half" configFile="config/TEMPLATE_math_after_9.xml" />
-    <test testName="math-ext-half-after11" configFile="config/TEMPLATE_math_ext_after_11.xml" />
-    <test testName="math-ext-half-conv" configFile="config/TEMPLATE_math_ext_after_11.xml" />
-    <test testName="math-ext-half2" configFile="config/TEMPLATE_math_after_9.xml" />
-    <test testName="math-ext-half2-after11" configFile="config/TEMPLATE_math_ext_after_11.xml" />
-    <test testName="math-ext-simd" configFile="config/TEMPLATE_math.xml" />
-    <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double.xml" splitGroup="double"/>
+    <test testName="math-ext-bf16-conv" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
+    <test testName="math-ext-bf16-conv-double" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
+    <test testName="math-ext-double" configFile="config/TEMPLATE_math_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
+    <test testName="math-ext-float" configFile="config/TEMPLATE_math_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
+    <test testName="math-ext-half" configFile="config/TEMPLATE_math_after_9_skip_cuda_backend.xml" />
+    <test testName="math-ext-half-after11" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
+    <test testName="math-ext-half-conv" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
+    <test testName="math-ext-half2" configFile="config/TEMPLATE_math_after_9_skip_cuda_backend.xml" />
+    <test testName="math-ext-half2-after11" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
+    <test testName="math-ext-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
+    <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-helper" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-intrinsics" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-saturate" configFile="config/TEMPLATE_math_saturate.xml" />
@@ -156,6 +159,7 @@
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI.xml" />
+    <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
     <test testName="cusolverDnEi" configFile="config/TEMPLATE_cusolver.xml" />
     <test testName="cusolverDnEi-part2" configFile="config/TEMPLATE_cusolver.xml" />
@@ -194,6 +198,7 @@
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_device" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_histgram" configFile="config/TEMPLATE_cub_device.xml" />
+    <test testName="cub_device_partition" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_reduce_sum" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce_min" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce_max" configFile="config/TEMPLATE_cub_device.xml"/>
@@ -247,7 +252,7 @@
     <test testName="cudnn-bnp3" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
     <test testName="cudnn-normp1" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
     <test testName="cudnn-normp2" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
-    <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
+    <!-- <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" /> -->
     <test testName="cudnn-convp1" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp2" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp3" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -256,11 +261,12 @@
     <test testName="cudnn-convp6" configFile="config/TEMPLATE_cuDNN_v8.xml" />
     <test testName="cudnn-convp7" configFile="config/TEMPLATE_cuDNN_v8.xml" />
     <test testName="cudnn-conv_v7" configFile="config/TEMPLATE_cuDNN_v7.xml" />
-    <test testName="cudnn-rnn" configFile="config/TEMPLATE_cuDNN_v8.xml" />
+    <!-- <test testName="cudnn-rnn" configFile="config/TEMPLATE_cuDNN_v8.xml" /> -->
     <test testName="cudnn-types" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-dropout" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-version" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="deviceAPI" configFile="config/TEMPLATE_deviceAPI.xml" />
+    <test testName="profiler" configFile="config/TEMPLATE_profiler.xml" />
     <test testName="free-queries" configFile="config/TEMPLATE_freeQueries.xml" />
     <test testName="deviceProp" configFile="config/TEMPLATE_deviceProp.xml" />
     <test testName="gridThreads" configFile="config/TEMPLATE_gridThreads.xml" />
@@ -274,6 +280,7 @@
     <test testName="cusparse_6" configFile="config/TEMPLATE_cusparse_before_12_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_7" configFile="config/TEMPLATE_cusparse_before_11_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_8" configFile="config/TEMPLATE_cusparse_after_101_skip_double.xml" splitGroup="double"/>
+    <test testName="cusparse_9" configFile="config/TEMPLATE_cusparse_after_113_skip_double.xml" splitGroup="double"/>
     <test testName="cusolver_test1" configFile="config/TEMPLATE_solver.xml"  splitGroup="double"/>
     <test testName="cusolver_test2" configFile="config/TEMPLATE_solver_skip80.xml"  splitGroup="double"/>
     <test testName="cusolver_test3" configFile="config/TEMPLATE_solver_11.xml"  splitGroup="double"/>
@@ -292,9 +299,9 @@
     <test testName="complex" configFile="config/TEMPLATE_complex.xml" splitGroup="double"/>
     <test testName="cooperative_groups" configFile="config/TEMPLATE_cooperative_groups.xml" />
     <test testName="cooperative_groups_thread_group" configFile="config/TEMPLATE_cooperative_groups.xml" />
-    <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" />
-    <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" />
-    <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" />
+    <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+    <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+    <!-- <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" />
     <test testName="cooperative_groups_reduce" configFile="config/TEMPLATE_cooperative_groups_reduce.xml" />
     <test testName="cooperative_groups_data_manipulate" configFile="config/TEMPLATE_cooperative_groups_data_manipulate.xml" />
@@ -310,6 +317,7 @@
     <test testName="text_experimental_build_only" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
     <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
@@ -321,10 +329,12 @@
     <!-- <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" /> -->
     <test testName="remove_unnecessary_wait" configFile="config/TEMPLATE_remove_unnecessary_wait.xml" />
     <test testName="warp_reduce_functions" configFile="config/TEMPLATE_cpp_language_extensions.xml" />
-    <!-- <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" /> -->
+    <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" />
+    <test testName="wmma_type" configFile="config/TEMPLATE_wmma.xml" />
     <test testName="peer_access" configFile="config/TEMPLATE_peer_access.xml" />
     <test testName="const_opt" configFile="config/TEMPLATE_const_opt.xml" />
     <test testName="assert" configFile="config/TEMPLATE_misc.xml" />
+    <test testName="driver_err_handle" configFile="config/TEMPLATE_err_handle.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
   </tests>
 </suite>

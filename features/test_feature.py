@@ -11,15 +11,16 @@ import re
 import sys
 from pathlib import Path
 import fileinput
+import shutil
 
 parent = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(parent)
 
 from test_utils import *
 
-exec_tests = ['asm', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_optimize', 'thrust-vector-2', 'thrust-binary-search', 'thrust-count', 'thrust-copy',
+exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_optimize', 'thrust-vector-2', 'thrust-binary-search', 'thrust-count', 'thrust-copy',
               'thrust-qmc', 'thrust-transform-if', 'thrust-policy', 'thrust-list', 'module-kernel',
-              'kernel-launch', 'thrust-gather', 'thrust-gather_if',
+              'kernel-launch', 'thrust-gather', 'thrust-gather_if', 'cub_device_partition',
               'thrust-scatter', 'thrust-unique_by_key_copy', 'thrust-for-hypre', 'thrust-merge_by_key',
               'thrust-rawptr-noneusm', 'driverStreamAndEvent', 'grid_sync', 'deviceProp', 'gridThreads', 'kernel_library', 'cub_block_p2',
               'cub_constant_iterator', 'cub_device_reduce_max', 'cub_device_reduce_min', 'cub_discard_iterator', 'ccl-test', 'ccl-test2', 'ccl-test3', 'ccl-error',
@@ -38,11 +39,13 @@ exec_tests = ['asm', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_
               'math-bf16-conv', 'math-emu-bf16-conv-double', 'math-ext-bf16-conv-double', 'math-half-conv',
               'math-bfloat16', 'libcu_atomic', 'test_shared_memory', 'cudnn-reduction', 'cudnn-binary', 'cudnn-bnp1', 'cudnn-bnp2', 'cudnn-bnp3',
               'cudnn-normp1', 'cudnn-normp2', 'cudnn-normp3', 'cudnn-convp1', 'cudnn-convp2', 'cudnn-convp3', 'cudnn-convp4', 'cudnn-convp5', 'cudnn-convp6', 'cudnn-convp7', 
-              'cudnn_mutilple_files', "cusparse_1", "cusparse_2", "cusparse_3", "cusparse_4", "cusparse_5", "cusparse_6", "cusparse_7", "cusparse_8",
-              'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access',
+              'cudnn_mutilple_files', "cusparse_1", "cusparse_2", "cusparse_3", "cusparse_4", "cusparse_5", "cusparse_6", "cusparse_7", "cusparse_8", "cusparse_9",
+              'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
               'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
+              'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
+              'curand-device2', 'curandEnum',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
               'cusolver_test1', 'cusolver_test2', 'cusolver_test3', 'cusolver_test4', 'cusolver_test5', 'thrust_op', 'cublas-extension', 'cublas_v1_runable', 'thrust_minmax_element',
               'thrust_is_sorted', 'thrust_partition', 'thrust_remove_copy', 'thrust_unique_copy', 'thrust_transform_exclusive_scan',
@@ -56,7 +59,8 @@ exec_tests = ['asm', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_
               'thrust_is_sorted_until', 'thrust_set_intersection', 'thrust_set_union_by_key', 'thrust_set_union',
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
-              'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin']
+              'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
+              'thrust_advance_trans_op_itr', 'cuda_stream_query']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -68,7 +72,9 @@ def migrate_test():
     extra_args = []
     in_root = os.path.join(os.getcwd(), test_config.current_test)
     test_config.out_root = os.path.join(in_root, 'out_root')
-
+    # Clean the out-root when it exisits.
+    if os.path.exists(test_config.out_root):
+        shutil.rmtree(test_config.out_root)
     if test_config.current_test == 'cufft_test':
         return do_migrate([os.path.join(in_root, 'cufft_test.cu')], in_root, test_config.out_root, extra_args)
 
@@ -94,9 +100,11 @@ def migrate_test():
         src.append(' --use-experimental-features=occupancy-calculation ')
     if test_config.current_test == 'feature_profiling':
         src.append(' --enable-profiling ')
+    if test_config.current_test == 'asm_bar':
+        src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'sync_warp_p2':
         src.append(' --use-experimental-features=masked-sub-group-operation ')
-    if test_config.current_test == 'wmma':
+    if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
         src.append(' --use-experimental-features=matrix ')
     if test_config.current_test in experimental_bfloat16_tests:
         src.append(' --use-experimental-features=bfloat16_math_functions ')
@@ -196,8 +204,6 @@ def build_test():
         ret = compile_and_link(srcs, cmp_options, objects, link_opts)
     elif re.match('^cufft.*', test_config.current_test) and platform.system() == 'Linux':
         ret = compile_and_link(srcs, cmp_options, objects, link_opts)
-    elif test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter == "cuda:gpu":
-        ret = compile_and_link(srcs, cmp_options, objects, link_opts)
     else:
         ret = compile_files(srcs, cmp_options)
     return ret
@@ -205,6 +211,8 @@ def build_test():
 
 def run_test():
     if test_config.current_test not in exec_tests:
+        return True
+    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter != "cuda:gpu":
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

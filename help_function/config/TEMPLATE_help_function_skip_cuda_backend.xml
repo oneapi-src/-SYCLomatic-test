@@ -7,6 +7,5 @@
     </files>
     <rules>
       <optlevelRule excludeOptlevelNameString="cuda" />
-      <optlevelRule excludeOptlevelNameString="usmnone" />
     </rules>
 </test>

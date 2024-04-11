@@ -530,6 +530,43 @@ __device__ int dp4a() {
   return 0;
 }
 
+__device__ int bfe() {
+  int32_t i32;
+  uint32_t u32;
+  int64_t i64;
+  uint64_t u64;
+  { asm("bfe.s32 %0, %1, %2, %3;" : "=r"(i32) : "r"(0x00FFFF00), "r"(8), "r"(16)); if (i32 != -1) { return 1; } };
+  { asm("bfe.s32 %0, %1, %2, %3;" : "=r"(i32) : "r"(0xFF000000), "r"(24), "r"(16)); if (i32 != -1) { return 2; } };
+  { asm("bfe.s32 %0, %1, %2, %3;" : "=r"(i32) : "r"(0x0F000000), "r"(24), "r"(16)); if (i32 != 15) { return 3; } };
+  { asm("bfe.s32 %0, %1, %2, %3;" : "=r"(i32) : "r"(0xFF000000), "r"(32), "r"(16)); if (i32 != -1) { return 4; } };
+  { asm("bfe.s32 %0, %1, %2, %3;" : "=r"(i32) : "r"(0x0F000000), "r"(32), "r"(16)); if (i32 != 0) { return 5; } };
+  { asm("bfe.u32 %0, %1, %2, %3;" : "=r"(u32) : "r"(0x000000FF), "r"(0), "r"(9)); if (u32 != 255) { return 6; } };
+  { asm("bfe.u32 %0, %1, %2, %3;" : "=r"(u32) : "r"(0x00FFFF00), "r"(8), "r"(16)); if (u32 != 65535) { return 7; } };
+  { asm("bfe.u32 %0, %1, %2, %3;" : "=r"(u32) : "r"(0xFF000000), "r"(24), "r"(16)); if (u32 != 255) { return 8; } };
+  { asm("bfe.u32 %0, %1, %2, %3;" : "=r"(u32) : "r"(0xFF000000), "r"(32), "r"(16)); if (u32 != 0) { return 9; } };
+  { asm("bfe.u32 %0, %1, %2, %3;" : "=r"(u32) : "r"(0x0F000000), "r"(32), "r"(16)); if (u32 != 0) { return 10; } };
+  { asm("bfe.s64 %0, %1, %2, %3;" : "=l"(i64) : "l"(0x00FFFF00ll), "r"(8), "r"(16)); if (i64 != -1) { return 11; } };
+  { asm("bfe.s64 %0, %1, %2, %3;" : "=l"(i64) : "l"(0xFF000000ll), "r"(24), "r"(16)); if (i64 != 255) { return 12; } };
+  { asm("bfe.s64 %0, %1, %2, %3;" : "=l"(i64) : "l"(0x0F000000ll), "r"(24), "r"(16)); if (i64 != 15) { return 13; } };
+  { asm("bfe.s64 %0, %1, %2, %3;" : "=l"(i64) : "l"(0xFF000000ll), "r"(32), "r"(16)); if (i64 != 0) { return 14; } };
+  { asm("bfe.s64 %0, %1, %2, %3;" : "=l"(i64) : "l"(0x0F000000ll), "r"(32), "r"(16)); if (i64 != 0) { return 15; } };
+  { asm("bfe.u64 %0, %1, %2, %3;" : "=l"(u64) : "l"(0x000000FFull), "r"(0), "r"(9)); if (u64 != 255) { return 16; } };
+  { asm("bfe.u64 %0, %1, %2, %3;" : "=l"(u64) : "l"(0x00FFFF00ull), "r"(8), "r"(16)); if (u64 != 65535) { return 17; } };
+  { asm("bfe.u64 %0, %1, %2, %3;" : "=l"(u64) : "l"(0xFF000000ull), "r"(24), "r"(16)); if (u64 != 255) { return 18; } };
+  { asm("bfe.u64 %0, %1, %2, %3;" : "=l"(u64) : "l"(0xFF000000ull), "r"(32), "r"(16)); if (u64 != 0) { return 19; } };
+  { asm("bfe.u64 %0, %1, %2, %3;" : "=l"(u64) : "l"(0x0F000000ull), "r"(32), "r"(16)); if (u64 != 0) { return 20; } };
+  return 0;
+}
+
+__device__ int bfi() {
+  uint32_t u32;
+  uint64_t u64;
+  { asm("bfi.b32 %0, %1, %2, %3, %4;" : "=r"(u32) : "r"(0x0000FFFFu), "r"(0x00FF0000u), "r"(0), "r"(16)); if (u32 != 0x00FFFFFFu) { return 1; } };
+  { asm("bfi.b32 %0, %1, %2, %3, %4;" : "=r"(u32) : "r"(0x000000FFu), "r"(0x00FF0000u), "r"(0), "r"(8)); if (u32 != 0x00FF00FFu) { return 2; } };
+  { asm("bfi.b64 %0, %1, %2, %3, %4;" : "=l"(u64) : "l"(0x0000FFFFull), "l"(0x00FF0000ull), "r"(0), "r"(16)); if (u64 != 0x00FFFFFFull) { return 3; } };
+  { asm("bfi.b64 %0, %1, %2, %3, %4;" : "=l"(u64) : "l"(0x000000FFull), "l"(0x00FF0000ull), "r"(0), "r"(8)); if (u64 != 0x00FF00FFull) { return 4; } };
+  return 0;
+}
 // clang-format on
 
 __global__ void test(int *ec) {
@@ -580,6 +617,8 @@ __global__ void test(int *ec) {
   TEST(brev);
   TEST(dp2a);
   TEST(dp4a);
+  TEST(bfe);
+  TEST(bfi);
 
   *ec = 0;
 }

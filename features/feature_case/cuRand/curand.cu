@@ -54,6 +54,9 @@ int main(){
   curandSetGeneratorOffset(rng, 100);
   s1 = curandSetGeneratorOffset(rng2, 200);
 
+  curandSetGeneratorOrdering(rng, CURAND_ORDERING_PSEUDO_BEST);
+  s1 = curandSetGeneratorOrdering(rng2, CURAND_ORDERING_PSEUDO_DEFAULT);
+
   cudaStream_t stream;
   curandSetStream(rng, stream);
 

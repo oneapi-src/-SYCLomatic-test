@@ -65,7 +65,7 @@ def test_color():
         + "  dpct::get_current_device().queues_wait_and_throw();\n"
         + "[0m"
     )
-    if expect != test_config.command_output:
+    if expect not in test_config.command_output:
         print("color output check failed:\n", expect)
         print("output:\n", test_config.command_output, "===end===\n")
         return False

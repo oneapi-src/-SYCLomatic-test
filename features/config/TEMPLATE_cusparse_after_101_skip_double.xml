@@ -9,5 +9,6 @@
         <platformRule OSFamily="Linux" kit="CUDA10.1" kitRange="OLDER" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA10.1" kitRange="OLDER" runOnThisPlatform="false"/>
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

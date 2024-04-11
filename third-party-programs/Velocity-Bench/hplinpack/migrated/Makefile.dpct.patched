@@ -1,0 +1,1019 @@
+CC := icpx
+
+LD := $(CC)
+
+#DPCT2001:4: You can link with more library by add them here.
+LIB := -lmpi
+
+FLAGS := -fPIC
+
+ifeq ($(shell which $(CC)),)
+    $(error ERROR - $(CC) compiler not found)
+endif
+
+ROOT_DIR     := $(shell dirname $(shell which $(CC)))
+INCLUDE_SYCL := $(ROOT_DIR)/../include
+INCLUDE_CL   := $(ROOT_DIR)/../include/sycl
+
+TARGET_0_SRC_0 = ./testing/ptest/HPL_pddriver.c
+TARGET_0_OBJ_0 = ./testing/ptest/HPL_pddriver.o
+TARGET_0_FLAG_0 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_1 = ./testing/ptest/HPL_pdinfo.c
+TARGET_0_OBJ_1 = ./testing/ptest/HPL_pdinfo.o
+TARGET_0_FLAG_1 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_2 = ./testing/ptest/HPL_pdtest.c
+TARGET_0_OBJ_2 = ./testing/ptest/HPL_pdtest.o
+TARGET_0_FLAG_2 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_3 = ./testing/ptest/HPL_pddriver.c
+TARGET_0_OBJ_3 = ./testing/ptest/HPL_pddriver.o
+TARGET_0_FLAG_3 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_4 = ./testing/ptest/HPL_pdinfo.c
+TARGET_0_OBJ_4 = ./testing/ptest/HPL_pdinfo.o
+TARGET_0_FLAG_4 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_5 = ./testing/ptest/HPL_pdtest.c
+TARGET_0_OBJ_5 = ./testing/ptest/HPL_pdtest.o
+TARGET_0_FLAG_5 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_6 = ./testing/ptest/HPL_pddriver.c
+TARGET_0_OBJ_6 = ./testing/ptest/HPL_pddriver.o
+TARGET_0_FLAG_6 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_7 = ./testing/ptest/HPL_pdinfo.c
+TARGET_0_OBJ_7 = ./testing/ptest/HPL_pdinfo.o
+TARGET_0_FLAG_7 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_8 = ./testing/ptest/HPL_pdtest.c
+TARGET_0_OBJ_8 = ./testing/ptest/HPL_pdtest.o
+TARGET_0_FLAG_8 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_9 = ./testing/ptest/HPL_pddriver.c
+TARGET_0_OBJ_9 = ./testing/ptest/HPL_pddriver.o
+TARGET_0_FLAG_9 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_10 = ./testing/ptest/HPL_pdinfo.c
+TARGET_0_OBJ_10 = ./testing/ptest/HPL_pdinfo.o
+TARGET_0_FLAG_10 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_0_SRC_11 = ./testing/ptest/HPL_pdtest.c
+TARGET_0_OBJ_11 = ./testing/ptest/HPL_pdtest.o
+TARGET_0_FLAG_11 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_0 = ./src/auxil/HPL_dlacpy.c
+TARGET_1_OBJ_0 = ./src/auxil/HPL_dlacpy.o
+TARGET_1_FLAG_0 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_1 = ./src/auxil/HPL_dlatcpy.c
+TARGET_1_OBJ_1 = ./src/auxil/HPL_dlatcpy.o
+TARGET_1_FLAG_1 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_2 = ./src/auxil/HPL_fprintf.c
+TARGET_1_OBJ_2 = ./src/auxil/HPL_fprintf.o
+TARGET_1_FLAG_2 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_3 = ./src/auxil/HPL_warn.c
+TARGET_1_OBJ_3 = ./src/auxil/HPL_warn.o
+TARGET_1_FLAG_3 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_4 = ./src/auxil/HPL_abort.c
+TARGET_1_OBJ_4 = ./src/auxil/HPL_abort.o
+TARGET_1_FLAG_4 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_5 = ./src/auxil/HPL_dlaprnt.c
+TARGET_1_OBJ_5 = ./src/auxil/HPL_dlaprnt.o
+TARGET_1_FLAG_5 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_6 = ./src/auxil/HPL_dlange.c
+TARGET_1_OBJ_6 = ./src/auxil/HPL_dlange.o
+TARGET_1_FLAG_6 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_7 = ./src/auxil/HPL_dlamch.c
+TARGET_1_OBJ_7 = ./src/auxil/HPL_dlamch.o
+TARGET_1_FLAG_7 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -I ./include ${FLAGS}
+
+TARGET_1_SRC_8 = ./src/blas/HPL_dcopy.c
+TARGET_1_OBJ_8 = ./src/blas/HPL_dcopy.o
+TARGET_1_FLAG_8 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_9 = ./src/blas/HPL_daxpy.c
+TARGET_1_OBJ_9 = ./src/blas/HPL_daxpy.o
+TARGET_1_FLAG_9 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_10 = ./src/blas/HPL_dscal.c
+TARGET_1_OBJ_10 = ./src/blas/HPL_dscal.o
+TARGET_1_FLAG_10 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_11 = ./src/blas/HPL_idamax.c
+TARGET_1_OBJ_11 = ./src/blas/HPL_idamax.o
+TARGET_1_FLAG_11 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_12 = ./src/blas/HPL_dgemv.c
+TARGET_1_OBJ_12 = ./src/blas/HPL_dgemv.o
+TARGET_1_FLAG_12 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_13 = ./src/blas/HPL_dtrsv.c
+TARGET_1_OBJ_13 = ./src/blas/HPL_dtrsv.o
+TARGET_1_FLAG_13 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_14 = ./src/blas/HPL_dger.c
+TARGET_1_OBJ_14 = ./src/blas/HPL_dger.o
+TARGET_1_FLAG_14 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_15 = ./src/blas/HPL_dgemm.c
+TARGET_1_OBJ_15 = ./src/blas/HPL_dgemm.o
+TARGET_1_FLAG_15 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_16 = ./src/blas/HPL_dtrsm.c
+TARGET_1_OBJ_16 = ./src/blas/HPL_dtrsm.o
+TARGET_1_FLAG_16 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_17 = ./src/comm/HPL_1ring.c
+TARGET_1_OBJ_17 = ./src/comm/HPL_1ring.o
+TARGET_1_FLAG_17 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_18 = ./src/comm/HPL_1rinM.c
+TARGET_1_OBJ_18 = ./src/comm/HPL_1rinM.o
+TARGET_1_FLAG_18 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_19 = ./src/comm/HPL_2ring.c
+TARGET_1_OBJ_19 = ./src/comm/HPL_2ring.o
+TARGET_1_FLAG_19 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_20 = ./src/comm/HPL_2rinM.c
+TARGET_1_OBJ_20 = ./src/comm/HPL_2rinM.o
+TARGET_1_FLAG_20 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_21 = ./src/comm/HPL_blong.c
+TARGET_1_OBJ_21 = ./src/comm/HPL_blong.o
+TARGET_1_FLAG_21 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_22 = ./src/comm/HPL_blonM.c
+TARGET_1_OBJ_22 = ./src/comm/HPL_blonM.o
+TARGET_1_FLAG_22 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_23 = ./src/comm/HPL_packL.c
+TARGET_1_OBJ_23 = ./src/comm/HPL_packL.o
+TARGET_1_FLAG_23 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_24 = ./src/comm/HPL_copyL.c
+TARGET_1_OBJ_24 = ./src/comm/HPL_copyL.o
+TARGET_1_FLAG_24 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_25 = ./src/comm/HPL_binit.c
+TARGET_1_OBJ_25 = ./src/comm/HPL_binit.o
+TARGET_1_FLAG_25 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_26 = ./src/comm/HPL_bcast.c
+TARGET_1_OBJ_26 = ./src/comm/HPL_bcast.o
+TARGET_1_FLAG_26 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_27 = ./src/comm/HPL_bwait.c
+TARGET_1_OBJ_27 = ./src/comm/HPL_bwait.o
+TARGET_1_FLAG_27 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_28 = ./src/comm/HPL_send.c
+TARGET_1_OBJ_28 = ./src/comm/HPL_send.o
+TARGET_1_FLAG_28 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_29 = ./src/comm/HPL_recv.c
+TARGET_1_OBJ_29 = ./src/comm/HPL_recv.o
+TARGET_1_FLAG_29 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_30 = ./src/comm/HPL_sdrv.c
+TARGET_1_OBJ_30 = ./src/comm/HPL_sdrv.o
+TARGET_1_FLAG_30 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_31 = ./src/grid/HPL_grid_init.c
+TARGET_1_OBJ_31 = ./src/grid/HPL_grid_init.o
+TARGET_1_FLAG_31 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_32 = ./src/grid/HPL_pnum.c
+TARGET_1_OBJ_32 = ./src/grid/HPL_pnum.o
+TARGET_1_FLAG_32 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_33 = ./src/grid/HPL_grid_info.c
+TARGET_1_OBJ_33 = ./src/grid/HPL_grid_info.o
+TARGET_1_FLAG_33 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_34 = ./src/grid/HPL_grid_exit.c
+TARGET_1_OBJ_34 = ./src/grid/HPL_grid_exit.o
+TARGET_1_FLAG_34 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_35 = ./src/grid/HPL_broadcast.c
+TARGET_1_OBJ_35 = ./src/grid/HPL_broadcast.o
+TARGET_1_FLAG_35 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_36 = ./src/grid/HPL_reduce.c
+TARGET_1_OBJ_36 = ./src/grid/HPL_reduce.o
+TARGET_1_FLAG_36 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_37 = ./src/grid/HPL_all_reduce.c
+TARGET_1_OBJ_37 = ./src/grid/HPL_all_reduce.o
+TARGET_1_FLAG_37 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_38 = ./src/grid/HPL_barrier.c
+TARGET_1_OBJ_38 = ./src/grid/HPL_barrier.o
+TARGET_1_FLAG_38 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_39 = ./src/grid/HPL_min.c
+TARGET_1_OBJ_39 = ./src/grid/HPL_min.o
+TARGET_1_FLAG_39 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_40 = ./src/grid/HPL_max.c
+TARGET_1_OBJ_40 = ./src/grid/HPL_max.o
+TARGET_1_FLAG_40 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_41 = ./src/grid/HPL_sum.c
+TARGET_1_OBJ_41 = ./src/grid/HPL_sum.o
+TARGET_1_FLAG_41 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_42 = ./src/panel/HPL_pdpanel_new.c
+TARGET_1_OBJ_42 = ./src/panel/HPL_pdpanel_new.o
+TARGET_1_FLAG_42 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_43 = ./src/panel/HPL_pdpanel_init.c
+TARGET_1_OBJ_43 = ./src/panel/HPL_pdpanel_init.o
+TARGET_1_FLAG_43 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_44 = ./src/panel/HPL_pdpanel_disp.c
+TARGET_1_OBJ_44 = ./src/panel/HPL_pdpanel_disp.o
+TARGET_1_FLAG_44 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_45 = ./src/panel/HPL_pdpanel_free.c
+TARGET_1_OBJ_45 = ./src/panel/HPL_pdpanel_free.o
+TARGET_1_FLAG_45 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_46 = ./src/pauxil/HPL_indxg2l.c
+TARGET_1_OBJ_46 = ./src/pauxil/HPL_indxg2l.o
+TARGET_1_FLAG_46 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_47 = ./src/pauxil/HPL_indxg2lp.c
+TARGET_1_OBJ_47 = ./src/pauxil/HPL_indxg2lp.o
+TARGET_1_FLAG_47 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_48 = ./src/pauxil/HPL_indxg2p.c
+TARGET_1_OBJ_48 = ./src/pauxil/HPL_indxg2p.o
+TARGET_1_FLAG_48 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_49 = ./src/pauxil/HPL_indxl2g.c
+TARGET_1_OBJ_49 = ./src/pauxil/HPL_indxl2g.o
+TARGET_1_FLAG_49 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_50 = ./src/pauxil/HPL_infog2l.c
+TARGET_1_OBJ_50 = ./src/pauxil/HPL_infog2l.o
+TARGET_1_FLAG_50 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_51 = ./src/pauxil/HPL_numroc.c
+TARGET_1_OBJ_51 = ./src/pauxil/HPL_numroc.o
+TARGET_1_FLAG_51 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_52 = ./src/pauxil/HPL_numrocI.c
+TARGET_1_OBJ_52 = ./src/pauxil/HPL_numrocI.o
+TARGET_1_FLAG_52 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_53 = ./src/pauxil/HPL_dlaswp00N.c
+TARGET_1_OBJ_53 = ./src/pauxil/HPL_dlaswp00N.o
+TARGET_1_FLAG_53 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_54 = ./src/pauxil/HPL_dlaswp10N.c
+TARGET_1_OBJ_54 = ./src/pauxil/HPL_dlaswp10N.o
+TARGET_1_FLAG_54 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_55 = ./src/pauxil/HPL_dlaswp01N.c
+TARGET_1_OBJ_55 = ./src/pauxil/HPL_dlaswp01N.o
+TARGET_1_FLAG_55 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_56 = ./src/pauxil/HPL_dlaswp01T.c
+TARGET_1_OBJ_56 = ./src/pauxil/HPL_dlaswp01T.o
+TARGET_1_FLAG_56 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_57 = ./src/pauxil/HPL_dlaswp02N.c
+TARGET_1_OBJ_57 = ./src/pauxil/HPL_dlaswp02N.o
+TARGET_1_FLAG_57 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_58 = ./src/pauxil/HPL_dlaswp03N.c
+TARGET_1_OBJ_58 = ./src/pauxil/HPL_dlaswp03N.o
+TARGET_1_FLAG_58 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_59 = ./src/pauxil/HPL_dlaswp03T.c
+TARGET_1_OBJ_59 = ./src/pauxil/HPL_dlaswp03T.o
+TARGET_1_FLAG_59 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_60 = ./src/pauxil/HPL_dlaswp04N.c
+TARGET_1_OBJ_60 = ./src/pauxil/HPL_dlaswp04N.o
+TARGET_1_FLAG_60 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_61 = ./src/pauxil/HPL_dlaswp04T.c
+TARGET_1_OBJ_61 = ./src/pauxil/HPL_dlaswp04T.o
+TARGET_1_FLAG_61 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_62 = ./src/pauxil/HPL_dlaswp05N.c
+TARGET_1_OBJ_62 = ./src/pauxil/HPL_dlaswp05N.o
+TARGET_1_FLAG_62 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_63 = ./src/pauxil/HPL_dlaswp05T.c
+TARGET_1_OBJ_63 = ./src/pauxil/HPL_dlaswp05T.o
+TARGET_1_FLAG_63 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_64 = ./src/pauxil/HPL_dlaswp06N.c
+TARGET_1_OBJ_64 = ./src/pauxil/HPL_dlaswp06N.o
+TARGET_1_FLAG_64 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_65 = ./src/pauxil/HPL_dlaswp06T.c
+TARGET_1_OBJ_65 = ./src/pauxil/HPL_dlaswp06T.o
+TARGET_1_FLAG_65 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_66 = ./src/pauxil/HPL_pwarn.c
+TARGET_1_OBJ_66 = ./src/pauxil/HPL_pwarn.o
+TARGET_1_FLAG_66 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_67 = ./src/pauxil/HPL_pabort.c
+TARGET_1_OBJ_67 = ./src/pauxil/HPL_pabort.o
+TARGET_1_FLAG_67 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_68 = ./src/pauxil/HPL_pdlaprnt.c
+TARGET_1_OBJ_68 = ./src/pauxil/HPL_pdlaprnt.o
+TARGET_1_FLAG_68 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_69 = ./src/pauxil/HPL_pdlamch.c
+TARGET_1_OBJ_69 = ./src/pauxil/HPL_pdlamch.o
+TARGET_1_FLAG_69 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_70 = ./src/pauxil/HPL_pdlange.c
+TARGET_1_OBJ_70 = ./src/pauxil/HPL_pdlange.o
+TARGET_1_FLAG_70 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_71 = ./src/pfact/HPL_dlocmax.c
+TARGET_1_OBJ_71 = ./src/pfact/HPL_dlocmax.o
+TARGET_1_FLAG_71 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_72 = ./src/pfact/HPL_dlocswpN.c
+TARGET_1_OBJ_72 = ./src/pfact/HPL_dlocswpN.o
+TARGET_1_FLAG_72 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_73 = ./src/pfact/HPL_dlocswpT.c
+TARGET_1_OBJ_73 = ./src/pfact/HPL_dlocswpT.o
+TARGET_1_FLAG_73 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_74 = ./src/pfact/HPL_pdmxswp.c
+TARGET_1_OBJ_74 = ./src/pfact/HPL_pdmxswp.o
+TARGET_1_FLAG_74 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_75 = ./src/pfact/HPL_pdpancrN.c
+TARGET_1_OBJ_75 = ./src/pfact/HPL_pdpancrN.o
+TARGET_1_FLAG_75 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_76 = ./src/pfact/HPL_pdpancrT.c
+TARGET_1_OBJ_76 = ./src/pfact/HPL_pdpancrT.o
+TARGET_1_FLAG_76 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_77 = ./src/pfact/HPL_pdpanllN.c
+TARGET_1_OBJ_77 = ./src/pfact/HPL_pdpanllN.o
+TARGET_1_FLAG_77 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_78 = ./src/pfact/HPL_pdpanllT.c
+TARGET_1_OBJ_78 = ./src/pfact/HPL_pdpanllT.o
+TARGET_1_FLAG_78 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_79 = ./src/pfact/HPL_pdpanrlN.c
+TARGET_1_OBJ_79 = ./src/pfact/HPL_pdpanrlN.o
+TARGET_1_FLAG_79 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_80 = ./src/pfact/HPL_pdpanrlT.c
+TARGET_1_OBJ_80 = ./src/pfact/HPL_pdpanrlT.o
+TARGET_1_FLAG_80 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_81 = ./src/pfact/HPL_pdrpanllN.c
+TARGET_1_OBJ_81 = ./src/pfact/HPL_pdrpanllN.o
+TARGET_1_FLAG_81 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_82 = ./src/pfact/HPL_pdrpanllT.c
+TARGET_1_OBJ_82 = ./src/pfact/HPL_pdrpanllT.o
+TARGET_1_FLAG_82 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_83 = ./src/pfact/HPL_pdrpancrN.c
+TARGET_1_OBJ_83 = ./src/pfact/HPL_pdrpancrN.o
+TARGET_1_FLAG_83 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_84 = ./src/pfact/HPL_pdrpancrT.c
+TARGET_1_OBJ_84 = ./src/pfact/HPL_pdrpancrT.o
+TARGET_1_FLAG_84 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_85 = ./src/pfact/HPL_pdrpanrlN.c
+TARGET_1_OBJ_85 = ./src/pfact/HPL_pdrpanrlN.o
+TARGET_1_FLAG_85 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_86 = ./src/pfact/HPL_pdrpanrlT.c
+TARGET_1_OBJ_86 = ./src/pfact/HPL_pdrpanrlT.o
+TARGET_1_FLAG_86 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_87 = ./src/pfact/HPL_pdfact.c
+TARGET_1_OBJ_87 = ./src/pfact/HPL_pdfact.o
+TARGET_1_FLAG_87 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_88 = ./src/pgesv/HPL_pipid.c
+TARGET_1_OBJ_88 = ./src/pgesv/HPL_pipid.o
+TARGET_1_FLAG_88 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_89 = ./src/pgesv/HPL_plindx0.c
+TARGET_1_OBJ_89 = ./src/pgesv/HPL_plindx0.o
+TARGET_1_FLAG_89 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_90 = ./src/pgesv/HPL_pdlaswp00N.c
+TARGET_1_OBJ_90 = ./src/pgesv/HPL_pdlaswp00N.o
+TARGET_1_FLAG_90 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_91 = ./src/pgesv/HPL_pdlaswp00T.c
+TARGET_1_OBJ_91 = ./src/pgesv/HPL_pdlaswp00T.o
+TARGET_1_FLAG_91 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_92 = ./src/pgesv/HPL_perm.c
+TARGET_1_OBJ_92 = ./src/pgesv/HPL_perm.o
+TARGET_1_FLAG_92 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_93 = ./src/pgesv/HPL_logsort.c
+TARGET_1_OBJ_93 = ./src/pgesv/HPL_logsort.o
+TARGET_1_FLAG_93 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_94 = ./src/pgesv/HPL_plindx10.c
+TARGET_1_OBJ_94 = ./src/pgesv/HPL_plindx10.o
+TARGET_1_FLAG_94 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_95 = ./src/pgesv/HPL_plindx1.c
+TARGET_1_OBJ_95 = ./src/pgesv/HPL_plindx1.o
+TARGET_1_FLAG_95 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_96 = ./src/pgesv/HPL_spreadN.c
+TARGET_1_OBJ_96 = ./src/pgesv/HPL_spreadN.o
+TARGET_1_FLAG_96 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_97 = ./src/pgesv/HPL_spreadT.c
+TARGET_1_OBJ_97 = ./src/pgesv/HPL_spreadT.o
+TARGET_1_FLAG_97 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_98 = ./src/pgesv/HPL_rollN.c
+TARGET_1_OBJ_98 = ./src/pgesv/HPL_rollN.o
+TARGET_1_FLAG_98 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_99 = ./src/pgesv/HPL_rollT.c
+TARGET_1_OBJ_99 = ./src/pgesv/HPL_rollT.o
+TARGET_1_FLAG_99 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_100 = ./src/pgesv/HPL_equil.c
+TARGET_1_OBJ_100 = ./src/pgesv/HPL_equil.o
+TARGET_1_FLAG_100 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_101 = ./src/pgesv/HPL_pdlaswp01N.c
+TARGET_1_OBJ_101 = ./src/pgesv/HPL_pdlaswp01N.o
+TARGET_1_FLAG_101 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_102 = ./src/pgesv/HPL_pdlaswp01T.c
+TARGET_1_OBJ_102 = ./src/pgesv/HPL_pdlaswp01T.o
+TARGET_1_FLAG_102 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_103 = ./src/pgesv/HPL_pdupdateNN.c
+TARGET_1_OBJ_103 = ./src/pgesv/HPL_pdupdateNN.o
+TARGET_1_FLAG_103 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_104 = ./src/pgesv/HPL_pdupdateNT.c
+TARGET_1_OBJ_104 = ./src/pgesv/HPL_pdupdateNT.o
+TARGET_1_FLAG_104 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_105 = ./src/pgesv/HPL_pdupdateTN.c
+TARGET_1_OBJ_105 = ./src/pgesv/HPL_pdupdateTN.o
+TARGET_1_FLAG_105 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_106 = ./src/pgesv/HPL_pdupdateTT.c
+TARGET_1_OBJ_106 = ./src/pgesv/HPL_pdupdateTT.o
+TARGET_1_FLAG_106 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_107 = ./src/pgesv/HPL_pdtrsv.c
+TARGET_1_OBJ_107 = ./src/pgesv/HPL_pdtrsv.o
+TARGET_1_FLAG_107 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_108 = ./src/pgesv/HPL_pdgesv0.c
+TARGET_1_OBJ_108 = ./src/pgesv/HPL_pdgesv0.o
+TARGET_1_FLAG_108 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_109 = ./src/pgesv/HPL_pdgesvK1.c
+TARGET_1_OBJ_109 = ./src/pgesv/HPL_pdgesvK1.o
+TARGET_1_FLAG_109 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_110 = ./src/pgesv/HPL_pdgesvK2.c
+TARGET_1_OBJ_110 = ./src/pgesv/HPL_pdgesvK2.o
+TARGET_1_FLAG_110 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_111 = ./src/pgesv/HPL_pdgesv.c
+TARGET_1_OBJ_111 = ./src/pgesv/HPL_pdgesv.o
+TARGET_1_FLAG_111 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_112 = ./testing/matgen/HPL_dmatgen.c
+TARGET_1_OBJ_112 = ./testing/matgen/HPL_dmatgen.o
+TARGET_1_FLAG_112 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_113 = ./testing/matgen/HPL_ladd.c
+TARGET_1_OBJ_113 = ./testing/matgen/HPL_ladd.o
+TARGET_1_FLAG_113 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_114 = ./testing/matgen/HPL_lmul.c
+TARGET_1_OBJ_114 = ./testing/matgen/HPL_lmul.o
+TARGET_1_FLAG_114 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_115 = ./testing/matgen/HPL_xjumpm.c
+TARGET_1_OBJ_115 = ./testing/matgen/HPL_xjumpm.o
+TARGET_1_FLAG_115 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_116 = ./testing/matgen/HPL_jumpit.c
+TARGET_1_OBJ_116 = ./testing/matgen/HPL_jumpit.o
+TARGET_1_FLAG_116 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_117 = ./testing/matgen/HPL_rand.c
+TARGET_1_OBJ_117 = ./testing/matgen/HPL_rand.o
+TARGET_1_FLAG_117 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_118 = ./testing/matgen/HPL_setran.c
+TARGET_1_OBJ_118 = ./testing/matgen/HPL_setran.o
+TARGET_1_FLAG_118 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_119 = ./testing/timer/HPL_timer.c
+TARGET_1_OBJ_119 = ./testing/timer/HPL_timer.o
+TARGET_1_FLAG_119 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_120 = ./testing/timer/HPL_timer_cputime.c
+TARGET_1_OBJ_120 = ./testing/timer/HPL_timer_cputime.o
+TARGET_1_FLAG_120 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_121 = ./testing/timer/HPL_timer_walltime.c
+TARGET_1_OBJ_121 = ./testing/timer/HPL_timer_walltime.o
+TARGET_1_FLAG_121 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_122 = ./testing/pmatgen/HPL_pdmatgen.c
+TARGET_1_OBJ_122 = ./testing/pmatgen/HPL_pdmatgen.o
+TARGET_1_FLAG_122 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_123 = ./testing/ptimer/HPL_ptimer.c
+TARGET_1_OBJ_123 = ./testing/ptimer/HPL_ptimer.o
+TARGET_1_FLAG_123 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_124 = ./testing/ptimer/HPL_ptimer_cputime.c
+TARGET_1_OBJ_124 = ./testing/ptimer/HPL_ptimer_cputime.o
+TARGET_1_FLAG_124 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_1_SRC_125 = ./testing/ptimer/HPL_ptimer_walltime.c
+TARGET_1_OBJ_125 = ./testing/ptimer/HPL_ptimer_walltime.o
+TARGET_1_FLAG_125 = -DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include ${FLAGS}
+
+TARGET_2_SRC_0 = ./src/cuda/cuda_dgemm.cpp.dp.cpp
+TARGET_2_OBJ_0 = ./src/cuda/cuda_dgemm.cpp.dp.o
+TARGET_2_FLAG_0 = -O0 -DMPI -I ./include -I $(INCLUDE_SYCL) -I $(INCLUDE_CL) ${FLAGS}
+
+TARGET_2_SRC_1 = ./src/cuda/cuda_dgemm.cpp.dp.cpp
+TARGET_2_OBJ_1 = ./src/cuda/cuda_dgemm.cpp.dp.o
+TARGET_2_FLAG_1 = -O0 -DMPI -I ./include -I $(INCLUDE_SYCL) -I $(INCLUDE_CL) ${FLAGS}
+
+TARGET_0 := /home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/bin/intel64/xhpl
+TARGET_1 := /home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/lib/intel64/libhpl.a
+TARGET_2 := libdgemm.so.1.0.1
+
+TARGET :=   ${TARGET_1} ${TARGET_2} ${TARGET_0}
+
+.PHONY:all clean
+OBJS_0 :=  ${TARGET_0_OBJ_0} ${TARGET_0_OBJ_1} ${TARGET_0_OBJ_2} ${TARGET_0_OBJ_3} ${TARGET_0_OBJ_4} ${TARGET_0_OBJ_5} ${TARGET_0_OBJ_6} ${TARGET_0_OBJ_7} ${TARGET_0_OBJ_8} ${TARGET_0_OBJ_9} ${TARGET_0_OBJ_10} ${TARGET_0_OBJ_11}
+OBJS_1 :=  ${TARGET_1_OBJ_0} ${TARGET_1_OBJ_1} ${TARGET_1_OBJ_2} ${TARGET_1_OBJ_3} ${TARGET_1_OBJ_4} ${TARGET_1_OBJ_5} ${TARGET_1_OBJ_6} ${TARGET_1_OBJ_7} ${TARGET_1_OBJ_8} ${TARGET_1_OBJ_9} ${TARGET_1_OBJ_10} ${TARGET_1_OBJ_11} ${TARGET_1_OBJ_12} ${TARGET_1_OBJ_13} ${TARGET_1_OBJ_14} ${TARGET_1_OBJ_15} ${TARGET_1_OBJ_16} ${TARGET_1_OBJ_17} ${TARGET_1_OBJ_18} ${TARGET_1_OBJ_19} ${TARGET_1_OBJ_20} ${TARGET_1_OBJ_21} ${TARGET_1_OBJ_22} ${TARGET_1_OBJ_23} ${TARGET_1_OBJ_24} ${TARGET_1_OBJ_25} ${TARGET_1_OBJ_26} ${TARGET_1_OBJ_27} ${TARGET_1_OBJ_28} ${TARGET_1_OBJ_29} ${TARGET_1_OBJ_30} ${TARGET_1_OBJ_31} ${TARGET_1_OBJ_32} ${TARGET_1_OBJ_33} ${TARGET_1_OBJ_34} ${TARGET_1_OBJ_35} ${TARGET_1_OBJ_36} ${TARGET_1_OBJ_37} ${TARGET_1_OBJ_38} ${TARGET_1_OBJ_39} ${TARGET_1_OBJ_40} ${TARGET_1_OBJ_41} ${TARGET_1_OBJ_42} ${TARGET_1_OBJ_43} ${TARGET_1_OBJ_44} ${TARGET_1_OBJ_45} ${TARGET_1_OBJ_46} ${TARGET_1_OBJ_47} ${TARGET_1_OBJ_48} ${TARGET_1_OBJ_49} ${TARGET_1_OBJ_50} ${TARGET_1_OBJ_51} ${TARGET_1_OBJ_52} ${TARGET_1_OBJ_53} ${TARGET_1_OBJ_54} ${TARGET_1_OBJ_55} ${TARGET_1_OBJ_56} ${TARGET_1_OBJ_57} ${TARGET_1_OBJ_58} ${TARGET_1_OBJ_59} ${TARGET_1_OBJ_60} ${TARGET_1_OBJ_61} ${TARGET_1_OBJ_62} ${TARGET_1_OBJ_63} ${TARGET_1_OBJ_64} ${TARGET_1_OBJ_65} ${TARGET_1_OBJ_66} ${TARGET_1_OBJ_67} ${TARGET_1_OBJ_68} ${TARGET_1_OBJ_69} ${TARGET_1_OBJ_70} ${TARGET_1_OBJ_71} ${TARGET_1_OBJ_72} ${TARGET_1_OBJ_73} ${TARGET_1_OBJ_74} ${TARGET_1_OBJ_75} ${TARGET_1_OBJ_76} ${TARGET_1_OBJ_77} ${TARGET_1_OBJ_78} ${TARGET_1_OBJ_79} ${TARGET_1_OBJ_80} ${TARGET_1_OBJ_81} ${TARGET_1_OBJ_82} ${TARGET_1_OBJ_83} ${TARGET_1_OBJ_84} ${TARGET_1_OBJ_85} ${TARGET_1_OBJ_86} ${TARGET_1_OBJ_87} ${TARGET_1_OBJ_88} ${TARGET_1_OBJ_89} ${TARGET_1_OBJ_90} ${TARGET_1_OBJ_91} ${TARGET_1_OBJ_92} ${TARGET_1_OBJ_93} ${TARGET_1_OBJ_94} ${TARGET_1_OBJ_95} ${TARGET_1_OBJ_96} ${TARGET_1_OBJ_97} ${TARGET_1_OBJ_98} ${TARGET_1_OBJ_99} ${TARGET_1_OBJ_100} ${TARGET_1_OBJ_101} ${TARGET_1_OBJ_102} ${TARGET_1_OBJ_103} ${TARGET_1_OBJ_104} ${TARGET_1_OBJ_105} ${TARGET_1_OBJ_106} ${TARGET_1_OBJ_107} ${TARGET_1_OBJ_108} ${TARGET_1_OBJ_109} ${TARGET_1_OBJ_110} ${TARGET_1_OBJ_111} ${TARGET_1_OBJ_112} ${TARGET_1_OBJ_113} ${TARGET_1_OBJ_114} ${TARGET_1_OBJ_115} ${TARGET_1_OBJ_116} ${TARGET_1_OBJ_117} ${TARGET_1_OBJ_118} ${TARGET_1_OBJ_119} ${TARGET_1_OBJ_120} ${TARGET_1_OBJ_121} ${TARGET_1_OBJ_122} ${TARGET_1_OBJ_123} ${TARGET_1_OBJ_124} ${TARGET_1_OBJ_125}
+OBJS_2 :=  ${TARGET_2_OBJ_0} ${TARGET_2_OBJ_1}
+all: $(TARGET)
+$(TARGET_0): $(OBJS_0)
+	$(CC) -fsycl -o $@ $^ $(LIB) -qmkl libdgemm.so.1.0.1 /home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/lib/intel64/libhpl.a 
+
+$(TARGET_0_OBJ_0):$(TARGET_0_SRC_0)
+	cc -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
+
+$(TARGET_0_OBJ_1):$(TARGET_0_SRC_1)
+	cc -c ${TARGET_0_SRC_1} -o ${TARGET_0_OBJ_1} $(TARGET_0_FLAG_1)
+
+$(TARGET_0_OBJ_2):$(TARGET_0_SRC_2)
+	cc -c ${TARGET_0_SRC_2} -o ${TARGET_0_OBJ_2} $(TARGET_0_FLAG_2)
+
+$(TARGET_0_OBJ_3):$(TARGET_0_SRC_3)
+	cc -c ${TARGET_0_SRC_3} -o ${TARGET_0_OBJ_3} $(TARGET_0_FLAG_3)
+
+$(TARGET_0_OBJ_4):$(TARGET_0_SRC_4)
+	cc -c ${TARGET_0_SRC_4} -o ${TARGET_0_OBJ_4} $(TARGET_0_FLAG_4)
+
+$(TARGET_0_OBJ_5):$(TARGET_0_SRC_5)
+	cc -c ${TARGET_0_SRC_5} -o ${TARGET_0_OBJ_5} $(TARGET_0_FLAG_5)
+
+$(TARGET_0_OBJ_6):$(TARGET_0_SRC_6)
+	cc -c ${TARGET_0_SRC_6} -o ${TARGET_0_OBJ_6} $(TARGET_0_FLAG_6)
+
+$(TARGET_0_OBJ_7):$(TARGET_0_SRC_7)
+	cc -c ${TARGET_0_SRC_7} -o ${TARGET_0_OBJ_7} $(TARGET_0_FLAG_7)
+
+$(TARGET_0_OBJ_8):$(TARGET_0_SRC_8)
+	cc -c ${TARGET_0_SRC_8} -o ${TARGET_0_OBJ_8} $(TARGET_0_FLAG_8)
+
+$(TARGET_0_OBJ_9):$(TARGET_0_SRC_9)
+	cc -c ${TARGET_0_SRC_9} -o ${TARGET_0_OBJ_9} $(TARGET_0_FLAG_9)
+
+$(TARGET_0_OBJ_10):$(TARGET_0_SRC_10)
+	cc -c ${TARGET_0_SRC_10} -o ${TARGET_0_OBJ_10} $(TARGET_0_FLAG_10)
+
+$(TARGET_0_OBJ_11):$(TARGET_0_SRC_11)
+	cc -c ${TARGET_0_SRC_11} -o ${TARGET_0_OBJ_11} $(TARGET_0_FLAG_11)
+
+$(TARGET_1): $(OBJS_1)
+	ar -r $@ $^ $(LIB) 
+
+$(TARGET_1_OBJ_0):$(TARGET_1_SRC_0)
+	cc -c ${TARGET_1_SRC_0} -o ${TARGET_1_OBJ_0} $(TARGET_1_FLAG_0)
+
+$(TARGET_1_OBJ_1):$(TARGET_1_SRC_1)
+	cc -c ${TARGET_1_SRC_1} -o ${TARGET_1_OBJ_1} $(TARGET_1_FLAG_1)
+
+$(TARGET_1_OBJ_2):$(TARGET_1_SRC_2)
+	cc -c ${TARGET_1_SRC_2} -o ${TARGET_1_OBJ_2} $(TARGET_1_FLAG_2)
+
+$(TARGET_1_OBJ_3):$(TARGET_1_SRC_3)
+	cc -c ${TARGET_1_SRC_3} -o ${TARGET_1_OBJ_3} $(TARGET_1_FLAG_3)
+
+$(TARGET_1_OBJ_4):$(TARGET_1_SRC_4)
+	cc -c ${TARGET_1_SRC_4} -o ${TARGET_1_OBJ_4} $(TARGET_1_FLAG_4)
+
+$(TARGET_1_OBJ_5):$(TARGET_1_SRC_5)
+	cc -c ${TARGET_1_SRC_5} -o ${TARGET_1_OBJ_5} $(TARGET_1_FLAG_5)
+
+$(TARGET_1_OBJ_6):$(TARGET_1_SRC_6)
+	cc -c ${TARGET_1_SRC_6} -o ${TARGET_1_OBJ_6} $(TARGET_1_FLAG_6)
+
+$(TARGET_1_OBJ_7):$(TARGET_1_SRC_7)
+	cc -c ${TARGET_1_SRC_7} -o ${TARGET_1_OBJ_7} $(TARGET_1_FLAG_7)
+
+$(TARGET_1_OBJ_8):$(TARGET_1_SRC_8)
+	cc -c ${TARGET_1_SRC_8} -o ${TARGET_1_OBJ_8} $(TARGET_1_FLAG_8)
+
+$(TARGET_1_OBJ_9):$(TARGET_1_SRC_9)
+	cc -c ${TARGET_1_SRC_9} -o ${TARGET_1_OBJ_9} $(TARGET_1_FLAG_9)
+
+$(TARGET_1_OBJ_10):$(TARGET_1_SRC_10)
+	cc -c ${TARGET_1_SRC_10} -o ${TARGET_1_OBJ_10} $(TARGET_1_FLAG_10)
+
+$(TARGET_1_OBJ_11):$(TARGET_1_SRC_11)
+	cc -c ${TARGET_1_SRC_11} -o ${TARGET_1_OBJ_11} $(TARGET_1_FLAG_11)
+
+$(TARGET_1_OBJ_12):$(TARGET_1_SRC_12)
+	cc -c ${TARGET_1_SRC_12} -o ${TARGET_1_OBJ_12} $(TARGET_1_FLAG_12)
+
+$(TARGET_1_OBJ_13):$(TARGET_1_SRC_13)
+	cc -c ${TARGET_1_SRC_13} -o ${TARGET_1_OBJ_13} $(TARGET_1_FLAG_13)
+
+$(TARGET_1_OBJ_14):$(TARGET_1_SRC_14)
+	cc -c ${TARGET_1_SRC_14} -o ${TARGET_1_OBJ_14} $(TARGET_1_FLAG_14)
+
+$(TARGET_1_OBJ_15):$(TARGET_1_SRC_15)
+	cc -c ${TARGET_1_SRC_15} -o ${TARGET_1_OBJ_15} $(TARGET_1_FLAG_15)
+
+$(TARGET_1_OBJ_16):$(TARGET_1_SRC_16)
+	cc -c ${TARGET_1_SRC_16} -o ${TARGET_1_OBJ_16} $(TARGET_1_FLAG_16)
+
+$(TARGET_1_OBJ_17):$(TARGET_1_SRC_17)
+	cc -c ${TARGET_1_SRC_17} -o ${TARGET_1_OBJ_17} $(TARGET_1_FLAG_17)
+
+$(TARGET_1_OBJ_18):$(TARGET_1_SRC_18)
+	cc -c ${TARGET_1_SRC_18} -o ${TARGET_1_OBJ_18} $(TARGET_1_FLAG_18)
+
+$(TARGET_1_OBJ_19):$(TARGET_1_SRC_19)
+	cc -c ${TARGET_1_SRC_19} -o ${TARGET_1_OBJ_19} $(TARGET_1_FLAG_19)
+
+$(TARGET_1_OBJ_20):$(TARGET_1_SRC_20)
+	cc -c ${TARGET_1_SRC_20} -o ${TARGET_1_OBJ_20} $(TARGET_1_FLAG_20)
+
+$(TARGET_1_OBJ_21):$(TARGET_1_SRC_21)
+	cc -c ${TARGET_1_SRC_21} -o ${TARGET_1_OBJ_21} $(TARGET_1_FLAG_21)
+
+$(TARGET_1_OBJ_22):$(TARGET_1_SRC_22)
+	cc -c ${TARGET_1_SRC_22} -o ${TARGET_1_OBJ_22} $(TARGET_1_FLAG_22)
+
+$(TARGET_1_OBJ_23):$(TARGET_1_SRC_23)
+	cc -c ${TARGET_1_SRC_23} -o ${TARGET_1_OBJ_23} $(TARGET_1_FLAG_23)
+
+$(TARGET_1_OBJ_24):$(TARGET_1_SRC_24)
+	cc -c ${TARGET_1_SRC_24} -o ${TARGET_1_OBJ_24} $(TARGET_1_FLAG_24)
+
+$(TARGET_1_OBJ_25):$(TARGET_1_SRC_25)
+	cc -c ${TARGET_1_SRC_25} -o ${TARGET_1_OBJ_25} $(TARGET_1_FLAG_25)
+
+$(TARGET_1_OBJ_26):$(TARGET_1_SRC_26)
+	cc -c ${TARGET_1_SRC_26} -o ${TARGET_1_OBJ_26} $(TARGET_1_FLAG_26)
+
+$(TARGET_1_OBJ_27):$(TARGET_1_SRC_27)
+	cc -c ${TARGET_1_SRC_27} -o ${TARGET_1_OBJ_27} $(TARGET_1_FLAG_27)
+
+$(TARGET_1_OBJ_28):$(TARGET_1_SRC_28)
+	cc -c ${TARGET_1_SRC_28} -o ${TARGET_1_OBJ_28} $(TARGET_1_FLAG_28)
+
+$(TARGET_1_OBJ_29):$(TARGET_1_SRC_29)
+	cc -c ${TARGET_1_SRC_29} -o ${TARGET_1_OBJ_29} $(TARGET_1_FLAG_29)
+
+$(TARGET_1_OBJ_30):$(TARGET_1_SRC_30)
+	cc -c ${TARGET_1_SRC_30} -o ${TARGET_1_OBJ_30} $(TARGET_1_FLAG_30)
+
+$(TARGET_1_OBJ_31):$(TARGET_1_SRC_31)
+	cc -c ${TARGET_1_SRC_31} -o ${TARGET_1_OBJ_31} $(TARGET_1_FLAG_31)
+
+$(TARGET_1_OBJ_32):$(TARGET_1_SRC_32)
+	cc -c ${TARGET_1_SRC_32} -o ${TARGET_1_OBJ_32} $(TARGET_1_FLAG_32)
+
+$(TARGET_1_OBJ_33):$(TARGET_1_SRC_33)
+	cc -c ${TARGET_1_SRC_33} -o ${TARGET_1_OBJ_33} $(TARGET_1_FLAG_33)
+
+$(TARGET_1_OBJ_34):$(TARGET_1_SRC_34)
+	cc -c ${TARGET_1_SRC_34} -o ${TARGET_1_OBJ_34} $(TARGET_1_FLAG_34)
+
+$(TARGET_1_OBJ_35):$(TARGET_1_SRC_35)
+	cc -c ${TARGET_1_SRC_35} -o ${TARGET_1_OBJ_35} $(TARGET_1_FLAG_35)
+
+$(TARGET_1_OBJ_36):$(TARGET_1_SRC_36)
+	cc -c ${TARGET_1_SRC_36} -o ${TARGET_1_OBJ_36} $(TARGET_1_FLAG_36)
+
+$(TARGET_1_OBJ_37):$(TARGET_1_SRC_37)
+	cc -c ${TARGET_1_SRC_37} -o ${TARGET_1_OBJ_37} $(TARGET_1_FLAG_37)
+
+$(TARGET_1_OBJ_38):$(TARGET_1_SRC_38)
+	cc -c ${TARGET_1_SRC_38} -o ${TARGET_1_OBJ_38} $(TARGET_1_FLAG_38)
+
+$(TARGET_1_OBJ_39):$(TARGET_1_SRC_39)
+	cc -c ${TARGET_1_SRC_39} -o ${TARGET_1_OBJ_39} $(TARGET_1_FLAG_39)
+
+$(TARGET_1_OBJ_40):$(TARGET_1_SRC_40)
+	cc -c ${TARGET_1_SRC_40} -o ${TARGET_1_OBJ_40} $(TARGET_1_FLAG_40)
+
+$(TARGET_1_OBJ_41):$(TARGET_1_SRC_41)
+	cc -c ${TARGET_1_SRC_41} -o ${TARGET_1_OBJ_41} $(TARGET_1_FLAG_41)
+
+$(TARGET_1_OBJ_42):$(TARGET_1_SRC_42)
+	cc -c ${TARGET_1_SRC_42} -o ${TARGET_1_OBJ_42} $(TARGET_1_FLAG_42)
+
+$(TARGET_1_OBJ_43):$(TARGET_1_SRC_43)
+	cc -c ${TARGET_1_SRC_43} -o ${TARGET_1_OBJ_43} $(TARGET_1_FLAG_43)
+
+$(TARGET_1_OBJ_44):$(TARGET_1_SRC_44)
+	cc -c ${TARGET_1_SRC_44} -o ${TARGET_1_OBJ_44} $(TARGET_1_FLAG_44)
+
+$(TARGET_1_OBJ_45):$(TARGET_1_SRC_45)
+	cc -c ${TARGET_1_SRC_45} -o ${TARGET_1_OBJ_45} $(TARGET_1_FLAG_45)
+
+$(TARGET_1_OBJ_46):$(TARGET_1_SRC_46)
+	cc -c ${TARGET_1_SRC_46} -o ${TARGET_1_OBJ_46} $(TARGET_1_FLAG_46)
+
+$(TARGET_1_OBJ_47):$(TARGET_1_SRC_47)
+	cc -c ${TARGET_1_SRC_47} -o ${TARGET_1_OBJ_47} $(TARGET_1_FLAG_47)
+
+$(TARGET_1_OBJ_48):$(TARGET_1_SRC_48)
+	cc -c ${TARGET_1_SRC_48} -o ${TARGET_1_OBJ_48} $(TARGET_1_FLAG_48)
+
+$(TARGET_1_OBJ_49):$(TARGET_1_SRC_49)
+	cc -c ${TARGET_1_SRC_49} -o ${TARGET_1_OBJ_49} $(TARGET_1_FLAG_49)
+
+$(TARGET_1_OBJ_50):$(TARGET_1_SRC_50)
+	cc -c ${TARGET_1_SRC_50} -o ${TARGET_1_OBJ_50} $(TARGET_1_FLAG_50)
+
+$(TARGET_1_OBJ_51):$(TARGET_1_SRC_51)
+	cc -c ${TARGET_1_SRC_51} -o ${TARGET_1_OBJ_51} $(TARGET_1_FLAG_51)
+
+$(TARGET_1_OBJ_52):$(TARGET_1_SRC_52)
+	cc -c ${TARGET_1_SRC_52} -o ${TARGET_1_OBJ_52} $(TARGET_1_FLAG_52)
+
+$(TARGET_1_OBJ_53):$(TARGET_1_SRC_53)
+	cc -c ${TARGET_1_SRC_53} -o ${TARGET_1_OBJ_53} $(TARGET_1_FLAG_53)
+
+$(TARGET_1_OBJ_54):$(TARGET_1_SRC_54)
+	cc -c ${TARGET_1_SRC_54} -o ${TARGET_1_OBJ_54} $(TARGET_1_FLAG_54)
+
+$(TARGET_1_OBJ_55):$(TARGET_1_SRC_55)
+	cc -c ${TARGET_1_SRC_55} -o ${TARGET_1_OBJ_55} $(TARGET_1_FLAG_55)
+
+$(TARGET_1_OBJ_56):$(TARGET_1_SRC_56)
+	cc -c ${TARGET_1_SRC_56} -o ${TARGET_1_OBJ_56} $(TARGET_1_FLAG_56)
+
+$(TARGET_1_OBJ_57):$(TARGET_1_SRC_57)
+	cc -c ${TARGET_1_SRC_57} -o ${TARGET_1_OBJ_57} $(TARGET_1_FLAG_57)
+
+$(TARGET_1_OBJ_58):$(TARGET_1_SRC_58)
+	cc -c ${TARGET_1_SRC_58} -o ${TARGET_1_OBJ_58} $(TARGET_1_FLAG_58)
+
+$(TARGET_1_OBJ_59):$(TARGET_1_SRC_59)
+	cc -c ${TARGET_1_SRC_59} -o ${TARGET_1_OBJ_59} $(TARGET_1_FLAG_59)
+
+$(TARGET_1_OBJ_60):$(TARGET_1_SRC_60)
+	cc -c ${TARGET_1_SRC_60} -o ${TARGET_1_OBJ_60} $(TARGET_1_FLAG_60)
+
+$(TARGET_1_OBJ_61):$(TARGET_1_SRC_61)
+	cc -c ${TARGET_1_SRC_61} -o ${TARGET_1_OBJ_61} $(TARGET_1_FLAG_61)
+
+$(TARGET_1_OBJ_62):$(TARGET_1_SRC_62)
+	cc -c ${TARGET_1_SRC_62} -o ${TARGET_1_OBJ_62} $(TARGET_1_FLAG_62)
+
+$(TARGET_1_OBJ_63):$(TARGET_1_SRC_63)
+	cc -c ${TARGET_1_SRC_63} -o ${TARGET_1_OBJ_63} $(TARGET_1_FLAG_63)
+
+$(TARGET_1_OBJ_64):$(TARGET_1_SRC_64)
+	cc -c ${TARGET_1_SRC_64} -o ${TARGET_1_OBJ_64} $(TARGET_1_FLAG_64)
+
+$(TARGET_1_OBJ_65):$(TARGET_1_SRC_65)
+	cc -c ${TARGET_1_SRC_65} -o ${TARGET_1_OBJ_65} $(TARGET_1_FLAG_65)
+
+$(TARGET_1_OBJ_66):$(TARGET_1_SRC_66)
+	cc -c ${TARGET_1_SRC_66} -o ${TARGET_1_OBJ_66} $(TARGET_1_FLAG_66)
+
+$(TARGET_1_OBJ_67):$(TARGET_1_SRC_67)
+	cc -c ${TARGET_1_SRC_67} -o ${TARGET_1_OBJ_67} $(TARGET_1_FLAG_67)
+
+$(TARGET_1_OBJ_68):$(TARGET_1_SRC_68)
+	cc -c ${TARGET_1_SRC_68} -o ${TARGET_1_OBJ_68} $(TARGET_1_FLAG_68)
+
+$(TARGET_1_OBJ_69):$(TARGET_1_SRC_69)
+	cc -c ${TARGET_1_SRC_69} -o ${TARGET_1_OBJ_69} $(TARGET_1_FLAG_69)
+
+$(TARGET_1_OBJ_70):$(TARGET_1_SRC_70)
+	cc -c ${TARGET_1_SRC_70} -o ${TARGET_1_OBJ_70} $(TARGET_1_FLAG_70)
+
+$(TARGET_1_OBJ_71):$(TARGET_1_SRC_71)
+	cc -c ${TARGET_1_SRC_71} -o ${TARGET_1_OBJ_71} $(TARGET_1_FLAG_71)
+
+$(TARGET_1_OBJ_72):$(TARGET_1_SRC_72)
+	cc -c ${TARGET_1_SRC_72} -o ${TARGET_1_OBJ_72} $(TARGET_1_FLAG_72)
+
+$(TARGET_1_OBJ_73):$(TARGET_1_SRC_73)
+	cc -c ${TARGET_1_SRC_73} -o ${TARGET_1_OBJ_73} $(TARGET_1_FLAG_73)
+
+$(TARGET_1_OBJ_74):$(TARGET_1_SRC_74)
+	cc -c ${TARGET_1_SRC_74} -o ${TARGET_1_OBJ_74} $(TARGET_1_FLAG_74)
+
+$(TARGET_1_OBJ_75):$(TARGET_1_SRC_75)
+	cc -c ${TARGET_1_SRC_75} -o ${TARGET_1_OBJ_75} $(TARGET_1_FLAG_75)
+
+$(TARGET_1_OBJ_76):$(TARGET_1_SRC_76)
+	cc -c ${TARGET_1_SRC_76} -o ${TARGET_1_OBJ_76} $(TARGET_1_FLAG_76)
+
+$(TARGET_1_OBJ_77):$(TARGET_1_SRC_77)
+	cc -c ${TARGET_1_SRC_77} -o ${TARGET_1_OBJ_77} $(TARGET_1_FLAG_77)
+
+$(TARGET_1_OBJ_78):$(TARGET_1_SRC_78)
+	cc -c ${TARGET_1_SRC_78} -o ${TARGET_1_OBJ_78} $(TARGET_1_FLAG_78)
+
+$(TARGET_1_OBJ_79):$(TARGET_1_SRC_79)
+	cc -c ${TARGET_1_SRC_79} -o ${TARGET_1_OBJ_79} $(TARGET_1_FLAG_79)
+
+$(TARGET_1_OBJ_80):$(TARGET_1_SRC_80)
+	cc -c ${TARGET_1_SRC_80} -o ${TARGET_1_OBJ_80} $(TARGET_1_FLAG_80)
+
+$(TARGET_1_OBJ_81):$(TARGET_1_SRC_81)
+	cc -c ${TARGET_1_SRC_81} -o ${TARGET_1_OBJ_81} $(TARGET_1_FLAG_81)
+
+$(TARGET_1_OBJ_82):$(TARGET_1_SRC_82)
+	cc -c ${TARGET_1_SRC_82} -o ${TARGET_1_OBJ_82} $(TARGET_1_FLAG_82)
+
+$(TARGET_1_OBJ_83):$(TARGET_1_SRC_83)
+	cc -c ${TARGET_1_SRC_83} -o ${TARGET_1_OBJ_83} $(TARGET_1_FLAG_83)
+
+$(TARGET_1_OBJ_84):$(TARGET_1_SRC_84)
+	cc -c ${TARGET_1_SRC_84} -o ${TARGET_1_OBJ_84} $(TARGET_1_FLAG_84)
+
+$(TARGET_1_OBJ_85):$(TARGET_1_SRC_85)
+	cc -c ${TARGET_1_SRC_85} -o ${TARGET_1_OBJ_85} $(TARGET_1_FLAG_85)
+
+$(TARGET_1_OBJ_86):$(TARGET_1_SRC_86)
+	cc -c ${TARGET_1_SRC_86} -o ${TARGET_1_OBJ_86} $(TARGET_1_FLAG_86)
+
+$(TARGET_1_OBJ_87):$(TARGET_1_SRC_87)
+	cc -c ${TARGET_1_SRC_87} -o ${TARGET_1_OBJ_87} $(TARGET_1_FLAG_87)
+
+$(TARGET_1_OBJ_88):$(TARGET_1_SRC_88)
+	cc -c ${TARGET_1_SRC_88} -o ${TARGET_1_OBJ_88} $(TARGET_1_FLAG_88)
+
+$(TARGET_1_OBJ_89):$(TARGET_1_SRC_89)
+	cc -c ${TARGET_1_SRC_89} -o ${TARGET_1_OBJ_89} $(TARGET_1_FLAG_89)
+
+$(TARGET_1_OBJ_90):$(TARGET_1_SRC_90)
+	cc -c ${TARGET_1_SRC_90} -o ${TARGET_1_OBJ_90} $(TARGET_1_FLAG_90)
+
+$(TARGET_1_OBJ_91):$(TARGET_1_SRC_91)
+	cc -c ${TARGET_1_SRC_91} -o ${TARGET_1_OBJ_91} $(TARGET_1_FLAG_91)
+
+$(TARGET_1_OBJ_92):$(TARGET_1_SRC_92)
+	cc -c ${TARGET_1_SRC_92} -o ${TARGET_1_OBJ_92} $(TARGET_1_FLAG_92)
+
+$(TARGET_1_OBJ_93):$(TARGET_1_SRC_93)
+	cc -c ${TARGET_1_SRC_93} -o ${TARGET_1_OBJ_93} $(TARGET_1_FLAG_93)
+
+$(TARGET_1_OBJ_94):$(TARGET_1_SRC_94)
+	cc -c ${TARGET_1_SRC_94} -o ${TARGET_1_OBJ_94} $(TARGET_1_FLAG_94)
+
+$(TARGET_1_OBJ_95):$(TARGET_1_SRC_95)
+	cc -c ${TARGET_1_SRC_95} -o ${TARGET_1_OBJ_95} $(TARGET_1_FLAG_95)
+
+$(TARGET_1_OBJ_96):$(TARGET_1_SRC_96)
+	cc -c ${TARGET_1_SRC_96} -o ${TARGET_1_OBJ_96} $(TARGET_1_FLAG_96)
+
+$(TARGET_1_OBJ_97):$(TARGET_1_SRC_97)
+	cc -c ${TARGET_1_SRC_97} -o ${TARGET_1_OBJ_97} $(TARGET_1_FLAG_97)
+
+$(TARGET_1_OBJ_98):$(TARGET_1_SRC_98)
+	cc -c ${TARGET_1_SRC_98} -o ${TARGET_1_OBJ_98} $(TARGET_1_FLAG_98)
+
+$(TARGET_1_OBJ_99):$(TARGET_1_SRC_99)
+	cc -c ${TARGET_1_SRC_99} -o ${TARGET_1_OBJ_99} $(TARGET_1_FLAG_99)
+
+$(TARGET_1_OBJ_100):$(TARGET_1_SRC_100)
+	cc -c ${TARGET_1_SRC_100} -o ${TARGET_1_OBJ_100} $(TARGET_1_FLAG_100)
+
+$(TARGET_1_OBJ_101):$(TARGET_1_SRC_101)
+	cc -c ${TARGET_1_SRC_101} -o ${TARGET_1_OBJ_101} $(TARGET_1_FLAG_101)
+
+$(TARGET_1_OBJ_102):$(TARGET_1_SRC_102)
+	cc -c ${TARGET_1_SRC_102} -o ${TARGET_1_OBJ_102} $(TARGET_1_FLAG_102)
+
+$(TARGET_1_OBJ_103):$(TARGET_1_SRC_103)
+	cc -c ${TARGET_1_SRC_103} -o ${TARGET_1_OBJ_103} $(TARGET_1_FLAG_103)
+
+$(TARGET_1_OBJ_104):$(TARGET_1_SRC_104)
+	cc -c ${TARGET_1_SRC_104} -o ${TARGET_1_OBJ_104} $(TARGET_1_FLAG_104)
+
+$(TARGET_1_OBJ_105):$(TARGET_1_SRC_105)
+	cc -c ${TARGET_1_SRC_105} -o ${TARGET_1_OBJ_105} $(TARGET_1_FLAG_105)
+
+$(TARGET_1_OBJ_106):$(TARGET_1_SRC_106)
+	cc -c ${TARGET_1_SRC_106} -o ${TARGET_1_OBJ_106} $(TARGET_1_FLAG_106)
+
+$(TARGET_1_OBJ_107):$(TARGET_1_SRC_107)
+	cc -c ${TARGET_1_SRC_107} -o ${TARGET_1_OBJ_107} $(TARGET_1_FLAG_107)
+
+$(TARGET_1_OBJ_108):$(TARGET_1_SRC_108)
+	cc -c ${TARGET_1_SRC_108} -o ${TARGET_1_OBJ_108} $(TARGET_1_FLAG_108)
+
+$(TARGET_1_OBJ_109):$(TARGET_1_SRC_109)
+	cc -c ${TARGET_1_SRC_109} -o ${TARGET_1_OBJ_109} $(TARGET_1_FLAG_109)
+
+$(TARGET_1_OBJ_110):$(TARGET_1_SRC_110)
+	cc -c ${TARGET_1_SRC_110} -o ${TARGET_1_OBJ_110} $(TARGET_1_FLAG_110)
+
+$(TARGET_1_OBJ_111):$(TARGET_1_SRC_111)
+	cc -c ${TARGET_1_SRC_111} -o ${TARGET_1_OBJ_111} $(TARGET_1_FLAG_111)
+
+$(TARGET_1_OBJ_112):$(TARGET_1_SRC_112)
+	cc -c ${TARGET_1_SRC_112} -o ${TARGET_1_OBJ_112} $(TARGET_1_FLAG_112)
+
+$(TARGET_1_OBJ_113):$(TARGET_1_SRC_113)
+	cc -c ${TARGET_1_SRC_113} -o ${TARGET_1_OBJ_113} $(TARGET_1_FLAG_113)
+
+$(TARGET_1_OBJ_114):$(TARGET_1_SRC_114)
+	cc -c ${TARGET_1_SRC_114} -o ${TARGET_1_OBJ_114} $(TARGET_1_FLAG_114)
+
+$(TARGET_1_OBJ_115):$(TARGET_1_SRC_115)
+	cc -c ${TARGET_1_SRC_115} -o ${TARGET_1_OBJ_115} $(TARGET_1_FLAG_115)
+
+$(TARGET_1_OBJ_116):$(TARGET_1_SRC_116)
+	cc -c ${TARGET_1_SRC_116} -o ${TARGET_1_OBJ_116} $(TARGET_1_FLAG_116)
+
+$(TARGET_1_OBJ_117):$(TARGET_1_SRC_117)
+	cc -c ${TARGET_1_SRC_117} -o ${TARGET_1_OBJ_117} $(TARGET_1_FLAG_117)
+
+$(TARGET_1_OBJ_118):$(TARGET_1_SRC_118)
+	cc -c ${TARGET_1_SRC_118} -o ${TARGET_1_OBJ_118} $(TARGET_1_FLAG_118)
+
+$(TARGET_1_OBJ_119):$(TARGET_1_SRC_119)
+	cc -c ${TARGET_1_SRC_119} -o ${TARGET_1_OBJ_119} $(TARGET_1_FLAG_119)
+
+$(TARGET_1_OBJ_120):$(TARGET_1_SRC_120)
+	cc -c ${TARGET_1_SRC_120} -o ${TARGET_1_OBJ_120} $(TARGET_1_FLAG_120)
+
+$(TARGET_1_OBJ_121):$(TARGET_1_SRC_121)
+	cc -c ${TARGET_1_SRC_121} -o ${TARGET_1_OBJ_121} $(TARGET_1_FLAG_121)
+
+$(TARGET_1_OBJ_122):$(TARGET_1_SRC_122)
+	cc -c ${TARGET_1_SRC_122} -o ${TARGET_1_OBJ_122} $(TARGET_1_FLAG_122)
+
+$(TARGET_1_OBJ_123):$(TARGET_1_SRC_123)
+	cc -c ${TARGET_1_SRC_123} -o ${TARGET_1_OBJ_123} $(TARGET_1_FLAG_123)
+
+$(TARGET_1_OBJ_124):$(TARGET_1_SRC_124)
+	cc -c ${TARGET_1_SRC_124} -o ${TARGET_1_OBJ_124} $(TARGET_1_FLAG_124)
+
+$(TARGET_1_OBJ_125):$(TARGET_1_SRC_125)
+	cc -c ${TARGET_1_SRC_125} -o ${TARGET_1_OBJ_125} $(TARGET_1_FLAG_125)
+
+$(TARGET_2): $(OBJS_2)
+	$(CC) -fPIC -shared -fsycl -o $@ $^ $(LIB) -qmkl
+
+$(TARGET_2_OBJ_0):$(TARGET_2_SRC_0)
+	cc -c ${TARGET_2_SRC_0} -o ${TARGET_2_OBJ_0} $(TARGET_2_FLAG_0)
+
+$(TARGET_2_OBJ_1):$(TARGET_2_SRC_1)
+	icpx -c  ${TARGET_2_SRC_1} -o ${TARGET_2_OBJ_1} $(TARGET_2_FLAG_1)
+
+clean:
+	rm -f  ${OBJS_0} ${OBJS_1} ${OBJS_2} $(TARGET)

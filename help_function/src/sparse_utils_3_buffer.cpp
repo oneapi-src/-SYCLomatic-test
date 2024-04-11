@@ -547,9 +547,7 @@ void test_cusparseTcsrmm2() {
 
 int main() {
   test_cusparseTcsrsv();
-#ifndef DPCT_USM_LEVEL_NONE
   test_cusparseTcsrsv2();
-#endif
   test_cusparseTcsrmm2();
 
   if (test_passed)
