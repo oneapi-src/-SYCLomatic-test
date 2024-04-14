@@ -9,6 +9,7 @@
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
 #include <dpct/dpl_utils.hpp>
+#include <dpct/group_utils.hpp>
 #include <iostream>
 
 template <int GROUP_THREADS, typename InputT, int ITEMS_PER_THREAD,
