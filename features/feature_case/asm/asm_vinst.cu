@@ -120,15 +120,17 @@ __device__ int vshr() {
 
 __device__ int vset() {
   int i;
-  CHECK(1, asm("vset.s32.s32.eq %0, %1, %2;" : "=r"(i) : "r"(32), "r"(40)), i == 0);
-  CHECK(2, asm("vset.s32.s32.ne %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)), i == 0);
-  CHECK(3, asm("vset.s32.s32.lt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)), i == 0);
-  CHECK(4, asm("vset.s32.s32.le %0, %1, %2;" : "=r"(i) : "r"(30), "r"(32)), i == 1);
-  CHECK(5, asm("vset.s32.s32.gt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(31)), i == 1);
-  CHECK(6, asm("vset.s32.s32.ge %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)), i == 1);
-  CHECK(7, asm("vset.s32.s32.eq.add %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(40), "r"(1)), i == 1);
-  CHECK(8, asm("vset.s32.s32.ne.min %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(3)), i == 0);
-  CHECK(9, asm("vset.s32.s32.lt.max %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(4)), i == 4);
+  // clang-format off
+  { asm("vset.s32.s32.eq %0, %1, %2;" : "=r"(i) : "r"(32), "r"(40)); if (!(i == 0)) { return 1; } };
+  { asm("vset.s32.s32.ne %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 0)) { return 2; } };
+  { asm("vset.s32.s32.lt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 0)) { return 3; } };
+  { asm("vset.s32.s32.le %0, %1, %2;" : "=r"(i) : "r"(30), "r"(32)); if (!(i == 1)) { return 4; } };
+  { asm("vset.s32.s32.gt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(31)); if (!(i == 1)) { return 5; } };
+  { asm("vset.s32.s32.ge %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 1)) { return 6; } };
+  { asm("vset.s32.s32.eq.add %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(40), "r"(1)); if (!(i == 1)) { return 7; } };
+  { asm("vset.s32.s32.ne.min %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(3)); if (!(i == 0)) { return 8; } };
+  { asm("vset.s32.s32.lt.max %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(4)); if (!(i == 4)) { return 9; } };
+  // clang-format on
   return 0;
 }
 
