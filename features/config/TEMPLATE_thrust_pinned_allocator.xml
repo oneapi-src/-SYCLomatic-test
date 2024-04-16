@@ -12,6 +12,6 @@
         <platformRule OSFamily="Linux" kit="CUDA12.0" kitRange="LATER_OR_EQUAL" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA9.2" kitRange="OLDER" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA12.0" kitRange="LATER_OR_EQUAL" runOnThisPlatform="false"/>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

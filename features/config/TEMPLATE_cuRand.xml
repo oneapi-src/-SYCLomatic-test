@@ -6,6 +6,6 @@
         <file path="feature_case/cuRand/${testName}.cu" />
     </files>
     <rules>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

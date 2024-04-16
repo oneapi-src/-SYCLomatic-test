@@ -1,0 +1,199 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/MacroscopicCrossSection.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          3466
+    Length:          0
+    ReplacementText: "\nHOST_DEVICE\ndouble macroscopicCrossSection_host_ct5(MonteCarlo *monteCarlo, int reactionIndex, int domainIndex, int cellIndex,\n                               int isoIndex, int energyGroup);"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          3662
+    Length:          0
+    ReplacementText: "\nHOST_DEVICE\ndouble weightedMacroscopicCrossSection_host_ct6(MonteCarlo *monteCarlo, int taskIndex, int domainIndex,\n                                       int cellIndex, int energyGroup);"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          4337
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          4544
+    Length:          208
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          5047
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          5255
+    Length:          209
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          5552
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          5952
+    Length:          387
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          6412
+    Length:          0
+    ReplacementText: "\ninline HOST_DEVICE double macroscopicCrossSection_host_ct5(MonteCarlo *monteCarlo, int reactionIndex, int domainIndex, int cellIndex,\n                                                  int isoIndex, int energyGroup)\n{\n// Initialize various data items.\n\n   int globalMatIndex = monteCarlo->domain[domainIndex].cell_state[cellIndex]._material;\n   double atomFraction = monteCarlo->_materialDatabase->_mat[globalMatIndex]._iso[isoIndex]._atomFraction;\n\n\n   double microscopicCrossSection = 0.0;\n   // The cell number density is the fraction of the atoms in cell\n   // volume of this isotope.  We set this (elsewhere) to 1/nIsotopes.\n   // This is a statement that we treat materials as if all of their\n   // isotopes are present in equal amounts\n\n\n   double cellNumberDensity = monteCarlo->domain[domainIndex].cell_state[cellIndex]._cellNumberDensity;\n   int isotopeGid = monteCarlo->_materialDatabase->_mat[globalMatIndex]._iso[isoIndex]._gid;\n\n   if (atomFraction == 0.0 || cellNumberDensity == 0.0)\n   {\n      return 1e-20;\n   }\n\n\n   if (reactionIndex < 0)\n   {\n      // Return total cross section\n      microscopicCrossSection = monteCarlo->_nuclearData->getTotalCrossSection(isotopeGid, energyGroup);\n   }\n   else\n   {\n      // Return the reaction cross section\n      microscopicCrossSection = monteCarlo->_nuclearData->getReactionCrossSection((unsigned int)reactionIndex, isotopeGid, energyGroup);\n   }\n\n\n   return atomFraction * cellNumberDensity * microscopicCrossSection;\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          7198
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          7341
+    Length:          132
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          7600
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          7786
+    Length:          190
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Offset:          8272
+    Length:          0
+    ReplacementText: "\ninline HOST_DEVICE double weightedMacroscopicCrossSection_host_ct6(MonteCarlo *monteCarlo, int taskIndex, int domainIndex,\n                                                          int cellIndex, int energyGroup)\n{\n\n   double *precomputedCrossSection =\n       &monteCarlo->domain[domainIndex].cell_state[cellIndex]._total[energyGroup];\n\n   qs_assert(precomputedCrossSection != NULL);\n   if (*precomputedCrossSection > 0.0)\n      return *precomputedCrossSection;\n\n\n   int globalMatIndex = monteCarlo->domain[domainIndex].cell_state[cellIndex]._material;\n   int nIsotopes = (int)monteCarlo->_materialDatabase->_mat[globalMatIndex]._iso.size();\n\n   double sum = 0.0;\n   for (int isoIndex = 0; isoIndex < nIsotopes; isoIndex++)\n   {\n      sum += macroscopicCrossSection(monteCarlo, -1, domainIndex, cellIndex,\n                                     isoIndex, energyGroup);\n   }\n\n   ATOMIC_WRITE(*precomputedCrossSection, sum);\n\n   return sum;\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MacroscopicCrossSection.hh'
+    Digest:          41eb50e42544ae2d846972b7c47008f8
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

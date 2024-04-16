@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="feature_case/cusparse/${testName}.cu" />
+    </files>
+    <rules>
+        <platformRule OSFamily="Linux" kit="CUDA12.0" kitRange="LATER_OR_EQUAL" runOnThisPlatform="false"/>
+        <platformRule OSFamily="Windows" kit="CUDA12.0" kitRange="LATER_OR_EQUAL" runOnThisPlatform="false"/>
+        <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
+    </rules>
+</test>

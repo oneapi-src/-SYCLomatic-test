@@ -8,6 +8,6 @@
     <rules>
 	    <platformRule OSFamily="Linux" kit="CUDA10.2" kitRange="OLDER" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA10.2" kitRange="OLDER" runOnThisPlatform="false"/>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

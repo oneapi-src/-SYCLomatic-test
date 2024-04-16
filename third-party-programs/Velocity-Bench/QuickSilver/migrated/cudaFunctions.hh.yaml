@@ -1,0 +1,307 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/cudaFunctions.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3064
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3183
+    Length:          4
+    ReplacementText: 'sycl::range<3>'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3195
+    Length:          4
+    ReplacementText: 'sycl::range<3>'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3302
+    Length:          0
+    ReplacementText: 'const sycl::nd_item<3> &item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3324
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3355
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3368
+    Length:          9
+    ReplacementText: 'item_ct1.get_group_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3398
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3411
+    Length:          9
+    ReplacementText: 'item_ct1.get_group_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3423
+    Length:          9
+    ReplacementText: 'item_ct1.get_group_range(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3465
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3478
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3491
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3524
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3539
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3552
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3585
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3599
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3631
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3703
+    Length:          0
+    ReplacementText: 'const sycl::nd_item<3> &item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3727
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3742
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3755
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3788
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3802
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Offset:          3834
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/cudaFunctions.hh'
+    Digest:          421bbc8c14b09bcf01ba6c1741b6eee6
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

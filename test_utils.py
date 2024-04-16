@@ -26,24 +26,22 @@ from distutils import dir_util
 # Call subprocess to run migration, build and test binary. Store the command and execution result to
 # command.tst and result.md.
 def call_subprocess(cmd):
-    with open(test_config.command_file, 'a+') as f:
-        f.write(cmd + "\n")
-    with open(test_config.log_file, 'a+') as f:
-        try:
-            run_on_shell = False
-            if (platform.system() == 'Linux'):
-                run_on_shell = True
-            complete_process = subprocess.run(cmd, shell=run_on_shell, check=False,
-                                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                        encoding="utf-8", timeout=test_config.timeout)
-            test_config.command_output = complete_process.stdout
-            f.write(complete_process.stdout)
-        except subprocess.TimeoutExpired:
-            f.write("========= Execution time out(" + str(test_config.timeout) + "s) Please check. ======")
+    test_config.executed_command += cmd +"\n"
+    try:
+        run_on_shell = False
+        if (platform.system() == 'Linux'):
+            run_on_shell = True
+        complete_process = subprocess.run(cmd, shell=run_on_shell, check=False,
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                    encoding="utf-8", timeout=test_config.timeout)
+        test_config.command_output = complete_process.stdout
+        test_config.execution_log += complete_process.stdout + "\n"
+        if complete_process.returncode != 0:
             return False
-    if complete_process.returncode != 0:
+        return True
+    except subprocess.TimeoutExpired:
+        test_config.execution_log += "========= Excuting " + cmd + " is meeting time out(" + str(test_config.timeout) + "s) Please check. ======"
         return False
-    return True
 
 def change_dir(dir):
     cmd = "cd " + dir
@@ -63,6 +61,15 @@ def set_default_compiler(use_cuda : bool):
     else:
         test_config.DPCXX_COM = "icpx -fsycl"
 
+def set_default_c_compiler(use_cuda : bool):
+    if (use_cuda):
+        test_config.C_COM = 'clang'
+        return
+    if (platform.system() == 'Windows'):
+        test_config.C_COM = "icx-cc"
+    else:
+        test_config.C_COM = "icx"
+
 def print_debug_log(desc, *args):
     if (test_config.VERBOSE_LEVEL != 0):
         print(desc + " : " )
@@ -72,10 +79,13 @@ def print_debug_log(desc, *args):
 
 def compile_files(srcs, cmpopts = []):
     ret = True
-    base_cmd = test_config.DPCXX_COM + " -c "
-    if (platform.system() == 'Windows'):
-        base_cmd += " /EHsc -DNOMINMAX "
     for src in srcs:
+        if os.path.splitext(src)[1] == '.c':
+            base_cmd = test_config.C_COM + " -c "
+        else:
+            base_cmd = test_config.DPCXX_COM + " -c "
+            if (platform.system() == 'Windows'):
+                base_cmd += " /EHsc -DNOMINMAX "
         cmd = base_cmd + src + ' ' + ' '.join(cmpopts)
         ret = call_subprocess(cmd) and ret
     return ret
@@ -145,10 +155,13 @@ def get_cuda_version():
                 return int(line.split(' ')[-1])
     return 0
 
-def append_msg_to_file(file_path, msg):
-    with open(file_path, 'a+') as f:
-        f.write(msg)
+def write_log_to_file(file_path, log):
+    with open(file_path, 'w+') as f:
+        f.write(log)
 
+def append_log_to_file(file_path, log):
+    with open(file_path, 'a+') as f:
+        f.write(log)
 
 def do_migrate(src, in_root, out_root, extra_args = []):
     cmd = test_config.CT_TOOL  + " --cuda-include-path=" + test_config.include_path + \
@@ -180,13 +193,15 @@ def is_registered_module(test_case_workspace):
     return False
 
 # Print the failed test result and details in the screen.
-def print_result(case, status, details_log):
-    print("============= " + case + ": " + status + " ==================\n")
-    call_subprocess("sycl-ls")
-    print("========== Device Runtime Info: ===============")
-    print(test_config.command_output)
-    print("=============================================\n")
-    print("----------------------------\n" + details_log + "\n----------------------\n")
+def print_result(case, command, status, details_log):
+    if not test_config.is_first_round:
+        print("============= " + case + ": " + status + " ==================\n")
+        print("============= Execution command ==================\n")
+        print(command)
+        print("============= Device Runtime Info: ==================\n")
+        print(test_config.command_output)
+        print("=============================================\n")
+        print("----------------------------\n" + details_log + "\n----------------------\n")
 
 def is_sub_string(substr, fullstr):
     if substr in fullstr:

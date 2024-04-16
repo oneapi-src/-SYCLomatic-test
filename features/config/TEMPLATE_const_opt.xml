@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="feature_case/const_opt/${testName}.cu" />
+    </files>
+    <rules />
+</test>

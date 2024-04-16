@@ -3,13 +3,10 @@
 <test driverID="test_feature" name="TEMPLATE">
     <description>test for auto gernerate makefile</description>
     <files>
-	 <file path="feature_case/autoGenMakefile/heartwall" />
+	 <file path="feature_case/autoGenMakefile" />
     </files>
     <rules>
         <platformRule OSFamily="Windows" runOnThisPlatform="false" />
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
-    <attributes>
-        <attribute attributeName="skip_virtual_pointer" value="usmnone" />
-    </attributes>
 </test>

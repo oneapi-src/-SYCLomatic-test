@@ -1,0 +1,71 @@
+CC := icpx
+
+LD := $(CC)
+
+#DPCT2001:228: You can link with more library by add them here.
+LIB :=  -lopencv_core -lopencv_imgcodecs
+
+FLAGS := 
+
+ifeq ($(shell which $(CC)),)
+    $(error ERROR - $(CC) compiler not found)
+endif
+
+ROOT_DIR     := $(shell dirname $(shell which $(CC)))
+INCLUDE_SYCL := $(ROOT_DIR)/../include
+INCLUDE_CL   := $(ROOT_DIR)/../include/sycl
+
+TARGET_0_SRC_0 = /home/local_user/sandbox/Velocity-Bench/cudaSift/common/Utility.cpp
+TARGET_0_OBJ_0 = /home/local_user/sandbox/Velocity-Bench/cudaSift/common/Utility.o
+TARGET_0_FLAG_0 = -isystem /usr/include/opencv4 -O3 -std=gnu++17 ${FLAGS}
+
+TARGET_0_SRC_1 = ./geomFuncs.cpp
+TARGET_0_OBJ_1 = ./geomFuncs.o
+TARGET_0_FLAG_1 = -isystem /usr/include/opencv4 -O3 -std=gnu++17 ${FLAGS}
+
+TARGET_0_SRC_2 = ./mainSift.cpp.dp.cpp
+TARGET_0_OBJ_2 = ./mainSift.cpp.dp.o
+TARGET_0_FLAG_2 = -isystem /usr/include/opencv4 -O3 -std=c++17 -I $(INCLUDE_SYCL) -I $(INCLUDE_CL) ${FLAGS}
+
+TARGET_0_SRC_3 = ./cudaImage.dp.cpp
+TARGET_0_OBJ_3 = ./cudaImage.dp.o
+TARGET_0_FLAG_3 = -O3 -DNVCC ${FLAGS}
+
+TARGET_0_SRC_4 = ./cudaSiftH.dp.cpp
+TARGET_0_OBJ_4 = ./cudaSiftH.dp.o
+TARGET_0_FLAG_4 = -O3 -DNVCC ${FLAGS}
+
+TARGET_0_SRC_5 = ./matching.dp.cpp
+TARGET_0_OBJ_5 = ./matching.dp.o
+TARGET_0_FLAG_5 = -O3 -DNVCC ${FLAGS}
+
+TARGET_0 := cudasift
+
+TARGET :=  ${TARGET_0}
+
+.PHONY:all clean
+OBJS_0 :=  ${TARGET_0_OBJ_0} ${TARGET_0_OBJ_1} ${TARGET_0_OBJ_2} ${TARGET_0_OBJ_3} ${TARGET_0_OBJ_4} ${TARGET_0_OBJ_5}
+all: $(TARGET)
+$(TARGET_0): $(OBJS_0)
+	$(CC) -fsycl -o $@ $^ $(LIB) 
+
+$(TARGET_0_OBJ_0):$(TARGET_0_SRC_0)
+	c++ -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
+
+$(TARGET_0_OBJ_1):$(TARGET_0_SRC_1)
+	c++ -c ${TARGET_0_SRC_1} -o ${TARGET_0_OBJ_1} $(TARGET_0_FLAG_1)
+
+$(TARGET_0_OBJ_2):$(TARGET_0_SRC_2)
+	c++ -c ${TARGET_0_SRC_2} -o ${TARGET_0_OBJ_2} $(TARGET_0_FLAG_2)
+
+$(TARGET_0_OBJ_3):$(TARGET_0_SRC_3)
+	$(CC) -fsycl -c ${TARGET_0_SRC_3} -o ${TARGET_0_OBJ_3} $(TARGET_0_FLAG_3)
+
+$(TARGET_0_OBJ_4):$(TARGET_0_SRC_4)
+	$(CC) -fsycl -c ${TARGET_0_SRC_4} -o ${TARGET_0_OBJ_4} $(TARGET_0_FLAG_4)
+
+$(TARGET_0_OBJ_5):$(TARGET_0_SRC_5)
+	$(CC) -fsycl -c ${TARGET_0_SRC_5} -o ${TARGET_0_OBJ_5} $(TARGET_0_FLAG_5)
+
+clean:
+	rm -f  ${OBJS_0} $(TARGET)

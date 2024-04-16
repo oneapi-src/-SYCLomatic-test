@@ -1,0 +1,1197 @@
+---
+MainSourceFile:  MainSrcFiles_placehold
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          1633
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          2138
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          2413
+    Length:          0
+    ReplacementText: ",\n\tunsigned int const *TS0,\n\tunsigned int const *TS1,\n\tunsigned int const *TS2,\n\tunsigned int const *TS3"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          2819
+    Length:          26
+    ReplacementText: 'dpct::byte_level_permute(m0, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          2880
+    Length:          26
+    ReplacementText: 'dpct::byte_level_permute(m1, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          2941
+    Length:          26
+    ReplacementText: 'dpct::byte_level_permute(m2, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          3002
+    Length:          26
+    ReplacementText: 'dpct::byte_level_permute(m3, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          17971
+    Length:          37
+    ReplacementText: 'dpct::byte_level_permute(enc_schedule0, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          18027
+    Length:          37
+    ReplacementText: 'dpct::byte_level_permute(enc_schedule1, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          18083
+    Length:          37
+    ReplacementText: 'dpct::byte_level_permute(enc_schedule2, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          18139
+    Length:          37
+    ReplacementText: 'dpct::byte_level_permute(enc_schedule3, 0, 0x0123)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          18181
+    Length:          10
+    ReplacementText: "/*\nDPCT1110:3: The total declared local variable size in device function decrypt_vmk_with_mac exceeds 128 bytes and may cause high register pressure. Consult with your hardware vendor to find the total register size available and adjust the code, or use smaller sub-group size to avoid high register pressure.\n*/\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          18589
+    Length:          0
+    ReplacementText: ",\n    const sycl::nd_item<3> &item_ct1,\n    unsigned int const *TS0,\n    unsigned int const *TS1,\n    unsigned int const *TS2,\n    unsigned int const *TS3"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          19258
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          19272
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          19285
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          32334
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          33736
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          35146
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          36386
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          36758
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          37153
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          37548
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          37930
+    Length:          0
+    ReplacementText: ', TS0, TS1, TS2, TS3'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          40314
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42561
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1048:0: The original value cudaHostAllocDefault is not meaningful in the migrated code and was removed or replaced with 0. You may need to check the migrated code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42577
+    Length:          120
+    ReplacementText: 'DPCT_CHECK_ERROR(h_found = sycl::malloc_host<int>(1, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42701
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1048:1: The original value cudaHostAllocDefault is not meaningful in the migrated code and was removed or replaced with 0. You may need to check the migrated code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42717
+    Length:          120
+    ReplacementText: 'DPCT_CHECK_ERROR(h_pswd_char = sycl::malloc_host<char>(max_num_pswd_per_read * PSWD_NUM_CHAR, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42841
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1048:2: The original value cudaHostAllocDefault is not meaningful in the migrated code and was removed or replaced with 0. You may need to check the migrated code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          42857
+    Length:          120
+    ReplacementText: 'DPCT_CHECK_ERROR(h_pswd_uint32 = sycl::malloc_host<uint32_t>(max_num_pswd_per_read * PSWD_NUM_UINT32, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43359
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43421
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43446
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43622
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_vmk = sycl::malloc_device<uint8_t>(VMK_FULL_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43717
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_vmkIV = sycl::malloc_device<uint8_t>(IV_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43812
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_mac = sycl::malloc_device<uint8_t>(MAC_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          43907
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_macIV = sycl::malloc_device<uint8_t>(IV_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44002
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_computedMacIV = sycl::malloc_device<uint8_t>(IV_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44097
+    Length:          75
+    ReplacementText: 'DPCT_CHECK_ERROR(d_found = sycl::malloc_device<int>(1, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44193
+    Length:          100
+    ReplacementText: 'DPCT_CHECK_ERROR(d_pswd_uint32 = sycl::malloc_device<uint32_t>(max_num_pswd_per_read * PSWD_NUM_UINT32, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44405
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44487
+    Length:          25
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44513
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44534
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44616
+    Length:          25
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44642
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44666
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44748
+    Length:          25
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44774
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44798
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44880
+    Length:          25
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44906
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          44930
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45012
+    Length:          25
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45038
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45058
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45141
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45166
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          45368
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          47337
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          47428
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          47453
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          47477
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48003
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1049:4: The work-group size passed to the SYCL kernel may exceed the limit. To get the device limit, query info::device::max_work_group_size. Adjust the work-group size if needed.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48011
+    Length:          391
+    ReplacementText: "dpct::get_in_order_queue().submit(\n          [&](sycl::handler &cgh) {\n            TS0.init();\n            TS1.init();\n            TS2.init();\n            TS3.init();\n\n            auto TS0_ptr_ct1 = TS0.get_ptr();\n            auto TS1_ptr_ct1 = TS1.get_ptr();\n            auto TS2_ptr_ct1 = TS2.get_ptr();\n            auto TS3_ptr_ct1 = TS3.get_ptr();\n\n            cgh.parallel_for(\n              sycl::nd_range<3>(sycl::range<3>(1, 1, num_blocks) * sycl::range<3>(1, 1, block_size), sycl::range<3>(1, 1, block_size)), \n              [=](sycl::nd_item<3> item_ct1) {\n                decrypt_vmk_with_mac(num_read_pswd, d_found, d_vmk, d_vmkIV, d_mac, d_macIV, d_computedMacIV, v0, v1, v2, v3, s0, s1, s2, s3, d_pswd_uint32, d_w_words_uint32, item_ct1, TS0_ptr_ct1, TS1_ptr_ct1, TS2_ptr_ct1, TS3_ptr_ct1);\n              });\n          });"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48402
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48445
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48881
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48930
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48955
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          48973
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50751
+    Length:          21
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(h_found, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50772
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50792
+    Length:          25
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(h_pswd_char, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50817
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50837
+    Length:          27
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(h_pswd_uint32, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50864
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50923
+    Length:          15
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_vmk, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50938
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50958
+    Length:          17
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_vmkIV, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50975
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          50995
+    Length:          15
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_mac, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51010
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51030
+    Length:          17
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_macIV, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51047
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51067
+    Length:          25
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_computedMacIV, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51092
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51112
+    Length:          17
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_found, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51129
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51149
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_pswd_uint32, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51172
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Offset:          51247
+    Length:          0
+    ReplacementText: "\ncatch (sycl::exception const &exc) {\n  std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n  std::exit(1);\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          1633
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          2654
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          5570
+    Length:          0
+    ReplacementText: "\t/*\n\tDPCT1093:8: The \"0\" device may be not the one intended for use. Adjust the selected device if needed.\n\t*/\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          5583
+    Length:          13
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          5599
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          5942
+    Length:          98
+    ReplacementText: 'DPCT_CHECK_ERROR(d_w_words_uint32 = sycl::malloc_device<uint32_t>(NUM_HASH_BLOCKS * HASH_BLOCK_NUM_UINT32, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          6856
+    Length:          26
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(d_w_words_uint32, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          6882
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Offset:          7075
+    Length:          0
+    ReplacementText: "\ncatch (sycl::exception const &exc) {\n  std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n  std::exit(1);\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          1633
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          2333
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          2462
+    Length:          0
+    ReplacementText: ",\n    const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          2485
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          2498
+    Length:          10
+    ReplacementText: 'item_ct1.get_local_range(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          2511
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          6853
+    Length:          69
+    ReplacementText: 'DPCT_CHECK_ERROR(salt_d = sycl::malloc_device<unsigned char>(SALT_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          6939
+    Length:          69
+    ReplacementText: 'DPCT_CHECK_ERROR(padding_d = sycl::malloc_device<unsigned char>(PADDING_SIZE, dpct::get_in_order_queue()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7055
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7122
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7147
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7164
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_in_order_queue().memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7231
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7256
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7617
+    Length:          65
+    ReplacementText: "dpct::get_in_order_queue().parallel_for(\n\t  sycl::nd_range<3>(sycl::range<3>(1, 1, 1024) * sycl::range<3>(1, 1, 16), sycl::range<3>(1, 1, 16)), \n\t  [=](sycl::nd_item<3> item_ct1) {\n\t    kernel_w_block(salt_d, padding_d, d_w_words_uint32, item_ct1);\n\t  });"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7682
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          7729
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          8096
+    Length:          16
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(salt_d, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          8112
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          8132
+    Length:          19
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(padding_d, dpct::get_in_order_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Offset:          8151
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/attack.cu'
+    Digest:          1e837048a442f2258c61090d201699d9
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/main.cu'
+    Digest:          60e076c4d80f751b34af1cc20d4cd774
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/src/w_blocks.cu'
+    Digest:          6de252b294499305c70f60e14eb8c6a9
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:
+  bitcracker:
+    - MigratedFileName: './src/main.dp.cpp'
+      CompileOptions:  '-O3 -DNVCC -I./src '
+      Compiler:        nvcc
+    - MigratedFileName: './src/utils.dp.cpp'
+      CompileOptions:  '-O3 -DNVCC -I./src '
+      Compiler:        nvcc
+    - MigratedFileName: './src/w_blocks.dp.cpp'
+      CompileOptions:  '-O3 -DNVCC -I./src '
+      Compiler:        nvcc
+    - MigratedFileName: './src/attack.dp.cpp'
+      CompileOptions:  '-O3 -DNVCC -I./src '
+      Compiler:        nvcc
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/bitcracker/CUDA/build'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

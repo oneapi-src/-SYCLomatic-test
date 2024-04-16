@@ -6,8 +6,7 @@
         <file path="src/${testName}.cpp" />
     </files>
     <rules>
-        <optlevelRule excludeOptlevelNameString="usmnone" />
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
-      <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

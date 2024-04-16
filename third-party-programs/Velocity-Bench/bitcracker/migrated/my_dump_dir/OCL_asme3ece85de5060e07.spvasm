@@ -1,0 +1,1721 @@
+; SPIR-V
+; Version: 1.4
+; Generator: Khronos LLVM/SPIR-V Translator; 14
+; Bound: 1377
+; Schema: 0
+               OpCapability Addresses ; 0x00000014
+               OpCapability Linkage ; 0x0000001c
+               OpCapability Kernel ; 0x00000024
+               OpCapability Int64 ; 0x0000002c
+               OpCapability GenericPointer ; 0x00000034
+               OpCapability Int8 ; 0x0000003c
+               OpCapability ExpectAssumeKHR ; 0x00000044
+               OpCapability OptNoneINTEL ; 0x0000004c
+               OpExtension "SPV_INTEL_optnone" ; 0x00000054
+               OpExtension "SPV_KHR_expect_assume" ; 0x0000006c
+          %1 = OpExtInstImport "OpenCL.std" ; 0x00000088
+               OpMemoryModel Physical64 OpenCL ; 0x0000009c
+               OpEntryPoint Kernel %20 "_ZTSZ16evaluate_w_blockPhPjRdEUlN4sycl3_V17nd_itemILi3EEEE_" ; 0x000000a8
+               OpSource OpenCL_CPP 100000 ; 0x000000f0
+               OpName %__spirv_BuiltInGlobalSize "__spirv_BuiltInGlobalSize" ; 0x000000fc
+               OpName %__spirv_BuiltInGlobalOffset "__spirv_BuiltInGlobalOffset" ; 0x00000120
+               OpName %__spirv_BuiltInNumWorkgroups "__spirv_BuiltInNumWorkgroups" ; 0x00000144
+               OpName %__spirv_BuiltInGlobalInvocationId "__spirv_BuiltInGlobalInvocationId" ; 0x0000016c
+               OpName %__spirv_BuiltInLocalInvocationId "__spirv_BuiltInLocalInvocationId" ; 0x00000198
+               OpName %__spirv_BuiltInWorkgroupId "__spirv_BuiltInWorkgroupId" ; 0x000001c4
+               OpName %__spirv_BuiltInGlobalLinearId "__spirv_BuiltInGlobalLinearId" ; 0x000001e8
+               OpName %__spirv_BuiltInWorkgroupSize "__spirv_BuiltInWorkgroupSize" ; 0x00000210
+               OpName %__itt_offload_wi_start_wrapper "__itt_offload_wi_start_wrapper" ; 0x00000238
+               OpName %class_sycl___V1__nd_item "class.sycl::_V1::nd_item" ; 0x00000260
+               OpName %class_sycl___V1__item "class.sycl::_V1::item" ; 0x00000284
+               OpName %struct_sycl___V1__detail__ItemBase "struct.sycl::_V1::detail::ItemBase" ; 0x000002a4
+               OpName %class_sycl___V1__range "class.sycl::_V1::range" ; 0x000002d0
+               OpName %class_sycl___V1__detail__array "class.sycl::_V1::detail::array" ; 0x000002f0
+               OpName %class_sycl___V1__item_13 "class.sycl::_V1::item.13" ; 0x00000318
+               OpName %struct_sycl___V1__detail__ItemBase_14 "struct.sycl::_V1::detail::ItemBase.14" ; 0x0000033c
+               OpName %class_sycl___V1__group "class.sycl::_V1::group" ; 0x0000036c
+               OpName %_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE "_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE" ; 0x0000038c
+               OpName %__itt_offload_wi_finish_wrapper "__itt_offload_wi_finish_wrapper" ; 0x000003c8
+               OpName %_preheader ".preheader" ; 0x000003f0
+               OpName %spirv_llvm_bswap_i32 "spirv.llvm_bswap_i32" ; 0x00000404
+               OpName %spirv_llvm_fshl_i32 "spirv.llvm_fshl_i32" ; 0x00000424
+               OpName %__itt_offload_wi_start_stub "__itt_offload_wi_start_stub" ; 0x00000440
+               OpName %__itt_offload_wi_finish_stub "__itt_offload_wi_finish_stub" ; 0x00000464
+               OpName %entry "entry" ; 0x0000048c
+               OpName %bswap_4 "bswap.4" ; 0x0000049c
+               OpName %bswap_3 "bswap.3" ; 0x000004ac
+               OpName %bswap_2 "bswap.2" ; 0x000004bc
+               OpName %bswap_1 "bswap.1" ; 0x000004cc
+               OpName %bswap_and3 "bswap.and3" ; 0x000004dc
+               OpName %bswap_and2 "bswap.and2" ; 0x000004f0
+               OpName %bswap_or1 "bswap.or1" ; 0x00000504
+               OpName %bswap_or2 "bswap.or2" ; 0x00000518
+               OpName %bswap_i32 "bswap.i32" ; 0x0000052c
+               OpName %rotate "rotate" ; 0x00000540
+               OpDecorate %__spirv_BuiltInGlobalSize LinkageAttributes "__spirv_BuiltInGlobalSize" Import ; 0x00000550
+               OpDecorate %__spirv_BuiltInGlobalSize Constant ; 0x0000057c
+               OpDecorate %__spirv_BuiltInGlobalSize BuiltIn GlobalSize ; 0x00000588
+               OpDecorate %__spirv_BuiltInGlobalSize Alignment 32 ; 0x00000598
+               OpDecorate %__spirv_BuiltInGlobalOffset LinkageAttributes "__spirv_BuiltInGlobalOffset" Import ; 0x000005a8
+               OpDecorate %__spirv_BuiltInGlobalOffset Constant ; 0x000005d4
+               OpDecorate %__spirv_BuiltInGlobalOffset BuiltIn GlobalOffset ; 0x000005e0
+               OpDecorate %__spirv_BuiltInGlobalOffset Alignment 32 ; 0x000005f0
+               OpDecorate %__spirv_BuiltInNumWorkgroups LinkageAttributes "__spirv_BuiltInNumWorkgroups" Import ; 0x00000600
+               OpDecorate %__spirv_BuiltInNumWorkgroups Constant ; 0x00000630
+               OpDecorate %__spirv_BuiltInNumWorkgroups BuiltIn NumWorkgroups ; 0x0000063c
+               OpDecorate %__spirv_BuiltInNumWorkgroups Alignment 32 ; 0x0000064c
+               OpDecorate %__spirv_BuiltInGlobalInvocationId LinkageAttributes "__spirv_BuiltInGlobalInvocationId" Import ; 0x0000065c
+               OpDecorate %__spirv_BuiltInGlobalInvocationId Constant ; 0x00000690
+               OpDecorate %__spirv_BuiltInGlobalInvocationId BuiltIn GlobalInvocationId ; 0x0000069c
+               OpDecorate %__spirv_BuiltInGlobalInvocationId Alignment 32 ; 0x000006ac
+               OpDecorate %__spirv_BuiltInLocalInvocationId LinkageAttributes "__spirv_BuiltInLocalInvocationId" Import ; 0x000006bc
+               OpDecorate %__spirv_BuiltInLocalInvocationId Constant ; 0x000006f0
+               OpDecorate %__spirv_BuiltInLocalInvocationId BuiltIn LocalInvocationId ; 0x000006fc
+               OpDecorate %__spirv_BuiltInLocalInvocationId Alignment 32 ; 0x0000070c
+               OpDecorate %__spirv_BuiltInWorkgroupId LinkageAttributes "__spirv_BuiltInWorkgroupId" Import ; 0x0000071c
+               OpDecorate %__spirv_BuiltInWorkgroupId Constant ; 0x00000748
+               OpDecorate %__spirv_BuiltInWorkgroupId BuiltIn WorkgroupId ; 0x00000754
+               OpDecorate %__spirv_BuiltInWorkgroupId Alignment 32 ; 0x00000764
+               OpDecorate %__spirv_BuiltInGlobalLinearId LinkageAttributes "__spirv_BuiltInGlobalLinearId" Import ; 0x00000774
+               OpDecorate %__spirv_BuiltInGlobalLinearId Constant ; 0x000007a4
+               OpDecorate %__spirv_BuiltInGlobalLinearId BuiltIn GlobalLinearId ; 0x000007b0
+               OpDecorate %__spirv_BuiltInGlobalLinearId Alignment 8 ; 0x000007c0
+               OpDecorate %__spirv_BuiltInWorkgroupSize LinkageAttributes "__spirv_BuiltInWorkgroupSize" Import ; 0x000007d0
+               OpDecorate %__spirv_BuiltInWorkgroupSize Constant ; 0x00000800
+               OpDecorate %__spirv_BuiltInWorkgroupSize BuiltIn WorkgroupSize ; 0x0000080c
+               OpDecorate %__spirv_BuiltInWorkgroupSize Alignment 32 ; 0x0000081c
+               OpDecorate %21 Alignment 1 ; 0x0000082c
+               OpDecorate %22 Alignment 1 ; 0x0000083c
+               OpDecorate %23 Alignment 4 ; 0x0000084c
+               OpDecorate %__itt_offload_wi_start_wrapper LinkageAttributes "__itt_offload_wi_start_wrapper" Export ; 0x0000085c
+               OpDecorate %39 Alignment 8 ; 0x0000088c
+               OpDecorate %_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE LinkageAttributes "_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE" Export ; 0x0000089c
+               OpDecorate %128 FuncParamAttr NoCapture ; 0x000008e0
+               OpDecorate %128 FuncParamAttr NoWrite ; 0x000008f0
+               OpDecorate %129 FuncParamAttr NoCapture ; 0x00000900
+               OpDecorate %129 FuncParamAttr NoWrite ; 0x00000910
+               OpDecorate %130 FuncParamAttr NoCapture ; 0x00000920
+               OpDecorate %131 FuncParamAttr NoCapture ; 0x00000930
+               OpDecorate %131 FuncParamAttr NoWrite ; 0x00000940
+               OpDecorate %131 Alignment 8 ; 0x00000950
+               OpDecorate %131 MaxByteOffset 216 ; 0x00000960
+               OpDecorate %__itt_offload_wi_finish_wrapper LinkageAttributes "__itt_offload_wi_finish_wrapper" Export ; 0x00000970
+               OpDecorate %147 Alignment 1 ; 0x000009a0
+               OpDecorate %157 NoSignedWrap ; 0x000009b0
+               OpDecorate %157 NoUnsignedWrap ; 0x000009bc
+               OpDecorate %161 NoSignedWrap ; 0x000009c8
+               OpDecorate %161 NoUnsignedWrap ; 0x000009d4
+               OpDecorate %166 NoSignedWrap ; 0x000009e0
+               OpDecorate %166 NoUnsignedWrap ; 0x000009ec
+               OpDecorate %166 NoSignedWrap ; 0x000009f8
+               OpDecorate %166 NoUnsignedWrap ; 0x00000a04
+               OpDecorate %175 NoSignedWrap ; 0x00000a10
+               OpDecorate %175 NoUnsignedWrap ; 0x00000a1c
+               OpDecorate %183 NoSignedWrap ; 0x00000a28
+               OpDecorate %183 NoUnsignedWrap ; 0x00000a34
+               OpDecorate %175 NoSignedWrap ; 0x00000a40
+               OpDecorate %175 NoUnsignedWrap ; 0x00000a4c
+               OpDecorate %201 NoUnsignedWrap ; 0x00000a58
+               OpDecorate %205 NoSignedWrap ; 0x00000a64
+               OpDecorate %205 NoUnsignedWrap ; 0x00000a70
+               OpDecorate %211 NoSignedWrap ; 0x00000a7c
+               OpDecorate %211 NoUnsignedWrap ; 0x00000a88
+               OpDecorate %222 NoUnsignedWrap ; 0x00000a94
+               OpDecorate %227 NoSignedWrap ; 0x00000aa0
+               OpDecorate %227 NoUnsignedWrap ; 0x00000aac
+               OpDecorate %232 NoSignedWrap ; 0x00000ab8
+               OpDecorate %232 NoUnsignedWrap ; 0x00000ac4
+               OpDecorate %245 NoUnsignedWrap ; 0x00000ad0
+               OpDecorate %250 NoSignedWrap ; 0x00000adc
+               OpDecorate %250 NoUnsignedWrap ; 0x00000ae8
+               OpDecorate %256 NoSignedWrap ; 0x00000af4
+               OpDecorate %256 NoUnsignedWrap ; 0x00000b00
+               OpDecorate %269 NoUnsignedWrap ; 0x00000b0c
+               OpDecorate %274 NoSignedWrap ; 0x00000b18
+               OpDecorate %274 NoUnsignedWrap ; 0x00000b24
+               OpDecorate %280 NoSignedWrap ; 0x00000b30
+               OpDecorate %280 NoUnsignedWrap ; 0x00000b3c
+               OpDecorate %spirv_llvm_bswap_i32 LinkageAttributes "spirv.llvm_bswap_i32" Export ; 0x00000b48
+               OpDecorate %300 NoUnsignedWrap ; 0x00000b70
+               OpDecorate %303 NoSignedWrap ; 0x00000b7c
+               OpDecorate %303 NoUnsignedWrap ; 0x00000b88
+               OpDecorate %307 NoSignedWrap ; 0x00000b94
+               OpDecorate %307 NoUnsignedWrap ; 0x00000ba0
+               OpDecorate %318 NoUnsignedWrap ; 0x00000bac
+               OpDecorate %323 NoSignedWrap ; 0x00000bb8
+               OpDecorate %323 NoUnsignedWrap ; 0x00000bc4
+               OpDecorate %329 NoSignedWrap ; 0x00000bd0
+               OpDecorate %329 NoUnsignedWrap ; 0x00000bdc
+               OpDecorate %342 NoUnsignedWrap ; 0x00000be8
+               OpDecorate %347 NoSignedWrap ; 0x00000bf4
+               OpDecorate %347 NoUnsignedWrap ; 0x00000c00
+               OpDecorate %353 NoSignedWrap ; 0x00000c0c
+               OpDecorate %353 NoUnsignedWrap ; 0x00000c18
+               OpDecorate %366 NoUnsignedWrap ; 0x00000c24
+               OpDecorate %371 NoSignedWrap ; 0x00000c30
+               OpDecorate %371 NoUnsignedWrap ; 0x00000c3c
+               OpDecorate %377 NoSignedWrap ; 0x00000c48
+               OpDecorate %377 NoUnsignedWrap ; 0x00000c54
+               OpDecorate %390 NoUnsignedWrap ; 0x00000c60
+               OpDecorate %395 NoSignedWrap ; 0x00000c6c
+               OpDecorate %395 NoUnsignedWrap ; 0x00000c78
+               OpDecorate %401 NoSignedWrap ; 0x00000c84
+               OpDecorate %401 NoUnsignedWrap ; 0x00000c90
+               OpDecorate %414 NoUnsignedWrap ; 0x00000c9c
+               OpDecorate %419 NoSignedWrap ; 0x00000ca8
+               OpDecorate %419 NoUnsignedWrap ; 0x00000cb4
+               OpDecorate %425 NoSignedWrap ; 0x00000cc0
+               OpDecorate %425 NoUnsignedWrap ; 0x00000ccc
+               OpDecorate %438 NoUnsignedWrap ; 0x00000cd8
+               OpDecorate %443 NoSignedWrap ; 0x00000ce4
+               OpDecorate %443 NoUnsignedWrap ; 0x00000cf0
+               OpDecorate %449 NoSignedWrap ; 0x00000cfc
+               OpDecorate %449 NoUnsignedWrap ; 0x00000d08
+               OpDecorate %462 NoUnsignedWrap ; 0x00000d14
+               OpDecorate %467 NoSignedWrap ; 0x00000d20
+               OpDecorate %467 NoUnsignedWrap ; 0x00000d2c
+               OpDecorate %473 NoSignedWrap ; 0x00000d38
+               OpDecorate %473 NoUnsignedWrap ; 0x00000d44
+               OpDecorate %486 NoUnsignedWrap ; 0x00000d50
+               OpDecorate %491 NoSignedWrap ; 0x00000d5c
+               OpDecorate %491 NoUnsignedWrap ; 0x00000d68
+               OpDecorate %497 NoSignedWrap ; 0x00000d74
+               OpDecorate %497 NoUnsignedWrap ; 0x00000d80
+               OpDecorate %510 NoUnsignedWrap ; 0x00000d8c
+               OpDecorate %515 NoSignedWrap ; 0x00000d98
+               OpDecorate %515 NoUnsignedWrap ; 0x00000da4
+               OpDecorate %521 NoSignedWrap ; 0x00000db0
+               OpDecorate %521 NoUnsignedWrap ; 0x00000dbc
+               OpDecorate %534 NoUnsignedWrap ; 0x00000dc8
+               OpDecorate %539 NoSignedWrap ; 0x00000dd4
+               OpDecorate %539 NoUnsignedWrap ; 0x00000de0
+               OpDecorate %545 NoSignedWrap ; 0x00000dec
+               OpDecorate %545 NoUnsignedWrap ; 0x00000df8
+               OpDecorate %spirv_llvm_fshl_i32 LinkageAttributes "spirv.llvm_fshl_i32" Export ; 0x00000e04
+               OpDecorate %1293 Alignment 8 ; 0x00000e28
+               OpDecorate %1294 SpecId 4285822057 ; 0x00000e38
+               OpDecorate %__itt_offload_wi_start_stub LinkageAttributes "__itt_offload_wi_start_stub" Export ; 0x00000e48
+               OpDecorate %1325 Alignment 8 ; 0x00000e74
+               OpDecorate %1326 SpecId 4285822057 ; 0x00000e84
+               OpDecorate %__itt_offload_wi_finish_stub LinkageAttributes "__itt_offload_wi_finish_stub" Export ; 0x00000e94
+               OpDecorate %1345 Alignment 8 ; 0x00000ec4
+               OpDecorate %1346 Alignment 8 ; 0x00000ed4
+               OpDecorate %1348 Alignment 4 ; 0x00000ee4
+               OpDecorate %1354 Alignment 8 ; 0x00000ef4
+               OpDecorate %1355 Alignment 8 ; 0x00000f04
+      %ulong = OpTypeInt 64 0 ; 0x00000f14
+      %uchar = OpTypeInt 8 0 ; 0x00000f24
+       %uint = OpTypeInt 32 0 ; 0x00000f34
+    %ulong_3 = OpConstant %ulong 3 ; 0x00000f44
+    %ulong_0 = OpConstant %ulong 0 ; 0x00000f58
+     %uint_0 = OpConstant %uint 0 ; 0x00000f6c
+    %ulong_1 = OpConstant %ulong 1 ; 0x00000f7c
+    %ulong_2 = OpConstant %ulong 2 ; 0x00000f90
+     %uint_1 = OpConstant %uint 1 ; 0x00000fa4
+     %uint_2 = OpConstant %uint 2 ; 0x00000fb4
+     %uint_3 = OpConstant %uint 3 ; 0x00000fc4
+   %ulong_64 = OpConstant %ulong 64 ; 0x00000fd4
+%ulong_2147483648 = OpConstant %ulong 2147483648 ; 0x00000fe8
+%ulong_4293918720 = OpConstant %ulong 4293918720 ; 0x00000ffc
+    %uint_16 = OpConstant %uint 16 ; 0x00001010
+    %uint_40 = OpConstant %uint 40 ; 0x00001020
+    %uint_24 = OpConstant %uint 24 ; 0x00001030
+   %ulong_20 = OpConstant %ulong 20 ; 0x00001040
+   %ulong_21 = OpConstant %ulong 21 ; 0x00001054
+   %ulong_22 = OpConstant %ulong 22 ; 0x00001068
+   %ulong_23 = OpConstant %ulong 23 ; 0x0000107c
+    %ulong_6 = OpConstant %ulong 6 ; 0x00001090
+%ulong_4294967232 = OpConstant %ulong 4294967232 ; 0x000010a4
+     %uint_8 = OpConstant %uint 8 ; 0x000010b8
+    %ulong_4 = OpConstant %ulong 4 ; 0x000010c8
+    %ulong_5 = OpConstant %ulong 5 ; 0x000010dc
+    %ulong_7 = OpConstant %ulong 7 ; 0x000010f0
+    %ulong_8 = OpConstant %ulong 8 ; 0x00001104
+    %ulong_9 = OpConstant %ulong 9 ; 0x00001118
+   %ulong_10 = OpConstant %ulong 10 ; 0x0000112c
+   %ulong_11 = OpConstant %ulong 11 ; 0x00001140
+   %ulong_12 = OpConstant %ulong 12 ; 0x00001154
+   %ulong_13 = OpConstant %ulong 13 ; 0x00001168
+   %ulong_14 = OpConstant %ulong 14 ; 0x0000117c
+   %ulong_15 = OpConstant %ulong 15 ; 0x00001190
+%uint_16777215 = OpConstant %uint 16777215 ; 0x000011a4
+   %ulong_24 = OpConstant %ulong 24 ; 0x000011b4
+   %ulong_25 = OpConstant %ulong 25 ; 0x000011c8
+   %ulong_26 = OpConstant %ulong 26 ; 0x000011dc
+   %ulong_27 = OpConstant %ulong 27 ; 0x000011f0
+   %ulong_28 = OpConstant %ulong 28 ; 0x00001204
+   %ulong_29 = OpConstant %ulong 29 ; 0x00001218
+   %ulong_30 = OpConstant %ulong 30 ; 0x0000122c
+   %ulong_31 = OpConstant %ulong 31 ; 0x00001240
+   %ulong_32 = OpConstant %ulong 32 ; 0x00001254
+   %ulong_33 = OpConstant %ulong 33 ; 0x00001268
+   %ulong_34 = OpConstant %ulong 34 ; 0x0000127c
+   %ulong_35 = OpConstant %ulong 35 ; 0x00001290
+   %ulong_36 = OpConstant %ulong 36 ; 0x000012a4
+   %ulong_37 = OpConstant %ulong 37 ; 0x000012b8
+   %ulong_38 = OpConstant %ulong 38 ; 0x000012cc
+   %ulong_39 = OpConstant %ulong 39 ; 0x000012e0
+   %ulong_40 = OpConstant %ulong 40 ; 0x000012f4
+   %ulong_41 = OpConstant %ulong 41 ; 0x00001308
+   %ulong_42 = OpConstant %ulong 42 ; 0x0000131c
+   %ulong_43 = OpConstant %ulong 43 ; 0x00001330
+   %ulong_44 = OpConstant %ulong 44 ; 0x00001344
+   %ulong_45 = OpConstant %ulong 45 ; 0x00001358
+   %ulong_46 = OpConstant %ulong 46 ; 0x0000136c
+   %ulong_47 = OpConstant %ulong 47 ; 0x00001380
+   %ulong_48 = OpConstant %ulong 48 ; 0x00001394
+   %ulong_49 = OpConstant %ulong 49 ; 0x000013a8
+   %ulong_50 = OpConstant %ulong 50 ; 0x000013bc
+   %ulong_51 = OpConstant %ulong 51 ; 0x000013d0
+   %ulong_52 = OpConstant %ulong 52 ; 0x000013e4
+   %ulong_53 = OpConstant %ulong 53 ; 0x000013f8
+   %ulong_54 = OpConstant %ulong 54 ; 0x0000140c
+   %ulong_55 = OpConstant %ulong 55 ; 0x00001420
+   %ulong_56 = OpConstant %ulong 56 ; 0x00001434
+   %ulong_57 = OpConstant %ulong 57 ; 0x00001448
+   %ulong_58 = OpConstant %ulong 58 ; 0x0000145c
+   %ulong_59 = OpConstant %ulong 59 ; 0x00001470
+   %ulong_60 = OpConstant %ulong 60 ; 0x00001484
+   %ulong_61 = OpConstant %ulong 61 ; 0x00001498
+   %ulong_62 = OpConstant %ulong 62 ; 0x000014ac
+   %ulong_63 = OpConstant %ulong 63 ; 0x000014c0
+   %ulong_16 = OpConstant %ulong 16 ; 0x000014d4
+    %uint_25 = OpConstant %uint 25 ; 0x000014e8
+    %uint_14 = OpConstant %uint 14 ; 0x000014f8
+    %uint_15 = OpConstant %uint 15 ; 0x00001508
+    %uint_13 = OpConstant %uint 13 ; 0x00001518
+    %uint_10 = OpConstant %uint 10 ; 0x00001528
+   %ulong_17 = OpConstant %ulong 17 ; 0x00001538
+   %ulong_18 = OpConstant %ulong 18 ; 0x0000154c
+   %ulong_19 = OpConstant %ulong 19 ; 0x00001560
+     %uint_7 = OpConstant %uint 7 ; 0x00001574
+       %1294 = OpSpecConstant %uchar 0 ; 0x00001584
+    %uchar_0 = OpConstant %uchar 0 ; 0x00001594
+       %1326 = OpSpecConstant %uchar 0 ; 0x000015a4
+%uint_16711680 = OpConstant %uint 16711680 ; 0x000015b4
+ %uint_65280 = OpConstant %uint 65280 ; 0x000015c4
+    %uint_32 = OpConstant %uint 32 ; 0x000015d4
+    %v3ulong = OpTypeVector %ulong 3 ; 0x000015e4
+%_ptr_CrossWorkgroup_v3ulong = OpTypePointer CrossWorkgroup %v3ulong ; 0x000015f4
+%_ptr_CrossWorkgroup_ulong = OpTypePointer CrossWorkgroup %ulong ; 0x00001604
+       %void = OpTypeVoid ; 0x00001614
+%_ptr_CrossWorkgroup_uchar = OpTypePointer CrossWorkgroup %uchar ; 0x0000161c
+%_ptr_CrossWorkgroup_uint = OpTypePointer CrossWorkgroup %uint ; 0x0000162c
+         %19 = OpTypeFunction %void %_ptr_CrossWorkgroup_uchar %_ptr_CrossWorkgroup_uchar %_ptr_CrossWorkgroup_uint ; 0x0000163c
+         %25 = OpTypeFunction %void ; 0x00001654
+%_arr_ulong_ulong_3 = OpTypeArray %ulong %ulong_3 ; 0x00001660
+%class_sycl___V1__detail__array = OpTypeStruct %_arr_ulong_ulong_3 ; 0x00001670
+%class_sycl___V1__range = OpTypeStruct %class_sycl___V1__detail__array ; 0x0000167c
+%struct_sycl___V1__detail__ItemBase = OpTypeStruct %class_sycl___V1__range %class_sycl___V1__range %class_sycl___V1__range ; 0x00001688
+%class_sycl___V1__item = OpTypeStruct %struct_sycl___V1__detail__ItemBase ; 0x0000169c
+%struct_sycl___V1__detail__ItemBase_14 = OpTypeStruct %class_sycl___V1__range %class_sycl___V1__range ; 0x000016a8
+%class_sycl___V1__item_13 = OpTypeStruct %struct_sycl___V1__detail__ItemBase_14 ; 0x000016b8
+%class_sycl___V1__group = OpTypeStruct %class_sycl___V1__range %class_sycl___V1__range %class_sycl___V1__range %class_sycl___V1__range ; 0x000016c4
+%class_sycl___V1__nd_item = OpTypeStruct %class_sycl___V1__item %class_sycl___V1__item_13 %class_sycl___V1__group ; 0x000016dc
+%_ptr_Function_class_sycl___V1__nd_item = OpTypePointer Function %class_sycl___V1__nd_item ; 0x000016f0
+%_ptr_Generic_uchar = OpTypePointer Generic %uchar ; 0x00001700
+%_ptr_Generic_uint = OpTypePointer Generic %uint ; 0x00001710
+%_ptr_Function_uchar = OpTypePointer Function %uchar ; 0x00001720
+%_ptr_Function_ulong = OpTypePointer Function %ulong ; 0x00001730
+%_ptr_Generic_class_sycl___V1__nd_item = OpTypePointer Generic %class_sycl___V1__nd_item ; 0x00001740
+        %126 = OpTypeFunction %void %_ptr_Generic_uchar %_ptr_Generic_uchar %_ptr_Generic_uint %_ptr_Generic_class_sycl___V1__nd_item ; 0x00001750
+%_arr_uchar_ulong_64 = OpTypeArray %uchar %ulong_64 ; 0x0000176c
+%_ptr_Function__arr_uchar_ulong_64 = OpTypePointer Function %_arr_uchar_ulong_64 ; 0x0000177c
+%_ptr_Generic_ulong = OpTypePointer Generic %ulong ; 0x0000178c
+       %bool = OpTypeBool ; 0x0000179c
+        %292 = OpTypeFunction %uint %uint ; 0x000017a4
+        %557 = OpTypeFunction %uint %uint %uint %uint ; 0x000017b4
+%_ptr_Function__arr_ulong_ulong_3 = OpTypePointer Function %_arr_ulong_ulong_3 ; 0x000017cc
+       %1316 = OpTypeFunction %void %_ptr_Generic_ulong %ulong %uint ; 0x000017dc
+       %1338 = OpTypeFunction %void %_ptr_Generic_ulong %ulong ; 0x000017f4
+%_ptr_Function__ptr_Generic_ulong = OpTypePointer Function %_ptr_Generic_ulong ; 0x00001808
+%_ptr_Function_uint = OpTypePointer Function %uint ; 0x00001818
+%_ptr_Generic__ptr_Generic_ulong = OpTypePointer Generic %_ptr_Generic_ulong ; 0x00001828
+%__spirv_BuiltInGlobalSize = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001838
+%__spirv_BuiltInGlobalOffset = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001848
+%__spirv_BuiltInNumWorkgroups = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001858
+%__spirv_BuiltInGlobalInvocationId = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001868
+%__spirv_BuiltInLocalInvocationId = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001878
+%__spirv_BuiltInWorkgroupId = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x00001888
+%__spirv_BuiltInGlobalLinearId = OpVariable %_ptr_CrossWorkgroup_ulong CrossWorkgroup ; 0x00001898
+%__spirv_BuiltInWorkgroupSize = OpVariable %_ptr_CrossWorkgroup_v3ulong CrossWorkgroup ; 0x000018a8
+         %20 = OpFunction %void None %19 ; 0x000018b8
+         %21 = OpFunctionParameter %_ptr_CrossWorkgroup_uchar ; 0x000018cc
+         %22 = OpFunctionParameter %_ptr_CrossWorkgroup_uchar ; 0x000018d8
+         %23 = OpFunctionParameter %_ptr_CrossWorkgroup_uint ; 0x000018e4
+         %24 = OpLabel ; 0x000018f0
+         %27 = OpFunctionCall %void %__itt_offload_wi_start_wrapper ; 0x000018f8
+         %39 = OpVariable %_ptr_Function_class_sycl___V1__nd_item Function ; 0x00001908
+         %41 = OpPtrCastToGeneric %_ptr_Generic_uchar %21 ; 0x00001918
+         %42 = OpPtrCastToGeneric %_ptr_Generic_uchar %22 ; 0x00001928
+         %44 = OpPtrCastToGeneric %_ptr_Generic_uint %23 ; 0x00001938
+         %45 = OpLoad %v3ulong %__spirv_BuiltInGlobalSize Aligned 32 ; 0x00001948
+         %46 = OpCompositeExtract %ulong %45 2 ; 0x00001960
+         %47 = OpLoad %v3ulong %__spirv_BuiltInGlobalSize Aligned 32 ; 0x00001974
+         %48 = OpCompositeExtract %ulong %47 1 ; 0x0000198c
+         %49 = OpLoad %v3ulong %__spirv_BuiltInGlobalSize Aligned 32 ; 0x000019a0
+         %50 = OpCompositeExtract %ulong %49 0 ; 0x000019b8
+         %51 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x000019cc
+         %52 = OpCompositeExtract %ulong %51 2 ; 0x000019e4
+         %53 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x000019f8
+         %54 = OpCompositeExtract %ulong %53 1 ; 0x00001a10
+         %55 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x00001a24
+         %56 = OpCompositeExtract %ulong %55 0 ; 0x00001a3c
+         %57 = OpLoad %v3ulong %__spirv_BuiltInNumWorkgroups Aligned 32 ; 0x00001a50
+         %58 = OpCompositeExtract %ulong %57 2 ; 0x00001a68
+         %59 = OpLoad %v3ulong %__spirv_BuiltInNumWorkgroups Aligned 32 ; 0x00001a7c
+         %60 = OpCompositeExtract %ulong %59 1 ; 0x00001a94
+         %61 = OpLoad %v3ulong %__spirv_BuiltInNumWorkgroups Aligned 32 ; 0x00001aa8
+         %62 = OpCompositeExtract %ulong %61 0 ; 0x00001ac0
+         %63 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupId Aligned 32 ; 0x00001ad4
+         %64 = OpCompositeExtract %ulong %63 2 ; 0x00001aec
+         %65 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupId Aligned 32 ; 0x00001b00
+         %66 = OpCompositeExtract %ulong %65 1 ; 0x00001b18
+         %67 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupId Aligned 32 ; 0x00001b2c
+         %68 = OpCompositeExtract %ulong %67 0 ; 0x00001b44
+         %69 = OpLoad %v3ulong %__spirv_BuiltInGlobalInvocationId Aligned 32 ; 0x00001b58
+         %70 = OpCompositeExtract %ulong %69 2 ; 0x00001b70
+         %71 = OpLoad %v3ulong %__spirv_BuiltInGlobalInvocationId Aligned 32 ; 0x00001b84
+         %72 = OpCompositeExtract %ulong %71 1 ; 0x00001b9c
+         %73 = OpLoad %v3ulong %__spirv_BuiltInGlobalInvocationId Aligned 32 ; 0x00001bb0
+         %74 = OpCompositeExtract %ulong %73 0 ; 0x00001bc8
+         %75 = OpLoad %v3ulong %__spirv_BuiltInLocalInvocationId Aligned 32 ; 0x00001bdc
+         %76 = OpCompositeExtract %ulong %75 2 ; 0x00001bf4
+         %77 = OpLoad %v3ulong %__spirv_BuiltInLocalInvocationId Aligned 32 ; 0x00001c08
+         %78 = OpCompositeExtract %ulong %77 1 ; 0x00001c20
+         %79 = OpLoad %v3ulong %__spirv_BuiltInLocalInvocationId Aligned 32 ; 0x00001c34
+         %80 = OpCompositeExtract %ulong %79 0 ; 0x00001c4c
+         %81 = OpLoad %v3ulong %__spirv_BuiltInGlobalOffset Aligned 32 ; 0x00001c60
+         %82 = OpCompositeExtract %ulong %81 2 ; 0x00001c78
+         %83 = OpLoad %v3ulong %__spirv_BuiltInGlobalOffset Aligned 32 ; 0x00001c8c
+         %84 = OpCompositeExtract %ulong %83 1 ; 0x00001ca4
+         %85 = OpLoad %v3ulong %__spirv_BuiltInGlobalOffset Aligned 32 ; 0x00001cb8
+         %86 = OpCompositeExtract %ulong %85 0 ; 0x00001cd0
+         %88 = OpBitcast %_ptr_Function_uchar %39 ; 0x00001ce4
+               OpLifetimeStart %88 216 ; 0x00001cf4
+         %92 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_0 ; 0x00001d00
+               OpStore %92 %46 Aligned 8 ; 0x00001d2c
+         %94 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_1 ; 0x00001d40
+               OpStore %94 %48 Aligned 8 ; 0x00001d6c
+         %96 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_2 ; 0x00001d80
+               OpStore %96 %50 Aligned 8 ; 0x00001dac
+         %98 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_0 ; 0x00001dc0
+               OpStore %98 %70 Aligned 8 ; 0x00001dec
+         %99 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_1 ; 0x00001e00
+               OpStore %99 %72 Aligned 8 ; 0x00001e2c
+        %100 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_2 ; 0x00001e40
+               OpStore %100 %74 Aligned 8 ; 0x00001e6c
+        %102 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_2 %uint_0 %uint_0 %ulong_0 ; 0x00001e80
+               OpStore %102 %82 Aligned 8 ; 0x00001eac
+        %103 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_2 %uint_0 %uint_0 %ulong_1 ; 0x00001ec0
+               OpStore %103 %84 Aligned 8 ; 0x00001eec
+        %104 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_0 %uint_0 %uint_2 %uint_0 %uint_0 %ulong_2 ; 0x00001f00
+               OpStore %104 %86 Aligned 8 ; 0x00001f2c
+        %105 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_0 ; 0x00001f40
+               OpStore %105 %52 Aligned 8 ; 0x00001f6c
+        %106 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_1 ; 0x00001f80
+               OpStore %106 %54 Aligned 8 ; 0x00001fac
+        %107 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_2 ; 0x00001fc0
+               OpStore %107 %56 Aligned 8 ; 0x00001fec
+        %108 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_0 ; 0x00002000
+               OpStore %108 %76 Aligned 8 ; 0x0000202c
+        %109 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_1 ; 0x00002040
+               OpStore %109 %78 Aligned 8 ; 0x0000206c
+        %110 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_1 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_2 ; 0x00002080
+               OpStore %110 %80 Aligned 8 ; 0x000020ac
+        %111 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_0 %uint_0 %uint_0 %ulong_0 ; 0x000020c0
+               OpStore %111 %46 Aligned 8 ; 0x000020e8
+        %112 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_0 %uint_0 %uint_0 %ulong_1 ; 0x000020fc
+               OpStore %112 %48 Aligned 8 ; 0x00002124
+        %113 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_0 %uint_0 %uint_0 %ulong_2 ; 0x00002138
+               OpStore %113 %50 Aligned 8 ; 0x00002160
+        %114 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_1 %uint_0 %uint_0 %ulong_0 ; 0x00002174
+               OpStore %114 %52 Aligned 8 ; 0x0000219c
+        %115 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_1 %uint_0 %uint_0 %ulong_1 ; 0x000021b0
+               OpStore %115 %54 Aligned 8 ; 0x000021d8
+        %116 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_1 %uint_0 %uint_0 %ulong_2 ; 0x000021ec
+               OpStore %116 %56 Aligned 8 ; 0x00002214
+        %117 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_2 %uint_0 %uint_0 %ulong_0 ; 0x00002228
+               OpStore %117 %58 Aligned 8 ; 0x00002250
+        %118 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_2 %uint_0 %uint_0 %ulong_1 ; 0x00002264
+               OpStore %118 %60 Aligned 8 ; 0x0000228c
+        %119 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_2 %uint_0 %uint_0 %ulong_2 ; 0x000022a0
+               OpStore %119 %62 Aligned 8 ; 0x000022c8
+        %121 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_3 %uint_0 %uint_0 %ulong_0 ; 0x000022dc
+               OpStore %121 %64 Aligned 8 ; 0x00002304
+        %122 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_3 %uint_0 %uint_0 %ulong_1 ; 0x00002318
+               OpStore %122 %66 Aligned 8 ; 0x00002340
+        %123 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %39 %ulong_0 %uint_2 %uint_3 %uint_0 %uint_0 %ulong_2 ; 0x00002354
+               OpStore %123 %68 Aligned 8 ; 0x0000237c
+        %125 = OpPtrCastToGeneric %_ptr_Generic_class_sycl___V1__nd_item %39 ; 0x00002390
+        %132 = OpFunctionCall %void %_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE %41 %42 %44 %125 ; 0x000023a0
+               OpLifetimeStop %88 216 ; 0x000023c0
+        %134 = OpFunctionCall %void %__itt_offload_wi_finish_wrapper ; 0x000023cc
+               OpReturn ; 0x000023dc
+               OpFunctionEnd ; 0x000023e0
+%__itt_offload_wi_start_wrapper = OpFunction %void Inline %25 ; 0x000023e4
+       %1289 = OpLabel ; 0x000023f8
+       %1293 = OpVariable %_ptr_Function__arr_ulong_ulong_3 Function ; 0x00002400
+       %1296 = OpIEqual %bool %1294 %uchar_0 ; 0x00002410
+               OpBranchConditional %1296 %1291 %1290 ; 0x00002424
+       %1290 = OpLabel ; 0x00002434
+       %1297 = OpBitcast %_ptr_Function_uchar %1293 ; 0x0000243c
+               OpLifetimeStart %1297 24 ; 0x0000244c
+       %1298 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1293 %ulong_0 %ulong_0 ; 0x00002458
+       %1299 = OpPtrCastToGeneric %_ptr_Generic_ulong %1298 ; 0x00002470
+       %1300 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupId Aligned 32 ; 0x00002480
+       %1301 = OpCompositeExtract %ulong %1300 0 ; 0x00002498
+               OpStore %1298 %1301 Aligned 8 ; 0x000024ac
+       %1302 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1293 %ulong_0 %ulong_1 ; 0x000024c0
+       %1303 = OpCompositeExtract %ulong %1300 1 ; 0x000024d8
+               OpStore %1302 %1303 Aligned 8 ; 0x000024ec
+       %1304 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1293 %ulong_0 %ulong_2 ; 0x00002500
+       %1305 = OpCompositeExtract %ulong %1300 2 ; 0x00002518
+               OpStore %1304 %1305 Aligned 8 ; 0x0000252c
+       %1306 = OpLoad %ulong %__spirv_BuiltInGlobalLinearId Aligned 8 ; 0x00002540
+       %1307 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x00002558
+       %1308 = OpCompositeExtract %ulong %1307 0 ; 0x00002570
+       %1309 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x00002584
+       %1310 = OpCompositeExtract %ulong %1309 1 ; 0x0000259c
+       %1311 = OpIMul %ulong %1308 %1310 ; 0x000025b0
+       %1312 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupSize Aligned 32 ; 0x000025c4
+       %1313 = OpCompositeExtract %ulong %1312 2 ; 0x000025dc
+       %1314 = OpIMul %ulong %1311 %1313 ; 0x000025f0
+       %1315 = OpUConvert %uint %1314 ; 0x00002604
+       %1321 = OpFunctionCall %void %__itt_offload_wi_start_stub %1299 %1306 %1315 ; 0x00002614
+               OpLifetimeStop %1297 24 ; 0x00002630
+               OpBranch %1291 ; 0x0000263c
+       %1291 = OpLabel ; 0x00002644
+               OpReturn ; 0x0000264c
+               OpFunctionEnd ; 0x00002650
+%_Z14kernel_w_blockPhS_PjRKN4sycl3_V17nd_itemILi3EEE = OpFunction %void None %126 ; 0x00002654
+        %128 = OpFunctionParameter %_ptr_Generic_uchar ; 0x00002668
+        %129 = OpFunctionParameter %_ptr_Generic_uchar ; 0x00002674
+        %130 = OpFunctionParameter %_ptr_Generic_uint ; 0x00002680
+        %131 = OpFunctionParameter %_ptr_Generic_class_sycl___V1__nd_item ; 0x0000268c
+        %135 = OpLabel ; 0x00002698
+        %147 = OpVariable %_ptr_Function__arr_uchar_ulong_64 Function ; 0x000026a0
+        %149 = OpInBoundsPtrAccessChain %_ptr_Generic_ulong %131 %ulong_0 %uint_2 %uint_3 %uint_0 %uint_0 %ulong_2 ; 0x000026b0
+        %150 = OpLoad %ulong %149 Aligned 8 ; 0x000026d8
+        %153 = OpULessThan %bool %150 %ulong_2147483648 ; 0x000026f0
+               OpAssumeTrueKHR %153 ; 0x00002704
+        %154 = OpInBoundsPtrAccessChain %_ptr_Generic_ulong %131 %ulong_0 %uint_1 %uint_0 %uint_0 %uint_0 %uint_0 %ulong_2 ; 0x0000270c
+        %155 = OpLoad %ulong %154 Aligned 8 ; 0x00002738
+        %156 = OpULessThan %bool %155 %ulong_2147483648 ; 0x00002750
+               OpAssumeTrueKHR %156 ; 0x00002764
+        %157 = OpIMul %ulong %150 %155 ; 0x0000276c
+        %158 = OpInBoundsPtrAccessChain %_ptr_Generic_ulong %131 %ulong_0 %uint_1 %uint_0 %uint_1 %uint_0 %uint_0 %ulong_2 ; 0x00002780
+        %159 = OpLoad %ulong %158 Aligned 8 ; 0x000027ac
+        %160 = OpULessThan %bool %159 %ulong_2147483648 ; 0x000027c4
+               OpAssumeTrueKHR %160 ; 0x000027d8
+        %161 = OpIAdd %ulong %157 %159 ; 0x000027e0
+        %163 = OpBitwiseAnd %ulong %161 %ulong_4293918720 ; 0x000027f4
+        %164 = OpIEqual %bool %163 %ulong_0 ; 0x00002808
+               OpBranchConditional %164 %136 %143 ; 0x0000281c
+        %136 = OpLabel ; 0x0000282c
+        %165 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_0 ; 0x00002834
+               OpLifetimeStart %165 64 ; 0x0000284c
+               OpBranch %137 ; 0x00002858
+        %137 = OpLabel ; 0x00002860
+        %167 = OpPhi %uint %uint_0 %136 %166 %139 ; 0x00002868
+        %169 = OpULessThan %bool %167 %uint_16 ; 0x00002884
+               OpBranchConditional %169 %139 %_preheader ; 0x00002898
+ %_preheader = OpLabel ; 0x000028a8
+               OpBranch %140 ; 0x000028b0
+        %139 = OpLabel ; 0x000028b8
+        %170 = OpUConvert %ulong %167 ; 0x000028c0
+        %171 = OpInBoundsPtrAccessChain %_ptr_Generic_uchar %128 %170 ; 0x000028d0
+        %172 = OpLoad %uchar %171 Aligned 1 ; 0x000028e4
+        %173 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %170 ; 0x000028fc
+               OpStore %173 %172 Aligned 1 ; 0x00002914
+        %166 = OpIAdd %uint %167 %uint_1 ; 0x00002928
+               OpBranch %137 ; 0x0000293c
+        %140 = OpLabel ; 0x00002944
+        %176 = OpPhi %uint %175 %141 %uint_0 %_preheader ; 0x0000294c
+        %178 = OpULessThan %bool %176 %uint_40 ; 0x00002968
+               OpBranchConditional %178 %141 %142 ; 0x0000297c
+        %141 = OpLabel ; 0x0000298c
+        %179 = OpUConvert %ulong %176 ; 0x00002994
+        %180 = OpInBoundsPtrAccessChain %_ptr_Generic_uchar %129 %179 ; 0x000029a4
+        %181 = OpLoad %uchar %180 Aligned 1 ; 0x000029b8
+        %183 = OpIAdd %uint %176 %uint_24 ; 0x000029d0
+        %184 = OpUConvert %ulong %183 ; 0x000029e4
+        %185 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %184 ; 0x000029f4
+               OpStore %185 %181 Aligned 1 ; 0x00002a0c
+        %175 = OpIAdd %uint %176 %uint_1 ; 0x00002a20
+               OpBranch %140 ; 0x00002a34
+        %142 = OpLabel ; 0x00002a3c
+        %188 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_20 ; 0x00002a44
+        %190 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_21 ; 0x00002a5c
+        %192 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_22 ; 0x00002a74
+        %194 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_23 ; 0x00002a8c
+        %196 = OpShiftLeftLogical %ulong %161 %ulong_6 ; 0x00002aa4
+        %198 = OpBitwiseAnd %ulong %196 %ulong_4294967232 ; 0x00002ab8
+        %199 = OpLoad %uchar %165 Aligned 1 ; 0x00002acc
+        %200 = OpUConvert %uint %199 ; 0x00002ae4
+        %201 = OpShiftLeftLogical %uint %200 %uint_24 ; 0x00002af4
+        %202 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_1 ; 0x00002b08
+        %203 = OpLoad %uchar %202 Aligned 1 ; 0x00002b20
+        %204 = OpUConvert %uint %203 ; 0x00002b38
+        %205 = OpShiftLeftLogical %uint %204 %uint_16 ; 0x00002b48
+        %206 = OpBitwiseOr %uint %201 %205 ; 0x00002b5c
+        %207 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_2 ; 0x00002b70
+        %208 = OpLoad %uchar %207 Aligned 1 ; 0x00002b88
+        %209 = OpUConvert %uint %208 ; 0x00002ba0
+        %211 = OpShiftLeftLogical %uint %209 %uint_8 ; 0x00002bb0
+        %212 = OpBitwiseOr %uint %206 %211 ; 0x00002bc4
+        %213 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_3 ; 0x00002bd8
+        %214 = OpLoad %uchar %213 Aligned 1 ; 0x00002bf0
+        %215 = OpUConvert %uint %214 ; 0x00002c08
+        %216 = OpBitwiseOr %uint %212 %215 ; 0x00002c18
+        %217 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %198 ; 0x00002c2c
+               OpStore %217 %216 Aligned 4 ; 0x00002c40
+        %219 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_4 ; 0x00002c54
+        %220 = OpLoad %uchar %219 Aligned 1 ; 0x00002c6c
+        %221 = OpUConvert %uint %220 ; 0x00002c84
+        %222 = OpShiftLeftLogical %uint %221 %uint_24 ; 0x00002c94
+        %224 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_5 ; 0x00002ca8
+        %225 = OpLoad %uchar %224 Aligned 1 ; 0x00002cc0
+        %226 = OpUConvert %uint %225 ; 0x00002cd8
+        %227 = OpShiftLeftLogical %uint %226 %uint_16 ; 0x00002ce8
+        %228 = OpBitwiseOr %uint %222 %227 ; 0x00002cfc
+        %229 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_6 ; 0x00002d10
+        %230 = OpLoad %uchar %229 Aligned 1 ; 0x00002d28
+        %231 = OpUConvert %uint %230 ; 0x00002d40
+        %232 = OpShiftLeftLogical %uint %231 %uint_8 ; 0x00002d50
+        %233 = OpBitwiseOr %uint %228 %232 ; 0x00002d64
+        %235 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_7 ; 0x00002d78
+        %236 = OpLoad %uchar %235 Aligned 1 ; 0x00002d90
+        %237 = OpUConvert %uint %236 ; 0x00002da8
+        %238 = OpBitwiseOr %uint %233 %237 ; 0x00002db8
+        %239 = OpBitwiseOr %ulong %198 %ulong_1 ; 0x00002dcc
+        %240 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %239 ; 0x00002de0
+               OpStore %240 %238 Aligned 4 ; 0x00002df4
+        %242 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_8 ; 0x00002e08
+        %243 = OpLoad %uchar %242 Aligned 1 ; 0x00002e20
+        %244 = OpUConvert %uint %243 ; 0x00002e38
+        %245 = OpShiftLeftLogical %uint %244 %uint_24 ; 0x00002e48
+        %247 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_9 ; 0x00002e5c
+        %248 = OpLoad %uchar %247 Aligned 1 ; 0x00002e74
+        %249 = OpUConvert %uint %248 ; 0x00002e8c
+        %250 = OpShiftLeftLogical %uint %249 %uint_16 ; 0x00002e9c
+        %251 = OpBitwiseOr %uint %245 %250 ; 0x00002eb0
+        %253 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_10 ; 0x00002ec4
+        %254 = OpLoad %uchar %253 Aligned 1 ; 0x00002edc
+        %255 = OpUConvert %uint %254 ; 0x00002ef4
+        %256 = OpShiftLeftLogical %uint %255 %uint_8 ; 0x00002f04
+        %257 = OpBitwiseOr %uint %251 %256 ; 0x00002f18
+        %259 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_11 ; 0x00002f2c
+        %260 = OpLoad %uchar %259 Aligned 1 ; 0x00002f44
+        %261 = OpUConvert %uint %260 ; 0x00002f5c
+        %262 = OpBitwiseOr %uint %257 %261 ; 0x00002f6c
+        %263 = OpBitwiseOr %ulong %198 %ulong_2 ; 0x00002f80
+        %264 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %263 ; 0x00002f94
+               OpStore %264 %262 Aligned 4 ; 0x00002fa8
+        %266 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_12 ; 0x00002fbc
+        %267 = OpLoad %uchar %266 Aligned 1 ; 0x00002fd4
+        %268 = OpUConvert %uint %267 ; 0x00002fec
+        %269 = OpShiftLeftLogical %uint %268 %uint_24 ; 0x00002ffc
+        %271 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_13 ; 0x00003010
+        %272 = OpLoad %uchar %271 Aligned 1 ; 0x00003028
+        %273 = OpUConvert %uint %272 ; 0x00003040
+        %274 = OpShiftLeftLogical %uint %273 %uint_16 ; 0x00003050
+        %275 = OpBitwiseOr %uint %269 %274 ; 0x00003064
+        %277 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_14 ; 0x00003078
+        %278 = OpLoad %uchar %277 Aligned 1 ; 0x00003090
+        %279 = OpUConvert %uint %278 ; 0x000030a8
+        %280 = OpShiftLeftLogical %uint %279 %uint_8 ; 0x000030b8
+        %281 = OpBitwiseOr %uint %275 %280 ; 0x000030cc
+        %283 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_15 ; 0x000030e0
+        %284 = OpLoad %uchar %283 Aligned 1 ; 0x000030f8
+        %285 = OpUConvert %uint %284 ; 0x00003110
+        %286 = OpBitwiseOr %uint %281 %285 ; 0x00003120
+        %287 = OpBitwiseOr %ulong %198 %ulong_3 ; 0x00003134
+        %288 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %287 ; 0x00003148
+               OpStore %288 %286 Aligned 4 ; 0x0000315c
+        %289 = OpUConvert %uint %161 ; 0x00003170
+        %291 = OpBitwiseAnd %uint %289 %uint_16777215 ; 0x00003180
+        %295 = OpFunctionCall %uint %spirv_llvm_bswap_i32 %291 ; 0x00003194
+        %296 = OpBitwiseOr %ulong %198 %ulong_4 ; 0x000031a8
+        %297 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %296 ; 0x000031bc
+               OpStore %297 %295 Aligned 4 ; 0x000031d0
+        %298 = OpLoad %uchar %188 Aligned 1 ; 0x000031e4
+        %299 = OpUConvert %uint %298 ; 0x000031fc
+        %300 = OpShiftLeftLogical %uint %299 %uint_24 ; 0x0000320c
+        %301 = OpLoad %uchar %190 Aligned 1 ; 0x00003220
+        %302 = OpUConvert %uint %301 ; 0x00003238
+        %303 = OpShiftLeftLogical %uint %302 %uint_16 ; 0x00003248
+        %304 = OpBitwiseOr %uint %300 %303 ; 0x0000325c
+        %305 = OpLoad %uchar %192 Aligned 1 ; 0x00003270
+        %306 = OpUConvert %uint %305 ; 0x00003288
+        %307 = OpShiftLeftLogical %uint %306 %uint_8 ; 0x00003298
+        %308 = OpBitwiseOr %uint %304 %307 ; 0x000032ac
+        %309 = OpLoad %uchar %194 Aligned 1 ; 0x000032c0
+        %310 = OpUConvert %uint %309 ; 0x000032d8
+        %311 = OpBitwiseOr %uint %308 %310 ; 0x000032e8
+        %312 = OpBitwiseOr %ulong %198 %ulong_5 ; 0x000032fc
+        %313 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %312 ; 0x00003310
+               OpStore %313 %311 Aligned 4 ; 0x00003324
+        %315 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_24 ; 0x00003338
+        %316 = OpLoad %uchar %315 Aligned 1 ; 0x00003350
+        %317 = OpUConvert %uint %316 ; 0x00003368
+        %318 = OpShiftLeftLogical %uint %317 %uint_24 ; 0x00003378
+        %320 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_25 ; 0x0000338c
+        %321 = OpLoad %uchar %320 Aligned 1 ; 0x000033a4
+        %322 = OpUConvert %uint %321 ; 0x000033bc
+        %323 = OpShiftLeftLogical %uint %322 %uint_16 ; 0x000033cc
+        %324 = OpBitwiseOr %uint %318 %323 ; 0x000033e0
+        %326 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_26 ; 0x000033f4
+        %327 = OpLoad %uchar %326 Aligned 1 ; 0x0000340c
+        %328 = OpUConvert %uint %327 ; 0x00003424
+        %329 = OpShiftLeftLogical %uint %328 %uint_8 ; 0x00003434
+        %330 = OpBitwiseOr %uint %324 %329 ; 0x00003448
+        %332 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_27 ; 0x0000345c
+        %333 = OpLoad %uchar %332 Aligned 1 ; 0x00003474
+        %334 = OpUConvert %uint %333 ; 0x0000348c
+        %335 = OpBitwiseOr %uint %330 %334 ; 0x0000349c
+        %336 = OpBitwiseOr %ulong %198 %ulong_6 ; 0x000034b0
+        %337 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %336 ; 0x000034c4
+               OpStore %337 %335 Aligned 4 ; 0x000034d8
+        %339 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_28 ; 0x000034ec
+        %340 = OpLoad %uchar %339 Aligned 1 ; 0x00003504
+        %341 = OpUConvert %uint %340 ; 0x0000351c
+        %342 = OpShiftLeftLogical %uint %341 %uint_24 ; 0x0000352c
+        %344 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_29 ; 0x00003540
+        %345 = OpLoad %uchar %344 Aligned 1 ; 0x00003558
+        %346 = OpUConvert %uint %345 ; 0x00003570
+        %347 = OpShiftLeftLogical %uint %346 %uint_16 ; 0x00003580
+        %348 = OpBitwiseOr %uint %342 %347 ; 0x00003594
+        %350 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_30 ; 0x000035a8
+        %351 = OpLoad %uchar %350 Aligned 1 ; 0x000035c0
+        %352 = OpUConvert %uint %351 ; 0x000035d8
+        %353 = OpShiftLeftLogical %uint %352 %uint_8 ; 0x000035e8
+        %354 = OpBitwiseOr %uint %348 %353 ; 0x000035fc
+        %356 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_31 ; 0x00003610
+        %357 = OpLoad %uchar %356 Aligned 1 ; 0x00003628
+        %358 = OpUConvert %uint %357 ; 0x00003640
+        %359 = OpBitwiseOr %uint %354 %358 ; 0x00003650
+        %360 = OpBitwiseOr %ulong %198 %ulong_7 ; 0x00003664
+        %361 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %360 ; 0x00003678
+               OpStore %361 %359 Aligned 4 ; 0x0000368c
+        %363 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_32 ; 0x000036a0
+        %364 = OpLoad %uchar %363 Aligned 1 ; 0x000036b8
+        %365 = OpUConvert %uint %364 ; 0x000036d0
+        %366 = OpShiftLeftLogical %uint %365 %uint_24 ; 0x000036e0
+        %368 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_33 ; 0x000036f4
+        %369 = OpLoad %uchar %368 Aligned 1 ; 0x0000370c
+        %370 = OpUConvert %uint %369 ; 0x00003724
+        %371 = OpShiftLeftLogical %uint %370 %uint_16 ; 0x00003734
+        %372 = OpBitwiseOr %uint %366 %371 ; 0x00003748
+        %374 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_34 ; 0x0000375c
+        %375 = OpLoad %uchar %374 Aligned 1 ; 0x00003774
+        %376 = OpUConvert %uint %375 ; 0x0000378c
+        %377 = OpShiftLeftLogical %uint %376 %uint_8 ; 0x0000379c
+        %378 = OpBitwiseOr %uint %372 %377 ; 0x000037b0
+        %380 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_35 ; 0x000037c4
+        %381 = OpLoad %uchar %380 Aligned 1 ; 0x000037dc
+        %382 = OpUConvert %uint %381 ; 0x000037f4
+        %383 = OpBitwiseOr %uint %378 %382 ; 0x00003804
+        %384 = OpBitwiseOr %ulong %198 %ulong_8 ; 0x00003818
+        %385 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %384 ; 0x0000382c
+               OpStore %385 %383 Aligned 4 ; 0x00003840
+        %387 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_36 ; 0x00003854
+        %388 = OpLoad %uchar %387 Aligned 1 ; 0x0000386c
+        %389 = OpUConvert %uint %388 ; 0x00003884
+        %390 = OpShiftLeftLogical %uint %389 %uint_24 ; 0x00003894
+        %392 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_37 ; 0x000038a8
+        %393 = OpLoad %uchar %392 Aligned 1 ; 0x000038c0
+        %394 = OpUConvert %uint %393 ; 0x000038d8
+        %395 = OpShiftLeftLogical %uint %394 %uint_16 ; 0x000038e8
+        %396 = OpBitwiseOr %uint %390 %395 ; 0x000038fc
+        %398 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_38 ; 0x00003910
+        %399 = OpLoad %uchar %398 Aligned 1 ; 0x00003928
+        %400 = OpUConvert %uint %399 ; 0x00003940
+        %401 = OpShiftLeftLogical %uint %400 %uint_8 ; 0x00003950
+        %402 = OpBitwiseOr %uint %396 %401 ; 0x00003964
+        %404 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_39 ; 0x00003978
+        %405 = OpLoad %uchar %404 Aligned 1 ; 0x00003990
+        %406 = OpUConvert %uint %405 ; 0x000039a8
+        %407 = OpBitwiseOr %uint %402 %406 ; 0x000039b8
+        %408 = OpBitwiseOr %ulong %198 %ulong_9 ; 0x000039cc
+        %409 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %408 ; 0x000039e0
+               OpStore %409 %407 Aligned 4 ; 0x000039f4
+        %411 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_40 ; 0x00003a08
+        %412 = OpLoad %uchar %411 Aligned 1 ; 0x00003a20
+        %413 = OpUConvert %uint %412 ; 0x00003a38
+        %414 = OpShiftLeftLogical %uint %413 %uint_24 ; 0x00003a48
+        %416 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_41 ; 0x00003a5c
+        %417 = OpLoad %uchar %416 Aligned 1 ; 0x00003a74
+        %418 = OpUConvert %uint %417 ; 0x00003a8c
+        %419 = OpShiftLeftLogical %uint %418 %uint_16 ; 0x00003a9c
+        %420 = OpBitwiseOr %uint %414 %419 ; 0x00003ab0
+        %422 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_42 ; 0x00003ac4
+        %423 = OpLoad %uchar %422 Aligned 1 ; 0x00003adc
+        %424 = OpUConvert %uint %423 ; 0x00003af4
+        %425 = OpShiftLeftLogical %uint %424 %uint_8 ; 0x00003b04
+        %426 = OpBitwiseOr %uint %420 %425 ; 0x00003b18
+        %428 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_43 ; 0x00003b2c
+        %429 = OpLoad %uchar %428 Aligned 1 ; 0x00003b44
+        %430 = OpUConvert %uint %429 ; 0x00003b5c
+        %431 = OpBitwiseOr %uint %426 %430 ; 0x00003b6c
+        %432 = OpBitwiseOr %ulong %198 %ulong_10 ; 0x00003b80
+        %433 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %432 ; 0x00003b94
+               OpStore %433 %431 Aligned 4 ; 0x00003ba8
+        %435 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_44 ; 0x00003bbc
+        %436 = OpLoad %uchar %435 Aligned 1 ; 0x00003bd4
+        %437 = OpUConvert %uint %436 ; 0x00003bec
+        %438 = OpShiftLeftLogical %uint %437 %uint_24 ; 0x00003bfc
+        %440 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_45 ; 0x00003c10
+        %441 = OpLoad %uchar %440 Aligned 1 ; 0x00003c28
+        %442 = OpUConvert %uint %441 ; 0x00003c40
+        %443 = OpShiftLeftLogical %uint %442 %uint_16 ; 0x00003c50
+        %444 = OpBitwiseOr %uint %438 %443 ; 0x00003c64
+        %446 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_46 ; 0x00003c78
+        %447 = OpLoad %uchar %446 Aligned 1 ; 0x00003c90
+        %448 = OpUConvert %uint %447 ; 0x00003ca8
+        %449 = OpShiftLeftLogical %uint %448 %uint_8 ; 0x00003cb8
+        %450 = OpBitwiseOr %uint %444 %449 ; 0x00003ccc
+        %452 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_47 ; 0x00003ce0
+        %453 = OpLoad %uchar %452 Aligned 1 ; 0x00003cf8
+        %454 = OpUConvert %uint %453 ; 0x00003d10
+        %455 = OpBitwiseOr %uint %450 %454 ; 0x00003d20
+        %456 = OpBitwiseOr %ulong %198 %ulong_11 ; 0x00003d34
+        %457 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %456 ; 0x00003d48
+               OpStore %457 %455 Aligned 4 ; 0x00003d5c
+        %459 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_48 ; 0x00003d70
+        %460 = OpLoad %uchar %459 Aligned 1 ; 0x00003d88
+        %461 = OpUConvert %uint %460 ; 0x00003da0
+        %462 = OpShiftLeftLogical %uint %461 %uint_24 ; 0x00003db0
+        %464 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_49 ; 0x00003dc4
+        %465 = OpLoad %uchar %464 Aligned 1 ; 0x00003ddc
+        %466 = OpUConvert %uint %465 ; 0x00003df4
+        %467 = OpShiftLeftLogical %uint %466 %uint_16 ; 0x00003e04
+        %468 = OpBitwiseOr %uint %462 %467 ; 0x00003e18
+        %470 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_50 ; 0x00003e2c
+        %471 = OpLoad %uchar %470 Aligned 1 ; 0x00003e44
+        %472 = OpUConvert %uint %471 ; 0x00003e5c
+        %473 = OpShiftLeftLogical %uint %472 %uint_8 ; 0x00003e6c
+        %474 = OpBitwiseOr %uint %468 %473 ; 0x00003e80
+        %476 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_51 ; 0x00003e94
+        %477 = OpLoad %uchar %476 Aligned 1 ; 0x00003eac
+        %478 = OpUConvert %uint %477 ; 0x00003ec4
+        %479 = OpBitwiseOr %uint %474 %478 ; 0x00003ed4
+        %480 = OpBitwiseOr %ulong %198 %ulong_12 ; 0x00003ee8
+        %481 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %480 ; 0x00003efc
+               OpStore %481 %479 Aligned 4 ; 0x00003f10
+        %483 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_52 ; 0x00003f24
+        %484 = OpLoad %uchar %483 Aligned 1 ; 0x00003f3c
+        %485 = OpUConvert %uint %484 ; 0x00003f54
+        %486 = OpShiftLeftLogical %uint %485 %uint_24 ; 0x00003f64
+        %488 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_53 ; 0x00003f78
+        %489 = OpLoad %uchar %488 Aligned 1 ; 0x00003f90
+        %490 = OpUConvert %uint %489 ; 0x00003fa8
+        %491 = OpShiftLeftLogical %uint %490 %uint_16 ; 0x00003fb8
+        %492 = OpBitwiseOr %uint %486 %491 ; 0x00003fcc
+        %494 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_54 ; 0x00003fe0
+        %495 = OpLoad %uchar %494 Aligned 1 ; 0x00003ff8
+        %496 = OpUConvert %uint %495 ; 0x00004010
+        %497 = OpShiftLeftLogical %uint %496 %uint_8 ; 0x00004020
+        %498 = OpBitwiseOr %uint %492 %497 ; 0x00004034
+        %500 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_55 ; 0x00004048
+        %501 = OpLoad %uchar %500 Aligned 1 ; 0x00004060
+        %502 = OpUConvert %uint %501 ; 0x00004078
+        %503 = OpBitwiseOr %uint %498 %502 ; 0x00004088
+        %504 = OpBitwiseOr %ulong %198 %ulong_13 ; 0x0000409c
+        %505 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %504 ; 0x000040b0
+               OpStore %505 %503 Aligned 4 ; 0x000040c4
+        %507 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_56 ; 0x000040d8
+        %508 = OpLoad %uchar %507 Aligned 1 ; 0x000040f0
+        %509 = OpUConvert %uint %508 ; 0x00004108
+        %510 = OpShiftLeftLogical %uint %509 %uint_24 ; 0x00004118
+        %512 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_57 ; 0x0000412c
+        %513 = OpLoad %uchar %512 Aligned 1 ; 0x00004144
+        %514 = OpUConvert %uint %513 ; 0x0000415c
+        %515 = OpShiftLeftLogical %uint %514 %uint_16 ; 0x0000416c
+        %516 = OpBitwiseOr %uint %510 %515 ; 0x00004180
+        %518 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_58 ; 0x00004194
+        %519 = OpLoad %uchar %518 Aligned 1 ; 0x000041ac
+        %520 = OpUConvert %uint %519 ; 0x000041c4
+        %521 = OpShiftLeftLogical %uint %520 %uint_8 ; 0x000041d4
+        %522 = OpBitwiseOr %uint %516 %521 ; 0x000041e8
+        %524 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_59 ; 0x000041fc
+        %525 = OpLoad %uchar %524 Aligned 1 ; 0x00004214
+        %526 = OpUConvert %uint %525 ; 0x0000422c
+        %527 = OpBitwiseOr %uint %522 %526 ; 0x0000423c
+        %528 = OpBitwiseOr %ulong %198 %ulong_14 ; 0x00004250
+        %529 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %528 ; 0x00004264
+               OpStore %529 %527 Aligned 4 ; 0x00004278
+        %531 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_60 ; 0x0000428c
+        %532 = OpLoad %uchar %531 Aligned 1 ; 0x000042a4
+        %533 = OpUConvert %uint %532 ; 0x000042bc
+        %534 = OpShiftLeftLogical %uint %533 %uint_24 ; 0x000042cc
+        %536 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_61 ; 0x000042e0
+        %537 = OpLoad %uchar %536 Aligned 1 ; 0x000042f8
+        %538 = OpUConvert %uint %537 ; 0x00004310
+        %539 = OpShiftLeftLogical %uint %538 %uint_16 ; 0x00004320
+        %540 = OpBitwiseOr %uint %534 %539 ; 0x00004334
+        %542 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_62 ; 0x00004348
+        %543 = OpLoad %uchar %542 Aligned 1 ; 0x00004360
+        %544 = OpUConvert %uint %543 ; 0x00004378
+        %545 = OpShiftLeftLogical %uint %544 %uint_8 ; 0x00004388
+        %546 = OpBitwiseOr %uint %540 %545 ; 0x0000439c
+        %548 = OpInBoundsPtrAccessChain %_ptr_Function_uchar %147 %ulong_0 %ulong_63 ; 0x000043b0
+        %549 = OpLoad %uchar %548 Aligned 1 ; 0x000043c8
+        %550 = OpUConvert %uint %549 ; 0x000043e0
+        %551 = OpBitwiseOr %uint %546 %550 ; 0x000043f0
+        %552 = OpBitwiseOr %ulong %198 %ulong_15 ; 0x00004404
+        %553 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %552 ; 0x00004418
+               OpStore %553 %551 Aligned 4 ; 0x0000442c
+        %555 = OpBitwiseOr %ulong %198 %ulong_16 ; 0x00004440
+        %556 = OpIAdd %uint %216 %407 ; 0x00004454
+        %563 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %237 %238 %uint_25 ; 0x00004468
+        %565 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %238 %228 %uint_14 ; 0x00004484
+        %566 = OpBitwiseXor %uint %563 %565 ; 0x000044a0
+        %567 = OpShiftRightLogical %uint %238 %uint_3 ; 0x000044b4
+        %568 = OpBitwiseXor %uint %566 %567 ; 0x000044c8
+        %569 = OpIAdd %uint %556 %568 ; 0x000044dc
+        %571 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %527 %516 %uint_15 ; 0x000044f0
+        %573 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %527 %516 %uint_13 ; 0x0000450c
+        %574 = OpBitwiseXor %uint %571 %573 ; 0x00004528
+        %576 = OpShiftRightLogical %uint %522 %uint_10 ; 0x0000453c
+        %577 = OpBitwiseXor %uint %574 %576 ; 0x00004550
+        %578 = OpIAdd %uint %569 %577 ; 0x00004564
+        %579 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %555 ; 0x00004578
+               OpStore %579 %578 Aligned 4 ; 0x0000458c
+        %581 = OpBitwiseOr %ulong %198 %ulong_17 ; 0x000045a0
+        %582 = OpIAdd %uint %238 %431 ; 0x000045b4
+        %583 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %261 %262 %uint_25 ; 0x000045c8
+        %584 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %262 %251 %uint_14 ; 0x000045e4
+        %585 = OpBitwiseXor %uint %583 %584 ; 0x00004600
+        %586 = OpShiftRightLogical %uint %262 %uint_3 ; 0x00004614
+        %587 = OpBitwiseXor %uint %585 %586 ; 0x00004628
+        %588 = OpIAdd %uint %582 %587 ; 0x0000463c
+        %589 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %551 %540 %uint_15 ; 0x00004650
+        %590 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %551 %540 %uint_13 ; 0x0000466c
+        %591 = OpBitwiseXor %uint %589 %590 ; 0x00004688
+        %592 = OpShiftRightLogical %uint %546 %uint_10 ; 0x0000469c
+        %593 = OpBitwiseXor %uint %591 %592 ; 0x000046b0
+        %594 = OpIAdd %uint %588 %593 ; 0x000046c4
+        %595 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %581 ; 0x000046d8
+               OpStore %595 %594 Aligned 4 ; 0x000046ec
+        %597 = OpBitwiseOr %ulong %198 %ulong_18 ; 0x00004700
+        %598 = OpIAdd %uint %262 %455 ; 0x00004714
+        %599 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %285 %286 %uint_25 ; 0x00004728
+        %600 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %286 %275 %uint_14 ; 0x00004744
+        %601 = OpBitwiseXor %uint %599 %600 ; 0x00004760
+        %602 = OpShiftRightLogical %uint %286 %uint_3 ; 0x00004774
+        %603 = OpBitwiseXor %uint %601 %602 ; 0x00004788
+        %604 = OpIAdd %uint %598 %603 ; 0x0000479c
+        %605 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %578 %578 %uint_15 ; 0x000047b0
+        %606 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %578 %578 %uint_13 ; 0x000047cc
+        %607 = OpBitwiseXor %uint %605 %606 ; 0x000047e8
+        %608 = OpShiftRightLogical %uint %578 %uint_10 ; 0x000047fc
+        %609 = OpBitwiseXor %uint %607 %608 ; 0x00004810
+        %610 = OpIAdd %uint %604 %609 ; 0x00004824
+        %611 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %597 ; 0x00004838
+               OpStore %611 %610 Aligned 4 ; 0x0000484c
+        %613 = OpBitwiseOr %ulong %198 %ulong_19 ; 0x00004860
+        %614 = OpIAdd %uint %286 %479 ; 0x00004874
+        %616 = OpShiftRightLogical %uint %295 %uint_7 ; 0x00004888
+        %617 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %295 %295 %uint_14 ; 0x0000489c
+        %618 = OpBitwiseXor %uint %616 %617 ; 0x000048b8
+        %619 = OpShiftRightLogical %uint %295 %uint_3 ; 0x000048cc
+        %620 = OpBitwiseXor %uint %618 %619 ; 0x000048e0
+        %621 = OpIAdd %uint %614 %620 ; 0x000048f4
+        %622 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %594 %594 %uint_15 ; 0x00004908
+        %623 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %594 %594 %uint_13 ; 0x00004924
+        %624 = OpBitwiseXor %uint %622 %623 ; 0x00004940
+        %625 = OpShiftRightLogical %uint %594 %uint_10 ; 0x00004954
+        %626 = OpBitwiseXor %uint %624 %625 ; 0x00004968
+        %627 = OpIAdd %uint %621 %626 ; 0x0000497c
+        %628 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %613 ; 0x00004990
+               OpStore %628 %627 Aligned 4 ; 0x000049a4
+        %629 = OpBitwiseOr %ulong %198 %ulong_20 ; 0x000049b8
+        %630 = OpIAdd %uint %295 %503 ; 0x000049cc
+        %631 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %310 %311 %uint_25 ; 0x000049e0
+        %632 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %311 %304 %uint_14 ; 0x000049fc
+        %633 = OpBitwiseXor %uint %631 %632 ; 0x00004a18
+        %634 = OpShiftRightLogical %uint %311 %uint_3 ; 0x00004a2c
+        %635 = OpBitwiseXor %uint %633 %634 ; 0x00004a40
+        %636 = OpIAdd %uint %630 %635 ; 0x00004a54
+        %637 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %610 %610 %uint_15 ; 0x00004a68
+        %638 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %610 %610 %uint_13 ; 0x00004a84
+        %639 = OpBitwiseXor %uint %637 %638 ; 0x00004aa0
+        %640 = OpShiftRightLogical %uint %610 %uint_10 ; 0x00004ab4
+        %641 = OpBitwiseXor %uint %639 %640 ; 0x00004ac8
+        %642 = OpIAdd %uint %636 %641 ; 0x00004adc
+        %643 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %629 ; 0x00004af0
+               OpStore %643 %642 Aligned 4 ; 0x00004b04
+        %644 = OpBitwiseOr %ulong %198 %ulong_21 ; 0x00004b18
+        %645 = OpIAdd %uint %311 %527 ; 0x00004b2c
+        %646 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %334 %335 %uint_25 ; 0x00004b40
+        %647 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %335 %324 %uint_14 ; 0x00004b5c
+        %648 = OpBitwiseXor %uint %646 %647 ; 0x00004b78
+        %649 = OpShiftRightLogical %uint %335 %uint_3 ; 0x00004b8c
+        %650 = OpBitwiseXor %uint %648 %649 ; 0x00004ba0
+        %651 = OpIAdd %uint %645 %650 ; 0x00004bb4
+        %652 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %627 %627 %uint_15 ; 0x00004bc8
+        %653 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %627 %627 %uint_13 ; 0x00004be4
+        %654 = OpBitwiseXor %uint %652 %653 ; 0x00004c00
+        %655 = OpShiftRightLogical %uint %627 %uint_10 ; 0x00004c14
+        %656 = OpBitwiseXor %uint %654 %655 ; 0x00004c28
+        %657 = OpIAdd %uint %651 %656 ; 0x00004c3c
+        %658 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %644 ; 0x00004c50
+               OpStore %658 %657 Aligned 4 ; 0x00004c64
+        %659 = OpBitwiseOr %ulong %198 %ulong_22 ; 0x00004c78
+        %660 = OpIAdd %uint %335 %551 ; 0x00004c8c
+        %661 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %358 %359 %uint_25 ; 0x00004ca0
+        %662 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %359 %348 %uint_14 ; 0x00004cbc
+        %663 = OpBitwiseXor %uint %661 %662 ; 0x00004cd8
+        %664 = OpShiftRightLogical %uint %359 %uint_3 ; 0x00004cec
+        %665 = OpBitwiseXor %uint %663 %664 ; 0x00004d00
+        %666 = OpIAdd %uint %660 %665 ; 0x00004d14
+        %667 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %642 %642 %uint_15 ; 0x00004d28
+        %668 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %642 %642 %uint_13 ; 0x00004d44
+        %669 = OpBitwiseXor %uint %667 %668 ; 0x00004d60
+        %670 = OpShiftRightLogical %uint %642 %uint_10 ; 0x00004d74
+        %671 = OpBitwiseXor %uint %669 %670 ; 0x00004d88
+        %672 = OpIAdd %uint %666 %671 ; 0x00004d9c
+        %673 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %659 ; 0x00004db0
+               OpStore %673 %672 Aligned 4 ; 0x00004dc4
+        %674 = OpBitwiseOr %ulong %198 %ulong_23 ; 0x00004dd8
+        %675 = OpIAdd %uint %359 %578 ; 0x00004dec
+        %676 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %382 %383 %uint_25 ; 0x00004e00
+        %677 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %383 %372 %uint_14 ; 0x00004e1c
+        %678 = OpBitwiseXor %uint %676 %677 ; 0x00004e38
+        %679 = OpShiftRightLogical %uint %383 %uint_3 ; 0x00004e4c
+        %680 = OpBitwiseXor %uint %678 %679 ; 0x00004e60
+        %681 = OpIAdd %uint %675 %680 ; 0x00004e74
+        %682 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %657 %657 %uint_15 ; 0x00004e88
+        %683 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %657 %657 %uint_13 ; 0x00004ea4
+        %684 = OpBitwiseXor %uint %682 %683 ; 0x00004ec0
+        %685 = OpShiftRightLogical %uint %657 %uint_10 ; 0x00004ed4
+        %686 = OpBitwiseXor %uint %684 %685 ; 0x00004ee8
+        %687 = OpIAdd %uint %681 %686 ; 0x00004efc
+        %688 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %674 ; 0x00004f10
+               OpStore %688 %687 Aligned 4 ; 0x00004f24
+        %689 = OpBitwiseOr %ulong %198 %ulong_24 ; 0x00004f38
+        %690 = OpIAdd %uint %383 %594 ; 0x00004f4c
+        %691 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %406 %407 %uint_25 ; 0x00004f60
+        %692 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %407 %396 %uint_14 ; 0x00004f7c
+        %693 = OpBitwiseXor %uint %691 %692 ; 0x00004f98
+        %694 = OpShiftRightLogical %uint %407 %uint_3 ; 0x00004fac
+        %695 = OpBitwiseXor %uint %693 %694 ; 0x00004fc0
+        %696 = OpIAdd %uint %690 %695 ; 0x00004fd4
+        %697 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %672 %672 %uint_15 ; 0x00004fe8
+        %698 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %672 %672 %uint_13 ; 0x00005004
+        %699 = OpBitwiseXor %uint %697 %698 ; 0x00005020
+        %700 = OpShiftRightLogical %uint %672 %uint_10 ; 0x00005034
+        %701 = OpBitwiseXor %uint %699 %700 ; 0x00005048
+        %702 = OpIAdd %uint %696 %701 ; 0x0000505c
+        %703 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %689 ; 0x00005070
+               OpStore %703 %702 Aligned 4 ; 0x00005084
+        %704 = OpBitwiseOr %ulong %198 %ulong_25 ; 0x00005098
+        %705 = OpIAdd %uint %407 %610 ; 0x000050ac
+        %706 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %430 %431 %uint_25 ; 0x000050c0
+        %707 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %431 %420 %uint_14 ; 0x000050dc
+        %708 = OpBitwiseXor %uint %706 %707 ; 0x000050f8
+        %709 = OpShiftRightLogical %uint %431 %uint_3 ; 0x0000510c
+        %710 = OpBitwiseXor %uint %708 %709 ; 0x00005120
+        %711 = OpIAdd %uint %705 %710 ; 0x00005134
+        %712 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %687 %687 %uint_15 ; 0x00005148
+        %713 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %687 %687 %uint_13 ; 0x00005164
+        %714 = OpBitwiseXor %uint %712 %713 ; 0x00005180
+        %715 = OpShiftRightLogical %uint %687 %uint_10 ; 0x00005194
+        %716 = OpBitwiseXor %uint %714 %715 ; 0x000051a8
+        %717 = OpIAdd %uint %711 %716 ; 0x000051bc
+        %718 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %704 ; 0x000051d0
+               OpStore %718 %717 Aligned 4 ; 0x000051e4
+        %719 = OpBitwiseOr %ulong %198 %ulong_26 ; 0x000051f8
+        %720 = OpIAdd %uint %431 %627 ; 0x0000520c
+        %721 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %454 %455 %uint_25 ; 0x00005220
+        %722 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %455 %444 %uint_14 ; 0x0000523c
+        %723 = OpBitwiseXor %uint %721 %722 ; 0x00005258
+        %724 = OpShiftRightLogical %uint %455 %uint_3 ; 0x0000526c
+        %725 = OpBitwiseXor %uint %723 %724 ; 0x00005280
+        %726 = OpIAdd %uint %720 %725 ; 0x00005294
+        %727 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %702 %702 %uint_15 ; 0x000052a8
+        %728 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %702 %702 %uint_13 ; 0x000052c4
+        %729 = OpBitwiseXor %uint %727 %728 ; 0x000052e0
+        %730 = OpShiftRightLogical %uint %702 %uint_10 ; 0x000052f4
+        %731 = OpBitwiseXor %uint %729 %730 ; 0x00005308
+        %732 = OpIAdd %uint %726 %731 ; 0x0000531c
+        %733 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %719 ; 0x00005330
+               OpStore %733 %732 Aligned 4 ; 0x00005344
+        %734 = OpBitwiseOr %ulong %198 %ulong_27 ; 0x00005358
+        %735 = OpIAdd %uint %455 %642 ; 0x0000536c
+        %736 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %478 %479 %uint_25 ; 0x00005380
+        %737 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %479 %468 %uint_14 ; 0x0000539c
+        %738 = OpBitwiseXor %uint %736 %737 ; 0x000053b8
+        %739 = OpShiftRightLogical %uint %479 %uint_3 ; 0x000053cc
+        %740 = OpBitwiseXor %uint %738 %739 ; 0x000053e0
+        %741 = OpIAdd %uint %735 %740 ; 0x000053f4
+        %742 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %717 %717 %uint_15 ; 0x00005408
+        %743 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %717 %717 %uint_13 ; 0x00005424
+        %744 = OpBitwiseXor %uint %742 %743 ; 0x00005440
+        %745 = OpShiftRightLogical %uint %717 %uint_10 ; 0x00005454
+        %746 = OpBitwiseXor %uint %744 %745 ; 0x00005468
+        %747 = OpIAdd %uint %741 %746 ; 0x0000547c
+        %748 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %734 ; 0x00005490
+               OpStore %748 %747 Aligned 4 ; 0x000054a4
+        %749 = OpBitwiseOr %ulong %198 %ulong_28 ; 0x000054b8
+        %750 = OpIAdd %uint %479 %657 ; 0x000054cc
+        %751 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %502 %503 %uint_25 ; 0x000054e0
+        %752 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %503 %492 %uint_14 ; 0x000054fc
+        %753 = OpBitwiseXor %uint %751 %752 ; 0x00005518
+        %754 = OpShiftRightLogical %uint %503 %uint_3 ; 0x0000552c
+        %755 = OpBitwiseXor %uint %753 %754 ; 0x00005540
+        %756 = OpIAdd %uint %750 %755 ; 0x00005554
+        %757 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %732 %732 %uint_15 ; 0x00005568
+        %758 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %732 %732 %uint_13 ; 0x00005584
+        %759 = OpBitwiseXor %uint %757 %758 ; 0x000055a0
+        %760 = OpShiftRightLogical %uint %732 %uint_10 ; 0x000055b4
+        %761 = OpBitwiseXor %uint %759 %760 ; 0x000055c8
+        %762 = OpIAdd %uint %756 %761 ; 0x000055dc
+        %763 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %749 ; 0x000055f0
+               OpStore %763 %762 Aligned 4 ; 0x00005604
+        %764 = OpBitwiseOr %ulong %198 %ulong_29 ; 0x00005618
+        %765 = OpIAdd %uint %503 %672 ; 0x0000562c
+        %766 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %526 %527 %uint_25 ; 0x00005640
+        %767 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %527 %516 %uint_14 ; 0x0000565c
+        %768 = OpBitwiseXor %uint %766 %767 ; 0x00005678
+        %769 = OpShiftRightLogical %uint %527 %uint_3 ; 0x0000568c
+        %770 = OpBitwiseXor %uint %768 %769 ; 0x000056a0
+        %771 = OpIAdd %uint %765 %770 ; 0x000056b4
+        %772 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %747 %747 %uint_15 ; 0x000056c8
+        %773 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %747 %747 %uint_13 ; 0x000056e4
+        %774 = OpBitwiseXor %uint %772 %773 ; 0x00005700
+        %775 = OpShiftRightLogical %uint %747 %uint_10 ; 0x00005714
+        %776 = OpBitwiseXor %uint %774 %775 ; 0x00005728
+        %777 = OpIAdd %uint %771 %776 ; 0x0000573c
+        %778 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %764 ; 0x00005750
+               OpStore %778 %777 Aligned 4 ; 0x00005764
+        %779 = OpBitwiseOr %ulong %198 %ulong_30 ; 0x00005778
+        %780 = OpIAdd %uint %527 %687 ; 0x0000578c
+        %781 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %550 %551 %uint_25 ; 0x000057a0
+        %782 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %551 %540 %uint_14 ; 0x000057bc
+        %783 = OpBitwiseXor %uint %781 %782 ; 0x000057d8
+        %784 = OpShiftRightLogical %uint %551 %uint_3 ; 0x000057ec
+        %785 = OpBitwiseXor %uint %783 %784 ; 0x00005800
+        %786 = OpIAdd %uint %780 %785 ; 0x00005814
+        %787 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %762 %762 %uint_15 ; 0x00005828
+        %788 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %762 %762 %uint_13 ; 0x00005844
+        %789 = OpBitwiseXor %uint %787 %788 ; 0x00005860
+        %790 = OpShiftRightLogical %uint %762 %uint_10 ; 0x00005874
+        %791 = OpBitwiseXor %uint %789 %790 ; 0x00005888
+        %792 = OpIAdd %uint %786 %791 ; 0x0000589c
+        %793 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %779 ; 0x000058b0
+               OpStore %793 %792 Aligned 4 ; 0x000058c4
+        %794 = OpBitwiseOr %ulong %198 %ulong_31 ; 0x000058d8
+        %795 = OpIAdd %uint %551 %702 ; 0x000058ec
+        %796 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %578 %578 %uint_25 ; 0x00005900
+        %797 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %578 %578 %uint_14 ; 0x0000591c
+        %798 = OpBitwiseXor %uint %796 %797 ; 0x00005938
+        %799 = OpShiftRightLogical %uint %578 %uint_3 ; 0x0000594c
+        %800 = OpBitwiseXor %uint %798 %799 ; 0x00005960
+        %801 = OpIAdd %uint %795 %800 ; 0x00005974
+        %802 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %777 %777 %uint_15 ; 0x00005988
+        %803 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %777 %777 %uint_13 ; 0x000059a4
+        %804 = OpBitwiseXor %uint %802 %803 ; 0x000059c0
+        %805 = OpShiftRightLogical %uint %777 %uint_10 ; 0x000059d4
+        %806 = OpBitwiseXor %uint %804 %805 ; 0x000059e8
+        %807 = OpIAdd %uint %801 %806 ; 0x000059fc
+        %808 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %794 ; 0x00005a10
+               OpStore %808 %807 Aligned 4 ; 0x00005a24
+        %809 = OpBitwiseOr %ulong %198 %ulong_32 ; 0x00005a38
+        %810 = OpIAdd %uint %578 %717 ; 0x00005a4c
+        %811 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %594 %594 %uint_25 ; 0x00005a60
+        %812 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %594 %594 %uint_14 ; 0x00005a7c
+        %813 = OpBitwiseXor %uint %811 %812 ; 0x00005a98
+        %814 = OpShiftRightLogical %uint %594 %uint_3 ; 0x00005aac
+        %815 = OpBitwiseXor %uint %813 %814 ; 0x00005ac0
+        %816 = OpIAdd %uint %810 %815 ; 0x00005ad4
+        %817 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %792 %792 %uint_15 ; 0x00005ae8
+        %818 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %792 %792 %uint_13 ; 0x00005b04
+        %819 = OpBitwiseXor %uint %817 %818 ; 0x00005b20
+        %820 = OpShiftRightLogical %uint %792 %uint_10 ; 0x00005b34
+        %821 = OpBitwiseXor %uint %819 %820 ; 0x00005b48
+        %822 = OpIAdd %uint %816 %821 ; 0x00005b5c
+        %823 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %809 ; 0x00005b70
+               OpStore %823 %822 Aligned 4 ; 0x00005b84
+        %824 = OpBitwiseOr %ulong %198 %ulong_33 ; 0x00005b98
+        %825 = OpIAdd %uint %594 %732 ; 0x00005bac
+        %826 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %610 %610 %uint_25 ; 0x00005bc0
+        %827 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %610 %610 %uint_14 ; 0x00005bdc
+        %828 = OpBitwiseXor %uint %826 %827 ; 0x00005bf8
+        %829 = OpShiftRightLogical %uint %610 %uint_3 ; 0x00005c0c
+        %830 = OpBitwiseXor %uint %828 %829 ; 0x00005c20
+        %831 = OpIAdd %uint %825 %830 ; 0x00005c34
+        %832 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %807 %807 %uint_15 ; 0x00005c48
+        %833 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %807 %807 %uint_13 ; 0x00005c64
+        %834 = OpBitwiseXor %uint %832 %833 ; 0x00005c80
+        %835 = OpShiftRightLogical %uint %807 %uint_10 ; 0x00005c94
+        %836 = OpBitwiseXor %uint %834 %835 ; 0x00005ca8
+        %837 = OpIAdd %uint %831 %836 ; 0x00005cbc
+        %838 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %824 ; 0x00005cd0
+               OpStore %838 %837 Aligned 4 ; 0x00005ce4
+        %839 = OpBitwiseOr %ulong %198 %ulong_34 ; 0x00005cf8
+        %840 = OpIAdd %uint %610 %747 ; 0x00005d0c
+        %841 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %627 %627 %uint_25 ; 0x00005d20
+        %842 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %627 %627 %uint_14 ; 0x00005d3c
+        %843 = OpBitwiseXor %uint %841 %842 ; 0x00005d58
+        %844 = OpShiftRightLogical %uint %627 %uint_3 ; 0x00005d6c
+        %845 = OpBitwiseXor %uint %843 %844 ; 0x00005d80
+        %846 = OpIAdd %uint %840 %845 ; 0x00005d94
+        %847 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %822 %822 %uint_15 ; 0x00005da8
+        %848 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %822 %822 %uint_13 ; 0x00005dc4
+        %849 = OpBitwiseXor %uint %847 %848 ; 0x00005de0
+        %850 = OpShiftRightLogical %uint %822 %uint_10 ; 0x00005df4
+        %851 = OpBitwiseXor %uint %849 %850 ; 0x00005e08
+        %852 = OpIAdd %uint %846 %851 ; 0x00005e1c
+        %853 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %839 ; 0x00005e30
+               OpStore %853 %852 Aligned 4 ; 0x00005e44
+        %854 = OpBitwiseOr %ulong %198 %ulong_35 ; 0x00005e58
+        %855 = OpIAdd %uint %627 %762 ; 0x00005e6c
+        %856 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %642 %642 %uint_25 ; 0x00005e80
+        %857 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %642 %642 %uint_14 ; 0x00005e9c
+        %858 = OpBitwiseXor %uint %856 %857 ; 0x00005eb8
+        %859 = OpShiftRightLogical %uint %642 %uint_3 ; 0x00005ecc
+        %860 = OpBitwiseXor %uint %858 %859 ; 0x00005ee0
+        %861 = OpIAdd %uint %855 %860 ; 0x00005ef4
+        %862 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %837 %837 %uint_15 ; 0x00005f08
+        %863 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %837 %837 %uint_13 ; 0x00005f24
+        %864 = OpBitwiseXor %uint %862 %863 ; 0x00005f40
+        %865 = OpShiftRightLogical %uint %837 %uint_10 ; 0x00005f54
+        %866 = OpBitwiseXor %uint %864 %865 ; 0x00005f68
+        %867 = OpIAdd %uint %861 %866 ; 0x00005f7c
+        %868 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %854 ; 0x00005f90
+               OpStore %868 %867 Aligned 4 ; 0x00005fa4
+        %869 = OpBitwiseOr %ulong %198 %ulong_36 ; 0x00005fb8
+        %870 = OpIAdd %uint %642 %777 ; 0x00005fcc
+        %871 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %657 %657 %uint_25 ; 0x00005fe0
+        %872 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %657 %657 %uint_14 ; 0x00005ffc
+        %873 = OpBitwiseXor %uint %871 %872 ; 0x00006018
+        %874 = OpShiftRightLogical %uint %657 %uint_3 ; 0x0000602c
+        %875 = OpBitwiseXor %uint %873 %874 ; 0x00006040
+        %876 = OpIAdd %uint %870 %875 ; 0x00006054
+        %877 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %852 %852 %uint_15 ; 0x00006068
+        %878 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %852 %852 %uint_13 ; 0x00006084
+        %879 = OpBitwiseXor %uint %877 %878 ; 0x000060a0
+        %880 = OpShiftRightLogical %uint %852 %uint_10 ; 0x000060b4
+        %881 = OpBitwiseXor %uint %879 %880 ; 0x000060c8
+        %882 = OpIAdd %uint %876 %881 ; 0x000060dc
+        %883 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %869 ; 0x000060f0
+               OpStore %883 %882 Aligned 4 ; 0x00006104
+        %884 = OpBitwiseOr %ulong %198 %ulong_37 ; 0x00006118
+        %885 = OpIAdd %uint %657 %792 ; 0x0000612c
+        %886 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %672 %672 %uint_25 ; 0x00006140
+        %887 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %672 %672 %uint_14 ; 0x0000615c
+        %888 = OpBitwiseXor %uint %886 %887 ; 0x00006178
+        %889 = OpShiftRightLogical %uint %672 %uint_3 ; 0x0000618c
+        %890 = OpBitwiseXor %uint %888 %889 ; 0x000061a0
+        %891 = OpIAdd %uint %885 %890 ; 0x000061b4
+        %892 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %867 %867 %uint_15 ; 0x000061c8
+        %893 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %867 %867 %uint_13 ; 0x000061e4
+        %894 = OpBitwiseXor %uint %892 %893 ; 0x00006200
+        %895 = OpShiftRightLogical %uint %867 %uint_10 ; 0x00006214
+        %896 = OpBitwiseXor %uint %894 %895 ; 0x00006228
+        %897 = OpIAdd %uint %891 %896 ; 0x0000623c
+        %898 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %884 ; 0x00006250
+               OpStore %898 %897 Aligned 4 ; 0x00006264
+        %899 = OpBitwiseOr %ulong %198 %ulong_38 ; 0x00006278
+        %900 = OpIAdd %uint %672 %807 ; 0x0000628c
+        %901 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %687 %687 %uint_25 ; 0x000062a0
+        %902 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %687 %687 %uint_14 ; 0x000062bc
+        %903 = OpBitwiseXor %uint %901 %902 ; 0x000062d8
+        %904 = OpShiftRightLogical %uint %687 %uint_3 ; 0x000062ec
+        %905 = OpBitwiseXor %uint %903 %904 ; 0x00006300
+        %906 = OpIAdd %uint %900 %905 ; 0x00006314
+        %907 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %882 %882 %uint_15 ; 0x00006328
+        %908 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %882 %882 %uint_13 ; 0x00006344
+        %909 = OpBitwiseXor %uint %907 %908 ; 0x00006360
+        %910 = OpShiftRightLogical %uint %882 %uint_10 ; 0x00006374
+        %911 = OpBitwiseXor %uint %909 %910 ; 0x00006388
+        %912 = OpIAdd %uint %906 %911 ; 0x0000639c
+        %913 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %899 ; 0x000063b0
+               OpStore %913 %912 Aligned 4 ; 0x000063c4
+        %914 = OpBitwiseOr %ulong %198 %ulong_39 ; 0x000063d8
+        %915 = OpIAdd %uint %687 %822 ; 0x000063ec
+        %916 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %702 %702 %uint_25 ; 0x00006400
+        %917 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %702 %702 %uint_14 ; 0x0000641c
+        %918 = OpBitwiseXor %uint %916 %917 ; 0x00006438
+        %919 = OpShiftRightLogical %uint %702 %uint_3 ; 0x0000644c
+        %920 = OpBitwiseXor %uint %918 %919 ; 0x00006460
+        %921 = OpIAdd %uint %915 %920 ; 0x00006474
+        %922 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %897 %897 %uint_15 ; 0x00006488
+        %923 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %897 %897 %uint_13 ; 0x000064a4
+        %924 = OpBitwiseXor %uint %922 %923 ; 0x000064c0
+        %925 = OpShiftRightLogical %uint %897 %uint_10 ; 0x000064d4
+        %926 = OpBitwiseXor %uint %924 %925 ; 0x000064e8
+        %927 = OpIAdd %uint %921 %926 ; 0x000064fc
+        %928 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %914 ; 0x00006510
+               OpStore %928 %927 Aligned 4 ; 0x00006524
+        %929 = OpBitwiseOr %ulong %198 %ulong_40 ; 0x00006538
+        %930 = OpIAdd %uint %702 %837 ; 0x0000654c
+        %931 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %717 %717 %uint_25 ; 0x00006560
+        %932 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %717 %717 %uint_14 ; 0x0000657c
+        %933 = OpBitwiseXor %uint %931 %932 ; 0x00006598
+        %934 = OpShiftRightLogical %uint %717 %uint_3 ; 0x000065ac
+        %935 = OpBitwiseXor %uint %933 %934 ; 0x000065c0
+        %936 = OpIAdd %uint %930 %935 ; 0x000065d4
+        %937 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %912 %912 %uint_15 ; 0x000065e8
+        %938 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %912 %912 %uint_13 ; 0x00006604
+        %939 = OpBitwiseXor %uint %937 %938 ; 0x00006620
+        %940 = OpShiftRightLogical %uint %912 %uint_10 ; 0x00006634
+        %941 = OpBitwiseXor %uint %939 %940 ; 0x00006648
+        %942 = OpIAdd %uint %936 %941 ; 0x0000665c
+        %943 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %929 ; 0x00006670
+               OpStore %943 %942 Aligned 4 ; 0x00006684
+        %944 = OpBitwiseOr %ulong %198 %ulong_41 ; 0x00006698
+        %945 = OpIAdd %uint %717 %852 ; 0x000066ac
+        %946 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %732 %732 %uint_25 ; 0x000066c0
+        %947 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %732 %732 %uint_14 ; 0x000066dc
+        %948 = OpBitwiseXor %uint %946 %947 ; 0x000066f8
+        %949 = OpShiftRightLogical %uint %732 %uint_3 ; 0x0000670c
+        %950 = OpBitwiseXor %uint %948 %949 ; 0x00006720
+        %951 = OpIAdd %uint %945 %950 ; 0x00006734
+        %952 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %927 %927 %uint_15 ; 0x00006748
+        %953 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %927 %927 %uint_13 ; 0x00006764
+        %954 = OpBitwiseXor %uint %952 %953 ; 0x00006780
+        %955 = OpShiftRightLogical %uint %927 %uint_10 ; 0x00006794
+        %956 = OpBitwiseXor %uint %954 %955 ; 0x000067a8
+        %957 = OpIAdd %uint %951 %956 ; 0x000067bc
+        %958 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %944 ; 0x000067d0
+               OpStore %958 %957 Aligned 4 ; 0x000067e4
+        %959 = OpBitwiseOr %ulong %198 %ulong_42 ; 0x000067f8
+        %960 = OpIAdd %uint %732 %867 ; 0x0000680c
+        %961 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %747 %747 %uint_25 ; 0x00006820
+        %962 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %747 %747 %uint_14 ; 0x0000683c
+        %963 = OpBitwiseXor %uint %961 %962 ; 0x00006858
+        %964 = OpShiftRightLogical %uint %747 %uint_3 ; 0x0000686c
+        %965 = OpBitwiseXor %uint %963 %964 ; 0x00006880
+        %966 = OpIAdd %uint %960 %965 ; 0x00006894
+        %967 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %942 %942 %uint_15 ; 0x000068a8
+        %968 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %942 %942 %uint_13 ; 0x000068c4
+        %969 = OpBitwiseXor %uint %967 %968 ; 0x000068e0
+        %970 = OpShiftRightLogical %uint %942 %uint_10 ; 0x000068f4
+        %971 = OpBitwiseXor %uint %969 %970 ; 0x00006908
+        %972 = OpIAdd %uint %966 %971 ; 0x0000691c
+        %973 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %959 ; 0x00006930
+               OpStore %973 %972 Aligned 4 ; 0x00006944
+        %974 = OpBitwiseOr %ulong %198 %ulong_43 ; 0x00006958
+        %975 = OpIAdd %uint %747 %882 ; 0x0000696c
+        %976 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %762 %762 %uint_25 ; 0x00006980
+        %977 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %762 %762 %uint_14 ; 0x0000699c
+        %978 = OpBitwiseXor %uint %976 %977 ; 0x000069b8
+        %979 = OpShiftRightLogical %uint %762 %uint_3 ; 0x000069cc
+        %980 = OpBitwiseXor %uint %978 %979 ; 0x000069e0
+        %981 = OpIAdd %uint %975 %980 ; 0x000069f4
+        %982 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %957 %957 %uint_15 ; 0x00006a08
+        %983 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %957 %957 %uint_13 ; 0x00006a24
+        %984 = OpBitwiseXor %uint %982 %983 ; 0x00006a40
+        %985 = OpShiftRightLogical %uint %957 %uint_10 ; 0x00006a54
+        %986 = OpBitwiseXor %uint %984 %985 ; 0x00006a68
+        %987 = OpIAdd %uint %981 %986 ; 0x00006a7c
+        %988 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %974 ; 0x00006a90
+               OpStore %988 %987 Aligned 4 ; 0x00006aa4
+        %989 = OpBitwiseOr %ulong %198 %ulong_44 ; 0x00006ab8
+        %990 = OpIAdd %uint %762 %897 ; 0x00006acc
+        %991 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %777 %777 %uint_25 ; 0x00006ae0
+        %992 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %777 %777 %uint_14 ; 0x00006afc
+        %993 = OpBitwiseXor %uint %991 %992 ; 0x00006b18
+        %994 = OpShiftRightLogical %uint %777 %uint_3 ; 0x00006b2c
+        %995 = OpBitwiseXor %uint %993 %994 ; 0x00006b40
+        %996 = OpIAdd %uint %990 %995 ; 0x00006b54
+        %997 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %972 %972 %uint_15 ; 0x00006b68
+        %998 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %972 %972 %uint_13 ; 0x00006b84
+        %999 = OpBitwiseXor %uint %997 %998 ; 0x00006ba0
+       %1000 = OpShiftRightLogical %uint %972 %uint_10 ; 0x00006bb4
+       %1001 = OpBitwiseXor %uint %999 %1000 ; 0x00006bc8
+       %1002 = OpIAdd %uint %996 %1001 ; 0x00006bdc
+       %1003 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %989 ; 0x00006bf0
+               OpStore %1003 %1002 Aligned 4 ; 0x00006c04
+       %1004 = OpBitwiseOr %ulong %198 %ulong_45 ; 0x00006c18
+       %1005 = OpIAdd %uint %777 %912 ; 0x00006c2c
+       %1006 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %792 %792 %uint_25 ; 0x00006c40
+       %1007 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %792 %792 %uint_14 ; 0x00006c5c
+       %1008 = OpBitwiseXor %uint %1006 %1007 ; 0x00006c78
+       %1009 = OpShiftRightLogical %uint %792 %uint_3 ; 0x00006c8c
+       %1010 = OpBitwiseXor %uint %1008 %1009 ; 0x00006ca0
+       %1011 = OpIAdd %uint %1005 %1010 ; 0x00006cb4
+       %1012 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %987 %987 %uint_15 ; 0x00006cc8
+       %1013 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %987 %987 %uint_13 ; 0x00006ce4
+       %1014 = OpBitwiseXor %uint %1012 %1013 ; 0x00006d00
+       %1015 = OpShiftRightLogical %uint %987 %uint_10 ; 0x00006d14
+       %1016 = OpBitwiseXor %uint %1014 %1015 ; 0x00006d28
+       %1017 = OpIAdd %uint %1011 %1016 ; 0x00006d3c
+       %1018 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1004 ; 0x00006d50
+               OpStore %1018 %1017 Aligned 4 ; 0x00006d64
+       %1019 = OpBitwiseOr %ulong %198 %ulong_46 ; 0x00006d78
+       %1020 = OpIAdd %uint %792 %927 ; 0x00006d8c
+       %1021 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %807 %807 %uint_25 ; 0x00006da0
+       %1022 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %807 %807 %uint_14 ; 0x00006dbc
+       %1023 = OpBitwiseXor %uint %1021 %1022 ; 0x00006dd8
+       %1024 = OpShiftRightLogical %uint %807 %uint_3 ; 0x00006dec
+       %1025 = OpBitwiseXor %uint %1023 %1024 ; 0x00006e00
+       %1026 = OpIAdd %uint %1020 %1025 ; 0x00006e14
+       %1027 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1002 %1002 %uint_15 ; 0x00006e28
+       %1028 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1002 %1002 %uint_13 ; 0x00006e44
+       %1029 = OpBitwiseXor %uint %1027 %1028 ; 0x00006e60
+       %1030 = OpShiftRightLogical %uint %1002 %uint_10 ; 0x00006e74
+       %1031 = OpBitwiseXor %uint %1029 %1030 ; 0x00006e88
+       %1032 = OpIAdd %uint %1026 %1031 ; 0x00006e9c
+       %1033 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1019 ; 0x00006eb0
+               OpStore %1033 %1032 Aligned 4 ; 0x00006ec4
+       %1034 = OpBitwiseOr %ulong %198 %ulong_47 ; 0x00006ed8
+       %1035 = OpIAdd %uint %807 %942 ; 0x00006eec
+       %1036 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %822 %822 %uint_25 ; 0x00006f00
+       %1037 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %822 %822 %uint_14 ; 0x00006f1c
+       %1038 = OpBitwiseXor %uint %1036 %1037 ; 0x00006f38
+       %1039 = OpShiftRightLogical %uint %822 %uint_3 ; 0x00006f4c
+       %1040 = OpBitwiseXor %uint %1038 %1039 ; 0x00006f60
+       %1041 = OpIAdd %uint %1035 %1040 ; 0x00006f74
+       %1042 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1017 %1017 %uint_15 ; 0x00006f88
+       %1043 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1017 %1017 %uint_13 ; 0x00006fa4
+       %1044 = OpBitwiseXor %uint %1042 %1043 ; 0x00006fc0
+       %1045 = OpShiftRightLogical %uint %1017 %uint_10 ; 0x00006fd4
+       %1046 = OpBitwiseXor %uint %1044 %1045 ; 0x00006fe8
+       %1047 = OpIAdd %uint %1041 %1046 ; 0x00006ffc
+       %1048 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1034 ; 0x00007010
+               OpStore %1048 %1047 Aligned 4 ; 0x00007024
+       %1049 = OpBitwiseOr %ulong %198 %ulong_48 ; 0x00007038
+       %1050 = OpIAdd %uint %822 %957 ; 0x0000704c
+       %1051 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %837 %837 %uint_25 ; 0x00007060
+       %1052 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %837 %837 %uint_14 ; 0x0000707c
+       %1053 = OpBitwiseXor %uint %1051 %1052 ; 0x00007098
+       %1054 = OpShiftRightLogical %uint %837 %uint_3 ; 0x000070ac
+       %1055 = OpBitwiseXor %uint %1053 %1054 ; 0x000070c0
+       %1056 = OpIAdd %uint %1050 %1055 ; 0x000070d4
+       %1057 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1032 %1032 %uint_15 ; 0x000070e8
+       %1058 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1032 %1032 %uint_13 ; 0x00007104
+       %1059 = OpBitwiseXor %uint %1057 %1058 ; 0x00007120
+       %1060 = OpShiftRightLogical %uint %1032 %uint_10 ; 0x00007134
+       %1061 = OpBitwiseXor %uint %1059 %1060 ; 0x00007148
+       %1062 = OpIAdd %uint %1056 %1061 ; 0x0000715c
+       %1063 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1049 ; 0x00007170
+               OpStore %1063 %1062 Aligned 4 ; 0x00007184
+       %1064 = OpBitwiseOr %ulong %198 %ulong_49 ; 0x00007198
+       %1065 = OpIAdd %uint %837 %972 ; 0x000071ac
+       %1066 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %852 %852 %uint_25 ; 0x000071c0
+       %1067 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %852 %852 %uint_14 ; 0x000071dc
+       %1068 = OpBitwiseXor %uint %1066 %1067 ; 0x000071f8
+       %1069 = OpShiftRightLogical %uint %852 %uint_3 ; 0x0000720c
+       %1070 = OpBitwiseXor %uint %1068 %1069 ; 0x00007220
+       %1071 = OpIAdd %uint %1065 %1070 ; 0x00007234
+       %1072 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1047 %1047 %uint_15 ; 0x00007248
+       %1073 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1047 %1047 %uint_13 ; 0x00007264
+       %1074 = OpBitwiseXor %uint %1072 %1073 ; 0x00007280
+       %1075 = OpShiftRightLogical %uint %1047 %uint_10 ; 0x00007294
+       %1076 = OpBitwiseXor %uint %1074 %1075 ; 0x000072a8
+       %1077 = OpIAdd %uint %1071 %1076 ; 0x000072bc
+       %1078 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1064 ; 0x000072d0
+               OpStore %1078 %1077 Aligned 4 ; 0x000072e4
+       %1079 = OpBitwiseOr %ulong %198 %ulong_50 ; 0x000072f8
+       %1080 = OpIAdd %uint %852 %987 ; 0x0000730c
+       %1081 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %867 %867 %uint_25 ; 0x00007320
+       %1082 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %867 %867 %uint_14 ; 0x0000733c
+       %1083 = OpBitwiseXor %uint %1081 %1082 ; 0x00007358
+       %1084 = OpShiftRightLogical %uint %867 %uint_3 ; 0x0000736c
+       %1085 = OpBitwiseXor %uint %1083 %1084 ; 0x00007380
+       %1086 = OpIAdd %uint %1080 %1085 ; 0x00007394
+       %1087 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1062 %1062 %uint_15 ; 0x000073a8
+       %1088 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1062 %1062 %uint_13 ; 0x000073c4
+       %1089 = OpBitwiseXor %uint %1087 %1088 ; 0x000073e0
+       %1090 = OpShiftRightLogical %uint %1062 %uint_10 ; 0x000073f4
+       %1091 = OpBitwiseXor %uint %1089 %1090 ; 0x00007408
+       %1092 = OpIAdd %uint %1086 %1091 ; 0x0000741c
+       %1093 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1079 ; 0x00007430
+               OpStore %1093 %1092 Aligned 4 ; 0x00007444
+       %1094 = OpBitwiseOr %ulong %198 %ulong_51 ; 0x00007458
+       %1095 = OpIAdd %uint %867 %1002 ; 0x0000746c
+       %1096 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %882 %882 %uint_25 ; 0x00007480
+       %1097 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %882 %882 %uint_14 ; 0x0000749c
+       %1098 = OpBitwiseXor %uint %1096 %1097 ; 0x000074b8
+       %1099 = OpShiftRightLogical %uint %882 %uint_3 ; 0x000074cc
+       %1100 = OpBitwiseXor %uint %1098 %1099 ; 0x000074e0
+       %1101 = OpIAdd %uint %1095 %1100 ; 0x000074f4
+       %1102 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1077 %1077 %uint_15 ; 0x00007508
+       %1103 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1077 %1077 %uint_13 ; 0x00007524
+       %1104 = OpBitwiseXor %uint %1102 %1103 ; 0x00007540
+       %1105 = OpShiftRightLogical %uint %1077 %uint_10 ; 0x00007554
+       %1106 = OpBitwiseXor %uint %1104 %1105 ; 0x00007568
+       %1107 = OpIAdd %uint %1101 %1106 ; 0x0000757c
+       %1108 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1094 ; 0x00007590
+               OpStore %1108 %1107 Aligned 4 ; 0x000075a4
+       %1109 = OpBitwiseOr %ulong %198 %ulong_52 ; 0x000075b8
+       %1110 = OpIAdd %uint %882 %1017 ; 0x000075cc
+       %1111 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %897 %897 %uint_25 ; 0x000075e0
+       %1112 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %897 %897 %uint_14 ; 0x000075fc
+       %1113 = OpBitwiseXor %uint %1111 %1112 ; 0x00007618
+       %1114 = OpShiftRightLogical %uint %897 %uint_3 ; 0x0000762c
+       %1115 = OpBitwiseXor %uint %1113 %1114 ; 0x00007640
+       %1116 = OpIAdd %uint %1110 %1115 ; 0x00007654
+       %1117 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1092 %1092 %uint_15 ; 0x00007668
+       %1118 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1092 %1092 %uint_13 ; 0x00007684
+       %1119 = OpBitwiseXor %uint %1117 %1118 ; 0x000076a0
+       %1120 = OpShiftRightLogical %uint %1092 %uint_10 ; 0x000076b4
+       %1121 = OpBitwiseXor %uint %1119 %1120 ; 0x000076c8
+       %1122 = OpIAdd %uint %1116 %1121 ; 0x000076dc
+       %1123 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1109 ; 0x000076f0
+               OpStore %1123 %1122 Aligned 4 ; 0x00007704
+       %1124 = OpBitwiseOr %ulong %198 %ulong_53 ; 0x00007718
+       %1125 = OpIAdd %uint %897 %1032 ; 0x0000772c
+       %1126 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %912 %912 %uint_25 ; 0x00007740
+       %1127 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %912 %912 %uint_14 ; 0x0000775c
+       %1128 = OpBitwiseXor %uint %1126 %1127 ; 0x00007778
+       %1129 = OpShiftRightLogical %uint %912 %uint_3 ; 0x0000778c
+       %1130 = OpBitwiseXor %uint %1128 %1129 ; 0x000077a0
+       %1131 = OpIAdd %uint %1125 %1130 ; 0x000077b4
+       %1132 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1107 %1107 %uint_15 ; 0x000077c8
+       %1133 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1107 %1107 %uint_13 ; 0x000077e4
+       %1134 = OpBitwiseXor %uint %1132 %1133 ; 0x00007800
+       %1135 = OpShiftRightLogical %uint %1107 %uint_10 ; 0x00007814
+       %1136 = OpBitwiseXor %uint %1134 %1135 ; 0x00007828
+       %1137 = OpIAdd %uint %1131 %1136 ; 0x0000783c
+       %1138 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1124 ; 0x00007850
+               OpStore %1138 %1137 Aligned 4 ; 0x00007864
+       %1139 = OpBitwiseOr %ulong %198 %ulong_54 ; 0x00007878
+       %1140 = OpIAdd %uint %912 %1047 ; 0x0000788c
+       %1141 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %927 %927 %uint_25 ; 0x000078a0
+       %1142 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %927 %927 %uint_14 ; 0x000078bc
+       %1143 = OpBitwiseXor %uint %1141 %1142 ; 0x000078d8
+       %1144 = OpShiftRightLogical %uint %927 %uint_3 ; 0x000078ec
+       %1145 = OpBitwiseXor %uint %1143 %1144 ; 0x00007900
+       %1146 = OpIAdd %uint %1140 %1145 ; 0x00007914
+       %1147 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1122 %1122 %uint_15 ; 0x00007928
+       %1148 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1122 %1122 %uint_13 ; 0x00007944
+       %1149 = OpBitwiseXor %uint %1147 %1148 ; 0x00007960
+       %1150 = OpShiftRightLogical %uint %1122 %uint_10 ; 0x00007974
+       %1151 = OpBitwiseXor %uint %1149 %1150 ; 0x00007988
+       %1152 = OpIAdd %uint %1146 %1151 ; 0x0000799c
+       %1153 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1139 ; 0x000079b0
+               OpStore %1153 %1152 Aligned 4 ; 0x000079c4
+       %1154 = OpBitwiseOr %ulong %198 %ulong_55 ; 0x000079d8
+       %1155 = OpIAdd %uint %927 %1062 ; 0x000079ec
+       %1156 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %942 %942 %uint_25 ; 0x00007a00
+       %1157 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %942 %942 %uint_14 ; 0x00007a1c
+       %1158 = OpBitwiseXor %uint %1156 %1157 ; 0x00007a38
+       %1159 = OpShiftRightLogical %uint %942 %uint_3 ; 0x00007a4c
+       %1160 = OpBitwiseXor %uint %1158 %1159 ; 0x00007a60
+       %1161 = OpIAdd %uint %1155 %1160 ; 0x00007a74
+       %1162 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1137 %1137 %uint_15 ; 0x00007a88
+       %1163 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1137 %1137 %uint_13 ; 0x00007aa4
+       %1164 = OpBitwiseXor %uint %1162 %1163 ; 0x00007ac0
+       %1165 = OpShiftRightLogical %uint %1137 %uint_10 ; 0x00007ad4
+       %1166 = OpBitwiseXor %uint %1164 %1165 ; 0x00007ae8
+       %1167 = OpIAdd %uint %1161 %1166 ; 0x00007afc
+       %1168 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1154 ; 0x00007b10
+               OpStore %1168 %1167 Aligned 4 ; 0x00007b24
+       %1169 = OpBitwiseOr %ulong %198 %ulong_56 ; 0x00007b38
+       %1170 = OpIAdd %uint %942 %1077 ; 0x00007b4c
+       %1171 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %957 %957 %uint_25 ; 0x00007b60
+       %1172 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %957 %957 %uint_14 ; 0x00007b7c
+       %1173 = OpBitwiseXor %uint %1171 %1172 ; 0x00007b98
+       %1174 = OpShiftRightLogical %uint %957 %uint_3 ; 0x00007bac
+       %1175 = OpBitwiseXor %uint %1173 %1174 ; 0x00007bc0
+       %1176 = OpIAdd %uint %1170 %1175 ; 0x00007bd4
+       %1177 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1152 %1152 %uint_15 ; 0x00007be8
+       %1178 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1152 %1152 %uint_13 ; 0x00007c04
+       %1179 = OpBitwiseXor %uint %1177 %1178 ; 0x00007c20
+       %1180 = OpShiftRightLogical %uint %1152 %uint_10 ; 0x00007c34
+       %1181 = OpBitwiseXor %uint %1179 %1180 ; 0x00007c48
+       %1182 = OpIAdd %uint %1176 %1181 ; 0x00007c5c
+       %1183 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1169 ; 0x00007c70
+               OpStore %1183 %1182 Aligned 4 ; 0x00007c84
+       %1184 = OpBitwiseOr %ulong %198 %ulong_57 ; 0x00007c98
+       %1185 = OpIAdd %uint %957 %1092 ; 0x00007cac
+       %1186 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %972 %972 %uint_25 ; 0x00007cc0
+       %1187 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %972 %972 %uint_14 ; 0x00007cdc
+       %1188 = OpBitwiseXor %uint %1186 %1187 ; 0x00007cf8
+       %1189 = OpShiftRightLogical %uint %972 %uint_3 ; 0x00007d0c
+       %1190 = OpBitwiseXor %uint %1188 %1189 ; 0x00007d20
+       %1191 = OpIAdd %uint %1185 %1190 ; 0x00007d34
+       %1192 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1167 %1167 %uint_15 ; 0x00007d48
+       %1193 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1167 %1167 %uint_13 ; 0x00007d64
+       %1194 = OpBitwiseXor %uint %1192 %1193 ; 0x00007d80
+       %1195 = OpShiftRightLogical %uint %1167 %uint_10 ; 0x00007d94
+       %1196 = OpBitwiseXor %uint %1194 %1195 ; 0x00007da8
+       %1197 = OpIAdd %uint %1191 %1196 ; 0x00007dbc
+       %1198 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1184 ; 0x00007dd0
+               OpStore %1198 %1197 Aligned 4 ; 0x00007de4
+       %1199 = OpBitwiseOr %ulong %198 %ulong_58 ; 0x00007df8
+       %1200 = OpIAdd %uint %972 %1107 ; 0x00007e0c
+       %1201 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %987 %987 %uint_25 ; 0x00007e20
+       %1202 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %987 %987 %uint_14 ; 0x00007e3c
+       %1203 = OpBitwiseXor %uint %1201 %1202 ; 0x00007e58
+       %1204 = OpShiftRightLogical %uint %987 %uint_3 ; 0x00007e6c
+       %1205 = OpBitwiseXor %uint %1203 %1204 ; 0x00007e80
+       %1206 = OpIAdd %uint %1200 %1205 ; 0x00007e94
+       %1207 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1182 %1182 %uint_15 ; 0x00007ea8
+       %1208 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1182 %1182 %uint_13 ; 0x00007ec4
+       %1209 = OpBitwiseXor %uint %1207 %1208 ; 0x00007ee0
+       %1210 = OpShiftRightLogical %uint %1182 %uint_10 ; 0x00007ef4
+       %1211 = OpBitwiseXor %uint %1209 %1210 ; 0x00007f08
+       %1212 = OpIAdd %uint %1206 %1211 ; 0x00007f1c
+       %1213 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1199 ; 0x00007f30
+               OpStore %1213 %1212 Aligned 4 ; 0x00007f44
+       %1214 = OpBitwiseOr %ulong %198 %ulong_59 ; 0x00007f58
+       %1215 = OpIAdd %uint %987 %1122 ; 0x00007f6c
+       %1216 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1002 %1002 %uint_25 ; 0x00007f80
+       %1217 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1002 %1002 %uint_14 ; 0x00007f9c
+       %1218 = OpBitwiseXor %uint %1216 %1217 ; 0x00007fb8
+       %1219 = OpShiftRightLogical %uint %1002 %uint_3 ; 0x00007fcc
+       %1220 = OpBitwiseXor %uint %1218 %1219 ; 0x00007fe0
+       %1221 = OpIAdd %uint %1215 %1220 ; 0x00007ff4
+       %1222 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1197 %1197 %uint_15 ; 0x00008008
+       %1223 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1197 %1197 %uint_13 ; 0x00008024
+       %1224 = OpBitwiseXor %uint %1222 %1223 ; 0x00008040
+       %1225 = OpShiftRightLogical %uint %1197 %uint_10 ; 0x00008054
+       %1226 = OpBitwiseXor %uint %1224 %1225 ; 0x00008068
+       %1227 = OpIAdd %uint %1221 %1226 ; 0x0000807c
+       %1228 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1214 ; 0x00008090
+               OpStore %1228 %1227 Aligned 4 ; 0x000080a4
+       %1229 = OpBitwiseOr %ulong %198 %ulong_60 ; 0x000080b8
+       %1230 = OpIAdd %uint %1002 %1137 ; 0x000080cc
+       %1231 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1017 %1017 %uint_25 ; 0x000080e0
+       %1232 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1017 %1017 %uint_14 ; 0x000080fc
+       %1233 = OpBitwiseXor %uint %1231 %1232 ; 0x00008118
+       %1234 = OpShiftRightLogical %uint %1017 %uint_3 ; 0x0000812c
+       %1235 = OpBitwiseXor %uint %1233 %1234 ; 0x00008140
+       %1236 = OpIAdd %uint %1230 %1235 ; 0x00008154
+       %1237 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1212 %1212 %uint_15 ; 0x00008168
+       %1238 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1212 %1212 %uint_13 ; 0x00008184
+       %1239 = OpBitwiseXor %uint %1237 %1238 ; 0x000081a0
+       %1240 = OpShiftRightLogical %uint %1212 %uint_10 ; 0x000081b4
+       %1241 = OpBitwiseXor %uint %1239 %1240 ; 0x000081c8
+       %1242 = OpIAdd %uint %1236 %1241 ; 0x000081dc
+       %1243 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1229 ; 0x000081f0
+               OpStore %1243 %1242 Aligned 4 ; 0x00008204
+       %1244 = OpBitwiseOr %ulong %198 %ulong_61 ; 0x00008218
+       %1245 = OpIAdd %uint %1017 %1152 ; 0x0000822c
+       %1246 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1032 %1032 %uint_25 ; 0x00008240
+       %1247 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1032 %1032 %uint_14 ; 0x0000825c
+       %1248 = OpBitwiseXor %uint %1246 %1247 ; 0x00008278
+       %1249 = OpShiftRightLogical %uint %1032 %uint_3 ; 0x0000828c
+       %1250 = OpBitwiseXor %uint %1248 %1249 ; 0x000082a0
+       %1251 = OpIAdd %uint %1245 %1250 ; 0x000082b4
+       %1252 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1227 %1227 %uint_15 ; 0x000082c8
+       %1253 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1227 %1227 %uint_13 ; 0x000082e4
+       %1254 = OpBitwiseXor %uint %1252 %1253 ; 0x00008300
+       %1255 = OpShiftRightLogical %uint %1227 %uint_10 ; 0x00008314
+       %1256 = OpBitwiseXor %uint %1254 %1255 ; 0x00008328
+       %1257 = OpIAdd %uint %1251 %1256 ; 0x0000833c
+       %1258 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1244 ; 0x00008350
+               OpStore %1258 %1257 Aligned 4 ; 0x00008364
+       %1259 = OpBitwiseOr %ulong %198 %ulong_62 ; 0x00008378
+       %1260 = OpIAdd %uint %1032 %1167 ; 0x0000838c
+       %1261 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1047 %1047 %uint_25 ; 0x000083a0
+       %1262 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1047 %1047 %uint_14 ; 0x000083bc
+       %1263 = OpBitwiseXor %uint %1261 %1262 ; 0x000083d8
+       %1264 = OpShiftRightLogical %uint %1047 %uint_3 ; 0x000083ec
+       %1265 = OpBitwiseXor %uint %1263 %1264 ; 0x00008400
+       %1266 = OpIAdd %uint %1260 %1265 ; 0x00008414
+       %1267 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1242 %1242 %uint_15 ; 0x00008428
+       %1268 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1242 %1242 %uint_13 ; 0x00008444
+       %1269 = OpBitwiseXor %uint %1267 %1268 ; 0x00008460
+       %1270 = OpShiftRightLogical %uint %1242 %uint_10 ; 0x00008474
+       %1271 = OpBitwiseXor %uint %1269 %1270 ; 0x00008488
+       %1272 = OpIAdd %uint %1266 %1271 ; 0x0000849c
+       %1273 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1259 ; 0x000084b0
+               OpStore %1273 %1272 Aligned 4 ; 0x000084c4
+       %1274 = OpBitwiseOr %ulong %198 %ulong_63 ; 0x000084d8
+       %1275 = OpIAdd %uint %1047 %1182 ; 0x000084ec
+       %1276 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1062 %1062 %uint_25 ; 0x00008500
+       %1277 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1062 %1062 %uint_14 ; 0x0000851c
+       %1278 = OpBitwiseXor %uint %1276 %1277 ; 0x00008538
+       %1279 = OpShiftRightLogical %uint %1062 %uint_3 ; 0x0000854c
+       %1280 = OpBitwiseXor %uint %1278 %1279 ; 0x00008560
+       %1281 = OpIAdd %uint %1275 %1280 ; 0x00008574
+       %1282 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1257 %1257 %uint_15 ; 0x00008588
+       %1283 = OpFunctionCall %uint %spirv_llvm_fshl_i32 %1257 %1257 %uint_13 ; 0x000085a4
+       %1284 = OpBitwiseXor %uint %1282 %1283 ; 0x000085c0
+       %1285 = OpShiftRightLogical %uint %1257 %uint_10 ; 0x000085d4
+       %1286 = OpBitwiseXor %uint %1284 %1285 ; 0x000085e8
+       %1287 = OpIAdd %uint %1281 %1286 ; 0x000085fc
+       %1288 = OpInBoundsPtrAccessChain %_ptr_Generic_uint %130 %1274 ; 0x00008610
+               OpStore %1288 %1287 Aligned 4 ; 0x00008624
+               OpLifetimeStop %165 64 ; 0x00008638
+               OpBranch %143 ; 0x00008644
+        %143 = OpLabel ; 0x0000864c
+               OpReturn ; 0x00008654
+               OpFunctionEnd ; 0x00008658
+%__itt_offload_wi_finish_wrapper = OpFunction %void Inline %25 ; 0x0000865c
+       %1322 = OpLabel ; 0x00008670
+       %1325 = OpVariable %_ptr_Function__arr_ulong_ulong_3 Function ; 0x00008678
+       %1327 = OpIEqual %bool %1326 %uchar_0 ; 0x00008688
+               OpBranchConditional %1327 %1324 %1323 ; 0x0000869c
+       %1323 = OpLabel ; 0x000086ac
+       %1328 = OpBitcast %_ptr_Function_uchar %1325 ; 0x000086b4
+               OpLifetimeStart %1328 24 ; 0x000086c4
+       %1329 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1325 %ulong_0 %ulong_0 ; 0x000086d0
+       %1330 = OpPtrCastToGeneric %_ptr_Generic_ulong %1329 ; 0x000086e8
+       %1331 = OpLoad %v3ulong %__spirv_BuiltInWorkgroupId Aligned 32 ; 0x000086f8
+       %1332 = OpCompositeExtract %ulong %1331 0 ; 0x00008710
+               OpStore %1329 %1332 Aligned 8 ; 0x00008724
+       %1333 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1325 %ulong_0 %ulong_1 ; 0x00008738
+       %1334 = OpCompositeExtract %ulong %1331 1 ; 0x00008750
+               OpStore %1333 %1334 Aligned 8 ; 0x00008764
+       %1335 = OpInBoundsPtrAccessChain %_ptr_Function_ulong %1325 %ulong_0 %ulong_2 ; 0x00008778
+       %1336 = OpCompositeExtract %ulong %1331 2 ; 0x00008790
+               OpStore %1335 %1336 Aligned 8 ; 0x000087a4
+       %1337 = OpLoad %ulong %__spirv_BuiltInGlobalLinearId Aligned 8 ; 0x000087b8
+       %1342 = OpFunctionCall %void %__itt_offload_wi_finish_stub %1330 %1337 ; 0x000087d0
+               OpLifetimeStop %1328 24 ; 0x000087e8
+               OpBranch %1324 ; 0x000087f4
+       %1324 = OpLabel ; 0x000087fc
+               OpReturn ; 0x00008804
+               OpFunctionEnd ; 0x00008808
+%spirv_llvm_bswap_i32 = OpFunction %uint None %292 ; 0x0000880c
+        %294 = OpFunctionParameter %uint ; 0x00008820
+      %entry = OpLabel ; 0x0000882c
+    %bswap_4 = OpShiftLeftLogical %uint %294 %uint_24 ; 0x00008834
+    %bswap_3 = OpShiftLeftLogical %uint %294 %uint_8 ; 0x00008848
+    %bswap_2 = OpShiftRightLogical %uint %294 %uint_8 ; 0x0000885c
+    %bswap_1 = OpShiftRightLogical %uint %294 %uint_24 ; 0x00008870
+ %bswap_and3 = OpBitwiseAnd %uint %bswap_3 %uint_16711680 ; 0x00008884
+ %bswap_and2 = OpBitwiseAnd %uint %bswap_2 %uint_65280 ; 0x00008898
+  %bswap_or1 = OpBitwiseOr %uint %bswap_4 %bswap_and3 ; 0x000088ac
+  %bswap_or2 = OpBitwiseOr %uint %bswap_and2 %bswap_1 ; 0x000088c0
+  %bswap_i32 = OpBitwiseOr %uint %bswap_or1 %bswap_or2 ; 0x000088d4
+               OpReturnValue %bswap_i32 ; 0x000088e8
+               OpFunctionEnd ; 0x000088f0
+%spirv_llvm_fshl_i32 = OpFunction %uint None %557 ; 0x000088f4
+        %559 = OpFunctionParameter %uint ; 0x00008908
+        %560 = OpFunctionParameter %uint ; 0x00008914
+        %561 = OpFunctionParameter %uint ; 0x00008920
+     %rotate = OpLabel ; 0x0000892c
+       %1372 = OpUMod %uint %561 %uint_32 ; 0x00008934
+       %1373 = OpShiftLeftLogical %uint %559 %1372 ; 0x00008948
+       %1374 = OpISub %uint %uint_32 %1372 ; 0x0000895c
+       %1375 = OpShiftRightLogical %uint %560 %1374 ; 0x00008970
+       %1376 = OpBitwiseOr %uint %1373 %1375 ; 0x00008984
+               OpReturnValue %1376 ; 0x00008998
+               OpFunctionEnd ; 0x000089a0
+%__itt_offload_wi_start_stub = OpFunction %void DontInline|OptNoneINTEL %1316 ; 0x000089a4
+       %1318 = OpFunctionParameter %_ptr_Generic_ulong ; 0x000089b8
+       %1319 = OpFunctionParameter %ulong ; 0x000089c4
+       %1320 = OpFunctionParameter %uint ; 0x000089d0
+       %1343 = OpLabel ; 0x000089dc
+       %1345 = OpVariable %_ptr_Function__ptr_Generic_ulong Function ; 0x000089e4
+       %1346 = OpVariable %_ptr_Function_ulong Function ; 0x000089f4
+       %1348 = OpVariable %_ptr_Function_uint Function ; 0x00008a04
+       %1350 = OpPtrCastToGeneric %_ptr_Generic__ptr_Generic_ulong %1345 ; 0x00008a14
+       %1351 = OpPtrCastToGeneric %_ptr_Generic_ulong %1346 ; 0x00008a24
+       %1352 = OpPtrCastToGeneric %_ptr_Generic_uint %1348 ; 0x00008a34
+               OpStore %1350 %1318 Aligned 8 ; 0x00008a44
+               OpStore %1351 %1319 Aligned 8 ; 0x00008a58
+               OpStore %1352 %1320 Aligned 4 ; 0x00008a6c
+               OpReturn ; 0x00008a80
+               OpFunctionEnd ; 0x00008a84
+%__itt_offload_wi_finish_stub = OpFunction %void DontInline|OptNoneINTEL %1338 ; 0x00008a88
+       %1340 = OpFunctionParameter %_ptr_Generic_ulong ; 0x00008a9c
+       %1341 = OpFunctionParameter %ulong ; 0x00008aa8
+       %1353 = OpLabel ; 0x00008ab4
+       %1354 = OpVariable %_ptr_Function__ptr_Generic_ulong Function ; 0x00008abc
+       %1355 = OpVariable %_ptr_Function_ulong Function ; 0x00008acc
+       %1356 = OpPtrCastToGeneric %_ptr_Generic__ptr_Generic_ulong %1354 ; 0x00008adc
+       %1357 = OpPtrCastToGeneric %_ptr_Generic_ulong %1355 ; 0x00008aec
+               OpStore %1356 %1340 Aligned 8 ; 0x00008afc
+               OpStore %1357 %1341 Aligned 8 ; 0x00008b10
+               OpReturn ; 0x00008b24
+               OpFunctionEnd ; 0x00008b28

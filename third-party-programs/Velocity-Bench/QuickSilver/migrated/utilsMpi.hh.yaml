@@ -1,0 +1,82 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/utilsMpi.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/utilsMpi.hh'
+    Offset:          2789
+    Length:          0
+    ReplacementText: ' dpct_type_169390'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/utilsMpi.hh'
+    Digest:          b0026dd3148b2f5b3e6166f0ace78f9d
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

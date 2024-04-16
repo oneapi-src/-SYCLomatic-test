@@ -1,0 +1,145 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/CycleTracking.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          5270
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          5361
+    Length:          101
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          6947
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          7042
+    Length:          100
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          7926
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          8017
+    Length:          96
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          8738
+    Length:          0
+    ReplacementText: "\ninline HOST_DEVICE_CUDA void CycleTrackingFunction_host_ct3(MonteCarlo *monteCarlo, MC_Particle &mc_particle, int particle_index, ParticleVault *processingVault, ParticleVault *processedVault, int *tallyArray)\n{\n    bool keepTrackingThisParticle = true;\n    unsigned int tally_index = (particle_index) % monteCarlo->_tallies->GetNumBalanceReplications();\n    unsigned int flux_tally_index = (particle_index) % monteCarlo->_tallies->GetNumFluxReplications();\n    unsigned int cell_tally_index = (particle_index) % monteCarlo->_tallies->GetNumCellTallyReplications();\n\n    int i1 = 0;\n    // The while loop will exit after a particle reaches census or goes through MaxIters iterations, whichever comes first. If a particle reaches MaxIters it will be added to the ExtraVaults and processed in a later kernel. MaxIt can be defined in the makefile, otherwise it defaults to a large number that should ensure that it is never reached.\n    int MaxIters = MaxIt;\n\n    do\n    {\n        // Determine the outcome of a particle at the end of this segment such as:\n        //\n        //   (0) Undergo a collision within the current cell,\n        //   (1) Cross a facet of the current cell,\n        //   (2) Reach the end of the time step and enter census,\n        //\n        MC_Segment_Outcome_type::Enum segment_outcome = MC_Segment_Outcome_type::Max_Number;\n        i1 += 1;\n        if (keepTrackingThisParticle)\n        {\n\n#ifdef EXPONENTIAL_TALLY\n            monteCarlo->_tallies->TallyCellValue(exp(rngSample(&mc_particle.random_number_seed)), mc_particle.domain, cell_tally_index, mc_particle.cell);\n#endif\n            segment_outcome = MC_Segment_Outcome(monteCarlo, mc_particle, flux_tally_index);\n\n\n            ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._numSegments);\n\n\n\n        mc_particle.num_segments += 1.;  /* Track the number of segments this particle has\n                                            undergone this cycle on all processes. */\n        // segment_outcome = keepTrackingThisParticle ? segment_outcome : MC_Segment_Outcome_type::Max_Number;\n        }\n        switch (segment_outcome)\n        {\n\n        case MC_Segment_Outcome_type::Collision:\n        {\n            // The particle undergoes a collision event producing:\n            //   (0) Other-than-one same-species secondary particle, or\n            //   (1) Exactly one same-species secondary particle.\n            if (CollisionEvent(monteCarlo, mc_particle, tally_index, particle_index, tallyArray) == MC_Collision_Event_Return::Continue_Tracking)\n            {\n                keepTrackingThisParticle = true;\n            }\n            else\n            {\n                keepTrackingThisParticle = false;\n            }\n        }\n        break;\n\n        case MC_Segment_Outcome_type::Facet_Crossing:\n        {\n            // The particle has reached a cell facet.\n            MC_Tally_Event::Enum facet_crossing_type = MC_Facet_Crossing_Event(mc_particle, monteCarlo, particle_index, processingVault);\n\n            if (facet_crossing_type == MC_Tally_Event::Facet_Crossing_Transit_Exit)\n            {\n                keepTrackingThisParticle = true; // Transit Event\n            }\n            else if (facet_crossing_type == MC_Tally_Event::Facet_Crossing_Escape)\n            {\n\n                ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._escape);\n\n\n                mc_particle.last_event = MC_Tally_Event::Facet_Crossing_Escape;\n                mc_particle.species = -1;\n                keepTrackingThisParticle = false;\n            }\n            else if (facet_crossing_type == MC_Tally_Event::Facet_Crossing_Reflection)\n            {\n                MCT_Reflect_Particle(monteCarlo, mc_particle);\n                keepTrackingThisParticle = true;\n            }\n            else\n            {\n                // Enters an adjacent cell in an off-processor domain.\n                keepTrackingThisParticle = false;\n            }\n        }\n        break;\n\n        case MC_Segment_Outcome_type::Census:\n        {\n            // The particle has reached the end of the time step.\n            processedVault->pushParticle(mc_particle);\n\n            ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._census);\n\n\n            keepTrackingThisParticle = false;\n        }\n        break;\n\n        case MC_Segment_Outcome_type::Max_Number:\n        {\n\n            keepTrackingThisParticle = false;\n        }\n        break;\n\n        default:\n            qs_assert(false);\n            keepTrackingThisParticle = false;\n            break; // should this be an error\n        }\n    } while (keepTrackingThisParticle && i1 < MaxIt);\n\n    if (keepTrackingThisParticle == false)\n    {\n        processingVault->invalidateParticle(particle_index);\n    }\n    else\n    {\n        monteCarlo->_particleVaultContainer->addExtraParticle(mc_particle);\n    }\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Offset:          8740
+    Length:          0
+    ReplacementText: "/*\nDPCT1110:32: The total declared local variable size in device function CycleTrackingGuts exceeds 128 bytes and may cause high register pressure. Consult with your hardware vendor to find the total register size available and adjust the code, or use smaller sub-group size to avoid high register pressure.\n*/\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CycleTracking.hh'
+    Digest:          988d9764f5170ed6e4181d97f202ea12
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

@@ -7,7 +7,7 @@
     </files>
     <rules>
         <optlevelRule excludeOptlevelNameString="acc" />
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
     </rules>
 </test>

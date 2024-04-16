@@ -4,12 +4,12 @@
     <description>test</description>
     <files>
         <file path="feature_case/ccl/${testName}.cu" />
-        <platformRule OSFamily="Windows" runOnThisPlatform="false" />
-        <optlevelRule excludeOptlevelNameString="usmnone" />
     </files>
     <rules>
+        <platformRule OSFamily="Windows" runOnThisPlatform="false" />
+        <optlevelRule excludeOptlevelNameString="usmnone" />
         <optlevelRule excludeOptlevelNameString="cpu" />
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>
 

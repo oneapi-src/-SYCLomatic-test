@@ -1,0 +1,17 @@
+[
+    {
+        "command": "nvcc -c  -D__CUDACC__=1 main.cu",
+        "directory": ".",
+        "file": "main.cu"
+    },
+    {
+        "command": "nvcc -c  -D__CUDACC__=1 cuda_src.cu",
+        "directory": ".",
+        "file": "cuda_src.cu"
+    },
+    {
+        "command": "nvcc -c  -D__CUDACC__=1 src.cpp",
+        "directory": ".",
+        "file": "src.cpp"
+    }
+]

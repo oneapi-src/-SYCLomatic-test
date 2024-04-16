@@ -127,7 +127,6 @@ void test_cusparseSetGetStream() {
   handle = stream;
   handle = nullptr;
   printf("SetGetStream pass\n");
-  test_passed = true;
 }
 
 void test_cusparseTcsrmv_ge() {
@@ -686,67 +685,6 @@ void test_cusparseTcsrmm() {
     printf("Tcsrmm fail\n");
     test_passed = false;
   }
-}
-
-void test_cusparseTcsrsv() {
-  dpct::device_ext &dev_ct1 = dpct::get_current_device();
-  sycl::queue &q_ct1 = dev_ct1.default_queue();
-  std::vector<float> a_val_vec = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-  Data<float> a_s_val(a_val_vec.data(), 9);
-  Data<double> a_d_val(a_val_vec.data(), 9);
-  Data<sycl::float2> a_c_val(a_val_vec.data(), 9);
-  Data<sycl::double2> a_z_val(a_val_vec.data(), 9);
-  std::vector<float> a_row_ptr_vec = {0, 3, 4, 7, 9};
-  Data<int> a_row_ptr(a_row_ptr_vec.data(), 5);
-  std::vector<float> a_col_ind_vec = {0, 2, 3, 1, 0, 2, 3, 1, 3};
-  Data<int> a_col_ind(a_col_ind_vec.data(), 9);
-
-  sycl::queue *handle;
-  handle = &q_ct1;
-  std::shared_ptr<dpct::sparse::optimize_info> info;
-  info = std::make_shared<dpct::sparse::optimize_info>();
-
-  std::shared_ptr<dpct::sparse::matrix_info> descrA;
-  descrA = std::make_shared<dpct::sparse::matrix_info>();
-  descrA->set_index_base(oneapi::mkl::index_base::zero);
-  descrA->set_matrix_type(dpct::sparse::matrix_info::matrix_type::tr);
-
-  a_s_val.H2D();
-  a_d_val.H2D();
-  a_c_val.H2D();
-  a_z_val.H2D();
-  a_row_ptr.H2D();
-  a_col_ind.H2D();
-
-  dpct::sparse::optimize_csrsv(*handle, oneapi::mkl::transpose::nontrans, 4,
-                               descrA, (float *)a_s_val.d_data,
-                               (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
-                               info);
-  dpct::sparse::optimize_csrsv(*handle, oneapi::mkl::transpose::nontrans, 4,
-                               descrA, (double *)a_d_val.d_data,
-                               (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
-                               info);
-  if (run_complex_datatype) {
-    dpct::sparse::optimize_csrsv(*handle, oneapi::mkl::transpose::nontrans, 4,
-                                 descrA, (sycl::float2 *)a_c_val.d_data,
-                                 (int *)a_row_ptr.d_data,
-                                 (int *)a_col_ind.d_data, info);
-    dpct::sparse::optimize_csrsv(*handle, oneapi::mkl::transpose::nontrans, 4,
-                                 descrA, (sycl::double2 *)a_z_val.d_data,
-                                 (int *)a_row_ptr.d_data,
-                                 (int *)a_col_ind.d_data, info);
-  }
-
-  q_ct1.wait();
-  info.reset();
-  /*
-  DPCT1026:24: The call to cusparseDestroyMatDescr was removed because this call
-  is redundant in SYCL.
-  */
-  handle = nullptr;
-
-  printf("Tcsrsv pass\n");
-  test_passed = true;
 }
 
 void test_cusparseSpMV() {
@@ -1838,7 +1776,7 @@ void test_cusparseSpSV() {
   Data<sycl::double2> a_z_val(a_val_vec.data(), 6);
   std::vector<float> a_row_ptr_vec = {0, 3, 5, 6};
   Data<int> a_row_ptr(a_row_ptr_vec.data(), 4);
-  std::vector<float> a_col_ind_vec = {0, 1, 2, 1, 2, 3};
+  std::vector<float> a_col_ind_vec = {0, 1, 2, 1, 2, 2};
   Data<int> a_col_ind(a_col_ind_vec.data(), 6);
 
   std::vector<float> b_vec = {9, 11, 3};
@@ -2088,8 +2026,7 @@ int main() {
   test_cusparseTcsrmv_ge();
   test_cusparseTcsrmv_sy();
   test_cusparseTcsrmv_tr();
-  // test_cusparseTcsrmm(); // Re-enable this test until MKL issue fixed
-  test_cusparseTcsrsv();
+  test_cusparseTcsrmm();
   test_cusparseSpMV();
   test_cusparseSpMM();
   test_cusparseTcsrmv_mp();

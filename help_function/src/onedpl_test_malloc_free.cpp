@@ -39,7 +39,7 @@ int test_malloc_free_on_device(sycl::queue q, PolicyOrTag policy_or_tag,
                                TestVoidMalloc) {
   using alloc_t = std::conditional_t<TestVoidMalloc::value, void, T>;
   int failed_tests = 0;
-  dpct::tagged_pointer<dpct::device_sys_tag, alloc_t> ptr;
+  dpct::tagged_pointer<alloc_t, dpct::device_sys_tag> ptr;
   if constexpr (TestVoidMalloc::value) {
     ptr = dpct::malloc(policy_or_tag, num_elements * sizeof(T));
   } else {
@@ -76,7 +76,7 @@ template <typename T, typename PolicyOrTag, typename TestVoidMalloc>
 int test_malloc_free_on_host(PolicyOrTag policy_or_tag, std::string test_name,
                              std::size_t num_elements, TestVoidMalloc) {
   using alloc_t = std::conditional_t<TestVoidMalloc::value, void, T>;
-  dpct::tagged_pointer<dpct::host_sys_tag, alloc_t> ptr;
+  dpct::tagged_pointer<alloc_t, dpct::host_sys_tag> ptr;
   if constexpr (TestVoidMalloc::value) {
     ptr = dpct::malloc(policy_or_tag, num_elements * sizeof(T));
   } else {

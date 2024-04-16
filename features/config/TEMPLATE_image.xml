@@ -5,8 +5,5 @@
     <files>
         <file path="feature_case/image/${testName}.cu" />
     </files>
-    <rules>
-      <optlevelRule excludeOptlevelNameString="cuda_backend" />
-    </rules>
 </test>
 

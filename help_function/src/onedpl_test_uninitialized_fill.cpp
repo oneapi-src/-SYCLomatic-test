@@ -20,6 +20,9 @@
 
 #include <sycl/sycl.hpp>
 
+// TODO: If this test remains stable, then we may remove this macro entirely.
+#define VERBOSE_DEBUG
+
 struct Int
 {
     Int(int x) : val(x) {}
@@ -29,15 +32,6 @@ struct Int
 template<typename String, typename _T1, typename _T2>
 int ASSERT_EQUAL(String msg, _T1&& X, _T2&& Y) {
     if(X!=Y) {
-        std::cout << "FAIL: " << msg << " - (" << X << "," << Y << ")" << std::endl;
-        return 1;
-    }
-    return 0;
-}
-
-template<typename String, typename _T1, typename _T2>
-int ASSERT_NOT_EQUAL(String msg, _T1&& X, _T2&& Y) {
-    if(X==Y) {
         std::cout << "FAIL: " << msg << " - (" << X << "," << Y << ")" << std::endl;
         return 1;
     }
@@ -86,11 +80,13 @@ int main() {
 
     // test 2/2
 
-    Int obj2(12);
+    Int obj2(4);
+    Int obj3(12);
     dpct::device_pointer<Int> array2 = dpct::malloc_device<Int>(N * sizeof(Int));
 
     // call algorithm
-    std::uninitialized_fill(oneapi::dpl::execution::make_device_policy<>(dpct::get_default_queue()), array2 + 8, array2 + N, obj2);
+    std::uninitialized_fill(oneapi::dpl::execution::make_device_policy<>(dpct::get_default_queue()), array2, array2 + 8, obj2);
+    std::uninitialized_fill(oneapi::dpl::execution::make_device_policy<>(dpct::get_default_queue()), array2 + 8, array2 + N, obj3);
 
     dpct::get_default_queue().wait();
 
@@ -103,12 +99,30 @@ int main() {
     dpct::get_default_queue().wait();
 
     test_name = "uninitialized_fill with USM allocation 2";
+    int test2_num_failing = 0;
     for (int i = 0; i != N; ++i) {
         if (i < 8)
-            num_failing += ASSERT_NOT_EQUAL(test_name, host_array[i].val, 12);
+            test2_num_failing += ASSERT_EQUAL(test_name, host_array[i].val, obj2.val);
         else
-            num_failing += ASSERT_EQUAL(test_name, host_array[i].val, 12);
+            test2_num_failing += ASSERT_EQUAL(test_name, host_array[i].val, obj3.val);
     }
+    num_failing += test2_num_failing;
+#ifdef VERBOSE_DEBUG
+    if (test2_num_failing > 0) {
+        std::cout << test_name << " Expected: ";
+        for (int i = 0; i != N; ++i) {
+            if (i < 8)
+                std::cout << obj2.val << " ";
+            else
+                std::cout << obj3.val << " ";
+        }
+        std::cout << std::endl << test_name << " Actual: ";
+        for (int i = 0; i != N; ++i) {
+                std::cout << host_array[i].val << " ";
+        }
+        std::cout << std::endl;
+    }
+#endif
 
     failed_tests += test_passed(num_failing, test_name);
 

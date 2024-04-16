@@ -1,7 +1,0 @@
-[
-    {
-        "command": "nvcc hello1.c",
-        "directory": "directory_placeholder",
-        "file": ""
-    }
-]

@@ -6,6 +6,6 @@
         <file path="feature_case/remove_unnecessary_wait/${testName}.cu" />
     </files>
     <rules>
-      <optlevelRule excludeOptlevelNameString="cuda_backend" />
+      <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

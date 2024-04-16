@@ -7,6 +7,7 @@
         <test testName="test_soft_link_folder" configFile="config/test_soft_link_folder.xml" />
         <test testName="execute_from_cuda_path" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="execute_from_bundle_root" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="bt-asm-optimize-on-cudabackend" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-cdb-default-out-folder" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-ct-default-out-folder" configFile="config/bt-ct-default-out-folder.xml" />
         <test testName="ngt-check-cannot-parse" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -79,8 +80,8 @@
         <test testName="ngt-invalid-json6" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-json7" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-json8" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="ngt-invalid-json9" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="ngt-invalid-json10" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="standard-compilation-db-json1" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="standard-compilation-db-json2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="integer-overflow" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-suppress-warnings" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-report-only" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -115,7 +116,6 @@
         <test testName="bt-yaml-without-ct-version" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-ct-version" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-options1" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="bt-yaml-with-different-options2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-options3" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="relative_path_test" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-explicit-namespace1" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -124,13 +124,14 @@
         <test testName="bt-use-explicit-namespace1" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace3" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="bt-use-explicit-namespace4" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace5" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace6" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-invalid-cuda-version" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="bt-new-cuda-version" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-modified-yaml" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-check-warning1083" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-check-warning1118" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="bt-check-warning1026" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-unsupported-type-function" configFile="config/TEMPLATE_behavior_tests_after_9.2.xml" />
         <test testName="change-filename-extension" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="helper_function_preference_no_queue_device" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -138,6 +139,8 @@
         <test testName="check-windows-version" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="query-api-mapping" configFile="config/TEMPLATE_behavior_tests_after_11.5.xml" />
         <test testName="query-api-mapping-linux" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="query-api-mapping-linux-after10.2" configFile="config/TEMPLATE_behavior_tests_lin_after_10.2.xml" />
+        <test testName="query-api-mapping-linux-after11.5" configFile="config/TEMPLATE_behavior_tests_lin_after_11.5.xml" />
         <test testName="ngt-invalid-experimental-features" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-UDR-path" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-UDR-keyword" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -158,8 +161,14 @@
         <test testName="open-source-mkl-compile" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-gen-helper-function" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="bt-language-warning" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <!-- <test testName="bt-check-unexpected-message" configFile="config/TEMPLATE_behavior_tests.xml" /> -->
+        <test testName="bt-check-unexpected-message" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="bt-no-dpct-helper-function" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="cmp-cmds-linker-entry-src-files" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="cmake_dpct_helper_compile_sycl_code" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="cmake_dpct_helper_sycl_compile" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="user-defined-sycl-file-extension" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="trap" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="analysis-mode" configFile="config/TEMPLATE_behavior_tests.xml" />
     </tests>
 
 </suite>

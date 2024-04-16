@@ -1,5 +1,8 @@
 name: Linux Github Action CI
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches:
@@ -28,6 +31,7 @@ jobs:
           - test_suite: features
           - test_suite: api_coverage
           - test_suite: behavior_tests
+          - test_suite: applications
     steps:
       - name: Process ENV
         id: process_env

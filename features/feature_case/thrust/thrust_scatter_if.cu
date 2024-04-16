@@ -158,6 +158,145 @@ void test_6() {
   printf("test_6 run pass!\n");
 }
 
+void test_7() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  thrust::scatter_if(thrust::host, V, V + 8, M, S, D);
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (D[i] != ref[i]) {
+      printf("test_7 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_7 run pass!\n");
+}
+
+void test_8() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  is_even pred;
+  thrust::scatter_if(V, V + 8, M, S, D);
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (D[i] != ref[i]) {
+      printf("test_8 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_8 run pass!\n");
+}
+
+void test_9() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  thrust::device_vector<int> d_V(V, V + N);
+  thrust::device_vector<int> d_M(M, M + N);
+  thrust::device_vector<int> d_S(S, S + N);
+  thrust::device_vector<int> d_D(D, D + N);
+
+  thrust::scatter_if(thrust::device, d_V.begin(), d_V.end(), d_M.begin(),
+                     d_S.begin(), d_D.begin());
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (d_D[i] != ref[i]) {
+      printf("test_9 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_9 run pass!\n");
+}
+
+void test_10() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  thrust::device_vector<int> d_V(V, V + N);
+  thrust::device_vector<int> d_M(M, M + N);
+  thrust::device_vector<int> d_S(S, S + N);
+  thrust::device_vector<int> d_D(D, D + N);
+
+  thrust::scatter_if(d_V.begin(), d_V.end(), d_M.begin(), d_S.begin(),
+                     d_D.begin());
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (d_D[i] != ref[i]) {
+      printf("test_10 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_10 run pass!\n");
+}
+
+void test_11() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  thrust::host_vector<int> d_V(V, V + N);
+  thrust::host_vector<int> d_M(M, M + N);
+  thrust::host_vector<int> d_S(S, S + N);
+  thrust::host_vector<int> d_D(D, D + N);
+
+  thrust::scatter_if(thrust::host, d_V.begin(), d_V.end(), d_M.begin(),
+                     d_S.begin(), d_D.begin());
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (d_D[i] != ref[i]) {
+      printf("test_11 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_11 run pass!\n");
+}
+
+void test_12() {
+  const int N = 8;
+  int V[N] = {10, 20, 30, 40, 50, 60, 70, 80};
+  int M[N] = {0, 5, 1, 6, 2, 7, 3, 4};
+  int S[N] = {1, 0, 1, 0, 1, 0, 1, 0};
+  int D[N] = {0, 0, 0, 0, 0, 0, 0, 0};
+  thrust::host_vector<int> d_V(V, V + N);
+  thrust::host_vector<int> d_M(M, M + N);
+  thrust::host_vector<int> d_S(S, S + N);
+  thrust::host_vector<int> d_D(D, D + N);
+
+  thrust::scatter_if(d_V.begin(), d_V.end(), d_M.begin(), d_S.begin(),
+                     d_D.begin());
+
+  int ref[N] = {10, 30, 50, 70, 0, 0, 0, 0};
+
+  for (int i = 0; i < N; i++) {
+    if (d_D[i] != ref[i]) {
+      printf("test_12 run failed\n");
+      exit(-1);
+    }
+  }
+  printf("test_12 run pass!\n");
+}
+
 int main() {
   test_1();
   test_2();
@@ -167,6 +306,15 @@ int main() {
 
   test_5();
   test_6();
+
+  test_7();
+  test_8();
+
+  test_9();
+  test_10();
+
+  test_11();
+  test_12();
 
   return 0;
 }

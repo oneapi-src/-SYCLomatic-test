@@ -118,7 +118,7 @@ void test_cusparseSpSV() {
   Data<double2> a_z_val(a_val_vec.data(), 6);
   std::vector<float> a_row_ptr_vec = {0, 3, 5, 6};
   Data<int> a_row_ptr(a_row_ptr_vec.data(), 4);
-  std::vector<float> a_col_ind_vec = {0, 1, 2, 1, 2, 3};
+  std::vector<float> a_col_ind_vec = {0, 1, 2, 1, 2, 2};
   Data<int> a_col_ind(a_col_ind_vec.data(), 6);
 
   std::vector<float> b_vec = {9, 11, 3};

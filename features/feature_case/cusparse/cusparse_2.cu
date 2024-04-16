@@ -113,7 +113,6 @@ void test_cusparseSetGetStream() {
   cusparseSetStream(handle, stream);
   cusparseDestroy(handle);
   printf("SetGetStream pass\n");
-  test_passed = true;
 }
 
 void test_cusparseTcsrmv_ge() {
@@ -494,50 +493,6 @@ void test_cusparseTcsrmm() {
   }
 }
 
-void test_cusparseTcsrsv() {
-  std::vector<float> a_val_vec = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-  Data<float> a_s_val(a_val_vec.data(), 9);
-  Data<double> a_d_val(a_val_vec.data(), 9);
-  Data<float2> a_c_val(a_val_vec.data(), 9);
-  Data<double2> a_z_val(a_val_vec.data(), 9);
-  std::vector<float> a_row_ptr_vec = {0, 3, 4, 7, 9};
-  Data<int> a_row_ptr(a_row_ptr_vec.data(), 5);
-  std::vector<float> a_col_ind_vec = {0, 2, 3, 1, 0, 2, 3, 1, 3};
-  Data<int> a_col_ind(a_col_ind_vec.data(), 9);
-
-  cusparseHandle_t handle;
-  cusparseCreate(&handle);
-  cusparseSolveAnalysisInfo_t info;
-  cusparseCreateSolveAnalysisInfo(&info);
-
-  cusparseMatDescr_t descrA;
-  cusparseCreateMatDescr(&descrA);
-  cusparseSetMatIndexBase(descrA, CUSPARSE_INDEX_BASE_ZERO);
-  cusparseSetMatType(descrA, CUSPARSE_MATRIX_TYPE_TRIANGULAR);
-
-  a_s_val.H2D();
-  a_d_val.H2D();
-  a_c_val.H2D();
-  a_z_val.H2D();
-  a_row_ptr.H2D();
-  a_col_ind.H2D();
-
-  cusparseScsrsv_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 9, descrA, (float *)a_s_val.d_data, (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data, info);
-  cusparseDcsrsv_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 9, descrA, (double *)a_d_val.d_data, (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data, info);
-  if (run_complex_datatype) {
-    cusparseCcsrsv_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 9, descrA, (float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data, info);
-    cusparseZcsrsv_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 9, descrA, (double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data, info);
-  }
-
-  cudaStreamSynchronize(0);
-  cusparseDestroySolveAnalysisInfo(info);
-  cusparseDestroyMatDescr(descrA);
-  cusparseDestroy(handle);
-
-  printf("Tcsrsv pass\n");
-  test_passed = true;
-}
-
 void test_cusparseTcsrmv_mp() {
   std::vector<float> a_val_vec = {1, 4, 2, 3, 5, 7, 8, 9, 6};
   Data<float> a_s_val(a_val_vec.data(), 9);
@@ -746,15 +701,105 @@ void test_cusparseCsrmvEx() {
   }
 }
 
+void test_cusparseTcsrmm2() {
+  std::vector<float> a_val_vec = {1, 4, 2, 3, 5, 7, 8, 9, 6};
+  Data<float> a_s_val(a_val_vec.data(), 9);
+  Data<double> a_d_val(a_val_vec.data(), 9);
+  Data<float2> a_c_val(a_val_vec.data(), 9);
+  Data<double2> a_z_val(a_val_vec.data(), 9);
+  std::vector<float> a_row_ptr_vec = {0, 2, 4, 7, 9};
+  Data<int> a_row_ptr(a_row_ptr_vec.data(), 5);
+  std::vector<float> a_col_ind_vec = {0, 1, 1, 2, 0, 3, 4, 2, 4};
+  Data<int> a_col_ind(a_col_ind_vec.data(), 9);
+
+  std::vector<float> b_vec = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  Data<float> b_s(b_vec.data(), 10);
+  Data<double> b_d(b_vec.data(), 10);
+  Data<float2> b_c(b_vec.data(), 10);
+  Data<double2> b_z(b_vec.data(), 10);
+
+  Data<float> c_s(8);
+  Data<double> c_d(8);
+  Data<float2> c_c(8);
+  Data<double2> c_z(8);
+
+  float alpha = 10;
+  Data<float> alpha_s(&alpha, 1);
+  Data<double> alpha_d(&alpha, 1);
+  Data<float2> alpha_c(&alpha, 1);
+  Data<double2> alpha_z(&alpha, 1);
+
+  float beta = 0;
+  Data<float> beta_s(&beta, 1);
+  Data<double> beta_d(&beta, 1);
+  Data<float2> beta_c(&beta, 1);
+  Data<double2> beta_z(&beta, 1);
+
+  cusparseHandle_t handle;
+  cusparseCreate(&handle);
+
+  cusparseSetPointerMode(handle, CUSPARSE_POINTER_MODE_DEVICE);
+
+  a_s_val.H2D();
+  a_d_val.H2D();
+  a_c_val.H2D();
+  a_z_val.H2D();
+  a_row_ptr.H2D();
+  a_col_ind.H2D();
+  b_s.H2D();
+  b_d.H2D();
+  b_c.H2D();
+  b_z.H2D();
+  alpha_s.H2D();
+  alpha_d.H2D();
+  alpha_c.H2D();
+  alpha_z.H2D();
+  beta_s.H2D();
+  beta_d.H2D();
+  beta_c.H2D();
+  beta_z.H2D();
+
+  cusparseMatDescr_t descrA;
+  cusparseCreateMatDescr(&descrA);
+  cusparseSetMatIndexBase(descrA, CUSPARSE_INDEX_BASE_ZERO);
+  cusparseSetMatType(descrA, CUSPARSE_MATRIX_TYPE_GENERAL);
+
+  cusparseScsrmm2(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 2, 5, 9, alpha_s.d_data, descrA, a_s_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, b_s.d_data, 5, beta_s.d_data, c_s.d_data, 4);
+  cusparseDcsrmm2(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 2, 5, 9, alpha_d.d_data, descrA, a_d_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, b_d.d_data, 5, beta_d.d_data, c_d.d_data, 4);
+  cusparseCcsrmm2(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 2, 5, 9, alpha_c.d_data, descrA, a_c_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, b_c.d_data, 5, beta_c.d_data, c_c.d_data, 4);
+  cusparseZcsrmm2(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 4, 2, 5, 9, alpha_z.d_data, descrA, a_z_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, b_z.d_data, 5, beta_z.d_data, c_z.d_data, 4);
+
+  c_s.D2H();
+  c_d.D2H();
+  c_c.D2H();
+  c_z.D2H();
+
+  cudaStreamSynchronize(0);
+
+  cusparseDestroyMatDescr(descrA);
+  cusparseDestroy(handle);
+
+  float expect_c[8] = {90, 130, 730, 570, 340, 380, 1730, 1320};
+  if (compare_result(expect_c, c_s.h_data, 8) &&
+      compare_result(expect_c, c_d.h_data, 8) &&
+      compare_result(expect_c, c_c.h_data, 8) &&
+      compare_result(expect_c, c_z.h_data, 8))
+    printf("Tcsrmm2 pass\n");
+  else {
+    printf("Tcsrmm2 fail\n");
+    test_passed = false;
+  }
+}
+
 int main() {
   test_cusparseSetGetStream();
   test_cusparseTcsrmv_ge();
   test_cusparseTcsrmv_sy();
   test_cusparseTcsrmv_tr();
-  // test_cusparseTcsrmm(); // Re-enable this test until MKL issue fixed
-  test_cusparseTcsrsv();
+  test_cusparseTcsrmm();
   test_cusparseTcsrmv_mp();
   test_cusparseCsrmvEx();
+  test_cusparseTcsrmm2();
 
   if (test_passed)
     return 0;
