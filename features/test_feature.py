@@ -77,6 +77,7 @@ def migrate_test():
 
     nd_range_bar_exper = ['grid_sync']
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group']
+    uniform_group_exper = ['cooperative_group_coalesced_group']
     experimental_bfloat16_tests = ['math-experimental-bf16', 'math-experimental-bf162']
 
     if test_config.current_test in nd_range_bar_exper:
@@ -85,6 +86,8 @@ def migrate_test():
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test in logical_group_exper:
         src.append(' --use-experimental-features=logical-group ')
+    if test_config.current_test in uniform_group_exper:
+        src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'math_intel_specific':
         src.append(' --rule-file=./math_intel_specific/intel_specific_math.yaml')
     if test_config.current_test.startswith('math-ext-'):
