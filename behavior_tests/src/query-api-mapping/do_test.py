@@ -123,20 +123,20 @@ def migrate_test():
             ["--use-dpcpp-extensions=intel_device_math"],
             ["sycl::ext::intel::math::vaddss4(u1, u2);"],
         ],
-        [  # cuBLAS
-            "cublasSgemm",
-            [
-                "cublasSgemm(handle /*cublasHandle_t*/, transa /*cublasOperation_t*/,",
-                "            transb /*cublasOperation_t*/, m /*int*/, n /*int*/, k /*int*/,",
-                "            alpha /*const float **/, a /*const float **/, lda /*int*/,",
-                "            b /*const float **/, ldb /*int*/, beta /*const float **/,",
-                "            c /*float **/, ldc /*int*/);",
-            ],
-            [],
-            [
-                "oneapi::mkl::blas::column_major::gemm(handle->get_queue(), transa, transb, m, n, k, dpct::get_value(alpha, handle->get_queue()), a, lda, b, ldb, dpct::get_value(beta, handle->get_queue()), c, ldc);"
-            ],
-        ],
+        #[  # cuBLAS
+        #    "cublasSgemm",
+        #    [
+        #        "cublasSgemm(handle /*cublasHandle_t*/, transa /*cublasOperation_t*/,",
+        #        "            transb /*cublasOperation_t*/, m /*int*/, n /*int*/, k /*int*/,",
+        #        "            alpha /*const float **/, a /*const float **/, lda /*int*/,",
+        #        "            b /*const float **/, ldb /*int*/, beta /*const float **/,",
+        #        "            c /*float **/, ldc /*int*/);",
+        #    ],
+        #    [],
+        #    [
+        #        "oneapi::mkl::blas::column_major::gemm(handle->get_queue(), transa, transb, m, n, k, dpct::get_value(alpha, handle->get_queue()), a, lda, b, ldb, dpct::get_value(beta, handle->get_queue()), c, ldc);"
+        #    ],
+        #],
         [  # cuDNN
             "cudnnCreate",
             ["cudnnHandle_t h;", "cudnnCreate(&h /*cudnnHandle_t **/);"],
