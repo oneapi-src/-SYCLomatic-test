@@ -89,7 +89,7 @@
     <test testName="thrust-math1" configFile="config/TEMPLATE_thrust_api_disable_win.xml" />
     <test testName="thrust-math2" configFile="config/TEMPLATE_thrust_api_disable_win.xml" />
     <test testName="curand" configFile="config/TEMPLATE_cuRand.xml" />
-    <test testName="curandEnum" configFile="config/TEMPLATE_cuRand.xml" />
+    <test testName="curandEnum" configFile="config/TEMPLATE_cuRand_after_116.xml" />
     <test testName="curand-usm" configFile="config/TEMPLATE_cuRand.xml" />
     <test testName="curand-cross-function" configFile="config/TEMPLATE_cuRand.xml" />
     <test testName="curand-device" configFile="config/TEMPLATE_cuRand.xml" />
