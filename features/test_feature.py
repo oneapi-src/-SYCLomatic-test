@@ -51,7 +51,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'thrust_is_sorted', 'thrust_partition', 'thrust_remove_copy', 'thrust_unique_copy', 'thrust_transform_exclusive_scan',
               'thrust_set_difference', 'thrust_set_difference_by_key', 'thrust_set_intersection_by_key', 'thrust_stable_sort',
               'thrust_tabulate', 'thrust_for_each_n', 'device_info', 'defaultStream', 'cudnn-rnn', 'feature_profiling',
-              'thrust_raw_reference_cast', 'thrust_partition_copy', 'thrust_stable_partition_copy',
+              'thrust_raw_reference_cast', 'thrust_partition_copy', 'thrust_stable_partition_copy', 'device_global',
               'thrust_stable_partition', 'thrust_remove', 'cub_device_segmented_sort_pairs', 'thrust_find_if_not',
               'thrust_find_if', 'thrust_mismatch', 'thrust_replace_copy', 'thrust_reverse', 'cooperative_groups_reduce', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate',
               'remove_unnecessary_wait', 'thrust_equal_range', 'thrust_transform_inclusive_scan', 'thrust_uninitialized_copy_n', 'thrust_uninitialized_copy',
@@ -105,6 +105,8 @@ def migrate_test():
         src.append(' --enable-profiling ')
     if test_config.current_test == 'asm_bar':
         src.append(' --use-experimental-features=non-uniform-groups ')
+    if test_config.current_test == 'device_global':
+        src.append(' --use-experimental-features=device_global ')
     if test_config.current_test == 'sync_warp_p2':
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
@@ -183,6 +185,9 @@ def build_test():
 
     if test_config.current_test.startswith('ccl-'):
         link_opts.append('-lccl -lmpi')
+
+    if test_config.current_test == 'device_global':
+        cmp_options.append("-std=c++20")
 
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
