@@ -336,7 +336,7 @@
     <test testName="const_opt" configFile="config/TEMPLATE_const_opt.xml" />
     <test testName="assert" configFile="config/TEMPLATE_misc.xml" />
     <test testName="driver_err_handle" configFile="config/TEMPLATE_err_handle.xml" />
+    <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin_usmnone.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
-    <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin.xml" />
   </tests>
 </suite>
