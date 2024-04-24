@@ -11,5 +11,7 @@
         "opt_format_range_all_cpu" : "--format-range=all",
         "opt_format_range_none_cpu" : "--format-range=none",
         "opt_no_cl_namespace_cpu": "--no-cl-namespace-inline",
-        "option_cuda_backend": ""
+        "option_cuda_backend": "",
+        "option_codepin_cpu" : "--enable-codepin",
+        "option_codepin_gpu" : "--enable-codepin"
     }

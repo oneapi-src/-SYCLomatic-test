@@ -287,6 +287,7 @@ def test_single_case(current_test, single_case_config, workspace, suite_root_pat
 
     test_config.log_file = os.path.join(workspace, current_test + ".lf")
     copy_source_to_ws(single_case_config.test_dep_files, case_workspace, suite_root_path)
+
     test_result = run_test_driver(module)
     # Write the execution command to command.tst, execution log to <test case>.lf, execution result to result.md
     write_log_to_file(test_config.log_file, "------------------------------------------------------------------------\n\n" + \
@@ -477,11 +478,11 @@ def get_option_mapping():
     with open("option_mapping.json") as f:
         return json.load(f)
 
-def define_global_test_option(opt, option_list):
-    if opt not in option_list:
+def define_global_test_option(option, option_list):
+    if option not in option_list:
         sys.stderr.write("Must specify the option for test_suite_list.xml")
         exit(1)
-    test_config.test_option = opt
+    test_config.test_option = option
     return True
 
 def parse_input_args():

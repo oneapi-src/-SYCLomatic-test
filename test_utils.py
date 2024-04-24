@@ -89,7 +89,10 @@ def compile_files(srcs, cmpopts = []):
         cmd = base_cmd + src + ' ' + ' '.join(cmpopts)
         ret = call_subprocess(cmd) and ret
     return ret
-
+def link_objects_to_binary(objects, link_opts, binary_name):
+    cmd = test_config.DPCXX_COM + ' '  + ' '.join(objects) + ' ' + \
+                        ' '.join(link_opts) + ' -o ' + binary_name
+    return call_subprocess(cmd)
 def prepare_obj_name(src):
     obj_name = re.split('\.', os.path.basename(src))
     suffix = 'o'
@@ -98,7 +101,7 @@ def prepare_obj_name(src):
     obj_name[-1] = suffix
     return '.'.join(obj_name)
 
-def compile_and_link(srcs, cmpopts = [], objects = [], linkopt = []):
+def compile_and_link(srcs, cmpopts = [], objects = [], link_opts = [], binary_name = test_config.current_test + '.run'):
     if not compile_files(srcs, cmpopts):
         return False
     obj_files = []
@@ -106,16 +109,43 @@ def compile_and_link(srcs, cmpopts = [], objects = [], linkopt = []):
         new_obj = prepare_obj_name(src)
         if new_obj not in obj_files:
             obj_files.append(new_obj)
-    cmd = test_config.DPCXX_COM + ' '  + ' '.join(obj_files) + ' ' + \
-                        ' '.join(linkopt) + ' ' + ' '.join(objects) + ' -o ' + test_config.current_test + '.run'
-    return call_subprocess(cmd)
-
+    obj_files.extend(objects)
+    return link_objects_to_binary(obj_files, link_opts, binary_name)
 
 def run_binary_with_args(args = []):
     cmd = os.path.join(os.path.curdir, test_config.current_test + '.run ') + ' '.join(args)
     return call_subprocess(cmd)
 
+def get_srcs_from_outroot(out_root, suffix = "cpp"):
+    srcs = []
+    for dirpath, dirnames, filenames in os.walk(out_root):
+        for filename in [f for f in filenames if re.match(f'.*(cpp|{suffix}|c)$', f)]:
+            srcs.append(os.path.abspath(os.path.join(dirpath, filename)))
+    return srcs
 
+def build_codepin_cuda_sycl(in_root, cmp_opts=[], objects=[], link_opts=[]):
+    # Test CUDA
+    ret = False
+    test_config.out_root = os.path.join(in_root, 'out_root_codepin_cuda')
+    srcs = get_srcs_from_outroot(test_config.out_root, "cu")
+    test_config.DPCXX_COM = 'nvcc'
+    ret = compile_and_link(srcs, cmp_opts, objects, link_opts, test_config.current_test + "_codepin_cuda.run")
+    # Test SYCL
+    test_config.out_root = os.path.join(in_root, 'out_root_codepin_sycl')
+    srcs = get_srcs_from_outroot(test_config.out_root)
+    set_default_compiler(False)
+    ret = compile_and_link(srcs, cmp_opts, objects, link_opts, test_config.current_test + "_codepin_sycl.run") and ret
+    return ret
+    
+def run_codepin_cuda_and_sycl_binary(cuda_bin, sycl_bin, args = []):
+    cuda_cmd = os.path.join(os.path.curdir, cuda_bin) + ' '.join(args)
+    ret = call_subprocess(cuda_cmd)
+    sycl_cmd = os.path.join(os.path.curdir, sycl_bin) + ' '.join(args)
+    return call_subprocess(sycl_cmd) and ret
+
+def compare_codepin_log(cuda_log, sycl_log):
+    cmd = "dpct --codepin-report --instrumented-cuda-log " + cuda_log + " --instrumented-sycl-log " + sycl_log
+    return call_subprocess(cmd)
 # Replace the ${testName} with the specific test name.
 def replace_test_name(test_name, source_file):
     return source_file.replace("${testName}", test_name)
@@ -175,6 +205,14 @@ def do_migrate(src, in_root, out_root, extra_args = []):
             cmd +=  ' --extra-arg=\" ' + arg + '\"'
     if test_config.migrate_option:
         cmd += ' ' + test_config.migrate_option
+    # If the out-root exists, remove it before migration.
+    # If the codepin instructmented fodler exists, remove it.
+    if os.path.exists(out_root):
+        shutil.rmtree(out_root)
+    if os.path.exists(out_root + "_codepin_cuda"):
+        shutil.rmtree(out_root + "_codepin_cuda")
+    if os.path.exists(out_root + "_codepin_sycl"):
+        shutil.rmtree(out_root + "_codepin_sycl")
     return call_subprocess(cmd)
 
 def check_migration_result(msg):

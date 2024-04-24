@@ -4,7 +4,7 @@
     <description>This config list all the suites need to be tested</description>
     <suites>
         <suite name="user_guide_samples" dir="user_guide_samples" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu"/>
-        <suite name="regressions" dir="regressions" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu" />
+        <suite name="regressions" dir="regressions" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu, option_codepin_cpu" />
         <suite name="samples" dir="samples" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu"/>
         <suite name="help_function"  dir="help_function" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu, option_cuda_backend"/>
         <suite name="features"  dir="features" opts="option_cpu, option_gpu, option_usmnone_cpu, option_usmnone_gpu, option_cpu_custom_helper_files_file, option_usmnone_cpu_custom_helper_files_file, option_cpu_custom_helper_files_all, option_usmnone_cpu_custom_helper_files_all, option_cpu_custom_helper_files_api, option_usmnone_cpu_custom_helper_files_api, option_cuda_backend"/>
