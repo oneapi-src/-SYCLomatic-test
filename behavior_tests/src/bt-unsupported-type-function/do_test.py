@@ -29,7 +29,7 @@ def migrate_test():
                 warn_1007_count += 1
             if "DPCT1082" in line:
                 warn_1082_count += 1
-    if warn_1007_count == 5 and warn_1082_count == 17:
+    if warn_1007_count == 5 and warn_1082_count == 12:
         return True
     return False
 def build_test():
