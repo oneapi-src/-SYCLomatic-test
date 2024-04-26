@@ -36,7 +36,7 @@
     <test testName="thrust-inner_product" configFile="config/TEMPLATE_thrust_exec.xml" />
     <test testName="thrust-reduce_by_key" configFile="config/TEMPLATE_thrust_exec.xml" />
     <test testName="thrust-pinned-allocator" configFile="config/TEMPLATE_thrust_pinned_allocator.xml" />
-    <!-- <test testName="thrust_minmax_element" configFile="config/TEMPLATE_thrust_api.xml" /> -->
+    <test testName="thrust_minmax_element" configFile="config/TEMPLATE_thrust_api.xml" /> 
     <test testName="thrust_partition" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_detail_types" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_is_sorted" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -233,7 +233,7 @@
     <test testName="cub_counting_iterator" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_transform_iterator" configFile="config/TEMPLATE_cub_transform_iterator.xml" />
     <test testName="cub_constant_iterator" configFile="config/TEMPLATE_cub_device.xml" />
-    <!-- <test testName="cub_arg_index_input_iterator" configFile="config/TEMPLATE_cub_device.xml" /> -->
+    <test testName="cub_arg_index_input_iterator" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cudnn_multiple_files" configFile="config/TEMPLATE_cudnn_multiple_files.xml" />
     <test testName="cudnn-GetErrorString" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-activation" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -252,7 +252,7 @@
     <test testName="cudnn-bnp3" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
     <test testName="cudnn-normp1" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
     <test testName="cudnn-normp2" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
-    <!-- <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" /> -->
+    <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
     <test testName="cudnn-convp1" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp2" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp3" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -261,7 +261,7 @@
     <test testName="cudnn-convp6" configFile="config/TEMPLATE_cuDNN_v8.xml" />
     <test testName="cudnn-convp7" configFile="config/TEMPLATE_cuDNN_v8.xml" />
     <test testName="cudnn-conv_v7" configFile="config/TEMPLATE_cuDNN_v7.xml" />
-    <!-- <test testName="cudnn-rnn" configFile="config/TEMPLATE_cuDNN_v8.xml" /> -->
+    <test testName="cudnn-rnn" configFile="config/TEMPLATE_cuDNN_v8.xml" />
     <test testName="cudnn-types" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-dropout" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-version" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -300,9 +300,9 @@
     <test testName="cooperative_groups" configFile="config/TEMPLATE_cooperative_groups.xml" />
     <test testName="cooperative_group_coalesced_group" configFile="config/TEMPLATE_cooperative_groups.xml" />
     <test testName="cooperative_groups_thread_group" configFile="config/TEMPLATE_cooperative_groups.xml" />
-    <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
-    <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
-    <!-- <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+    <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" />
+    <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" />
+    <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" />
     <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" />
     <test testName="cooperative_groups_reduce" configFile="config/TEMPLATE_cooperative_groups_reduce.xml" />
     <test testName="cooperative_groups_data_manipulate" configFile="config/TEMPLATE_cooperative_groups_data_manipulate.xml" />
@@ -327,7 +327,7 @@
     <test testName="defaultStream" configFile="config/TEMPLATE_defaultStream.xml" />
     <test testName="volatile-vec" configFile="config/TEMPLATE_misc.xml" />
     <test testName="occupancy_calculation" configFile="config/TEMPLATE_misc.xml" />
-    <!-- <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" /> -->
+    <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" />
     <test testName="remove_unnecessary_wait" configFile="config/TEMPLATE_remove_unnecessary_wait.xml" />
     <test testName="warp_reduce_functions" configFile="config/TEMPLATE_cpp_language_extensions.xml" />
     <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" />
