@@ -184,6 +184,8 @@ def build_test():
     if test_config.current_test.startswith('ccl-'):
         link_opts.append('-lccl -lmpi')
 
+    if "codepin" in test_config.current_test:
+        test_config.out_root = test_config.out_root + "_codepin_sycl"
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
             srcs.append(os.path.abspath(os.path.join(dirpath, filename)))
