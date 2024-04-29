@@ -117,8 +117,6 @@ bool compare_result(float *expect, float *result, std::vector<int> indices) {
 
 bool test_passed = true;
 
-const bool run_complex_datatype = true;
-
 void test_cusparseSetGetStream() {
   sycl::queue *handle;
   handle = &dpct::get_default_queue();
@@ -217,30 +215,28 @@ void test_cusparseTcsrmv_ge() {
                       (double *)a_d_val.d_data, (int *)a_row_ptr.d_data,
                       (int *)a_col_ind.d_data, (double *)b_d.d_data,
                       (double *)beta_d.d_data, (double *)c_d.d_data);
-  if (run_complex_datatype) {
-    /*
-    DPCT1045:4: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
-                        (sycl::float2 *)alpha_c.d_data, descrA,
-                        (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
-                        (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
-                        (sycl::float2 *)beta_c.d_data,
-                        (sycl::float2 *)c_c.d_data);
-    /*
-    DPCT1045:5: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(
-        *handle, oneapi::mkl::transpose::nontrans, 4, 5,
-        (sycl::double2 *)alpha_z.d_data, descrA,
-        (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
-        (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
-        (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
-  }
+  /*
+  DPCT1045:4: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
+                      (sycl::float2 *)alpha_c.d_data, descrA,
+                      (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
+                      (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
+                      (sycl::float2 *)beta_c.d_data,
+                      (sycl::float2 *)c_c.d_data);
+  /*
+  DPCT1045:5: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(
+      *handle, oneapi::mkl::transpose::nontrans, 4, 5,
+      (sycl::double2 *)alpha_z.d_data, descrA,
+      (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
+      (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
+      (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
 
   c_s.D2H();
   c_d.D2H();
@@ -360,30 +356,28 @@ void test_cusparseTcsrmv_sy() {
                       (double *)a_d_val.d_data, (int *)a_row_ptr.d_data,
                       (int *)a_col_ind.d_data, (double *)b_d.d_data,
                       (double *)beta_d.d_data, (double *)c_d.d_data);
-  if (run_complex_datatype) {
-    /*
-    DPCT1045:10: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 4,
-                        (sycl::float2 *)alpha_c.d_data, descrA,
-                        (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
-                        (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
-                        (sycl::float2 *)beta_c.d_data,
-                        (sycl::float2 *)c_c.d_data);
-    /*
-    DPCT1045:11: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(
-        *handle, oneapi::mkl::transpose::nontrans, 4, 4,
-        (sycl::double2 *)alpha_z.d_data, descrA,
-        (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
-        (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
-        (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
-  }
+  /*
+  DPCT1045:10: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 4,
+                      (sycl::float2 *)alpha_c.d_data, descrA,
+                      (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
+                      (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
+                      (sycl::float2 *)beta_c.d_data,
+                      (sycl::float2 *)c_c.d_data);
+  /*
+  DPCT1045:11: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(
+      *handle, oneapi::mkl::transpose::nontrans, 4, 4,
+      (sycl::double2 *)alpha_z.d_data, descrA,
+      (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
+      (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
+      (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
 
   c_s.D2H();
   c_d.D2H();
@@ -505,30 +499,28 @@ void test_cusparseTcsrmv_tr() {
                       (double *)a_d_val.d_data, (int *)a_row_ptr.d_data,
                       (int *)a_col_ind.d_data, (double *)b_d.d_data,
                       (double *)beta_d.d_data, (double *)c_d.d_data);
-  if (run_complex_datatype) {
-    /*
-    DPCT1045:16: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 4,
-                        (sycl::float2 *)alpha_c.d_data, descrA,
-                        (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
-                        (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
-                        (sycl::float2 *)beta_c.d_data,
-                        (sycl::float2 *)c_c.d_data);
-    /*
-    DPCT1045:17: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(
-        *handle, oneapi::mkl::transpose::nontrans, 4, 4,
-        (sycl::double2 *)alpha_z.d_data, descrA,
-        (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
-        (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
-        (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
-  }
+  /*
+  DPCT1045:16: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 4,
+                      (sycl::float2 *)alpha_c.d_data, descrA,
+                      (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
+                      (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
+                      (sycl::float2 *)beta_c.d_data,
+                      (sycl::float2 *)c_c.d_data);
+  /*
+  DPCT1045:17: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(
+      *handle, oneapi::mkl::transpose::nontrans, 4, 4,
+      (sycl::double2 *)alpha_z.d_data, descrA,
+      (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
+      (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
+      (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
 
   c_s.D2H();
   c_d.D2H();
@@ -640,28 +632,26 @@ void test_cusparseTcsrmm() {
                       (double *)a_d_val.d_data, (int *)a_row_ptr.d_data,
                       (int *)a_col_ind.d_data, (double *)b_d.d_data, 5,
                       (double *)beta_d.d_data, (double *)c_d.d_data, 4);
-  if (run_complex_datatype) {
-    /*
-    DPCT1045:22: Migration is only supported for this API for the general sparse
-    matrix type. You may need to adjust the code.
-    */
-    dpct::sparse::csrmm(*handle, oneapi::mkl::transpose::nontrans, 4, 2, 5,
-                        (sycl::float2 *)alpha_c.d_data, descrA,
-                        (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
-                        (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data, 5,
-                        (sycl::float2 *)beta_c.d_data,
-                        (sycl::float2 *)c_c.d_data, 4);
-    /*
-    DPCT1045:23: Migration is only supported for this API for the general sparse
-    matrix type. You may need to adjust the code.
-    */
-    dpct::sparse::csrmm(
-        *handle, oneapi::mkl::transpose::nontrans, 4, 2, 5,
-        (sycl::double2 *)alpha_z.d_data, descrA,
-        (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
-        (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data, 5,
-        (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data, 4);
-  }
+  /*
+  DPCT1045:22: Migration is only supported for this API for the general sparse
+  matrix type. You may need to adjust the code.
+  */
+  dpct::sparse::csrmm(*handle, oneapi::mkl::transpose::nontrans, 4, 2, 5,
+                      (sycl::float2 *)alpha_c.d_data, descrA,
+                      (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
+                      (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data, 5,
+                      (sycl::float2 *)beta_c.d_data,
+                      (sycl::float2 *)c_c.d_data, 4);
+  /*
+  DPCT1045:23: Migration is only supported for this API for the general sparse
+  matrix type. You may need to adjust the code.
+  */
+  dpct::sparse::csrmm(
+      *handle, oneapi::mkl::transpose::nontrans, 4, 2, 5,
+      (sycl::double2 *)alpha_z.d_data, descrA,
+      (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
+      (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data, 5,
+      (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data, 4);
 
   c_s.D2H();
   c_d.D2H();
@@ -810,10 +800,10 @@ void test_cusparseSpMV() {
   ws_size_c = 0;
   ws_size_z = 0;
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = (void *)sycl::malloc_device(ws_size_s, q_ct1);
   ws_d = (void *)sycl::malloc_device(ws_size_d, q_ct1);
   ws_c = (void *)sycl::malloc_device(ws_size_c, q_ct1);
@@ -825,14 +815,12 @@ void test_cusparseSpMV() {
   dpct::sparse::spmv(*handle, oneapi::mkl::transpose::nontrans, alpha_d.d_data,
                      a_descr_d, b_descr_d, beta_d.d_data, c_descr_d,
                      dpct::library_data_t::real_double);
-  if (run_complex_datatype) {
-    dpct::sparse::spmv(*handle, oneapi::mkl::transpose::nontrans,
-                       alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data,
-                       c_descr_c, dpct::library_data_t::complex_float);
-    dpct::sparse::spmv(*handle, oneapi::mkl::transpose::nontrans,
-                       alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data,
-                       c_descr_z, dpct::library_data_t::complex_double);
-  }
+  dpct::sparse::spmv(*handle, oneapi::mkl::transpose::nontrans,
+                     alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data,
+                     c_descr_c, dpct::library_data_t::complex_float);
+  dpct::sparse::spmv(*handle, oneapi::mkl::transpose::nontrans,
+                     alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data,
+                     c_descr_z, dpct::library_data_t::complex_double);
 
   c_s.D2H();
   c_d.D2H();
@@ -1002,10 +990,10 @@ void test_cusparseSpMM() {
   ws_size_c = 0;
   ws_size_z = 0;
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = (void *)sycl::malloc_device(ws_size_s, q_ct1);
   ws_d = (void *)sycl::malloc_device(ws_size_d, q_ct1);
   ws_c = (void *)sycl::malloc_device(ws_size_c, q_ct1);
@@ -1035,16 +1023,14 @@ void test_cusparseSpMM() {
                      oneapi::mkl::transpose::nontrans, alpha_d.d_data,
                      a_descr_d, b_descr_d, beta_d.d_data, c_descr_d,
                      dpct::library_data_t::real_double);
-  if (run_complex_datatype) {
-    dpct::sparse::spmm(*handle, oneapi::mkl::transpose::nontrans,
-                       oneapi::mkl::transpose::nontrans, alpha_c.d_data,
-                       a_descr_c, b_descr_c, beta_c.d_data, c_descr_c,
-                       dpct::library_data_t::complex_float);
-    dpct::sparse::spmm(*handle, oneapi::mkl::transpose::nontrans,
-                       oneapi::mkl::transpose::nontrans, alpha_z.d_data,
-                       a_descr_z, b_descr_z, beta_z.d_data, c_descr_z,
-                       dpct::library_data_t::complex_double);
-  }
+  dpct::sparse::spmm(*handle, oneapi::mkl::transpose::nontrans,
+                     oneapi::mkl::transpose::nontrans, alpha_c.d_data,
+                     a_descr_c, b_descr_c, beta_c.d_data, c_descr_c,
+                     dpct::library_data_t::complex_float);
+  dpct::sparse::spmm(*handle, oneapi::mkl::transpose::nontrans,
+                     oneapi::mkl::transpose::nontrans, alpha_z.d_data,
+                     a_descr_z, b_descr_z, beta_z.d_data, c_descr_z,
+                     dpct::library_data_t::complex_double);
 
   c_s.D2H();
   c_d.D2H();
@@ -1171,30 +1157,28 @@ void test_cusparseTcsrmv_mp() {
                       (double *)a_d_val.d_data, (int *)a_row_ptr.d_data,
                       (int *)a_col_ind.d_data, (double *)b_d.d_data,
                       (double *)beta_d.d_data, (double *)c_d.d_data);
-  if (run_complex_datatype) {
-    /*
-    DPCT1045:29: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
-                        (sycl::float2 *)alpha_c.d_data, descrA,
-                        (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
-                        (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
-                        (sycl::float2 *)beta_c.d_data,
-                        (sycl::float2 *)c_c.d_data);
-    /*
-    DPCT1045:30: Migration is only supported for this API for the
-    general/symmetric/triangular sparse matrix type. You may need to adjust the
-    code.
-    */
-    dpct::sparse::csrmv(
-        *handle, oneapi::mkl::transpose::nontrans, 4, 5,
-        (sycl::double2 *)alpha_z.d_data, descrA,
-        (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
-        (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
-        (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
-  }
+  /*
+  DPCT1045:29: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
+                      (sycl::float2 *)alpha_c.d_data, descrA,
+                      (sycl::float2 *)a_c_val.d_data, (int *)a_row_ptr.d_data,
+                      (int *)a_col_ind.d_data, (sycl::float2 *)b_c.d_data,
+                      (sycl::float2 *)beta_c.d_data,
+                      (sycl::float2 *)c_c.d_data);
+  /*
+  DPCT1045:30: Migration is only supported for this API for the
+  general/symmetric/triangular sparse matrix type. You may need to adjust the
+  code.
+  */
+  dpct::sparse::csrmv(
+      *handle, oneapi::mkl::transpose::nontrans, 4, 5,
+      (sycl::double2 *)alpha_z.d_data, descrA,
+      (sycl::double2 *)a_z_val.d_data, (int *)a_row_ptr.d_data,
+      (int *)a_col_ind.d_data, (sycl::double2 *)b_z.d_data,
+      (sycl::double2 *)beta_z.d_data, (sycl::double2 *)c_z.d_data);
 
   c_s.D2H();
   c_d.D2H();
@@ -1296,15 +1280,13 @@ void test_cusparseCsrmvEx() {
   size_t ws_size_z;
   ws_size_s = 0;
   ws_size_d = 0;
-  if (run_complex_datatype) {
-    ws_size_c = 0;
-    ws_size_z = 0;
-  }
+  ws_size_c = 0;
+  ws_size_z = 0;
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = (void *)sycl::malloc_device(ws_size_s, q_ct1);
   ws_d = (void *)sycl::malloc_device(ws_size_d, q_ct1);
   ws_c = (void *)sycl::malloc_device(ws_size_c, q_ct1);
@@ -1324,24 +1306,22 @@ void test_cusparseCsrmvEx() {
                       b_d.d_data, dpct::library_data_t::real_double,
                       beta_d.d_data, dpct::library_data_t::real_double,
                       c_d.d_data, dpct::library_data_t::real_double);
-  if (run_complex_datatype) {
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
-                        alpha_c.d_data, dpct::library_data_t::complex_float,
-                        descrA, a_c_val.d_data,
-                        dpct::library_data_t::complex_float,
-                        (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
-                        b_c.d_data, dpct::library_data_t::complex_float,
-                        beta_c.d_data, dpct::library_data_t::complex_float,
-                        c_c.d_data, dpct::library_data_t::complex_float);
-    dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
-                        alpha_z.d_data, dpct::library_data_t::complex_double,
-                        descrA, a_z_val.d_data,
-                        dpct::library_data_t::complex_double,
-                        (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
-                        b_z.d_data, dpct::library_data_t::complex_double,
-                        beta_z.d_data, dpct::library_data_t::complex_double,
-                        c_z.d_data, dpct::library_data_t::complex_double);
-  }
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
+                      alpha_c.d_data, dpct::library_data_t::complex_float,
+                      descrA, a_c_val.d_data,
+                      dpct::library_data_t::complex_float,
+                      (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
+                      b_c.d_data, dpct::library_data_t::complex_float,
+                      beta_c.d_data, dpct::library_data_t::complex_float,
+                      c_c.d_data, dpct::library_data_t::complex_float);
+  dpct::sparse::csrmv(*handle, oneapi::mkl::transpose::nontrans, 4, 5,
+                      alpha_z.d_data, dpct::library_data_t::complex_double,
+                      descrA, a_z_val.d_data,
+                      dpct::library_data_t::complex_double,
+                      (int *)a_row_ptr.d_data, (int *)a_col_ind.d_data,
+                      b_z.d_data, dpct::library_data_t::complex_double,
+                      beta_z.d_data, dpct::library_data_t::complex_double,
+                      c_z.d_data, dpct::library_data_t::complex_double);
 
   c_s.D2H();
   c_d.D2H();
@@ -1541,21 +1521,19 @@ void test_cusparseSpGEMM() {
       *handle, oneapi::mkl::transpose::nontrans,
       oneapi::mkl::transpose::nontrans, alpha_d.d_data, a_descr_d, b_descr_d,
       beta_d.d_data, c_descr_d, SpGEMMDescr_d, &ws_1_size_d, NULL);
-  if (run_complex_datatype) {
-    dpct::sparse::spgemm_work_estimation(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
-        beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_1_size_c, NULL);
-    dpct::sparse::spgemm_work_estimation(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
-        beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_1_size_z, NULL);
-  }
+  dpct::sparse::spgemm_work_estimation(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
+      beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_1_size_c, NULL);
+  dpct::sparse::spgemm_work_estimation(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
+      beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_1_size_z, NULL);
 
-  void *ws_1_s;
-  void *ws_1_d;
-  void *ws_1_c;
-  void *ws_1_z;
+  void *ws_1_s = nullptr;
+  void *ws_1_d = nullptr;
+  void *ws_1_c = nullptr;
+  void *ws_1_z = nullptr;
   ws_1_s = (void *)sycl::malloc_device(ws_1_size_s, q_ct1);
   ws_1_d = (void *)sycl::malloc_device(ws_1_size_d, q_ct1);
   ws_1_c = (void *)sycl::malloc_device(ws_1_size_c, q_ct1);
@@ -1569,16 +1547,14 @@ void test_cusparseSpGEMM() {
       *handle, oneapi::mkl::transpose::nontrans,
       oneapi::mkl::transpose::nontrans, alpha_d.d_data, a_descr_d, b_descr_d,
       beta_d.d_data, c_descr_d, SpGEMMDescr_d, &ws_1_size_d, ws_1_d);
-  if (run_complex_datatype) {
-    dpct::sparse::spgemm_work_estimation(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
-        beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_1_size_c, ws_1_c);
-    dpct::sparse::spgemm_work_estimation(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
-        beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_1_size_z, ws_1_z);
-  }
+  dpct::sparse::spgemm_work_estimation(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
+      beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_1_size_c, ws_1_c);
+  dpct::sparse::spgemm_work_estimation(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
+      beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_1_size_z, ws_1_z);
 
   size_t ws_2_size_s = 0;
   size_t ws_2_size_d = 0;
@@ -1592,21 +1568,19 @@ void test_cusparseSpGEMM() {
                                oneapi::mkl::transpose::nontrans, alpha_d.d_data,
                                a_descr_d, b_descr_d, beta_d.d_data, c_descr_d,
                                SpGEMMDescr_d, &ws_2_size_d, NULL);
-  if (run_complex_datatype) {
-    dpct::sparse::spgemm_compute(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
-        beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_2_size_c, NULL);
-    dpct::sparse::spgemm_compute(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
-        beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_2_size_z, NULL);
-  }
+  dpct::sparse::spgemm_compute(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
+      beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_2_size_c, NULL);
+  dpct::sparse::spgemm_compute(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
+      beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_2_size_z, NULL);
 
-  void *ws_2_s;
-  void *ws_2_d;
-  void *ws_2_c;
-  void *ws_2_z;
+  void *ws_2_s = nullptr;
+  void *ws_2_d = nullptr;
+  void *ws_2_c = nullptr;
+  void *ws_2_z = nullptr;
   ws_2_s = (void *)sycl::malloc_device(ws_2_size_s, q_ct1);
   ws_2_d = (void *)sycl::malloc_device(ws_2_size_d, q_ct1);
   ws_2_c = (void *)sycl::malloc_device(ws_2_size_c, q_ct1);
@@ -1620,16 +1594,14 @@ void test_cusparseSpGEMM() {
                                oneapi::mkl::transpose::nontrans, alpha_d.d_data,
                                a_descr_d, b_descr_d, beta_d.d_data, c_descr_d,
                                SpGEMMDescr_d, &ws_2_size_d, ws_2_d);
-  if (run_complex_datatype) {
-    dpct::sparse::spgemm_compute(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
-        beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_2_size_c, ws_2_c);
-    dpct::sparse::spgemm_compute(
-        *handle, oneapi::mkl::transpose::nontrans,
-        oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
-        beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_2_size_z, ws_2_z);
-  }
+  dpct::sparse::spgemm_compute(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_c.d_data, a_descr_c, b_descr_c,
+      beta_c.d_data, c_descr_c, SpGEMMDescr_c, &ws_2_size_c, ws_2_c);
+  dpct::sparse::spgemm_compute(
+      *handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, alpha_z.d_data, a_descr_z, b_descr_z,
+      beta_z.d_data, c_descr_z, SpGEMMDescr_z, &ws_2_size_z, ws_2_z);
 
   int64_t c_row_s;
   int64_t c_row_d;
@@ -1674,16 +1646,14 @@ void test_cusparseSpGEMM() {
                                 oneapi::mkl::transpose::nontrans,
                                 alpha_d.d_data, a_descr_d, b_descr_d,
                                 beta_d.d_data, c_descr_d, SpGEMMDescr_d);
-  if (run_complex_datatype) {
-    dpct::sparse::spgemm_finalize(*handle, oneapi::mkl::transpose::nontrans,
-                                  oneapi::mkl::transpose::nontrans,
-                                  alpha_c.d_data, a_descr_c, b_descr_c,
-                                  beta_c.d_data, c_descr_c, SpGEMMDescr_c);
-    dpct::sparse::spgemm_finalize(*handle, oneapi::mkl::transpose::nontrans,
-                                  oneapi::mkl::transpose::nontrans,
-                                  alpha_z.d_data, a_descr_z, b_descr_z,
-                                  beta_z.d_data, c_descr_z, SpGEMMDescr_z);
-  }
+  dpct::sparse::spgemm_finalize(*handle, oneapi::mkl::transpose::nontrans,
+                                oneapi::mkl::transpose::nontrans,
+                                alpha_c.d_data, a_descr_c, b_descr_c,
+                                beta_c.d_data, c_descr_c, SpGEMMDescr_c);
+  dpct::sparse::spgemm_finalize(*handle, oneapi::mkl::transpose::nontrans,
+                                oneapi::mkl::transpose::nontrans,
+                                alpha_z.d_data, a_descr_z, b_descr_z,
+                                beta_z.d_data, c_descr_z, SpGEMMDescr_z);
 
   q_ct1.wait();
 
@@ -1910,21 +1880,19 @@ void test_cusparseSpSV() {
   DPCT1026:7: The call to cusparseSpSV_bufferSize was removed because this call
   is redundant in SYCL.
   */
-  if (run_complex_datatype) {
-    /*
-    DPCT1026:12: The call to cusparseSpSV_bufferSize was removed because this
-    call is redundant in SYCL.
-    */
-    /*
-    DPCT1026:13: The call to cusparseSpSV_bufferSize was removed because this
-    call is redundant in SYCL.
-    */
-  }
+  /*
+  DPCT1026:12: The call to cusparseSpSV_bufferSize was removed because this
+  call is redundant in SYCL.
+  */
+  /*
+  DPCT1026:13: The call to cusparseSpSV_bufferSize was removed because this
+  call is redundant in SYCL.
+  */
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = (void *)sycl::malloc_device(ws_size_s, q_ct1);
   ws_d = (void *)sycl::malloc_device(ws_size_d, q_ct1);
   ws_c = (void *)sycl::malloc_device(ws_size_c, q_ct1);
@@ -1934,12 +1902,10 @@ void test_cusparseSpSV() {
                               a_descr_s);
   dpct::sparse::spsv_optimize(*handle, oneapi::mkl::transpose::nontrans,
                               a_descr_d);
-  if (run_complex_datatype) {
-    dpct::sparse::spsv_optimize(*handle, oneapi::mkl::transpose::nontrans,
-                                a_descr_c);
-    dpct::sparse::spsv_optimize(*handle, oneapi::mkl::transpose::nontrans,
-                                a_descr_z);
-  }
+  dpct::sparse::spsv_optimize(*handle, oneapi::mkl::transpose::nontrans,
+                              a_descr_c);
+  dpct::sparse::spsv_optimize(*handle, oneapi::mkl::transpose::nontrans,
+                              a_descr_z);
 
   dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans, alpha_s.d_data,
                      a_descr_s, b_descr_s, c_descr_s,
@@ -1947,14 +1913,12 @@ void test_cusparseSpSV() {
   dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans, alpha_d.d_data,
                      a_descr_d, b_descr_d, c_descr_d,
                      dpct::library_data_t::real_double);
-  if (run_complex_datatype) {
-    dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans,
-                       alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c,
-                       dpct::library_data_t::complex_float);
-    dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans,
-                       alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z,
-                       dpct::library_data_t::complex_double);
-  }
+  dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans,
+                     alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c,
+                     dpct::library_data_t::complex_float);
+  dpct::sparse::spsv(*handle, oneapi::mkl::transpose::nontrans,
+                     alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z,
+                     dpct::library_data_t::complex_double);
 
   c_s.D2H();
   c_d.D2H();
