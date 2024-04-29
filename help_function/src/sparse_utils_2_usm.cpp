@@ -1294,23 +1294,11 @@ void test_cusparseCsrmvEx() {
   size_t ws_size_d;
   size_t ws_size_c;
   size_t ws_size_z;
-  /*
-  DPCT1026:32: The call to cusparseCsrmvEx_bufferSize was removed because this
-  call is redundant in SYCL.
-  */
-  /*
-  DPCT1026:33: The call to cusparseCsrmvEx_bufferSize was removed because this
-  call is redundant in SYCL.
-  */
+  ws_size_s = 0;
+  ws_size_d = 0;
   if (run_complex_datatype) {
-    /*
-    DPCT1026:35: The call to cusparseCsrmvEx_bufferSize was removed because this
-    call is redundant in SYCL.
-    */
-    /*
-    DPCT1026:36: The call to cusparseCsrmvEx_bufferSize was removed because this
-    call is redundant in SYCL.
-    */
+    ws_size_c = 0;
+    ws_size_z = 0;
   }
 
   void *ws_s;
