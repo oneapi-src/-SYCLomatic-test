@@ -13,7 +13,8 @@
 #include <iostream>
 #include <oneapi/dpl/iterator>
 
-bool test_load_blocked_striped(dpct::group::load_algorithm T) {
+template<typename T>
+bool test_load_blocked_striped() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // in its entirety as API functions
   sycl::queue q;
@@ -56,7 +57,7 @@ bool test_load_blocked_striped(dpct::group::load_algorithm T) {
   std::cout <<" pass\n";
   return true;
 }
-
+template<typename T>
 bool test_load_subgroup_striped_standalone() {
   // Tests dpct::group::load_subgroup_striped as standalone method
   sycl::queue q;
@@ -71,7 +72,7 @@ bool test_load_subgroup_striped_standalone() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          dpct::group::uninitialized_load_subgroup_striped<128>(item, d, thread_data);
+          dpct::group::uninitialized_load_subgroup_striped<128, T, int>(item, d, thread_data);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_global_linear_id() * 4; // Each thread_data has 4 elements
           for (int i = 0; i < 4; ++i) {
@@ -104,7 +105,8 @@ bool test_load_subgroup_striped_standalone() {
   return true;
 }
 
-bool test_load_blocked_striped_standalone(dpct::group::load_algorithm T) {
+template<typename T>
+bool test_load_blocked_striped_standalone() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // as standalone methods
   sycl::queue q;
@@ -119,7 +121,7 @@ bool test_load_blocked_striped_standalone(dpct::group::load_algorithm T) {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          dpct::group::load_blocked<128, T>(item, d, thread_data);
+          dpct::group::load_blocked<128, T, int>(item, d, thread_data);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_global_linear_id() * 4; // Each thread_data has 4 elements
             for (int i = 0; i < 4; ++i) {
@@ -147,6 +149,6 @@ bool test_load_blocked_striped_standalone(dpct::group::load_algorithm T) {
 
 int main() {
   
-  return !(test_load_blocked_striped(dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) && test_load_blocked_striped(dpct::group::load_algorithm::BLOCK_LOAD_STRIPED) && test_load_subgroup_striped_standalone()
-           && test_load_blocked_striped_standalone(dpct::group::load_algorithm::BLOCK_LOAD_STRIPED) && test_load_blocked_striped_standalone(dpct::group::load_algorithm::BLOCK_LOAD_DIRECT));
+  return !(test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>()
+           && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
 }
