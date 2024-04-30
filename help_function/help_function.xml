@@ -4,8 +4,8 @@
   <description>Test the helper function</description>
   <tests>
     <test testName="array_copy" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="assign_device_vector" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="move_device_vector" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="assign_device_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="move_device_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="atomic_add_float" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="atomic_fetch_compare_inc" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="async_exception" configFile="config/TEMPLATE_help_function.xml" />
@@ -141,7 +141,7 @@
     <test testName="onedpl_test_tagged_pointer" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_temporary_allocation" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_transform_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+   <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />

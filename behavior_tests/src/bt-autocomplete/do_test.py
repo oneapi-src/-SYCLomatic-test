@@ -126,7 +126,7 @@ def migrate_test():
             '--format-range=\n',
             '--format-style=\n',
             '--gen-build-script\n',
-            '--help\n',
+            '--help=\n',
             '--in-root\n',
             '--in-root-exclude\n',
             '--keep-original-code\n',

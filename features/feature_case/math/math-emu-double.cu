@@ -452,6 +452,74 @@ void testDsub_rzCases(
   }
 }
 
+__global__ void fma_rd(double *const Result, double Input1, double Input2,
+                       double Input3) {
+  *Result = __fma_rd(Input1, Input2, Input3);
+}
+
+void testFma_rdCases(const vector<pair<vector<double>, di_pair>> &TestCases) {
+  double *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fma_rd<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                     TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fma_rd", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fma_rn(double *const Result, double Input1, double Input2,
+                       double Input3) {
+  *Result = __fma_rn(Input1, Input2, Input3);
+}
+
+void testFma_rnCases(const vector<pair<vector<double>, di_pair>> &TestCases) {
+  double *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fma_rn<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                     TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fma_rn", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fma_ru(double *const Result, double Input1, double Input2,
+                       double Input3) {
+  *Result = __fma_ru(Input1, Input2, Input3);
+}
+
+void testFma_ruCases(const vector<pair<vector<double>, di_pair>> &TestCases) {
+  double *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fma_ru<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                     TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fma_ru", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fma_rz(double *const Result, double Input1, double Input2,
+                       double Input3) {
+  *Result = __fma_rz(Input1, Input2, Input3);
+}
+
+void testFma_rzCases(const vector<pair<vector<double>, di_pair>> &TestCases) {
+  double *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fma_rz<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                     TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fma_rz", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
 int main() {
   testNormCases({
       {{-0.3, -0.34, -0.98}, {1.079814798935447, 15}},
@@ -585,6 +653,34 @@ int main() {
       {{0.3, 0.4}, {-0.1, 8}},
       {{0.3, 0.8}, {-0.5, 37}},
       {{3, 4}, {-1, 37}},
+  });
+  testFma_rdCases({
+      {{-0.3, -0.4, -0.2}, {-0.08000000000000002, 17}},
+      {{0.3, -0.4, -0.1}, {-0.22, 16}},
+      {{0.3, 0.4, 0.1}, {0.22, 16}},
+      {{0.3, 0.4, 0}, {0.12, 17}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFma_rnCases({
+      {{-0.3, -0.4, -0.2}, {-0.08000000000000002, 17}},
+      {{0.3, -0.4, -0.1}, {-0.22, 16}},
+      {{0.3, 0.4, 0.1}, {0.22, 16}},
+      {{0.3, 0.4, 0}, {0.12, 17}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFma_ruCases({
+      {{-0.3, -0.4, -0.2}, {-0.08, 16}},
+      {{0.3, -0.4, -0.1}, {-0.22, 16}},
+      {{0.3, 0.4, 0.1}, {0.22, 16}},
+      {{0.3, 0.4, 0}, {0.12000000000000001, 16}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFma_rzCases({
+      {{-0.3, -0.4, -0.2}, {-0.08, 16}},
+      {{0.3, -0.4, -0.1}, {-0.22, 16}},
+      {{0.3, 0.4, 0.1}, {0.22, 16}},
+      {{0.3, 0.4, 0}, {0.12, 17}},
+      {{3, 4, 5}, {17, 14}},
   });
   cout << "passed " << passed << "/" << passed + failed << " cases!" << endl;
   if (failed) {

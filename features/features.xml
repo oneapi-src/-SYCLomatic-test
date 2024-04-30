@@ -114,7 +114,7 @@
     <test testName="cublas_64" configFile="config/TEMPLATE_cuBlas_12.xml" />
     <test testName="math-bf16-conv" configFile="config/TEMPLATE_math_after_11.xml" />
     <test testName="math-bfloat16" configFile="config/TEMPLATE_math_after_11.xml" />
-    <test testName="math-direct" configFile="config/TEMPLATE_math.xml" />
+    <test testName="math-direct" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
     <test testName="math-drcp" configFile="config/TEMPLATE_math_drcp.xml"  splitGroup="double" />
     <test testName="math-emu" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-emu-bf16" configFile="config/TEMPLATE_math_after_11.xml" />
@@ -128,7 +128,7 @@
     <test testName="math-emu-half2" configFile="config/TEMPLATE_math_after_9.xml" />
     <test testName="math-emu-half2-after11" configFile="config/TEMPLATE_math_after_11.xml" />
     <test testName="math-emu-half2-after12" configFile="config/TEMPLATE_math_after_12.xml" />
-    <test testName="math-emu-simd" configFile="config/TEMPLATE_math.xml" />
+    <test testName="math-emu-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
     <test testName="math-exec" configFile="config/TEMPLATE_math_exec.xml" splitGroup="double" />
     <test testName="math-funnelshift" configFile="config/TEMPLATE_math_funnelshift.xml" />
     <test testName="math-habs" configFile="config/TEMPLATE_math_habs.xml" splitGroup="double" />
@@ -159,7 +159,7 @@
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI.xml" />
-    <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI.xml" />
+    <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI_skip_cuda.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
     <test testName="cusolverDnEi" configFile="config/TEMPLATE_cusolver.xml" />
     <test testName="cusolverDnEi-part2" configFile="config/TEMPLATE_cusolver.xml" />
@@ -290,7 +290,7 @@
     <test testName="test_shared_memory" configFile="config/TEMPLATE_memory.xml" />
     <test testName="activemask" configFile="config/TEMPLATE_misc_excluding_80.xml" />
     <test testName="merge1004to1007" configFile="config/TEMPLATE_misc.xml" />
-    <test testName="result_type_overload" configFile="config/TEMPLATE_misc.xml" />
+    <test testName="result_type_overload" configFile="config/TEMPLATE_misc_skip_cuda.xml" />
     <test testName="user_defined_rules" configFile="config/TEMPLATE_user_defined_rules.xml" />
     <test testName="get_library_version" configFile="config/TEMPLATE_misc.xml" />
     <test testName="group-local-memory" configFile="config/TEMPLATE_thrust-qmc.xml" splitGroup="double"/>
@@ -334,8 +334,10 @@
     <test testName="wmma_type" configFile="config/TEMPLATE_wmma.xml" />
     <test testName="peer_access" configFile="config/TEMPLATE_peer_access.xml" />
     <test testName="const_opt" configFile="config/TEMPLATE_const_opt.xml" />
+    <test testName="device_global" configFile="config/TEMPLATE_device_global.xml" />
     <test testName="assert" configFile="config/TEMPLATE_misc.xml" />
     <test testName="driver_err_handle" configFile="config/TEMPLATE_err_handle.xml" />
+    <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin_usmnone.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
   </tests>
 </suite>

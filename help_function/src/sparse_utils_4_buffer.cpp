@@ -315,10 +315,10 @@ void test_cusparseCsr2csc_00() {
   ws_size_c = 0;
   ws_size_z = 0;
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = dpct::dpct_malloc(ws_size_s);
   ws_d = dpct::dpct_malloc(ws_size_d);
   ws_c = dpct::dpct_malloc(ws_size_c);
@@ -450,10 +450,10 @@ void test_cusparseCsr2csc_01() {
   ws_size_c = 0;
   ws_size_z = 0;
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   ws_s = dpct::dpct_malloc(ws_size_s);
   ws_d = dpct::dpct_malloc(ws_size_d);
   ws_c = dpct::dpct_malloc(ws_size_c);
