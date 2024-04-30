@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testDrivers>
+    <testDriver driverID="test_codepin" file="test_codepin.py" title="test_codepin">
+        <description>Test driver for codepin test of DPCT</description>
+    </testDriver>
+</testDrivers>
