@@ -141,7 +141,7 @@
     <test testName="onedpl_test_tagged_pointer" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_temporary_allocation" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_transform_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-   <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
