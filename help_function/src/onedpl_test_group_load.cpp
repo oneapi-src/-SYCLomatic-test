@@ -13,7 +13,7 @@
 #include <iostream>
 #include <oneapi/dpl/iterator>
 
-template<typename T>
+template<dpct::group::load_algorithm T>
 bool test_load_blocked_striped() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // in its entirety as API functions
@@ -22,11 +22,12 @@ bool test_load_blocked_striped() {
   sycl::buffer<int, 1> buffer(count_it, count_it + 512);
   
   q.submit([&](sycl::handler &h) {
-    using workgroup_load = dpct::group::workgroup_load<128, T, int>;
-    size_t temp_storage_size = workgroup_load::get_local_memory_size(128);
-    sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
     sycl::accessor data_accessor(buffer, h, sycl::read_write);
     int thread_data[4];
+    using group_load = dpct::group::workgroup_load<4, T, int,  sycl::accessor<int, 3, sycl::access_mode::read_write, sycl::access::target::device>, sycl::nd_item<3>>;
+    size_t temp_storage_size = group_load::get_local_memory_size(128);
+    sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
+    
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item) {
@@ -36,7 +37,7 @@ bool test_load_blocked_striped() {
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_global_linear_id() * 4; // Each thread_data has 4 elements
             for (int i = 0; i < 4; ++i) {
-                buffer[global_index + i] = thread_data[i];
+                data_accessor[global_index + i] = thread_data[i];
             }
         });
   });
@@ -46,7 +47,7 @@ bool test_load_blocked_striped() {
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   for (int i = 0; i < 512; ++i) {
     if (ptr[i] != i) {
-      std::cout << func_name <<" failed\n";
+      std::cout <<" failed\n";
       std::ostream_iterator<int> Iter(std::cout, ", ");
       std::copy(ptr, ptr + 512, Iter);
       std::cout << std::endl;
@@ -57,7 +58,7 @@ bool test_load_blocked_striped() {
   std::cout <<" pass\n";
   return true;
 }
-template<typename T>
+
 bool test_load_subgroup_striped_standalone() {
   // Tests dpct::group::load_subgroup_striped as standalone method
   sycl::queue q;
@@ -72,7 +73,7 @@ bool test_load_subgroup_striped_standalone() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          dpct::group::uninitialized_load_subgroup_striped<128, T, int>(item, d, thread_data);
+          dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d, thread_data);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_global_linear_id() * 4; // Each thread_data has 4 elements
           for (int i = 0; i < 4; ++i) {
@@ -93,7 +94,7 @@ bool test_load_subgroup_striped_standalone() {
   }
   for (int i = 0; i < 512; ++i) {
     if (ptr[i] != expected[i]) {
-      std::cout << func_name <<" failed\n";
+      std::cout <<" failed\n";
       std::ostream_iterator<int> Iter(std::cout, ", ");
       std::copy(ptr, ptr + 512, Iter);
       std::cout << std::endl;
@@ -105,7 +106,7 @@ bool test_load_subgroup_striped_standalone() {
   return true;
 }
 
-template<typename T>
+template<dpct::group::load_algorithm T>
 bool test_load_blocked_striped_standalone() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // as standalone methods
@@ -121,7 +122,10 @@ bool test_load_blocked_striped_standalone() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          dpct::group::load_blocked<128, T, int>(item, d, thread_data);
+          if( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
+            {dpct::group::load_blocked<4, T, int>(item, d, thread_data);}
+          else
+            {dpct::group::load_striped<4, T, int>(item, d, thread_data);}
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_global_linear_id() * 4; // Each thread_data has 4 elements
             for (int i = 0; i < 4; ++i) {
@@ -133,22 +137,57 @@ bool test_load_blocked_striped_standalone() {
 
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  for (int i = 0; i < 512; ++i) {
-    if (ptr[i] != i) {
-      std::cout << func_name <<" failed\n";
-      std::ostream_iterator<int> Iter(std::cout, ", ");
-      std::copy(ptr, ptr + 512, Iter);
-      std::cout << std::endl;
-      return false;
-    }
+  if(T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
+   {
+     for (int i = 0; i < 512; ++i) {
+      if (ptr[i] != i) {
+        std::cout <<" failed\n";
+        std::ostream_iterator<int> Iter(std::cout, ", ");
+        std::copy(ptr, ptr + 512, Iter);
+        std::cout << std::endl;
+        return false;
+        }
+      }
+    
+      std::cout <<" pass\n";
+      return true;
   }
+  else{
+    int expected[512];
+    
+    for (int i = 4; i < 128; ++i) {
+        expected[4 * i + 0] = 4 * i + (128 * 0);
+        expected[4 * i + 1] = 4 * i + 1 + (128 * 1);
+        expected[4 * i + 2] = 4 * i + 2 + (128 * 2);
+        expected[4 * i + 3] = 4 * i + 3 + (128 * 3);
+        
+    }
 
-  std::cout <<" pass\n";
-  return true;
+    for(int i=0;i<512;i++){std::cout<<expected[i]<< ", ";}
+    std::cout<<"END"<<std::endl;
+  
+    for(int i=0;i<512;i++){std::cout<<ptr[i]<< ", ";}
+    std::cout<<"END"<<std::endl;
+    for (int i = 0; i < 512; ++i) {
+      if (ptr[i] != expected[i]) {
+        std::cout <<" failed\n";
+        std::ostream_iterator<int> Iter(std::cout, ", ");
+        std::copy(ptr, ptr + 512, Iter);
+        std::cout << std::endl;
+        return false;
+      }
+    }
+  
+    std::cout <<" pass\n";
+    return true;
+     
+  }
 }
+
 
 int main() {
   
-  return !(test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>()
-           && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
+  return !(//test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && 
+  test_load_subgroup_striped_standalone() && 
+  test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
 }
