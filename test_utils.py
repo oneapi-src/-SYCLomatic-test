@@ -91,7 +91,7 @@ def compile_files(srcs, cmpopts = []):
     return ret
 def link_objects_to_binary(objects, link_opts, binary_name):
     cmd = test_config.DPCXX_COM + ' '  + ' '.join(objects) + ' ' + \
-                        ' '.join(link_opts) + ' -o ' + binary_name
+                        ' '.join(link_opts) + '  -o ' + binary_name
     return call_subprocess(cmd)
 def prepare_obj_name(src):
     obj_name = re.split('\.', os.path.basename(src))
@@ -123,18 +123,21 @@ def get_srcs_from_outroot(out_root, suffix = "cpp"):
             srcs.append(os.path.abspath(os.path.join(dirpath, filename)))
     return srcs
 
-def build_codepin_cuda_sycl(in_root, cmp_opts=[], objects=[], link_opts=[]):
+def build_codepin_cuda(in_root, cmp_opts=[], objects=[], link_opts=[]):
     # Test CUDA
-    ret = False
+    cuda_opts = cmp_opts.append("-arch=sm_60")
     test_config.out_root = os.path.join(in_root, 'out_root_codepin_cuda')
     srcs = get_srcs_from_outroot(test_config.out_root, "cu")
     test_config.DPCXX_COM = 'nvcc'
     ret = compile_and_link(srcs, cmp_opts, objects, link_opts, test_config.current_test + "_codepin_cuda.run")
+    return ret
+
+def build_codepin_sycl(in_root, cmp_opts=[], objects=[], link_opts=[]):
     # Test SYCL
     test_config.out_root = os.path.join(in_root, 'out_root_codepin_sycl')
     srcs = get_srcs_from_outroot(test_config.out_root)
     set_default_compiler(False)
-    ret = compile_and_link(srcs, cmp_opts, objects, link_opts, test_config.current_test + "_codepin_sycl.run") and ret
+    ret = compile_and_link(srcs, cmp_opts, objects, link_opts, test_config.current_test + "_codepin_sycl.run")
     return ret
     
 def run_codepin_cuda_and_sycl_binary(cuda_bin, sycl_bin, args = []):

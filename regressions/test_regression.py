@@ -39,7 +39,6 @@ def migrate_test():
     return do_migrate(src, in_root, test_config.out_root, extra_args)
 
 def build_test():
-    in_root = os.path.join(os.getcwd(), test_config.current_test)
     if test_config.current_test in ["test-1399", "test-1247"]:
         return True
     if (os.path.exists(test_config.current_test)):
@@ -49,6 +48,10 @@ def build_test():
     link_opts = []
     objects = []
 
+    for dirpath, dirnames, filenames in os.walk(test_config.out_root):
+        for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
+            srcs.append(os.path.abspath(os.path.join(dirpath, filename)))
+
     mkl_related_cases = ["test-1585", "test-1554", "test-1765", "test-1766a", "test-1766b", \
                 "test-850a", "test-850b", "test-850c"]
 
@@ -57,9 +60,6 @@ def build_test():
             link_opts = test_config.mkl_link_opt_lin
         else:
             link_opts = test_config.mkl_link_opt_win
-    if "enable-codepin" in test_config.migrate_option:
-        return build_codepin_cuda_sycl(in_root)
-    srcs = get_srcs_from_outroot(test_config.out_root)
     ret = False
     ret = compile_and_link(srcs, cmp_opts, objects, link_opts)
     return ret
@@ -71,6 +71,4 @@ def run_test():
     if test_config.current_test == "test-1601":
         args.append("12 12 12")
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
-    if "enable-codepin" in test_config.migrate_option:
-        return run_codepin_cuda_and_sycl_binary(test_config.current_test + "_codepin_cuda.run", test_config.current_test + "_codepin_sycl.run")
     return run_binary_with_args(args)
