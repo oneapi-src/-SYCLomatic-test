@@ -149,9 +149,9 @@
     <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_exchange" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="onedpl_test_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_select_from_sub_group" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_left" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_right" configFile="config/TEMPLATE_help_function_usm.xml" />
