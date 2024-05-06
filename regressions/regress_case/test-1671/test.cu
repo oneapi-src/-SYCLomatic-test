@@ -43,7 +43,7 @@ int main(){
 
 
    unsigned int sm_size;
-   sm_size=10;
+   sm_size= N * sizeof(unsigned int);
 
    mykernel<<<1,N,sm_size>>>(d_array1);
 

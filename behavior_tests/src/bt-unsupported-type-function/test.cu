@@ -16,16 +16,6 @@ int main(int argc, char **argv) {
 
     CUDA_ARRAY_DESCRIPTOR *pcad;
 
-    cudaMemcpy3DParms *p1c3d;
-
-    const cudaMemcpy3DParms *p2c3d;
-
-    static cudaMemcpy3DParms *p3c3d;
-
-    static volatile cudaMemcpy3DParms *p4c3d;
-
-    std::vector<cudaMemcpy3DParms *> vc3dp;
-
     CUexternalMemory cum;
 
     CUexternalSemaphore cus;

@@ -99,21 +99,12 @@ def build_test():
         if not ret:
             print("Error during replace cmake minimum version required:", test_config.command_output)
 
-        if (os.path.exists("/opt/intel/oneapi/setvars.sh")):
-            ret = call_subprocess("mkdir -p out_root/build && cd out_root/build && cmake -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DLLAMA_CUBLAS=ON ../")
-            if not ret:
-                print("Error during cmake configure stage:", test_config.command_output)
-            ret = call_subprocess("source /opt/intel/oneapi/setvars.sh --force && cd out_root/build && make")
-            if not ret:
-                print("Error during cmake build stage:", test_config.command_output)
-        else:
-            # For local machine test, "source /path/to/intel/oneapi/setvars.sh" is set in advance
-            ret = call_subprocess("mkdir -p out_root/build && cd out_root/build && cmake -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DLLAMA_CUBLAS=ON ../")
-            if not ret:
-                print("Error during cmake configure stage:", test_config.command_output)
-            ret = call_subprocess("cd out_root/build && make")
-            if not ret:
-                print("Error during cmake build stage:", test_config.command_output)
+        ret = call_subprocess("mkdir -p out_root/build && cd out_root/build && cmake -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DLLAMA_CUBLAS=ON ../")
+        if not ret:
+            print("Error during cmake configure stage:", test_config.command_output)
+        ret = call_subprocess("cd out_root/build && make")
+        if not ret:
+            print("Error during cmake build stage:", test_config.command_output)
 
         ret =  os.path.exists("out_root/build/bin/main")
         if not ret:
