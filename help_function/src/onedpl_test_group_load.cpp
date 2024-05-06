@@ -16,7 +16,7 @@
 
 template<dpct::group::load_algorithm T>
 bool helper_validation_function(const int* ptr, const char * func_name){
-  if ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
+  if constexpr ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
   {
      for (int i = 0; i < 512; ++i) {
       if (ptr[i] != i) {
@@ -112,7 +112,7 @@ bool test_group_load() {
   
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  return helper_validation_function(ptr, "test_group_load");
+  return helper_validation_function<T>(ptr, "test_group_load");
 }
 
 bool test_load_subgroup_striped_standalone() {
@@ -184,7 +184,7 @@ bool test_group_load_standalone() {
 
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  return helper_validation_function(ptr, "test_group_load");
+  return helper_validation_function<T>(ptr, "test_group_load");
 }
 
 
