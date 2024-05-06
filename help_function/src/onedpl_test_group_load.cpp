@@ -13,6 +13,72 @@
 #include <iostream>
 #include <oneapi/dpl/iterator>
 
+
+template<dpct::group::load_algorithm T>
+bool helper_validation_function(const int* ptr, const char * func_name){
+  if ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
+  {
+     for (int i = 0; i < 512; ++i) {
+      if (ptr[i] != i) {
+        std::cout << func_name << "_blocked" <<" failed\n";
+        std::ostream_iterator<int> Iter(std::cout, ", ");
+        std::copy(ptr, ptr + 512, Iter);
+        std::cout << std::endl;
+        return false;
+        }
+     }
+     std::cout << func_name << "_blocked" <<" pass\n";
+     return true;
+  }
+    
+  else{
+    int expected[512];
+    int num_threads = 128;
+    int items_per_thread = 4;
+    for (int i = 0;i < num_threads; ++i){
+        for(int j=0;j < items_per_thread; ++j){
+          expected[i * items_per_thread +j] = j * num_threads +i;  
+        }
+      }
+    for (int i = 0; i < 512; ++i) {
+        if (ptr[i] != expected[i]) {
+          std::cout << func_name << "_striped" <<" failed\n";
+          std::ostream_iterator<int> Iter(std::cout, ", ");
+          std::copy(ptr, ptr + 512, Iter);
+          std::cout << std::endl;
+          return false;
+        }
+      }
+  
+    std::cout << func_name << "_striped" <<" pass\n";
+    return true;
+  }
+  return false;
+}
+
+bool subgroup_helper_validation_function(const int* ptr,const int &sg_sz, const char* func_name){
+  int expected[512];
+  int num_threads = 128;
+  int items_per_thread = 4;
+  for (int i = 0; i < num_threads; ++i) {
+      for (int j = 0; j < items_per_thread; ++j) {
+          expected[items_per_thread * i + j] = (i / sg_sz) * sg_sz * items_per_thread + sg_sz * j + i % sg_sz;
+      }
+   }
+  for (int i = 0; i < 512; ++i) {
+    if (ptr[i] != expected[i]) {
+      std::cout <<" failed\n";
+      std::ostream_iterator<int> Iter(std::cout, ", ");
+      std::copy(ptr, ptr + 512, Iter);
+      std::cout << std::endl;
+      return false;
+    }
+  }
+
+  std::cout <<" pass\n";
+  return true;
+}
+
 template<dpct::group::load_algorithm T>
 bool test_group_load() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
@@ -46,44 +112,7 @@ bool test_group_load() {
   
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  
-  if ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
-  {
-   for (int i = 0; i < 512; ++i) {
-    if (ptr[i] != i) {
-      std::cout <<" failed\n";
-      std::ostream_iterator<int> Iter(std::cout, ", ");
-      std::copy(ptr, ptr + 512, Iter);
-      std::cout << std::endl;
-      return false;
-    }
-  }
-
-  std::cout <<" pass\n";
-  return true;
-  }
-  else{
-  int expected[512];
-  int num_threads = 128;
-  int items_per_thread = 4;
-  for (int i = 0;i < num_threads; ++i){
-      for(int j=0;j < items_per_thread; ++j){
-        expected[i * items_per_thread +j] = j * num_threads +i;  
-      }
-    }
-  for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != expected[i]) {
-        std::cout <<" failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-      }
-    }
-  
-    std::cout <<" pass\n";
-    return true;
-  }
+  return helper_validation_function(ptr, "test_group_load");
 }
 
 bool test_load_subgroup_striped_standalone() {
@@ -120,30 +149,11 @@ bool test_load_subgroup_striped_standalone() {
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   auto sg_sz = sg_sz_acc.get_host_access()[0];
-  int expected[512];
-  int num_threads = 128;
-  int items_per_thread = 4;
-  for (int i = 0; i < num_threads; ++i) {
-      for (int j = 0; j < items_per_thread; ++j) {
-          expected[items_per_thread * i + j] = (i / sg_sz) * sg_sz * items_per_thread + sg_sz * j + i % sg_sz;
-      }
-   }
-  for (int i = 0; i < 512; ++i) {
-    if (ptr[i] != expected[i]) {
-      std::cout <<" failed\n";
-      std::ostream_iterator<int> Iter(std::cout, ", ");
-      std::copy(ptr, ptr + 512, Iter);
-      std::cout << std::endl;
-      return false;
-    }
-  }
-
-  std::cout <<" pass\n";
-  return true;
+  return subgroup_helper_validation_function(ptr, sg_sz, "test_subgroup_striped_standalone");
 }
 
 template<dpct::group::load_algorithm T>
-bool test_load_blocked_striped_standalone() {
+bool test_group_load_standalone() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // as standalone methods
   sycl::queue q;
@@ -174,48 +184,12 @@ bool test_load_blocked_striped_standalone() {
 
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  if(T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
-   {
-     for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != i) {
-        std::cout <<" failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-        }
-      }
-    
-      std::cout <<" pass\n";
-      return true;
-  }
-  else{
-    int num_threads = 128;
-    int items_per_thread = 4;
-    for (int i = 0;i < num_threads; ++i){
-        for(int j=0;j < items_per_thread; ++j){
-          expected[i * items_per_thread +j] = j * num_threads +i;  
-        }
-      }
-    for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != expected[i]) {
-        std::cout <<" failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-      }
-    }
-  
-    std::cout <<" pass\n";
-    return true;
-     
-  }
+  return helper_validation_function(ptr, "test_group_load");
 }
 
 
 int main() {
   
   return !(test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone() && 
-  test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
+  test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
 }
