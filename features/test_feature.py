@@ -190,7 +190,10 @@ def build_test():
         test_config.out_root = test_config.out_root + "_codepin_sycl"
 
     if test_config.current_test == 'device_global':
-        cmp_options.append("-std=c++20")
+        if platform.system() == 'Linux':
+            cmp_options.append("-std=c++20")
+        else:
+            cmp_options.append("-Qstd=c++20")
 
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:

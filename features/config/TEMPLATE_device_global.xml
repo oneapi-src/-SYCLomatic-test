@@ -8,5 +8,6 @@
     <rules>
       <optlevelRule excludeOptlevelNameString="usmnone" />
       <optlevelRule excludeOptlevelNameString="cuda" />
+      <platformRule OSFamily="Linux" kit="GCC9.3.0" kitRange="OLDER" runOnThisPlatform="false" />
     </rules>
 </test>
