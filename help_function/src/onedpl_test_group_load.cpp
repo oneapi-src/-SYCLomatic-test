@@ -14,7 +14,7 @@
 #include <oneapi/dpl/iterator>
 
 template<dpct::group::load_algorithm T>
-bool test_load_blocked_striped() {
+bool test_group_load() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // in its entirety as API functions
   sycl::queue q;
@@ -64,9 +64,11 @@ bool test_load_blocked_striped() {
   }
   else{
   int expected[512];
-  for (int i = 0;i < 128; ++i){
-      for(int j=0;j < 4; ++j){
-        expected[i * 4 +j] = j * 128 +i;  
+  int num_threads = 128;
+  int items_per_thread = 4;
+  for (int i = 0;i < num_threads; ++i){
+      for(int j=0;j < items_per_thread; ++j){
+        expected[i * items_per_thread +j] = j * num_threads +i;  
       }
     }
   for (int i = 0; i < 512; ++i) {
@@ -119,18 +121,13 @@ bool test_load_subgroup_striped_standalone() {
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   auto sg_sz = sg_sz_acc.get_host_access()[0];
   int expected[512];
-  int idx=0;
-  for(int i=0;i< 8 ;++i){
-  for(int j =0;j < sg_sz;++j){
-    for(int k =0;k < 4;++k){ 
-      int val = i * sg_sz * 4 + j * 4 + k;
-      if (idx < 512){
-        expected[idx] = val;
-        idx++;
-         }
-    }
+  int num_threads = 128;
+  int items_per_thread = 4;
+  for (int i = 0; i < num_threads; ++i) {
+      for (int j = 0; j < items_per_thread; ++j) {
+          expected[items_per_thread * i + j] = (i / sg_sz) * sg_sz * items_per_thread + sg_sz * j + i % sg_sz;
+      }
    }
-  }
   for (int i = 0; i < 512; ++i) {
     if (ptr[i] != expected[i]) {
       std::cout <<" failed\n";
@@ -193,12 +190,13 @@ bool test_load_blocked_striped_standalone() {
       return true;
   }
   else{
-    int expected[512];
-    for (int i = 0;i < 128; ++i){
-      for(int j=0;j < 4; ++j){
-        expected[i * 4 +j] = j * 128 +i;  
+    int num_threads = 128;
+    int items_per_thread = 4;
+    for (int i = 0;i < num_threads; ++i){
+        for(int j=0;j < items_per_thread; ++j){
+          expected[i * items_per_thread +j] = j * num_threads +i;  
+        }
       }
-    }
     for (int i = 0; i < 512; ++i) {
       if (ptr[i] != expected[i]) {
         std::cout <<" failed\n";
@@ -218,6 +216,6 @@ bool test_load_blocked_striped_standalone() {
 
 int main() {
   
-  return !(test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_load_blocked_striped<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone() && 
+  return !(test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone() && 
   test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_blocked_striped_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
 }
