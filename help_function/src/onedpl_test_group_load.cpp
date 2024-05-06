@@ -28,7 +28,7 @@ bool helper_validation_function(const int* ptr, const char * func_name){
         }
      }
      std::cout << func_name << "_blocked" <<" pass\n";
-     return true;
+    
   }
     
   else{
@@ -51,9 +51,9 @@ bool helper_validation_function(const int* ptr, const char * func_name){
       }
   
     std::cout << func_name << "_striped" <<" pass\n";
-    return true;
+   
   }
-  return false;
+  return true;
 }
 
 bool subgroup_helper_validation_function(const int* ptr,const int &sg_sz, const char* func_name){
