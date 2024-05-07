@@ -19,7 +19,7 @@ def setup_test():
 
 def migrate_test():
     call_subprocess(test_config.CT_TOOL + " simple_foo.cu --process-all --cuda-include-path=" + test_config.include_path )
-    return is_sub_string("Error: The option --process-all requires that the", test_config.command_output)
+    return is_sub_string("Error: Option \"-process-all\" require(s) that", test_config.command_output)
 
 def build_test():
     return True
