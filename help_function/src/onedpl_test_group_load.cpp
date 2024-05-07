@@ -193,6 +193,11 @@ bool test_group_load_standalone() {
 
 int main() {
   
-  return !(test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_load_subgroup_striped_standalone() && 
-  test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
+  return !(
+   // Calls test_group_load with blocked and striped strategies , should pass both results.
+   test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() && test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && 
+   // Calls test_load_subgroup_striped_standalone and should pass
+   test_load_subgroup_striped_standalone() && 
+   // Calls test_group_load_standalone with blocked and striped strategies as free functions, should pass both results. 
+   test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() && test_group_load_standalone<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
 }
