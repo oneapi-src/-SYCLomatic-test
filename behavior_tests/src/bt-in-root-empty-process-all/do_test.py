@@ -20,7 +20,7 @@ def setup_test():
 def migrate_test():
 
     call_subprocess(test_config.CT_TOOL + " --process-all  --cuda-include-path=" + test_config.include_path + " --in-root=")
-    return is_sub_string("Error: Option \"-process-all\" require(s) that option \"-in-root\" be specified explicitly.", test_config.command_output)
+    return is_sub_string("Error: The option --process-all requires that the --in-root be specified explicitly", test_config.command_output)
 
 def build_test():
     return True
