@@ -4,5 +4,7 @@
     <description>codepin test cases</description>
     <tests>
         <test testName="test_fp16" configFile="config/TEMPLATE_codepin.xml" />
+        <test testName="test_bf16" configFile="config/TEMPLATE_codepin.xml" />
+        <test testName="test_float32" configFile="config/TEMPLATE_codepin.xml" />
     </tests>
 </suite>

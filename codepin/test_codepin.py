@@ -17,6 +17,13 @@ sys.path.append(parent)
 
 from test_utils import *
 
+def find_file_with_keyword(directory, keyword):
+    matching_files = []
+    for file in os.listdir(directory):
+        if keyword in file:
+            matching_files.append(os.path.join(directory, file))
+    return matching_files[0] # return the first matching file
+
 def setup_test():
     return True
 
@@ -49,7 +56,13 @@ def build_test():
 
 def run_test():
     args = []
+    ret = False
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     if "enable-codepin" in test_config.migrate_option:
-        return run_codepin_cuda_and_sycl_binary(test_config.current_test + "_codepin_cuda.run", test_config.current_test + "_codepin_sycl.run")
-    
+        ret = run_codepin_cuda_and_sycl_binary(test_config.current_test + "_codepin_cuda.run", test_config.current_test + "_codepin_sycl.run")
+        if ret == True:
+            cuda_log = find_file_with_keyword(os.getcwd(), "CodePin_CUDA_")
+            sycl_log = find_file_with_keyword(os.getcwd(), "CodePin_SYCL_")
+            if compare_codepin_log(cuda_log, sycl_log) == 3:
+                ret = True
+    return ret

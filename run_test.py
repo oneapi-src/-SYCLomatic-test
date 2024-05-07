@@ -354,6 +354,9 @@ def test_suite(suite_root_path, suite_name, opt):
     global passed_cases
     failed_logs = []
     for current_test in failed_cases:
+        cur_workapce  = os.path.join(test_workspace, current_test)
+        if os.path.exists(cur_workapce):
+            shutil.rmtree(cur_workapce)
         ret_val, test_name, test_status = test_single_case(current_test, test_config.suite_cfg.test_config_map[current_test], test_workspace, suite_root_path)
         if not ret_val:
             failed_logs.append(test_name + " " + test_status)
