@@ -56,13 +56,14 @@ bool helper_validation_function(const int* ptr, const char * func_name){
   return true;
 }
 
-bool subgroup_helper_validation_function(const int* ptr,const int &sg_sz, const char* func_name){
+bool subgroup_helper_validation_function(const int* ptr,const uint32_t *sg_sz, const char* func_name){
   int expected[512];
   int num_threads = 128;
   int items_per_thread = 4;
+  uint32_t sg_sz_val = *sg_sz;
   for (int i = 0; i < num_threads; ++i) {
       for (int j = 0; j < items_per_thread; ++j) {
-          expected[items_per_thread * i + j] = (i / sg_sz) * sg_sz * items_per_thread + sg_sz * j + i % sg_sz;
+          expected[items_per_thread * i + j] = (i / sg_sz_val) * sg_sz_val * items_per_thread + sg_sz_val * j + i % sg_sz_val;
       }
    }
   for (int i = 0; i < 512; ++i) {
@@ -122,22 +123,23 @@ bool test_load_subgroup_striped_standalone() {
   for (int i = 0; i < 512; i++) data[i] = i;
 
   sycl::buffer<int, 1> buffer(data, 512);
-  sycl::buffer<uint32_t> sg_sz_buf(1);
+  sycl::buffer<uint32_t, 1> sg_sz_buf{sycl::range<1>(1)};
   q.submit([&](sycl::handler &h) {
     sycl::accessor dacc(buffer, h, sycl::read_write);
+    sycl::accessor sg_sz_dacc(sg_sz_buf, h, sycl::read_write);
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          auto sg_sz_acc = sg_sz_buf.get_access<sycl::access::mode::read_write>.(h);
+          auto *sg_sz_acc = sg_sz_dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           size_t gid = item.get_global_linear_id();
           if (gid == 0) {
                 sg_sz_acc[0] = item.get_sub_group().get_local_linear_range();
           }
           dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d, thread_data);
           // Write thread_data of each work item at index to the global buffer
-          int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
+          int global_index = (item.get_group(2)*item.get_local_range().get(2)) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
           for (int i = 0; i < 4; ++i) {
                 dacc[global_index * 4 + i] = thread_data[i];
@@ -148,8 +150,9 @@ bool test_load_subgroup_striped_standalone() {
 
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  auto sg_sz = sg_sz_acc.get_host_access()[0];
-  return subgroup_helper_validation_function(ptr, sg_sz, "test_subgroup_striped_standalone");
+  sycl::host_accessor data_accessor_sg(sg_sz_buf, sycl::read_only);
+  const uint32_t *ptr_sg = data_accessor_sg.get_multi_ptr<sycl::access::decorated::yes>();
+  return subgroup_helper_validation_function(ptr, ptr_sg, "test_subgroup_striped_standalone");
 }
 
 template<dpct::group::load_algorithm T>
@@ -173,7 +176,7 @@ bool test_group_load_standalone() {
           else
             {dpct::group::load_striped<4, int>(item, d, thread_data);}
           // Write thread_data of each work item at index to the global buffer
-          int global_index = int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
+          int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
             for (int i = 0; i < 4; ++i) {
                 dacc[global_index * 4 + i] = thread_data[i];
