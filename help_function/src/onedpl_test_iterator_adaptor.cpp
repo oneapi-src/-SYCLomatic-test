@@ -10,8 +10,8 @@
 #define ITERATOR_ADAPTOR_REQUIRED
 
 #include <oneapi/dpl/execution>
-#include "dpct.hpp"
-#include "dpl_utils.hpp"
+#include "dpct/dpct.hpp"
+#include "dpct/dpl_utils.hpp"
 #include <iostream>
 
 template <typename _T>
