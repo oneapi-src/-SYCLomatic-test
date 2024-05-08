@@ -76,7 +76,7 @@ bool subgroup_helper_validation_function(const int* ptr,const uint32_t *sg_sz, c
     }
   }
 
-  std::cout <<" pass\n";
+  std::cout << func_name <<" pass\n";
   return true;
 }
 
@@ -101,6 +101,7 @@ bool test_group_load() {
           auto *d = data_accessor.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *tmp = tacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           group_load(tmp).load(item, d, thread_data);
+          item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
@@ -175,6 +176,7 @@ bool test_group_load_standalone() {
             {dpct::group::load_blocked<4, int>(item, d, thread_data);}
           else
             {dpct::group::load_striped<4, int>(item, d, thread_data);}
+          item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
