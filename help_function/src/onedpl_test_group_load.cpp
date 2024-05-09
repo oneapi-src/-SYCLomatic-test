@@ -1,4 +1,4 @@
-// ====------ onedpl_test_group_load.cpp------------ *- C++ -* ----===//
+// ====------ util_group_load_test.cpp------------ *- C++ -* ----===//
 
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -84,7 +84,7 @@ template<dpct::group::load_algorithm T>
 bool test_group_load() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // in its entirety as API functions
-  sycl::queue q;
+  sycl::queue q(dpct::get_default_queue());
   oneapi::dpl::counting_iterator<int> count_it(0);
   sycl::buffer<int, 1> buffer(count_it, count_it + 512);
   
@@ -119,7 +119,7 @@ bool test_group_load() {
 
 bool test_load_subgroup_striped_standalone() {
   // Tests dpct::group::load_subgroup_striped as standalone method
-  sycl::queue q;
+  sycl::queue q(dpct::get_default_queue());
   int data[512];
   for (int i = 0; i < 512; i++) data[i] = i;
 
@@ -160,7 +160,7 @@ template<dpct::group::load_algorithm T>
 bool test_group_load_standalone() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT & dpct::group::load_algorithm::BLOCK_LOAD_STRIPED 
   // as standalone methods
-  sycl::queue q;
+  sycl::queue q(dpct::get_default_queue());
   int data[512];
   for (int i = 0; i < 512; i++) data[i] = i;
 
