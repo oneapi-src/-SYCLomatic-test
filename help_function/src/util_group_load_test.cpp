@@ -92,7 +92,7 @@ bool test_group_load() {
   sycl::buffer<int, 1> buffer_out(data_out, 512);
   
   q.submit([&](sycl::handler &h) {
-    using group_load = dpct::group::workgroup_load<4, T, int,  int *, sycl::nd_item<3>>;
+    using group_load = dpct::group::workgroup_load<4, T, int, const int *, sycl::nd_item<3>>;
     size_t temp_storage_size = group_load::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
     sycl::accessor data_accessor_read(buffer, h, sycl::read_only);
@@ -183,7 +183,7 @@ bool test_group_load_standalone() {
           int thread_data[4];
           auto *d_r = dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
           if( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
-            {dpct::group::load_blocked<4, int>(item, d, thread_data);}
+            {dpct::group::load_blocked<4, int>(item, d_r, thread_data);}
           else
             {dpct::group::load_striped<4, int>(item, d_r, thread_data);}
           // Write thread_data of each work item at index to the global buffer
@@ -200,7 +200,6 @@ bool test_group_load_standalone() {
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   return helper_validation_function<T>(ptr, "test_group_load");
 }
-
 
 int main() {
   
