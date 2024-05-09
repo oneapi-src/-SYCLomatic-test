@@ -102,10 +102,8 @@ bool test_group_load() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d_r = data_accessor_read.get_multi_ptr<sycl::access::decorated::yes>().get();
-          auto *d_w = data_accessor_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *tmp = tacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           group_load(tmp).load(item, d_r, thread_data);
-          //item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
@@ -141,7 +139,6 @@ bool test_load_subgroup_striped_standalone() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d_r = dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
-          auto *d_w = dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *sg_sz_acc = sg_sz_dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           size_t gid = item.get_global_linear_id();
           if (gid == 0) {
@@ -185,12 +182,10 @@ bool test_group_load_standalone() {
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
           auto *d_r = dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
-          auto *d_w = dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           if( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
             {dpct::group::load_blocked<4, int>(item, d, thread_data);}
           else
             {dpct::group::load_striped<4, int>(item, d_r, thread_data);}
-          //item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
