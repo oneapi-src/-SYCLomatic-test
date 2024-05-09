@@ -190,7 +190,7 @@ bool test_group_load_standalone() {
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
             for (int i = 0; i < 4; ++i) {
-                dacc_w[global_index * 4 + i] = thread_data[i];
+                dacc_write[global_index * 4 + i] = thread_data[i];
             }
         });
   });
