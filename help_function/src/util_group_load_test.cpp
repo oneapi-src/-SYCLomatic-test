@@ -87,32 +87,36 @@ bool test_group_load() {
   sycl::queue q(dpct::get_default_queue());
   oneapi::dpl::counting_iterator<int> count_it(0);
   sycl::buffer<int, 1> buffer(count_it, count_it + 512);
+  int data_out[512];
+  for (int i = 0; i < 512; i++) data_out[i] = 0;
+  sycl::buffer<int, 1> buffer_out(data_out, 512);
   
   q.submit([&](sycl::handler &h) {
     using group_load = dpct::group::workgroup_load<4, T, int,  int *, sycl::nd_item<3>>;
     size_t temp_storage_size = group_load::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
-    sycl::accessor data_accessor(buffer, h, sycl::read_write);
-    
+    sycl::accessor data_accessor_read(buffer, h, sycl::read_only);
+    sycl::accessor data_accessor_write(buffer_out, h, sycl::write_only);
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
-          auto *d = data_accessor.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_r = data_accessor_read.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_w = data_accessor_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *tmp = tacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          group_load(tmp).load(item, d, thread_data);
-          item.barrier(sycl::access::fence_space::local_space);
+          group_load(tmp).load(item, d_r, thread_data);
+          //item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
             for (int i = 0; i < 4; ++i) {
-                data_accessor[global_index * 4 + i] = thread_data[i];
+                data_accessor_write[global_index * 4 + i] = thread_data[i];
             }
         });
   });
   q.wait_and_throw();
   
-  sycl::host_accessor data_accessor(buffer, sycl::read_only);
+  sycl::host_accessor data_accessor(buffer_out, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   return helper_validation_function<T>(ptr, "test_group_load");
 }
@@ -122,34 +126,39 @@ bool test_load_subgroup_striped_standalone() {
   sycl::queue q(dpct::get_default_queue());
   int data[512];
   for (int i = 0; i < 512; i++) data[i] = i;
-
   sycl::buffer<int, 1> buffer(data, 512);
   sycl::buffer<uint32_t, 1> sg_sz_buf{sycl::range<1>(1)};
+  int data_out[512];
+  for (int i = 0; i < 512; i++) data_out[i] = 0;
+  sycl::buffer<int, 1> buffer_out(data_out, 512);
+  
   q.submit([&](sycl::handler &h) {
-    sycl::accessor dacc(buffer, h, sycl::read_write);
+    sycl::accessor dacc_read(buffer, h, sycl::read_only);
+    sycl::accessor dacc_write(buffer_out, h, sycl::write_only);
     sycl::accessor sg_sz_dacc(sg_sz_buf, h, sycl::read_write);
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
-          auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_r = dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_w = dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *sg_sz_acc = sg_sz_dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           size_t gid = item.get_global_linear_id();
           if (gid == 0) {
                 sg_sz_acc[0] = item.get_sub_group().get_local_linear_range();
           }
-          dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d, thread_data);
+          dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d_r, thread_data);
           // Write thread_data of each work item at index to the global buffer
           int global_index = (item.get_group(2)*item.get_local_range().get(2)) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
           for (int i = 0; i < 4; ++i) {
-                dacc[global_index * 4 + i] = thread_data[i];
+                dacc_write[global_index * 4 + i] = thread_data[i];
             }
         });
   });
   q.wait_and_throw();
 
-  sycl::host_accessor data_accessor(buffer, sycl::read_only);
+  sycl::host_accessor data_accessor(buffer_out, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   sycl::host_accessor data_accessor_sg(sg_sz_buf, sycl::read_only);
   const uint32_t *ptr_sg = data_accessor_sg.get_multi_ptr<sycl::access::decorated::yes>();
@@ -163,31 +172,36 @@ bool test_group_load_standalone() {
   sycl::queue q(dpct::get_default_queue());
   int data[512];
   for (int i = 0; i < 512; i++) data[i] = i;
-
   sycl::buffer<int, 1> buffer(data, 512);
+  int data_out[512];
+  for (int i = 0; i < 512; i++) data_out[i] = 0;
+  sycl::buffer<int, 1> buffer_out(data_out, 512);
+  
   q.submit([&](sycl::handler &h) {
-    sycl::accessor dacc(buffer, h, sycl::read_write);
+    sycl::accessor dacc_read(buffer, h, sycl::read_only);
+    sycl::accessor dacc_write(buffer_out, h, sycl::write_only);
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item) {
           int thread_data[4];
-          auto *d = dacc.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_r = dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
+          auto *d_w = dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           if( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
             {dpct::group::load_blocked<4, int>(item, d, thread_data);}
           else
-            {dpct::group::load_striped<4, int>(item, d, thread_data);}
-          item.barrier(sycl::access::fence_space::local_space);
+            {dpct::group::load_striped<4, int>(item, d_r, thread_data);}
+          //item.barrier(sycl::access::fence_space::local_space);
           // Write thread_data of each work item at index to the global buffer
           int global_index = item.get_group(2)*item.get_local_range().get(2) + item.get_local_id(2); // Each thread_data has 4 elements
           #pragma unroll
             for (int i = 0; i < 4; ++i) {
-                dacc[global_index * 4 + i] = thread_data[i];
+                dacc_w[global_index * 4 + i] = thread_data[i];
             }
         });
   });
   q.wait_and_throw();
 
-  sycl::host_accessor data_accessor(buffer, sycl::read_only);
+  sycl::host_accessor data_accessor(buffer_out, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
   return helper_validation_function<T>(ptr, "test_group_load");
 }
