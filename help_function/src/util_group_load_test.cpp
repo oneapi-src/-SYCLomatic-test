@@ -13,11 +13,9 @@
 #include <iostream>
 #include <oneapi/dpl/iterator>
 
-
 template<dpct::group::load_algorithm T>
 bool helper_validation_function(const int* ptr, const char * func_name){
-  if constexpr ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT)
-  {
+  if constexpr ( T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT){
      for (int i = 0; i < 512; ++i) {
       if (ptr[i] != i) {
         std::cout << func_name << "_blocked" <<" failed\n";
@@ -27,31 +25,27 @@ bool helper_validation_function(const int* ptr, const char * func_name){
         return false;
         }
      }
-     std::cout << func_name << "_blocked" <<" pass\n";
-    
+     std::cout << func_name << "_blocked" <<" pass\n"; 
   }
-    
   else{
-    int expected[512];
-    int num_threads = 128;
-    int items_per_thread = 4;
-    for (int i = 0;i < num_threads; ++i){
-        for(int j=0;j < items_per_thread; ++j){
-          expected[i * items_per_thread +j] = j * num_threads +i;  
-        }
-      }
-    for (int i = 0; i < 512; ++i) {
-        if (ptr[i] != expected[i]) {
-          std::cout << func_name << "_striped" <<" failed\n";
-          std::ostream_iterator<int> Iter(std::cout, ", ");
-          std::copy(ptr, ptr + 512, Iter);
-          std::cout << std::endl;
-          return false;
-        }
-      }
-  
-    std::cout << func_name << "_striped" <<" pass\n";
-   
+     int expected[512];
+     int num_threads = 128;
+     int items_per_thread = 4;
+     for (int i = 0;i < num_threads; ++i){
+         for(int j=0;j < items_per_thread; ++j){
+           expected[i * items_per_thread +j] = j * num_threads +i;  
+         }
+       }
+     for (int i = 0; i < 512; ++i) {
+         if (ptr[i] != expected[i]) {
+           std::cout << func_name << "_striped" <<" failed\n";
+           std::ostream_iterator<int> Iter(std::cout, ", ");
+           std::copy(ptr, ptr + 512, Iter);
+           std::cout << std::endl;
+           return false;
+         }
+       }
+     std::cout << func_name << "_striped" <<" pass\n";
   }
   return true;
 }
