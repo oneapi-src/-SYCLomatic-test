@@ -326,6 +326,7 @@
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
     <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image.xml" />
     <!-- <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" /> -->
+    <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image.xml" />
     <!-- <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" /> -->
     <!-- <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" /> -->
     <!-- <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" /> -->
