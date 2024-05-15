@@ -194,7 +194,7 @@ __global__ void ReduceValid(int *d_result, int *d_data, int valid_items,
   }
 
   int aggregate =
-      BlockReduce(smem_storage).Reduce(value, cub::Sum{}, valid_items);
+      BlockReduce(smem_storage).Reduce(value, cub::Sum(), valid_items);
   if (threadIdx.x == 0)
     d_result[blockIdx.x] = aggregate;
   return;
