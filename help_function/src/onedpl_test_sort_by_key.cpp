@@ -116,8 +116,8 @@ int main() {
         auto values_it = oneapi::dpl::begin(values_buf);
 
         {
-            auto keys = keys_it.get_buffer().template get_access<sycl::access::mode::write>();
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::write>();
+            auto keys = keys_it.get_buffer().get_host_access();
+            auto values = values_it.get_buffer().get_host_access();
 
             keys[0] = 1; keys[1] = 4; keys[2] = 2; keys[3] = 8; keys[4] = 5; keys[5] = 7;
             values[0] = 'a'; values[1] = 'b'; values[2] = 'c'; values[3] = 'd'; values[4] = 'e';values[5] = 'f';
@@ -130,7 +130,7 @@ int main() {
         // values is now {'a', 'c', 'b', 'e', 'f', 'd'}
         {
             test_name = "Regular call to sort";
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::read>();
+            auto values = values_it.get_buffer().get_host_access();
             num_failing += ASSERT_EQUAL(test_name, values[0], 'a');
             num_failing += ASSERT_EQUAL(test_name, values[1], 'c');
             num_failing += ASSERT_EQUAL(test_name, values[2], 'b');
@@ -264,8 +264,8 @@ int main() {
         auto values_it = oneapi::dpl::begin(values_buf);
 
         {
-            auto keys = keys_it.get_buffer().template get_access<sycl::access::mode::write>();
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::write>();
+            auto keys = keys_it.get_buffer().get_host_access();
+            auto values = values_it.get_buffer().get_host_access();
             keys[0] = 1; keys[1] = 4; keys[2] = 2; keys[3] = 8; keys[4] = 5; keys[5] = 7;
             values[0] = 'a'; values[1] = 'b'; values[2] = 'c'; values[3] = 'd'; values[4] = 'e';values[5] = 'f';
         }
@@ -277,7 +277,7 @@ int main() {
         // values is now {'a', 'c', 'b', 'e', 'f', 'd'}
         {
             test_name = "Regular call to stable_sort";
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::read>();
+            auto values = values_it.get_buffer().get_host_access();
 
             num_failing += ASSERT_EQUAL(test_name, values[0], 'a');
             num_failing += ASSERT_EQUAL(test_name, values[1], 'c');
@@ -357,8 +357,8 @@ int main() {
         auto values_it = oneapi::dpl::begin(values_buf);
 
         {
-            auto keys = keys_it.get_buffer().template get_access<sycl::access::mode::write>();
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::write>();
+            auto keys = keys_it.get_buffer().get_host_access();
+            auto values = values_it.get_buffer().get_host_access();
             // keys = {8, 3, 0, 2, 6, 5, 1, 8, 9, 10, 7, 4, 5, 2, 2, 10}
             keys[0] = 8; keys[1] = 3; keys[2] = 0; keys[3] = 2; keys[4] = 6; keys[5] = 5;
             keys[6] = 1; keys[7] = 8; keys[8] = 9; keys[9] = 10; keys[10] = 7; keys[11] = 4;
@@ -375,8 +375,8 @@ int main() {
         // keys is now = {0, 1, 2, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10, 10}
         // values is now = {'k', 'n', 'g', 'j', 'l', 'm', 'p', 'c', 'o', 'd', 'h', 'b', 'f', 'i', 'e', 'a'}
         {
-            auto keys = keys_it.get_buffer().template get_access<sycl::access::mode::read>();
-            auto values = values_it.get_buffer().template get_access<sycl::access::mode::read>();
+            auto keys = keys_it.get_buffer().get_host_access();
+            auto values = values_it.get_buffer().get_host_access();
             int check_values[16] = {'k', 'n', 'g', 'j', 'l', 'm', 'p', 'c', 'o', 'd', 'h', 'b', 'f', 'i', 'e', 'a'};
             int check_keys[16] = {0, 1, 2, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10, 10};
             // check that values and keys are correct
