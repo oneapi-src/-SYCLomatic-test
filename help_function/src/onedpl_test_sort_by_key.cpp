@@ -108,6 +108,7 @@ int main() {
     // #14 SORT BY KEY TEST //
 
     {
+        sycl::queue myQueue;
         const int N = 6;
         sycl::buffer<int, 1> keys_buf{ sycl::range<1>(N) };
         sycl::buffer<int, 1> values_buf{ sycl::range<1>(N) };
@@ -124,7 +125,7 @@ int main() {
         }
 
         // call algorithm:
-        dpct::sort(oneapi::dpl::execution::dpcpp_default, keys_it, keys_it + N, values_it);
+        dpct::sort(oneapi::dpl::execution::make_device_policy<class kernel1>(myQueue), keys_it, keys_it + N, values_it);
 
         // keys is now   {  1,   2,   4,   5,   7,   8}
         // values is now {'a', 'c', 'b', 'e', 'f', 'd'}
@@ -170,7 +171,7 @@ int main() {
             auto keys_end = dpct::device_pointer<int>(keysArray + 10);
             auto values_begin = dpct::device_pointer<int>(valuesArray);
             // call algorithm
-            dpct::sort(oneapi::dpl::execution::make_device_policy<>(myQueue), keys_begin, keys_end, values_begin);
+            dpct::sort(oneapi::dpl::execution::make_device_policy<class kernel2>(myQueue), keys_begin, keys_end, values_begin);
         }
 
         // copy back
