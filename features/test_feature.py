@@ -105,6 +105,8 @@ def migrate_test():
         src.append(' --enable-profiling ')
     if test_config.current_test == 'asm_bar':
         src.append(' --use-experimental-features=non-uniform-groups ')
+    if test_config.current_test == 'cub_block':
+        src.append(' --use-experimental-features=user-defined-reductions ')
     if test_config.current_test == 'device_global':
         src.append(' --use-experimental-features=device_global ')
     if test_config.current_test == 'sync_warp_p2':

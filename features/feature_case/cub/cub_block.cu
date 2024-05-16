@@ -249,6 +249,43 @@ bool TestBlockReduceValidItem() {
   return flag;
 }
 
+template <typename T>
+__device__ __forceinline__ float reduce_topk_op_2(const float &a,
+                                                  const float &b) {
+  return a > b ? a : b;
+}
+
+__global__ void reduce_kernel(float *da) {
+  typedef cub::BlockReduce<float, 32> BlockReduce;
+  __shared__ typename BlockReduce::TempStorage temp_storage;
+  int id = threadIdx.x;
+  BlockReduce rd(temp_storage);
+  float temp = rd.Reduce(da[id], reduce_topk_op_2<float>);
+  if (id == 0) {
+    da[id] = temp;
+  }
+  __syncthreads();
+}
+
+bool TestBlockReduceWithUserDefineReductions() {
+  int N = 32;
+  float *ha = (float *)malloc(N * sizeof(float));
+  float *da;
+  cudaMalloc(&da, N * sizeof(float));
+
+  for (int i = 0; i < N; i++) {
+    ha[i] = i * 1.0f;
+  }
+
+  cudaMemcpy(da, ha, N * sizeof(float), cudaMemcpyHostToDevice);
+  reduce_kernel<<<1, 32>>>(da);
+  cudaMemcpy(ha, da, 1 * sizeof(float), cudaMemcpyDeviceToHost);
+  float val = ha[0];
+  cudaFree(da);
+  free(ha);
+  return std::abs(val - 31.0) < 1e-6;
+}
+
 int main() {
   bool Result = true;
   int* dev_data = nullptr;
@@ -413,6 +450,7 @@ int main() {
 
   Result  = TestBlockReduceSumValidItem() && Result;
   Result  = TestBlockReduceValidItem() && Result;
+  Result  = TestBlockReduceWithUserDefineReductions() && Result;
 
   if(Result) {
     std::cout << "passed" << std::endl;
@@ -420,5 +458,3 @@ int main() {
   }
   return 1;
 }
-
-
