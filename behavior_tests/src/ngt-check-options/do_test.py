@@ -76,7 +76,7 @@ def add_options(options = list):
 
 def check_result(cmd, action, attributes):
     call_subprocess(test_config.CT_TOOL + cmd)
-    expect = "Warning: Option \"-{0}\" is ignored because it is conflict with option \"-" + action[0] + "\"."
+    expect = "Warning: Option \"-{0}\" is ignored because it conflicts with option \"-" + action[0] + "\"."
     for attr in attributes:
         if action[2][0] in attr[2]:
             continue
