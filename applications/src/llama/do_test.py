@@ -111,4 +111,5 @@ def build_test():
     return ret
 
 def run_test():
+    os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     return True
