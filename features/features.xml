@@ -233,6 +233,7 @@
     <test testName="cub_counting_iterator" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_transform_iterator" configFile="config/TEMPLATE_cub_transform_iterator.xml" />
     <test testName="cub_constant_iterator" configFile="config/TEMPLATE_cub_device.xml" />
+    <test testName="cub_device_spmv" configFile="config/TEMPLATE_cub_device.xml" />
     <!-- <test testName="cub_arg_index_input_iterator" configFile="config/TEMPLATE_cub_device.xml" /> -->
     <test testName="cudnn_multiple_files" configFile="config/TEMPLATE_cudnn_multiple_files.xml" />
     <test testName="cudnn-GetErrorString" configFile="config/TEMPLATE_cuDNN.xml" />

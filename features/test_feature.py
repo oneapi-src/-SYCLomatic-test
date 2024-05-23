@@ -22,7 +22,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'thrust-qmc', 'thrust-transform-if', 'thrust-policy', 'thrust-list', 'module-kernel',
               'kernel-launch', 'thrust-gather', 'thrust-gather_if', 'cub_device_partition',
               'thrust-scatter', 'thrust-unique_by_key_copy', 'thrust-for-hypre', 'thrust-merge_by_key',
-              'thrust-rawptr-noneusm', 'driverStreamAndEvent', 'grid_sync', 'deviceProp', 'gridThreads', 'kernel_library', 'cub_block_p2',
+              'thrust-rawptr-noneusm', 'driverStreamAndEvent', 'grid_sync', 'deviceProp', 'gridThreads', 'kernel_library', 'cub_block_p2', 'cub_device_spmv',
               'cub_constant_iterator', 'cub_device_reduce_max', 'cub_device_reduce_min', 'cub_discard_iterator', 'ccl-test', 'ccl-test2', 'ccl-test3', 'ccl-error',
               'cub_device', 'cub_device_reduce_sum', 'cub_device_reduce', 'cub_device_reduce_by_key', 'cub_device_select_unique_by_key', 'cub_device_segmented_sort_keys',
               'cub_device_scan_inclusive_scan', 'cub_device_scan_exclusive_scan', 'cub_device_seg_radix_sort_pairs', 'cub_device_no_trivial_runs', 'cub_device_merge_sort.cu',
@@ -175,7 +175,7 @@ def build_test():
     if test_config.current_test in oneDPL_related:
         cmp_options.append(prepare_oneDPL_specific_macro())
 
-    if re.match('^cu.*', test_config.current_test):
+    if test_config.current_test == 'cub_device_spmv' or re.match('^cu.*', test_config.current_test):
         if platform.system() == 'Linux':
             link_opts = test_config.mkl_link_opt_lin
         else:
