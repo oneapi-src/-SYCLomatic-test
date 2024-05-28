@@ -14,8 +14,6 @@
 
 int main(int argc, char **argv) {
 
-    CUDA_ARRAY_DESCRIPTOR *pcad;
-
     CUexternalMemory cum;
 
     CUexternalSemaphore cus;
