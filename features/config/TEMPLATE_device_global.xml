@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="feature_case/device_global/${testName}.cu" />
+    </files>
+    <rules>
+      <optlevelRule excludeOptlevelNameString="usmnone" />
+      <optlevelRule excludeOptlevelNameString="cuda" />
+      <platformRule OSFamily="Linux" kit="GCC9.3.0" kitRange="OLDER" runOnThisPlatform="false" />
+    </rules>
+</test>

@@ -1,4 +1,4 @@
-# ====------ do_test.py---------- *- Python -* ----===##
+# ====------ do_test.py----------- *- Python -* ----===##
 #
 # Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 # See https://llvm.org/LICENSE.txt for license information.
@@ -10,6 +10,7 @@ import subprocess
 import platform
 import os
 import sys
+import glob
 
 from test_utils import *
 
@@ -18,11 +19,18 @@ def setup_test():
     return True
 
 def migrate_test():
-    call_subprocess(test_config.CT_TOOL + " simple_foo.cu --process-all --cuda-include-path=" + test_config.include_path)
-    return is_sub_string("Error: Option \"-process-all\" require(s) that option \"-in-root\" be specified explicitly.", test_config.command_output)
+    ret_file = ""
+    call_subprocess(test_config.CT_TOOL + " --enable-codepin test.cu --out-root=out --cuda-include-path=" + test_config.include_path)
+    return True
 
 def build_test():
-    return True
+    srcs = []
+    srcs.append(os.path.join("out_codepin_sycl", "test.dp.cpp"))
+    return compile_and_link(srcs)
 
 def run_test():
-    return True
+    run_binary_with_args()
+    matching_files = glob.glob("CodePin_SYCL_" + "*")
+    if matching_files:
+        return True
+    return False

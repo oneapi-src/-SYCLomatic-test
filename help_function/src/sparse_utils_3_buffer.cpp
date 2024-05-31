@@ -335,10 +335,10 @@ void test_cusparseTcsrsv2() {
   buffer_size_c = 0;
   buffer_size_z = 0;
 
-  void* buffer_s;
-  void* buffer_d;
-  void* buffer_c;
-  void* buffer_z;
+  void* buffer_s = nullptr;
+  void* buffer_d = nullptr;
+  void* buffer_c = nullptr;
+  void* buffer_z = nullptr;
   buffer_s = dpct::dpct_malloc(buffer_size_s);
   buffer_d = dpct::dpct_malloc(buffer_size_d);
   buffer_c = dpct::dpct_malloc(buffer_size_c);

@@ -376,6 +376,105 @@ void testvavrg2UUS(
   }
 }
 
+__global__ void vset2UUEq(int *Result, int a, int b) {
+  asm("vset2.u32.u32.eq %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UUNe(int *Result, int a, int b) {
+  asm("vset2.u32.u32.ne %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UULt(int *Result, int a, int b) {
+  asm("vset2.u32.u32.lt %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UULe(int *Result, int a, int b) {
+  asm("vset2.u32.u32.le %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UUGt(int *Result, int a, int b) {
+  asm("vset2.u32.u32.gt %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UUGe(int *Result, int a, int b) {
+  asm("vset2.u32.u32.ge %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset2UUAdd(int *Result, int a, int b, int c) {
+  asm("vset2.u32.u32.eq.add %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(c));
+}
+
+void testvset2UU(
+    const vector<pair<tuple<int, int, int>, tuple<int, int, int, int, int, int, int>>> &TestCases) {
+  int *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    string newCase = "{{" + to_string(get<0>(TestCase.first)) + ", " +
+                     to_string(get<1>(TestCase.first)) + ", " +
+                     to_string(get<2>(TestCase.first)) + "}, {";
+    vset2UUEq<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.eq",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<0>(TestCase.second), *Result);
+    vset2UUNe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.ne",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<1>(TestCase.second), *Result);
+    vset2UULt<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.lt",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<2>(TestCase.second), *Result);
+    vset2UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.le",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<3>(TestCase.second), *Result);
+    vset2UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.gt",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<4>(TestCase.second), *Result);
+    vset2UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset2.u32.u32.ge",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<5>(TestCase.second), *Result);
+    vset2UUAdd<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first),
+                         get<2>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + "}},";
+    if (PRINT_CASE)
+      cout << newCase << endl;
+    checkResult("vset2.u32.u32.eq.add",
+                {get<0>(TestCase.first), get<1>(TestCase.first),
+                 get<2>(TestCase.first)},
+                get<6>(TestCase.second), *Result);
+  }
+}
+
 int main() {
   srand(unsigned(time(nullptr)));
   int a = rand();
@@ -470,6 +569,21 @@ int main() {
       {{454422046, 990649001, 541577428}, {722568292, 722568292, 541622345}},
       {{2123447767, 63088206, 406272673}, {1093333522, 1093271552, 406285789}},
       {{1127203977, 209928516, 352777355}, {668566247, 668566247, 352821067}},
+  });
+  testvset2UU({
+    // {{a, b, c}, {0, 0, 0}},
+      {{3, 4, 1}, {65536, 1, 1, 65537, 65537, 65537, 2}},
+      {{30000000, 400000000, 10}, {0, 65537, 65536, 65536, 65536, 65536, 10}},
+      {{INT16_MAX, 1, 100}, {65536, 1, 0, 65536, 65536, 65536, 101}},
+      {{UINT16_MAX, 1, 1000}, {65536, 1, 0, 65536, 65536, 65536, 1001}},
+      {{UINT16_MAX, UINT16_MAX, 10000}, {65537, 0, 0, 65537, 65537, 65537, 10002}},
+      {{INT16_MAX, UINT16_MAX, 100000}, {65536, 1, 1, 65537, 65537, 65537, 100001}},
+      {{UINT32_MAX, UINT16_MAX, 1000000}, {1, 65536, 0, 1, 1, 1, 1000001}},
+      {{INT16_MAX, UINT32_MAX, 10000000}, {0, 65537, 65537, 65537, 65537, 65537, 10000000}},
+      {{INT16_MIN, INT32_MIN, 100000000}, {0, 65537, 0, 0, 0, 0, 100000000}},
+      {{454422046, 990649001, 541577428}, {0, 65537, 65536, 65536, 65536, 65536, 541577428}},
+      {{2123447767, 63088206, 406272673}, {0, 65537, 1, 1, 1, 1, 406272673}},
+      {{1127203977, 209928516, 352777355}, {0, 65537, 0, 0, 0, 0, 352777355}},
   });
   cout << "passed " << passed << "/" << passed + failed << " cases!" << endl;
   if (failed) {

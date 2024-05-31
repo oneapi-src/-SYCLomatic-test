@@ -103,8 +103,6 @@ bool compare_result(float *expect, float *result, std::vector<int> indices) {
 
 bool test_passed = true;
 
-const bool run_complex_datatype = true;
-
 // A * B = C
 //
 // | 0 1 2 |   | 1 0 0 0 |   | 2 3 10 12 |  
@@ -216,15 +214,13 @@ void test_cusparseSpGEMM() {
   size_t ws_1_size_z = 0;
   cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, beta_s.d_data, c_descr_s, CUDA_R_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_s, &ws_1_size_s, NULL);
   cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, beta_d.d_data, c_descr_d, CUDA_R_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_d, &ws_1_size_d, NULL);
-  if (run_complex_datatype) {
-    cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_1_size_c, NULL);
-    cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_1_size_z, NULL);
-  }
+  cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_1_size_c, NULL);
+  cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_1_size_z, NULL);
 
-  void *ws_1_s;
-  void *ws_1_d;
-  void *ws_1_c;
-  void *ws_1_z;
+  void *ws_1_s = nullptr;
+  void *ws_1_d = nullptr;
+  void *ws_1_c = nullptr;
+  void *ws_1_z = nullptr;
   cudaMalloc(&ws_1_s, ws_1_size_s);
   cudaMalloc(&ws_1_d, ws_1_size_d);
   cudaMalloc(&ws_1_c, ws_1_size_c);
@@ -232,10 +228,8 @@ void test_cusparseSpGEMM() {
 
   cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, beta_s.d_data, c_descr_s, CUDA_R_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_s, &ws_1_size_s, ws_1_s);
   cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, beta_d.d_data, c_descr_d, CUDA_R_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_d, &ws_1_size_d, ws_1_d);
-  if (run_complex_datatype) {
-    cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_1_size_c, ws_1_c);
-    cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_1_size_z, ws_1_z);
-  }
+  cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_1_size_c, ws_1_c);
+  cusparseSpGEMM_workEstimation(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_1_size_z, ws_1_z);
 
   size_t ws_2_size_s = 0;
   size_t ws_2_size_d = 0;
@@ -243,15 +237,13 @@ void test_cusparseSpGEMM() {
   size_t ws_2_size_z = 0;
   cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, beta_s.d_data, c_descr_s, CUDA_R_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_s, &ws_2_size_s, NULL);
   cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, beta_d.d_data, c_descr_d, CUDA_R_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_d, &ws_2_size_d, NULL);
-  if (run_complex_datatype) {
-    cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_2_size_c, NULL);
-    cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_2_size_z, NULL);
-  }
+  cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_2_size_c, NULL);
+  cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_2_size_z, NULL);
 
-  void *ws_2_s;
-  void *ws_2_d;
-  void *ws_2_c;
-  void *ws_2_z;
+  void *ws_2_s = nullptr;
+  void *ws_2_d = nullptr;
+  void *ws_2_c = nullptr;
+  void *ws_2_z = nullptr;
   cudaMalloc(&ws_2_s, ws_2_size_s);
   cudaMalloc(&ws_2_d, ws_2_size_d);
   cudaMalloc(&ws_2_c, ws_2_size_c);
@@ -259,10 +251,8 @@ void test_cusparseSpGEMM() {
 
   cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, beta_s.d_data, c_descr_s, CUDA_R_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_s, &ws_2_size_s, ws_2_s);
   cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, beta_d.d_data, c_descr_d, CUDA_R_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_d, &ws_2_size_d, ws_2_d);
-  if (run_complex_datatype) {
-    cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_2_size_c, ws_2_c);
-    cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_2_size_z, ws_2_z);
-  }
+  cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c, &ws_2_size_c, ws_2_c);
+  cusparseSpGEMM_compute(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z, &ws_2_size_z, ws_2_z);
 
   int64_t c_row_s;
   int64_t c_row_d;
@@ -297,10 +287,8 @@ void test_cusparseSpGEMM() {
 
   cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, beta_s.d_data, c_descr_s, CUDA_R_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_s);
   cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, beta_d.d_data, c_descr_d, CUDA_R_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_d);
-  if (run_complex_datatype) {
-    cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c);
-    cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z);
-  }
+  cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, beta_c.d_data, c_descr_c, CUDA_C_32F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_c);
+  cusparseSpGEMM_copy(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, beta_z.d_data, c_descr_z, CUDA_C_64F, CUSPARSE_SPGEMM_DEFAULT, SpGEMMDescr_z);
 
   cudaStreamSynchronize(0);
 

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <cuda_runtime.h>
 #include <cub/cub.cuh>
+#include <vector>
 
 #define WARP_SIZE 32
 #define DATA_NUM 256
@@ -113,6 +114,177 @@ __global__ void BlockReduceKernel(int* data) {
   data[threadid] = output;
 }
 
+template <int BLOCK_THREADS>
+__global__ void ReduceSumValid(int *d_result, int *d_data, int valid_items,
+                               int num_elements) {
+  typedef cub::BlockReduce<int, BLOCK_THREADS> BlockReduce;
+  __shared__ typename BlockReduce::TempStorage smem_storage;
+
+  int value = 0;
+  if (threadIdx.x < BLOCK_THREADS) {
+    if (blockIdx.x * BLOCK_THREADS + threadIdx.x < num_elements)
+      value = d_data[blockIdx.x * BLOCK_THREADS + threadIdx.x];
+  }
+
+  int aggregate = BlockReduce(smem_storage).Sum(value, valid_items);
+  if (threadIdx.x == 0)
+    d_result[blockIdx.x] = aggregate;
+  return;
+}
+
+bool TestBlockReduceSumValidItem() {
+  srand(19850814);
+  const int block_threads = 128;
+  int num_elements = 1024;
+  int valid_items = 64;
+  int num_blocks = num_elements / block_threads +
+                   (num_elements % block_threads == 0 ? 0 : 1);
+  std::vector<int> data_vec(num_elements, 0);
+  std::vector<int> result_vec(num_blocks, 0);
+  std::vector<int> result_ref_vec(num_blocks, 0);
+  std::vector<int> result_ref_cnt_vec(num_blocks, 0);
+  int *data = data_vec.data();
+  int *result = result_vec.data();
+  int *result_ref = result_ref_vec.data();
+  int *result_ref_cnt = result_ref_cnt_vec.data();
+
+  int *d_data;
+  int *d_result;
+  cudaMalloc((void **)&d_data, sizeof(int) * num_elements);
+  cudaMalloc((void **)&d_result, sizeof(int) * num_blocks);
+  for (int i = 0; i < num_elements; ++i) {
+    data[i] = rand() % num_elements;
+    int block_id = i / block_threads;
+    result_ref[block_id] +=
+        result_ref_cnt[block_id] < valid_items ? data[i] : 0;
+    result_ref_cnt_vec[block_id]++;
+  }
+  cudaMemcpy(d_data, data, num_elements * sizeof(int), cudaMemcpyHostToDevice);
+  dim3 dimGrid(num_blocks, 1, 1);
+  dim3 dimBlock(block_threads, 1, 1);
+  ReduceSumValid<block_threads>
+      <<<dimGrid, dimBlock>>>(d_result, d_data, valid_items, num_elements);
+  cudaMemcpy(result, d_result, num_blocks * sizeof(int),
+             cudaMemcpyDeviceToHost);
+
+  bool flag = true;
+  for (int i = 0; i < num_blocks; ++i) {
+    if (result[i] != result_ref[i]) {
+      flag = false;
+      printf("the %dth block result is wrong: %d %d\n", i + 1, result[i],
+             result_ref[i]);
+    }
+  }
+
+  cudaFree(d_data);
+  cudaFree(d_result);
+  return flag;
+}
+
+template <int BLOCK_THREADS>
+__global__ void ReduceValid(int *d_result, int *d_data, int valid_items,
+                            int num_elements) {
+  typedef cub::BlockReduce<int, BLOCK_THREADS> BlockReduce;
+  __shared__ typename BlockReduce::TempStorage smem_storage;
+
+  int value = 0;
+  if (threadIdx.x < BLOCK_THREADS) {
+    if (blockIdx.x * BLOCK_THREADS + threadIdx.x < num_elements)
+      value = d_data[blockIdx.x * BLOCK_THREADS + threadIdx.x];
+  }
+
+  int aggregate =
+      BlockReduce(smem_storage).Reduce(value, cub::Sum(), valid_items);
+  if (threadIdx.x == 0)
+    d_result[blockIdx.x] = aggregate;
+  return;
+}
+
+bool TestBlockReduceValidItem() {
+  srand(19850814);
+  const int block_threads = 128;
+  int num_elements = 1024;
+  int valid_items = 64;
+  int num_blocks = num_elements / block_threads +
+                   (num_elements % block_threads == 0 ? 0 : 1);
+  std::vector<int> data_vec(num_elements, 0);
+  std::vector<int> result_vec(num_blocks, 0);
+  std::vector<int> result_ref_vec(num_blocks, 0);
+  std::vector<int> result_ref_cnt_vec(num_blocks, 0);
+  int *data = data_vec.data();
+  int *result = result_vec.data();
+  int *result_ref = result_ref_vec.data();
+  int *result_ref_cnt = result_ref_cnt_vec.data();
+
+  int *d_data;
+  int *d_result;
+  cudaMalloc((void **)&d_data, sizeof(int) * num_elements);
+  cudaMalloc((void **)&d_result, sizeof(int) * num_blocks);
+  for (int i = 0; i < num_elements; ++i) {
+    data[i] = rand() % num_elements;
+    int block_id = i / block_threads;
+    result_ref[block_id] +=
+        result_ref_cnt[block_id] < valid_items ? data[i] : 0;
+    result_ref_cnt_vec[block_id]++;
+  }
+  cudaMemcpy(d_data, data, num_elements * sizeof(int), cudaMemcpyHostToDevice);
+  dim3 dimGrid(num_blocks, 1, 1);
+  dim3 dimBlock(block_threads, 1, 1);
+  ReduceValid<block_threads>
+      <<<dimGrid, dimBlock>>>(d_result, d_data, valid_items, num_elements);
+  cudaMemcpy(result, d_result, num_blocks * sizeof(int),
+             cudaMemcpyDeviceToHost);
+
+  bool flag = true;
+  for (int i = 0; i < num_blocks; ++i) {
+    if (result[i] != result_ref[i]) {
+      flag = false;
+      printf("the %dth block result is wrong: %d %d\n", i + 1, result[i],
+             result_ref[i]);
+    }
+  }
+
+  cudaFree(d_data);
+  cudaFree(d_result);
+  return flag;
+}
+
+template <typename T>
+__device__ __forceinline__ float reduce_topk_op_2(const float &a,
+                                                  const float &b) {
+  return a > b ? a : b;
+}
+
+__global__ void reduce_kernel(float *da) {
+  typedef cub::BlockReduce<float, 32> BlockReduce;
+  __shared__ typename BlockReduce::TempStorage temp_storage;
+  int id = threadIdx.x;
+  BlockReduce rd(temp_storage);
+  float temp = rd.Reduce(da[id], reduce_topk_op_2<float>);
+  if (id == 0) {
+    da[id] = temp;
+  }
+  __syncthreads();
+}
+
+bool TestBlockReduceWithUserDefineReductions() {
+  int N = 32;
+  float *ha = (float *)malloc(N * sizeof(float));
+  float *da;
+  cudaMalloc(&da, N * sizeof(float));
+
+  for (int i = 0; i < N; i++) {
+    ha[i] = i * 1.0f;
+  }
+
+  cudaMemcpy(da, ha, N * sizeof(float), cudaMemcpyHostToDevice);
+  reduce_kernel<<<1, 32>>>(da);
+  cudaMemcpy(ha, da, 1 * sizeof(float), cudaMemcpyDeviceToHost);
+  float val = ha[0];
+  cudaFree(da);
+  free(ha);
+  return std::abs(val - 31.0) < 1e-6;
+}
 
 int main() {
   bool Result = true;
@@ -276,11 +448,13 @@ int main() {
     print_data(dev_data, DATA_NUM);
   }
 
+  Result  = TestBlockReduceSumValidItem() && Result;
+  Result  = TestBlockReduceValidItem() && Result;
+  Result  = TestBlockReduceWithUserDefineReductions() && Result;
+
   if(Result) {
     std::cout << "passed" << std::endl;
     return 0;
   }
   return 1;
 }
-
-

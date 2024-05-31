@@ -118,6 +118,22 @@ __device__ int vshr() {
   return 0;
 }
 
+__device__ int vset() {
+  int i;
+  // clang-format off
+  { asm("vset.s32.s32.eq %0, %1, %2;" : "=r"(i) : "r"(32), "r"(40)); if (!(i == 0)) { return 1; } };
+  { asm("vset.s32.s32.ne %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 0)) { return 2; } };
+  { asm("vset.s32.s32.lt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 0)) { return 3; } };
+  { asm("vset.s32.s32.le %0, %1, %2;" : "=r"(i) : "r"(30), "r"(32)); if (!(i == 1)) { return 4; } };
+  { asm("vset.s32.s32.gt %0, %1, %2;" : "=r"(i) : "r"(32), "r"(31)); if (!(i == 1)) { return 5; } };
+  { asm("vset.s32.s32.ge %0, %1, %2;" : "=r"(i) : "r"(32), "r"(32)); if (!(i == 1)) { return 6; } };
+  { asm("vset.s32.s32.eq.add %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(40), "r"(1)); if (!(i == 1)) { return 7; } };
+  { asm("vset.s32.s32.ne.min %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(3)); if (!(i == 0)) { return 8; } };
+  { asm("vset.s32.s32.lt.max %0, %1, %2, %3;" : "=r"(i) : "r"(32), "r"(32), "r"(4)); if (!(i == 4)) { return 9; } };
+  // clang-format on
+  return 0;
+}
+
 // clang-format on
 
 __global__ void test(int *ec) {
@@ -165,6 +181,13 @@ __global__ void test(int *ec) {
   }
   {
     int res = vshr();
+    if (res != 0) {
+      *ec = res;
+      return;
+    }
+  }
+  {
+    int res = vset();
     if (res != 0) {
       *ec = res;
       return;

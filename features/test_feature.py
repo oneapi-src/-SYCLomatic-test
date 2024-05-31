@@ -45,13 +45,13 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
               'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
-              'curand-device2', 'curandEnum',
+              'curand-device2', 'curandEnum', 'codepin_all_public_dump',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
               'cusolver_test1', 'cusolver_test2', 'cusolver_test3', 'cusolver_test4', 'cusolver_test5', 'thrust_op', 'cublas-extension', 'cublas_v1_runable', 'thrust_minmax_element',
               'thrust_is_sorted', 'thrust_partition', 'thrust_remove_copy', 'thrust_unique_copy', 'thrust_transform_exclusive_scan',
               'thrust_set_difference', 'thrust_set_difference_by_key', 'thrust_set_intersection_by_key', 'thrust_stable_sort',
               'thrust_tabulate', 'thrust_for_each_n', 'device_info', 'defaultStream', 'cudnn-rnn', 'feature_profiling',
-              'thrust_raw_reference_cast', 'thrust_partition_copy', 'thrust_stable_partition_copy',
+              'thrust_raw_reference_cast', 'thrust_partition_copy', 'thrust_stable_partition_copy', 'device_global',
               'thrust_stable_partition', 'thrust_remove', 'cub_device_segmented_sort_pairs', 'thrust_find_if_not',
               'thrust_find_if', 'thrust_mismatch', 'thrust_replace_copy', 'thrust_reverse', 'cooperative_groups_reduce', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate',
               'remove_unnecessary_wait', 'thrust_equal_range', 'thrust_transform_inclusive_scan', 'thrust_uninitialized_copy_n', 'thrust_uninitialized_copy',
@@ -84,6 +84,7 @@ def migrate_test():
 
     nd_range_bar_exper = ['grid_sync']
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate']
+    uniform_group_exper = ['cooperative_group_coalesced_group']
     experimental_bfloat16_tests = ['math-experimental-bf16', 'math-experimental-bf162']
 
     if test_config.current_test in nd_range_bar_exper:
@@ -92,6 +93,8 @@ def migrate_test():
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test in logical_group_exper:
         src.append(' --use-experimental-features=logical-group ')
+    if test_config.current_test in uniform_group_exper:
+        src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'math_intel_specific':
         src.append(' --rule-file=./math_intel_specific/intel_specific_math.yaml')
     if test_config.current_test.startswith('math-ext-'):
@@ -102,6 +105,10 @@ def migrate_test():
         src.append(' --enable-profiling ')
     if test_config.current_test == 'asm_bar':
         src.append(' --use-experimental-features=non-uniform-groups ')
+    if test_config.current_test == 'cub_block':
+        src.append(' --use-experimental-features=user-defined-reductions ')
+    if test_config.current_test == 'device_global':
+        src.append(' --use-experimental-features=device_global ')
     if test_config.current_test == 'sync_warp_p2':
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
@@ -181,6 +188,15 @@ def build_test():
     if test_config.current_test.startswith('ccl-'):
         link_opts.append('-lccl -lmpi')
 
+    if "codepin" in test_config.current_test:
+        test_config.out_root = test_config.out_root + "_codepin_sycl"
+
+    if test_config.current_test == 'device_global':
+        if platform.system() == 'Linux':
+            cmp_options.append("-std=c++20")
+        else:
+            cmp_options.append("-Qstd=c++20")
+
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
             srcs.append(os.path.abspath(os.path.join(dirpath, filename)))
@@ -212,7 +228,7 @@ def build_test():
 def run_test():
     if test_config.current_test not in exec_tests:
         return True
-    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter != "cuda:gpu":
+    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter.count("cuda") == 0:
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

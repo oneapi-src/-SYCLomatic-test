@@ -104,3 +104,18 @@ void foo7() {
   //CHECK: my_min(b, b);
   my_max(a, b);
 }
+
+
+void filterfoo(){}
+void filterfoo(int i){}
+void filterfoo2(int i){}
+
+void filtergoo(){}
+void filtergoo(int i){}
+void filtergoo2(int i){}
+
+void foo10(){
+  filterfoo();
+  filterfoo(3);
+  filterfoo2(3);
+}
