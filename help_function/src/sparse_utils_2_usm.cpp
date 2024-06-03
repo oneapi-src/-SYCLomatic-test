@@ -156,8 +156,8 @@ void test_cub_spmv_csrmv() {
                       d_vector_x, d_vector_y, num_rows, num_cols);
   dpct::get_current_device().queues_wait_and_throw();
 
-  float expect_c[4] = {2, 3, 2, 3, 4, 3, 2, 3, 2};
-  if (compare_result(expect_c, c_s.h_data, 9))
+  float expect_c[9] = {2, 3, 2, 3, 4, 3, 2, 3, 2};
+  if (compare_result(expect_c, d_vector_y, 9))
     printf("cub_spmv_csrmv pass\n");
   else {
     printf("cub_spmv_csrmv fail\n");
