@@ -127,6 +127,49 @@ void test_cusparseSetGetStream() {
   printf("SetGetStream pass\n");
 }
 
+template <class T> T *init(std::initializer_list<T> L) {
+  T *Ptr = nullptr;
+  Ptr = (T *)sycl::malloc_shared(sizeof(T) * L.size(),
+                                 dpct::get_in_order_queue());
+  std::copy(L.begin(), L.end(), Ptr);
+  return Ptr;
+}
+
+void test_cub_spmv_csrmv() {
+  dpct::device_ext &dev_ct1 = dpct::get_current_device();
+  sycl::queue &q_ct1 = dev_ct1.default_queue();
+  int num_rows = 9;
+  int num_cols = 9;
+  int num_nonzeros = 24;
+  float *d_values = init<float>(
+      {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
+
+  int *d_column_indices = init(
+      {1, 3, 0, 2, 4, 1, 5, 0, 4, 6, 1, 3, 5, 7, 2, 4, 8, 3, 7, 4, 6, 8, 5, 7});
+
+  int *d_row_offsets = init({0, 2, 5, 7, 10, 14, 17, 19, 22, 24});
+
+  float *d_vector_x = init<float>({1, 1, 1, 1, 1, 1, 1, 1, 1});
+  float *d_vector_y = init<float>({0, 1, 0, 0, 0, 0, 0, 0, 0});
+
+  dpct::sparse::csrmv(q_ct1, d_values, d_row_offsets, d_column_indices,
+                      d_vector_x, d_vector_y, num_rows, num_cols);
+  dpct::get_current_device().queues_wait_and_throw();
+
+  float expect_c[9] = {2, 3, 2, 3, 4, 3, 2, 3, 2};
+  if (compare_result(expect_c, d_vector_y, 9))
+    printf("cub_spmv_csrmv pass\n");
+  else {
+    printf("cub_spmv_csrmv fail\n");
+    test_passed = false;
+  }
+  dpct::dpct_free(d_values, q_ct1);
+  dpct::dpct_free(d_column_indices, q_ct1);
+  dpct::dpct_free(d_row_offsets, q_ct1);
+  dpct::dpct_free(d_vector_x, q_ct1);
+  dpct::dpct_free(d_vector_y, q_ct1);
+}
+
 void test_cusparseTcsrmv_ge() {
   dpct::device_ext &dev_ct1 = dpct::get_current_device();
   sycl::queue &q_ct1 = dev_ct1.default_queue();
@@ -1975,6 +2018,7 @@ void test_cusparseSpSV() {
 
 int main() {
   test_cusparseSetGetStream();
+  test_cub_spmv_csrmv();
   test_cusparseTcsrmv_ge();
   test_cusparseTcsrmv_sy();
   test_cusparseTcsrmv_tr();
