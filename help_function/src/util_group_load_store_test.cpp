@@ -76,7 +76,7 @@ template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool te
     using group_load =
         dpct::group::workgroup_load<4, T, int, const int *, sycl::nd_item<3>>;
     using group_store =
-        dpct::group::workgroup_store<4, S, int, const int *, sycl::nd_item<3>>;
+        dpct::group::workgroup_store<4, S, int, int *, sycl::nd_item<3>>;
     size_t temp_storage_size = group_load::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
     sycl::accessor data_accessor_read_write(buffer, h, sycl::read_write);
@@ -92,8 +92,7 @@ template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool te
           group_load(tmp).load(item, d_r_w, thread_data);
           // Store thread_data of each work item from blocked arrangement
           group_store(tmp).store(item, d_r_w, thread_data);
-          }
-        });
+          });
   });
   q.wait_and_throw();
 
@@ -128,9 +127,7 @@ bool test_load_store_subgroup_striped_standalone() {
           }
           dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d_r_w,
                                                                    thread_data);
-          dpct::group::uninitialized_store_subgroup_striped<4, int>(item, d_r_w,
-                                                                   thread_data);
-          }
+          dpct::group::store_subgroup_striped<4, int>(item, d_r_w, thread_data);
         });
   });
   q.wait_and_throw();
@@ -165,16 +162,15 @@ template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool te
               dacc_read_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           // Load thread_data of each work item to blocked arrangement
           if (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
-            dpct::group::load_blocked<4, int>(item, d_r, thread_data);
+            dpct::group::load_blocked<4, int>(item, d_r_w, thread_data);
           } else {
-            dpct::group::load_striped<4, int>(item, d_r, thread_data);
+            dpct::group::load_striped<4, int>(item, d_r_w, thread_data);
           }
           // Store thread_data of each work item from blocked arrangement
           if (S == dpct::group::store_algorithm::BLOCK_STORE_DIRECT) {
             dpct::group::store_blocked<4, int>(item, d_r_w, thread_data);
           } else {
             dpct::group::store_striped<4, int>(item, d_r_w, thread_data);
-          }
           }
         });
   });
@@ -191,7 +187,7 @@ int main() {
       // Calls test_group_load with blocked and striped strategies , should pass
       // both results.
       test_group_load_store<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT, dpct::group::store_algorithm::BLOCK_STORE_DIRECT>() &&
-      test_group_load_store<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED, dpct::group::store_algorithm::BLOCK_LOAD_STRIPED>() &&
+      test_group_load_store<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED, dpct::group::store_algorithm::BLOCK_STORE_STRIPED>() &&
       // Calls test_load_subgroup_striped_standalone and should pass
       test_load_store_subgroup_striped_standalone() &&
       // Calls test_group_load_standalone with blocked and striped strategies as
