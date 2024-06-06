@@ -296,7 +296,7 @@ int main() {
       test_group_store<dpct::group::store_algorithm::BLOCK_STORE_DIRECT>() &&
       test_group_store<dpct::group::store_algorithm::BLOCK_STORE_STRIPED>() &&
       // Calls test_load_subgroup_striped_standalone and should pass
-      test_store_subgroup_striped_standalone() &
+      test_store_subgroup_striped_standalone() &&
       // Calls test_group_load_standalone with blocked and striped strategies as
       // free functions, should pass both results.
       test_group_store_standalone<dpct::group::store_algorithm::BLOCK_STORE_DIRECT>() &&
