@@ -1,4 +1,4 @@
-// ====------ onedpl_test_group_load.cpp------------ *- C++ -* ----===//
+// ====------ util_group_load_store_test.cpp------------ *- C++ -* ----===//
 
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -13,51 +13,19 @@
 #include <oneapi/dpl/iterator>
 #include <sycl/sycl.hpp>
 
-template <dpct::group::load_algorithm T>
 bool helper_validation_function(const int *ptr, const char *func_name) {
-  if constexpr (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
-    for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != i) {
-        std::cout << func_name << "_blocked"
-                  << " failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-      }
-    }
-    std::cout << func_name << "_blocked"
-              << " pass\n";
-  } else {
-    for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != i) {
-        std::cout << func_name << "_striped"
-                  << " failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-      }
-    }
-    std::cout << func_name << "_striped"
-              << " pass\n";
-  }
-  return true;
-}
-
-bool subgroup_helper_validation_function(const int *ptr, const uint32_t *sg_sz,
-                                         const char *func_name) {
   for (int i = 0; i < 512; ++i) {
     if (ptr[i] != i) {
-      std::cout << " failed\n";
+      std::cout << func_name << "_blocked"
+                << " failed\n";
       std::ostream_iterator<int> Iter(std::cout, ", ");
       std::copy(ptr, ptr + 512, Iter);
       std::cout << std::endl;
       return false;
     }
   }
-
   std::cout << func_name << " pass\n";
+
   return true;
 }
 
@@ -98,7 +66,7 @@ template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool te
 
   sycl::host_accessor data_accessor(buffer, sycl::read_write);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  return helper_validation_function<T>(ptr, "test_group_load_store");
+  return helper_validation_function(ptr, "test_group_load_store");
 }
 
 bool test_load_store_subgroup_striped_standalone() {
@@ -137,8 +105,8 @@ bool test_load_store_subgroup_striped_standalone() {
   sycl::host_accessor data_accessor_sg(sg_sz_buf, sycl::read_only);
   const uint32_t *ptr_sg =
       data_accessor_sg.get_multi_ptr<sycl::access::decorated::yes>();
-  return subgroup_helper_validation_function(
-      ptr, ptr_sg, "test_subgroup_striped_standalone");
+  return helper_validation_function(
+      ptr, "test_subgroup_striped_standalone");
 }
 
 template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool test_group_load_store_standalone() {
@@ -178,7 +146,7 @@ template <dpct::group::load_algorithm T, dpct::group::store_algorithm S> bool te
 
   sycl::host_accessor data_accessor(buffer, sycl::read_only);
   const int *ptr = data_accessor.get_multi_ptr<sycl::access::decorated::yes>();
-  return helper_validation_function<T>(ptr, "test_group_load_store");
+  return helper_validation_function(ptr, "test_group_load_store");
 }
 
 int main() {
