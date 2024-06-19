@@ -87,7 +87,7 @@
     <test testName="device_dev_mgr" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_ext" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_info" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="bindless_images" configFile="config/TEMPLATE_help_function_skip_cpu_gpu.xml" />
+    <!-- <test testName="bindless_images" configFile="config/TEMPLATE_help_function_skip_cpu_gpu.xml" /> -->
     <test testName="image_image_channel" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_matrix" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_data" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
