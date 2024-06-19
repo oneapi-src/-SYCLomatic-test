@@ -96,6 +96,10 @@ bool test_load_store_subgroup_striped_standalone() {
           dpct::group::uninitialized_load_subgroup_striped<4, int>(item, d_r_w,
                                                                    thread_data);
           dpct::group::store_subgroup_striped<4, int>(item, d_r_w, thread_data);
+          //call destructor of thread type
+          for (size_t i = 0; i < 4; ++i) {
+            thread_data[i].~int();  
+          }
         });
   });
   q.wait_and_throw();
