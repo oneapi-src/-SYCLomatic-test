@@ -1,0 +1,79 @@
+[
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/build_info.dir/build-info.cpp.o /export/users/placeholder/project/llama.cpp/common/build-info.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/build-info.cpp"
+    },
+    {
+        "command": "cc -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=gnu11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Wdouble-promotion -o CMakeFiles/ggml.dir/ggml.c.o /export/users/placeholder/project/llama.cpp/ggml.c",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/ggml.c"
+    },
+    {
+        "command": "cc -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=gnu11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Wdouble-promotion -o CMakeFiles/ggml.dir/ggml-alloc.c.o /export/users/placeholder/project/llama.cpp/ggml-alloc.c",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/ggml-alloc.c"
+    },
+    {
+        "command": "cc -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=gnu11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Wdouble-promotion -o CMakeFiles/ggml.dir/ggml-backend.c.o /export/users/placeholder/project/llama.cpp/ggml-backend.c",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/ggml-backend.c"
+    },
+    {
+        "command": "cc -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=gnu11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Wdouble-promotion -o CMakeFiles/ggml.dir/ggml-quants.c.o /export/users/placeholder/project/llama.cpp/ggml-quants.c",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/ggml-quants.c"
+    },
+    {
+        "command": "nvcc -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-pedantic -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/ggml.dir/ggml-cuda.cu.o -D__CUDACC__=1 /export/users/placeholder/project/llama.cpp/ggml-cuda.cu",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/ggml-cuda.cu"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/. -isystem /usr/local/cuda/include -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/llama.dir/llama.cpp.o /export/users/placeholder/project/llama.cpp/llama.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild",
+        "file": "/export/users/placeholder/project/llama.cpp/llama.cpp"
+    },
+    {
+        "command": "ar qc libllama.a CMakeFiles/llama.dir/llama.cpp.o CMakeFiles/ggml.dir/ggml.c.o CMakeFiles/ggml.dir/ggml-alloc.c.o CMakeFiles/ggml.dir/ggml-backend.c.o CMakeFiles/ggml.dir/ggml-quants.c.o CMakeFiles/ggml.dir/ggml-cuda.cu.o",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/common.dir/common.cpp.o /export/users/placeholder/project/llama.cpp/common/common.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/common.cpp"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/common.dir/sampling.cpp.o /export/users/placeholder/project/llama.cpp/common/sampling.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/sampling.cpp"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/common.dir/console.cpp.o /export/users/placeholder/project/llama.cpp/common/console.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/console.cpp"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/common.dir/grammar-parser.cpp.o /export/users/placeholder/project/llama.cpp/common/grammar-parser.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/grammar-parser.cpp"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/common.dir/train.cpp.o /export/users/placeholder/project/llama.cpp/common/train.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common",
+        "file": "/export/users/placeholder/project/llama.cpp/common/train.cpp"
+    },
+    {
+        "command": "ar qc libcommon.a CMakeFiles/common.dir/common.cpp.o CMakeFiles/common.dir/sampling.cpp.o CMakeFiles/common.dir/console.cpp.o CMakeFiles/common.dir/grammar-parser.cpp.o CMakeFiles/common.dir/train.cpp.o CMakeFiles/build_info.dir/build-info.cpp.o",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/common"
+    },
+    {
+        "command": "c++ -c -DGGML_CUDA_DMMV_X=32 -DGGML_CUDA_MMV_Y=1 -DGGML_CUDA_PEER_MAX_BATCH_SIZE=128 -DGGML_USE_CUBLAS -DK_QUANTS_PER_ITERATION=2 -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -I/export/users/placeholder/project/llama.cpp/examples -I/export/users/placeholder/project/llama.cpp/common/. -I/export/users/placeholder/project/llama.cpp/. -O3 -DNDEBUG -std=gnu++11 -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wmissing-declarations -Wmissing-noreturn -Wno-array-bounds -Wno-format-truncation -Wextra-semi -o CMakeFiles/main.dir/main.cpp.o /export/users/placeholder/project/llama.cpp/examples/main/main.cpp",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/examples/main",
+        "file": "/export/users/placeholder/project/llama.cpp/examples/main/main.cpp"
+    },
+    {
+        "command": "ld -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/export/users/wanghao2/temp/ccDJo76e.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -melf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -o ../../bin/main /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o CMakeFiles/main.dir/main.cpp.o -rpath /usr/local/cuda-12.0/targets/x86_64-linux/lib: ../../common/libcommon.a ../../libllama.a /usr/local/cuda-12.0/targets/x86_64-linux/lib/libcudart.so /usr/local/cuda-12.0/targets/x86_64-linux/lib/libcublas.so /usr/local/cuda-12.0/targets/x86_64-linux/lib/libculibos.a /usr/local/cuda-12.0/targets/x86_64-linux/lib/libcublasLt.so /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o",
+        "directory": "/export/users/placeholder/project/llama.cpp/gpubuild/examples/main"
+    }
+]

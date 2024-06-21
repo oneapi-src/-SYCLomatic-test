@@ -7,6 +7,6 @@
     </files>
     <rules>
         <platformRule OSFamily="Linux" runOnThisPlatform="false"/>
-      <optlevelRule excludeOptlevelNameString="cuda_backend" />
+      <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

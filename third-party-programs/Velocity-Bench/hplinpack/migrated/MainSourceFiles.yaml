@@ -1,0 +1,1000 @@
+---
+MainSourceFile:  MainSrcFiles_placehold
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6545
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6822
+    Length:          0
+    ReplacementText: "\n#include <dpct/blas_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6825
+    Length:          18
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6843
+    Length:          26
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6869
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          6956
+    Length:          9
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7044
+    Length:          197
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7334
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7364
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1010:1: SYCL uses exceptions to report errors and does not use the error codes. The call was replaced with 0. You need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7372
+    Length:          9
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7388
+    Length:          18
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7416
+    Length:          199
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7739
+    Length:          23
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::get_current_device().queues_wait_and_throw())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          7772
+    Length:          208
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          8006
+    Length:          0
+    ReplacementText: "\ncatch (sycl::exception const &exc) {\n  std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n  std::exit(1);\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          8954
+    Length:          0
+    ReplacementText: "\n   dpct::device_ext &dev_ct1 = dpct::get_current_device();\n   sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9513
+    Length:          54
+    ReplacementText: 'DPCT_CHECK_ERROR(devPtrA = sycl::malloc_device<double>(K * LDA, q_ct1))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9587
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9637
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9662
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9687
+    Length:          55
+    ReplacementText: 'DPCT_CHECK_ERROR(devPtrB = sycl::malloc_device<double>(N *  LDB, q_ct1))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9762
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9813
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9838
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9863
+    Length:          54
+    ReplacementText: 'DPCT_CHECK_ERROR(devPtrC = sycl::malloc_device<double>(N * LDC, q_ct1))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9937
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          9987
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10012
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10025
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10054
+    Length:          85
+    ReplacementText: 'oneapi::mkl::blas::column_major::gemm(*dpct::get_current_device().get_saved_queue(), oneapi::mkl::transpose::nontrans, oneapi::mkl::transpose::nontrans, M, N, K, ALPHA, devPtrA, LDA, devPtrB, LDB, BETA, devPtrC, LDC).wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10145
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10187
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10237
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10262
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10269
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10299
+    Length:          17
+    ReplacementText: 'sycl::free(devPtrA, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10322
+    Length:          17
+    ReplacementText: 'sycl::free(devPtrB, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10345
+    Length:          17
+    ReplacementText: 'sycl::free(devPtrC, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          10637
+    Length:          0
+    ReplacementText: "\n   dpct::device_ext &dev_ct1 = dpct::get_current_device();\n   sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11149
+    Length:          55
+    ReplacementText: 'DPCT_CHECK_ERROR(devPtrA = sycl::malloc_device<double>(M * LDA, q_ct1))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11224
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11271
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11296
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11334
+    Length:          55
+    ReplacementText: 'DPCT_CHECK_ERROR(devPtrB = sycl::malloc_device<double>(N * LDB, q_ct1))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11409
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11456
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11481
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11488
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11522
+    Length:          62
+    ReplacementText: 'oneapi::mkl::blas::column_major::trsm(*dpct::get_current_device().get_saved_queue(), oneapi::mkl::side::left, oneapi::mkl::uplo::lower, oneapi::mkl::transpose::nontrans, oneapi::mkl::diag::unit, M, N, ALPHA, devPtrA, LDA, devPtrB, LDB).wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11595
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11642
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11689
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11714
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11726
+    Length:          23
+    ReplacementText: 'dev_ct1.queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11755
+    Length:          17
+    ReplacementText: 'sycl::free(devPtrA, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Offset:          11778
+    Length:          17
+    ReplacementText: 'sycl::free(devPtrB, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/src/cuda/cuda_dgemm.cpp'
+    Digest:          c9ea63d69505b8c70080ff9792b77dd8
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:
+  /home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/bin/intel64/xhpl:
+    - MigratedFileName: './testing/ptest/HPL_pddriver.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdinfo.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdtest.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pddriver.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdinfo.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdtest.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pddriver.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdinfo.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdtest.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pddriver.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdinfo.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptest/HPL_pdtest.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+  /home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3/lib/intel64/libhpl.a:
+    - MigratedFileName: './src/auxil/HPL_dlacpy.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_dlatcpy.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_fprintf.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_warn.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_abort.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_dlaprnt.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_dlange.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/auxil/HPL_dlamch.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dcopy.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_daxpy.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dscal.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_idamax.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dgemv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dtrsv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dger.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dgemm.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/blas/HPL_dtrsm.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_1ring.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_1rinM.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_2ring.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_2rinM.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_blong.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_blonM.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_packL.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_copyL.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_binit.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_bcast.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_bwait.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_send.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_recv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/comm/HPL_sdrv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_grid_init.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_pnum.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_grid_info.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_grid_exit.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_broadcast.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_reduce.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_all_reduce.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_barrier.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_min.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_max.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/grid/HPL_sum.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/panel/HPL_pdpanel_new.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/panel/HPL_pdpanel_init.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/panel/HPL_pdpanel_disp.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/panel/HPL_pdpanel_free.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_indxg2l.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_indxg2lp.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_indxg2p.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_indxl2g.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_infog2l.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_numroc.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_numrocI.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp00N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp10N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp01N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp01T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp02N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp03N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp03T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp04N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp04T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp05N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp05T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp06N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_dlaswp06T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_pwarn.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_pabort.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_pdlaprnt.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_pdlamch.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pauxil/HPL_pdlange.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_dlocmax.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_dlocswpN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_dlocswpT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdmxswp.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpancrN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpancrT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpanllN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpanllT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpanrlN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdpanrlT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpanllN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpanllT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpancrN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpancrT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpanrlN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdrpanrlT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pfact/HPL_pdfact.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pipid.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_plindx0.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdlaswp00N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdlaswp00T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_perm.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_logsort.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_plindx10.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_plindx1.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_spreadN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_spreadT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_rollN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_rollT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_equil.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdlaswp01N.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdlaswp01T.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdupdateNN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdupdateNT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdupdateTN.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdupdateTT.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdtrsv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdgesv0.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdgesvK1.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdgesvK2.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './src/pgesv/HPL_pdgesv.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_dmatgen.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_ladd.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_lmul.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_xjumpm.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_jumpit.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_rand.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/matgen/HPL_setran.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/timer/HPL_timer.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/timer/HPL_timer_cputime.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/timer/HPL_timer_walltime.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/pmatgen/HPL_pdmatgen.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptimer/HPL_ptimer.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptimer/HPL_ptimer_cputime.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+    - MigratedFileName: './testing/ptimer/HPL_ptimer_walltime.c'
+      CompileOptions:  '-DAdd__ -DF77_INTEGER=int -DStringSunStyle -DHPL_CALL_CBLAS -I./include -I./include/intel64 -O3 -I ./include '
+      Compiler:        cc
+  libdgemm.so.1.0.1:
+    - MigratedFileName: './src/cuda/cuda_dgemm.cpp.dp.cpp'
+      CompileOptions:  '-O0 -DMPI -I ./include -I $(INCLUDE_SYCL) -I $(INCLUDE_CL) '
+      Compiler:        cc
+    - MigratedFileName: './src/cuda/cuda_dgemm.cpp.dp.cpp'
+      CompileOptions:  '-O0 -DMPI -I ./include -I $(INCLUDE_SYCL) -I $(INCLUDE_CL) '
+      Compiler:        cc
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/Velocity-Bench/hplinpack/cuda/hpl-2.3'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

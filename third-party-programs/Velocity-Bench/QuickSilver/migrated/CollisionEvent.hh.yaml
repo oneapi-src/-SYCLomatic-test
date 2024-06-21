@@ -1,0 +1,334 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/CollisionEvent.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          3070
+    Length:          0
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          3455
+    Length:          0
+    ReplacementText: "\n#include <cmath>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          3818
+    Length:          8
+    ReplacementText: 'sycl::sin(phi)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          3847
+    Length:          8
+    ReplacementText: 'sycl::cos(phi)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          3878
+    Length:          35
+    ReplacementText: 'sycl::sqrt((1.0 - (cosTheta * cosTheta)))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          4069
+    Length:          313
+    ReplacementText: "sycl::sqrt((1.0 - ((PhysicalConstants::_neutronRestMassEnergy *\n                                 PhysicalConstants::_neutronRestMassEnergy) /\n                                ((energy + PhysicalConstants::_neutronRestMassEnergy) *\n                                 (energy + PhysicalConstants::_neutronRestMassEnergy)))))"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          4682
+    Length:          17
+    ReplacementText: 'sycl::log(randomNumber)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          4720
+    Length:          0
+    ReplacementText: "/*\nDPCT1110:31: The total declared local variable size in device function CollisionEvent exceeds 128 bytes and may cause high register pressure. Consult with your hardware vendor to find the total register size available and adjust the code, or use smaller sub-group size to avoid high register pressure.\n*/\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          4874
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          4997
+    Length:          112
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          5714
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          5807
+    Length:          99
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          5999
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          6190
+    Length:          192
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          7366
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          7710
+    Length:          345
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          8377
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          8459
+    Length:          90
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          8551
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          8756
+    Length:          167
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          8993
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          9078
+    Length:          91
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          9224
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          9309
+    Length:          90
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          9451
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          9603
+    Length:          173
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          11168
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          11291
+    Length:          112
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Offset:          11427
+    Length:          0
+    ReplacementText: "\ninline HOST_DEVICE bool CollisionEvent_host_ct7(MonteCarlo *monteCarlo, MC_Particle &mc_particle, unsigned int tally_index, int particle_index, int *tallyArray)\n{\n\n   const MC_Cell_State &cell = monteCarlo->domain[mc_particle.domain].cell_state[mc_particle.cell];\n\n\n   int globalMatIndex = cell._material;\n\n   //------------------------------------------------------------------------------------------------------------------\n   //    Pick the isotope and reaction.\n   //------------------------------------------------------------------------------------------------------------------\n   double randomNumber = rngSample(&mc_particle.random_number_seed);\n   double totalCrossSection = mc_particle.totalCrossSection;\n   double currentCrossSection = totalCrossSection * randomNumber;\n   int selectedIso = -1;\n   int selectedUniqueNumber = -1;\n   int selectedReact = -1;\n\n   int numIsos = (int)monteCarlo->_materialDatabase->_mat[globalMatIndex]._iso.size();\n\n\n   for (int isoIndex = 0; isoIndex < numIsos && currentCrossSection >= 0; isoIndex++)\n   {\n\n      int uniqueNumber = monteCarlo->_materialDatabase->_mat[globalMatIndex]._iso[isoIndex]._gid;\n      int numReacts = monteCarlo->_nuclearData->getNumberReactions(uniqueNumber);\n\n      for (int reactIndex = 0; reactIndex < numReacts; reactIndex++)\n      {\n         currentCrossSection -= macroscopicCrossSection(monteCarlo, reactIndex, mc_particle.domain, mc_particle.cell,\n                                                        isoIndex, mc_particle.energy_group);\n         if (currentCrossSection < 0)\n         {\n            selectedIso = isoIndex;\n            selectedUniqueNumber = uniqueNumber;\n            selectedReact = reactIndex;\n            break;\n         }\n      }\n   }\n   qs_assert(selectedIso != -1);\n   qs_assert(selectedUniqueNumber != -1);\n   qs_assert(selectedReact != -1);\n\n   //------------------------------------------------------------------------------------------------------------------\n   //    Do the collision.\n   //------------------------------------------------------------------------------------------------------------------\n   double energyOut[MAX_PRODUCTION_SIZE];\n   double angleOut[MAX_PRODUCTION_SIZE];\n   int nOut = 0;\n\n   double mat_mass = monteCarlo->_materialDatabase->_mat[globalMatIndex]._mass;\n   monteCarlo->_nuclearData->_isotopes[selectedUniqueNumber]._species[0]._reactions[selectedReact].sampleCollision(\n       mc_particle.kinetic_energy, mat_mass, &energyOut[0], &angleOut[0], nOut, &(mc_particle.random_number_seed), MAX_PRODUCTION_SIZE);\n\n\n//--------------------------------------------------------------------------------------------------------------\n//  Post-Collision Phase 1:\n//    Tally the collision\n//--------------------------------------------------------------------------------------------------------------\n\n// Set the reaction for this particle.\n\n   ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._collision);\n\n\n\n   NuclearDataReaction::Enum reactionType = monteCarlo->_nuclearData->_isotopes[selectedUniqueNumber]._species[0]._reactions[selectedReact]._reactionType;\n\n\n   switch (reactionType)\n   {\n   case NuclearDataReaction::Scatter:\n\n      ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._scatter);\n\n      break;\n   case NuclearDataReaction::Absorption:\n\n      ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._absorb);\n\n      break;\n   case NuclearDataReaction::Fission:\n\n      ATOMIC_UPDATE(monteCarlo->_tallies->_balanceTask[tally_index]._fission);\n      ATOMIC_ADD(monteCarlo->_tallies->_balanceTask[tally_index]._produce, nOut);\n\n      break;\n   case NuclearDataReaction::Undefined:\n#ifdef DEBUG\n      printf(\"reactionType invalid\\n\");\n#endif\n      qs_assert(false);\n   }\n\n   if (nOut == 0)\n   {\n      return false;\n   }\n\n   for (int secondaryIndex = 1; secondaryIndex < nOut; secondaryIndex++)\n   {\n      // Newly created particles start as copies of their parent\n      MC_Particle secondaryParticle = mc_particle;\n      secondaryParticle.random_number_seed = rngSpawn_Random_Number_Seed(&mc_particle.random_number_seed);\n      secondaryParticle.identifier = secondaryParticle.random_number_seed;\n      updateTrajectory(energyOut[secondaryIndex], angleOut[secondaryIndex], secondaryParticle);\n\n      // Atomic capture will be called here\n      monteCarlo->_particleVaultContainer->addExtraParticle(secondaryParticle);\n   }\n\n   updateTrajectory(energyOut[0], angleOut[0], mc_particle);\n\n   // If a fission reaction produces secondary particles we also add the original\n   // particle to the \"extras\" that we will handle later.  This avoids the\n   // possibility of a particle doing multiple fission reactions in a single\n   // kernel invocation and overflowing the extra storage with secondary particles.\n   if (nOut > 1)\n   {\n      // Atomic capture will be called here\n      monteCarlo->_particleVaultContainer->addExtraParticle(mc_particle);\n   }\n\n// If we are still tracking this particle the update its energy group\n\n   mc_particle.energy_group = monteCarlo->_nuclearData->getEnergyGroup(mc_particle.kinetic_energy);\n\n\n   return nOut == 1;\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/CollisionEvent.hh'
+    Digest:          4a7ff666215bd49f99cacb6e5372493a
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

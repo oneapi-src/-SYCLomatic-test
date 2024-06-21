@@ -42,8 +42,8 @@ int test_temporary_allocation_on_device(sycl::queue q,
   // TODO: Use structured bindings when we switch to C++20 and can capture the
   // variables in lambda capture clause.
   auto ret_tup = dpct::get_temporary_allocation<T>(policy_or_tag, num_elements);
-  auto ptr = std::get<0>(ret_tup);
-  auto num_allocated = std::get<1>(ret_tup);
+  auto ptr = ret_tup.first;
+  auto num_allocated = ret_tup.second;
   std::vector<T> num_data(num_elements);
   std::iota(num_data.begin(), num_data.end(), 0);
   std::vector<T> out_num_data(num_elements);
@@ -76,8 +76,8 @@ int test_temporary_allocation_on_host(PolicyOrTag policy_or_tag,
   // TODO: Use structured bindings when we switch to C++20 and can capture the
   // variables in lambda capture clause.
   auto ret_tup = dpct::get_temporary_allocation<T>(policy_or_tag, num_elements);
-  auto ptr = std::get<0>(ret_tup);
-  auto num_allocated = std::get<1>(ret_tup);
+  auto ptr = ret_tup.first;
+  auto num_allocated = ret_tup.second;
   std::vector<T> num_data(num_elements);
   std::iota(num_data.begin(), num_data.end(), 0);
   std::vector<T> out_num_data(num_elements);

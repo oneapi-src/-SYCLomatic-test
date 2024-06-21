@@ -160,6 +160,21 @@ void testJ1fCases(const vector<pair<float, fi_pair>> &TestCases) {
   }
 }
 
+__global__ void _jnf(float *const Result, int Input1, float Input2) {
+  *Result = jnf(Input1, Input2);
+}
+
+void testJnfCases(const vector<pair<pair<int, float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    _jnf<<<1, 1>>>(Result, TestCase.first.first, TestCase.first.second);
+    cudaDeviceSynchronize();
+    checkResult("jnf", {(float)TestCase.first.first, TestCase.first.second},
+                TestCase.second.first, *Result, TestCase.second.second);
+  }
+}
+
 __global__ void _normcdff(float *const DeviceResult, float Input) {
   *DeviceResult = normcdff(Input);
 }
@@ -299,8 +314,6 @@ __global__ void _y1f(float *const Result, float Input1) {
   *Result = y1f(Input1);
 }
 
-// Single Precision Intrinsics
-
 void testY1fCases(const vector<pair<float, fi_pair>> &TestCases) {
   float *Result;
   cudaMallocManaged(&Result, sizeof(*Result));
@@ -311,6 +324,23 @@ void testY1fCases(const vector<pair<float, fi_pair>> &TestCases) {
                 TestCase.second.second);
   }
 }
+
+__global__ void _ynf(float *const Result, int Input1, float Input2) {
+  *Result = ynf(Input1, Input2);
+}
+
+void testYnfCases(const vector<pair<pair<int, float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    _ynf<<<1, 1>>>(Result, TestCase.first.first, TestCase.first.second);
+    cudaDeviceSynchronize();
+    checkResult("ynf", {(float)TestCase.first.first, TestCase.first.second},
+                TestCase.second.first, *Result, TestCase.second.second);
+  }
+}
+
+// Single Precision Intrinsics
 
 __global__ void fadd_rd(float *const Result, float Input1, float Input2) {
   *Result = __fadd_rd(Input1, Input2);
@@ -373,6 +403,74 @@ void testFadd_rzCases(
     cudaDeviceSynchronize();
     checkResult("__fadd_rz", {TestCase.first.first, TestCase.first.second},
                 TestCase.second.first, *Result, TestCase.second.second);
+  }
+}
+
+__global__ void fmaf_rd(float *const Result, float Input1, float Input2,
+                        float Input3) {
+  *Result = __fmaf_rd(Input1, Input2, Input3);
+}
+
+void testFmaf_rdCases(const vector<pair<vector<float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fmaf_rd<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                      TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fmaf_rd", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fmaf_rn(float *const Result, float Input1, float Input2,
+                        float Input3) {
+  *Result = __fmaf_rn(Input1, Input2, Input3);
+}
+
+void testFmaf_rnCases(const vector<pair<vector<float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fmaf_rn<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                      TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fmaf_rn", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fmaf_ru(float *const Result, float Input1, float Input2,
+                        float Input3) {
+  *Result = __fmaf_ru(Input1, Input2, Input3);
+}
+
+void testFmaf_ruCases(const vector<pair<vector<float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fmaf_ru<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                      TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fmaf_ru", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
+  }
+}
+
+__global__ void fmaf_rz(float *const Result, float Input1, float Input2,
+                        float Input3) {
+  *Result = __fmaf_rz(Input1, Input2, Input3);
+}
+
+void testFmaf_rzCases(const vector<pair<vector<float>, fi_pair>> &TestCases) {
+  float *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    fmaf_rz<<<1, 1>>>(Result, TestCase.first[0], TestCase.first[1],
+                      TestCase.first[2]);
+    cudaDeviceSynchronize();
+    checkResult("__fmaf_rz", TestCase.first, TestCase.second.first, *Result,
+                TestCase.second.second);
   }
 }
 
@@ -545,6 +643,13 @@ int main() {
       {1.6, {0.569896, 7}},
       {-5, {0.3275791406631470, 16}},
   });
+  testJnfCases({
+      {{1, 0.3}, {0.1483188, 7}},
+      {{2, 0.5}, {0.03060402534902096, 17}},
+      {{3, 0.8}, {0.010246766731142998, 18}},
+      {{4, 1.6}, {0.014995161, 9}},
+      {{5, -5}, {-0.2611406, 7}},
+  });
   testNormcdffCases({
       {-5, {0.0000002866515842470108, 22}},
       {-3, {0.001349898055195808, 18}},
@@ -583,6 +688,13 @@ int main() {
       {1.6, {-0.3475780, 7}},
       {5, {0.1478631347417831, 16}},
   });
+  testYnfCases({
+      {{1, 0.3}, {-2.293104887008667, 15}},
+      {{2, 0.5}, {-5.441371, 6}},
+      {{3, 0.8}, {-10.814646, 6}},
+      {{4, 1.6}, {-5.856365, 6}},
+      {{0, 5}, {-0.3085176050662994, 16}},
+  });
   testFadd_rdCases({
       {{-0.3, -0.4}, {-0.7000000476837158, 16}},
       {{0.3, -0.4}, {-0.09999999403953552, 17}},
@@ -610,6 +722,34 @@ int main() {
       {{0.3, 0.4}, {0.699999988079071, 16}},
       {{0.3, 0.8}, {1.100000023841858, 15}},
       {{3, 4}, {7, 15}},
+  });
+  testFmaf_rdCases({
+      {{-0.3, -0.4, -0.2}, {-0.07999999821186066, 17}},
+      {{0.3, -0.4, -0.1}, {-0.2200000137090683, 16}},
+      {{0.3, 0.4, 0.1}, {0.2199999988079071, 16}},
+      {{0.3, 0.4, 0}, {0.12000000476837158, 17}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFmaf_rnCases({
+      {{-0.3, -0.4, -0.2}, {-0.07999999821186066, 17}},
+      {{0.3, -0.4, -0.1}, {-0.2200000137090683, 16}},
+      {{0.3, 0.4, 0.1}, {0.2200000137090683, 16}},
+      {{0.3, 0.4, 0}, {0.12000000476837158, 17}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFmaf_ruCases({
+      {{-0.3, -0.4, -0.2}, {-0.07999999076128006, 17}},
+      {{0.3, -0.4, -0.1}, {-0.2199999988079071, 16}},
+      {{0.3, 0.4, 0.1}, {0.2200000137090683, 16}},
+      {{0.3, 0.4, 0}, {0.12000001221895218, 17}},
+      {{3, 4, 5}, {17, 14}},
+  });
+  testFmaf_rzCases({
+      {{-0.3, -0.4, -0.2}, {-0.07999999076128006, 17}},
+      {{0.3, -0.4, -0.1}, {-0.2199999988079071, 16}},
+      {{0.3, 0.4, 0.1}, {0.2199999988079071, 16}},
+      {{0.3, 0.4, 0}, {0.12000000476837158, 17}},
+      {{3, 4, 5}, {17, 14}},
   });
   testFmul_rdCases({
       {{-0.3, -0.4}, {0.12000000476837158, 17}},

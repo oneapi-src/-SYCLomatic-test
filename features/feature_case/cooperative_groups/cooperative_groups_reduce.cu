@@ -50,6 +50,7 @@ __global__ void CGReduce(int *input, int *out, unsigned int n) {
         out[7] = tile32.shfl_up(input[3], 2);
         out[8] = tile32.shfl_down(input[3], 2);
         out[9] = tile32.shfl_xor(input[3], 2);
+        out[10] = tile32.shfl(input[3], 0);
     }
 }
 template <class T>
@@ -133,7 +134,13 @@ int main () {
 
         is_result_expected = false;
     }
-    std::cout <<"Other " << host_out[6] << " " << host_out[7] << " " << host_out[8] << " " << host_out[9] << std::endl;
+    if (3 != host_out[10])
+    {
+        std::cout << "shfl execution failed " << std::endl;
+
+        is_result_expected = false;
+    }
+    std::cout <<"Other " << host_out[6] << " " << host_out[7] << " " << host_out[8] << " " << host_out[9]<< " " << host_out[10] << std::endl;
     if (!is_result_expected) {
         return -1;
     }

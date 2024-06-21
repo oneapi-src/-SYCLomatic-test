@@ -6,7 +6,7 @@
         <file path="feature_case/asm/${testName}.cu" />
     </files>
     <rules>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
     </rules>
 </test>

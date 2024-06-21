@@ -38,7 +38,7 @@ def build_test():
                 "blas_utils_geqrf-complex-usm", "blas_utils_get_transpose", "blas_utils_get_value",
                 "blas_utils_get_value_usm", "blas_extension_api_buffer", "lib_common_utils_mkl_get_version",
                 "blas_extension_api_usm", "blas_utils_getrfnp", "blas_utils_getrfnp-usm", "blas_utils_getrfnp-complex",
-                "blas_utils_getrfnp-complex-usm"]
+                "blas_utils_getrfnp-complex-usm", "blas_utils_parameter_wrapper_buf", "blas_utils_parameter_wrapper_usm"]
     oneDNN_related = ["dnnl_utils_activation", "dnnl_utils_fill", "dnnl_utils_lrn", "dnnl_utils_memory",
                 "dnnl_utils_pooling", "dnnl_utils_reorder", "dnnl_utils_scale", "dnnl_utils_softmax",
                 "dnnl_utils_sum", "dnnl_utils_reduction", "dnnl_utils_binary", "dnnl_utils_batch_normalization_1",

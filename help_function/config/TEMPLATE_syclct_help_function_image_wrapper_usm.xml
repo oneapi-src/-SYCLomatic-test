@@ -6,6 +6,6 @@
   </files>
   <rules>
     <optlevelRule excludeOptlevelNameString="acc" />
-    <optlevelRule excludeOptlevelNameString="cuda_backend" />
+    <optlevelRule excludeOptlevelNameString="cuda" />
   </rules>
 </test>

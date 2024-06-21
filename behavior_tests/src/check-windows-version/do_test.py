@@ -33,6 +33,8 @@ def migrate_test():
         return False
     print("dpct's bundled clang version is: {}".format(ct_clang_version))
 
+    ct_clang_version = ct_clang_version + "git"
+
     file_version = get_windows_version(ct_path, 'FileVersion').strip()
     product_version = get_windows_version(ct_path, 'ProductVersion').strip()
     product_name = get_windows_version(ct_path, 'ProductName').strip()

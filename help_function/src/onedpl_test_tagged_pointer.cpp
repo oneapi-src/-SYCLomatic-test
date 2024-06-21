@@ -46,22 +46,22 @@ template <typename SystemTag> int test_tagged_pointer_manipulation(void) {
       "dpct::tagged_pointer<" + sys + ", integer_wrapper>";
   std::string void_ptr_name = "dpct::tagged_pointer<" + sys + ", void>";
 
-  dpct::tagged_pointer<SystemTag, void> void_ptr_beg =
+  dpct::tagged_pointer<void, SystemTag> void_ptr_beg =
       dpct::malloc(system, sizeof(int) * n);
-  dpct::tagged_pointer<SystemTag, int> int_ptr_beg =
-      static_cast<dpct::tagged_pointer<SystemTag, int>>(void_ptr_beg);
+  dpct::tagged_pointer<int, SystemTag> int_ptr_beg =
+      static_cast<dpct::tagged_pointer<int, SystemTag>>(void_ptr_beg);
 
-  dpct::tagged_pointer<SystemTag, void> void_ptr_beg2 =
-      static_cast<dpct::tagged_pointer<SystemTag, void>>(int_ptr_beg);
+  dpct::tagged_pointer<void, SystemTag> void_ptr_beg2 =
+      static_cast<dpct::tagged_pointer<void, SystemTag>>(int_ptr_beg);
   failing_tests += ASSERT_EQUAL(void_ptr_name + " conversion operator",
                                 void_ptr_beg == void_ptr_beg2, true);
 
-  dpct::tagged_pointer<SystemTag, int> int_ptr_end = int_ptr_beg + n;
+  dpct::tagged_pointer<int, SystemTag> int_ptr_end = int_ptr_beg + n;
   failing_tests += ASSERT_EQUAL(
       int_ptr_name + " add operator",
       static_cast<int *>(int_ptr_end) - static_cast<int *>(int_ptr_beg), n);
 
-  dpct::tagged_pointer<SystemTag, int> expect_beg = int_ptr_end - n;
+  dpct::tagged_pointer<int, SystemTag> expect_beg = int_ptr_end - n;
   failing_tests += ASSERT_EQUAL(int_ptr_name + " subtract operator",
                                 int_ptr_beg == expect_beg, true);
 
@@ -105,7 +105,7 @@ template <typename SystemTag> int test_tagged_pointer_manipulation(void) {
   failing_tests += ASSERT_EQUAL(int_ptr_name + " subscript operator",
                                 int_ptr_beg[1] == 2, true);
 
-  dpct::tagged_pointer<SystemTag, integer_wrapper> int_wrapper_beg =
+  dpct::tagged_pointer<integer_wrapper, SystemTag> int_wrapper_beg =
       dpct::malloc<integer_wrapper>(system, 1);
   int_wrapper_beg->val = 5;
   failing_tests += ASSERT_EQUAL(int_wrapper_name + " arrow operator",

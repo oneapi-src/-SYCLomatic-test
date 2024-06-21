@@ -1,0 +1,109 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/MC_Facet_Crossing_Event.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Facet_Crossing_Event.hh'
+    Offset:          5710
+    Length:          20
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Facet_Crossing_Event.hh'
+    Offset:          5859
+    Length:          172
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Facet_Crossing_Event.hh'
+    Offset:          6308
+    Length:          0
+    ReplacementText: "\ninline HOST_DEVICE\n\n    MC_Tally_Event::Enum\n    MC_Facet_Crossing_Event_host_ct8(MC_Particle &mc_particle, MonteCarlo *monteCarlo, int particle_index, ParticleVault *processingVault)\n{\n    MC_Location location = mc_particle.Get_Location();\n\n    Subfacet_Adjacency &facet_adjacency = MCT_Adjacent_Facet(location, mc_particle, monteCarlo);\n\n    if (facet_adjacency.event == MC_Subfacet_Adjacency_Event::Transit_On_Processor)\n    {\n        // The particle will enter into an adjacent cell.\n        mc_particle.domain = facet_adjacency.adjacent.domain;\n        mc_particle.cell = facet_adjacency.adjacent.cell;\n        mc_particle.facet = facet_adjacency.adjacent.facet;\n        mc_particle.last_event = MC_Tally_Event::Facet_Crossing_Transit_Exit;\n    }\n    else if (facet_adjacency.event == MC_Subfacet_Adjacency_Event::Boundary_Escape)\n    {\n        // The particle will escape across the system boundary.\n        mc_particle.last_event = MC_Tally_Event::Facet_Crossing_Escape;\n    }\n    else if (facet_adjacency.event == MC_Subfacet_Adjacency_Event::Boundary_Reflection)\n    {\n        // The particle will reflect off of the system boundary.\n        mc_particle.last_event = MC_Tally_Event::Facet_Crossing_Reflection;\n    }\n    else if (facet_adjacency.event == MC_Subfacet_Adjacency_Event::Transit_Off_Processor)\n    {\n        // The particle will enter into an adjacent cell on a spatial neighbor.\n        // The neighboring domain is on another processor. Set domain local domain on neighbor proc\n\n        mc_particle.domain = facet_adjacency.adjacent.domain;\n        mc_particle.cell = facet_adjacency.adjacent.cell;\n        mc_particle.facet = facet_adjacency.adjacent.facet;\n        mc_particle.last_event = MC_Tally_Event::Facet_Crossing_Communication;\n\n\n        // Select particle buffer\n        int neighbor_rank = monteCarlo->domain[facet_adjacency.current.domain].mesh._nbrRank[facet_adjacency.neighbor_index];\n\n\n        processingVault->putParticle(mc_particle, particle_index);\n\n        // Push neighbor rank and mc_particle onto the send queue\n        monteCarlo->_particleVaultContainer->getSendQueue()->push(neighbor_rank, particle_index);\n    }\n\n    return mc_particle.last_event;\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Facet_Crossing_Event.hh'
+    Offset:          6486
+    Length:          0
+    ReplacementText: "\nHOST_DEVICE\nMC_Tally_Event::Enum MC_Facet_Crossing_Event_host_ct8(MC_Particle &mc_particle, MonteCarlo *monteCarlo, int particle_index, ParticleVault *processingVault);"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Facet_Crossing_Event.hh'
+    Digest:          0542db4059d5ecfa00807413ab577331
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

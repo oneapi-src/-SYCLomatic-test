@@ -4,8 +4,9 @@
   <description>Test the helper function</description>
   <tests>
     <test testName="array_copy" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="assign_device_vector" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="move_device_vector" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="assign_device_vector" configFile="config/TEMPLATE_help_function_usm.xml" />
+    <test testName="move_device_vector" configFile="config/TEMPLATE_help_function_usm.xml" />
+    <test testName="swap_device_vector" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="atomic_add_float" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="atomic_fetch_compare_inc" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="async_exception" configFile="config/TEMPLATE_help_function.xml" />
@@ -27,8 +28,11 @@
     <test testName="thrust_test-pennet_simple_pstl" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_array" configFile="image_array/config/image_array.xml" />
     <test testName="test_complex" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="math_extend_func" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_bfe" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_bfi" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_extend_func" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="math_function" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="math_dp2a_dp4a" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="cpu_device_index_initializaion_test" configFile="config/cpu_device_index_initializaion_test.xml" />
     <test testName="image_wrapper_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" />
@@ -65,6 +69,9 @@
     <test testName="blas_utils_get_transpose" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="blas_utils_get_value" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double" />
     <test testName="blas_utils_get_value_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double" />
+    <test testName="blas_utils_parameter_wrapper_buf" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
+    <test testName="blas_utils_parameter_wrapper_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
+    <test testName="blas_utils_matrix_mem_copy_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_cast_value_test" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="util_fast_length_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_make_index_sequence_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -80,6 +87,7 @@
     <test testName="device_dev_mgr" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_ext" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_info" configFile="config/TEMPLATE_help_function.xml" />
+    <!-- <test testName="bindless_images" configFile="config/TEMPLATE_help_function_skip_cpu_gpu.xml" /> -->
     <test testName="image_image_channel" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_matrix" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_data" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -88,6 +96,7 @@
     <test testName="kernel_function_win" configFile="config/kernel_function_win.xml" />
     <test testName="kernel_function_lin" configFile="config/kernel_function_lin.xml" />
     <test testName="onedpl_test_arg_index_input_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_bfe" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_copy_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_count_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -99,31 +108,34 @@
     <test testName="onedpl_test_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_for_each" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_inner_product" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_iterator_adaptor" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_histogram" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_malloc_free" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_max_element" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_maximum" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!--<test testName="onedpl_test_merge_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_merge_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_min_element" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_nontrivial_run_length_encode" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_flagged" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_partition_if" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_partition_point" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_raw_pointer_cast" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double" />
     <test testName="onedpl_test_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_remove_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_replace_copy_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sequence" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!--<test testName="onedpl_test_segmented_sort_pairs" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_segmented_sort_pairs" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_difference_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_intersection_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_symmetric_difference_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_set_union_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!-- <test testName="onedpl_test_sort_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_sort_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sort_keys" configFile="config/TEMPLATE_help_function_skip_double.xml" />
     <test testName="onedpl_test_sort_pairs" configFile="config/TEMPLATE_help_function_skip_double.xml" />
     <test testName="onedpl_test_null_type" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <!-- <test testName="onedpl_test_segmented_sort_keys" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_segmented_sort_keys" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sys_tag_utils" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -131,15 +143,19 @@
     <test testName="onedpl_test_tagged_pointer" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_temporary_allocation" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_transform_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+   <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
-    <!-- <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique_by_key" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_unique_count" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_group_exchange" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="util_select_from_sub_group" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_left" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_right" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -157,7 +173,7 @@
     <test testName="blas_extension_api_buffer" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_extension_api_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="dnnl_utils_version" configFile="config/TEMPLATE_help_function_usm.xml" />
-    <test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />
+    <!--<test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />-->
     <test testName="dnnl_utils_activation" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_fill" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_lrn" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -179,7 +195,7 @@
     <test testName="dnnl_utils_batch_normalization_3" configFile="config/TEMPLATE_help_function_usmnone_skip_double.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_1" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_2" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
-    <test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
+    <!--<test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />-->
     <test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_logical_group" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="fft_workspace_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" splitGroup="double"/>
@@ -198,5 +214,6 @@
     <test testName="sparse_utils_4_buffer" configFile="config/TEMPLATE_help_function_sparse_buffer.xml" splitGroup="double" />
     <test testName="sparse_utils_4_usm" configFile="config/TEMPLATE_help_function_sparse_usm.xml" splitGroup="double" />
     <test testName="atomic_compare_exchange_strong" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="filter_device" configFile="config/TEMPLATE_help_function.xml" />
   </tests>
 </suite>

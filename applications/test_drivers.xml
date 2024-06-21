@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testDrivers>
+    <testDriver driverID="test_applications" file="test_applications.py" title="test_applications">
+        <description>APP test suite.</description>
+    </testDriver>
+</testDrivers>

@@ -108,7 +108,7 @@ bool test_passed = true;
 // | 1 1 2 |   | 1 |   | 9  |  
 // | 0 1 3 | * | 2 | = | 11 |
 // | 0 0 1 |   | 3 |   | 3  |
-void test_cusparseCsrsvEx() {
+void test_cusparseTcsrsv2() {
   std::vector<float> a_val_vec = {1, 1, 2, 1, 3, 1};
   Data<float> a_s_val(a_val_vec.data(), 6);
   Data<double> a_d_val(a_val_vec.data(), 6);
@@ -138,14 +138,17 @@ void test_cusparseCsrsvEx() {
 
   cusparseHandle_t handle;
   cusparseCreate(&handle);
-  cusparseSolveAnalysisInfo_t info_s;
-  cusparseSolveAnalysisInfo_t info_d;
-  cusparseSolveAnalysisInfo_t info_c;
-  cusparseSolveAnalysisInfo_t info_z;
-  cusparseCreateSolveAnalysisInfo(&info_s);
-  cusparseCreateSolveAnalysisInfo(&info_d);
-  cusparseCreateSolveAnalysisInfo(&info_c);
-  cusparseCreateSolveAnalysisInfo(&info_z);
+  csrsv2Info_t info_s;
+  csrsv2Info_t info_d;
+  csrsv2Info_t info_c;
+  csrsv2Info_t info_z;
+  cusparseCreateCsrsv2Info(&info_s);
+  cusparseCreateCsrsv2Info(&info_d);
+  cusparseCreateCsrsv2Info(&info_c);
+  cusparseCreateCsrsv2Info(&info_z);
+  cusparseSolvePolicy_t policy = CUSPARSE_SOLVE_POLICY_USE_LEVEL;
+  policy = CUSPARSE_SOLVE_POLICY_NO_LEVEL;
+
 
   cusparseMatDescr_t descrA;
   cusparseCreateMatDescr(&descrA);
@@ -170,20 +173,47 @@ void test_cusparseCsrsvEx() {
   f_c.H2D();
   f_z.H2D();
 
-  cusparseCsrsv_analysisEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, a_s_val.d_data, CUDA_R_32F, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, CUDA_R_32F);
-  cusparseCsrsv_analysisEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, a_d_val.d_data, CUDA_R_64F, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, CUDA_R_64F);
-  cusparseCsrsv_analysisEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, a_c_val.d_data, CUDA_C_32F, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, CUDA_C_32F);
-  cusparseCsrsv_analysisEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, a_z_val.d_data, CUDA_C_64F, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, CUDA_C_64F);
+  int buffer_size_s0;
+  int buffer_size_d0;
+  int buffer_size_c0;
+  int buffer_size_z0;
+  cusparseScsrsv2_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,   (float *)a_s_val.d_data, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, &buffer_size_s0);
+  cusparseDcsrsv2_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (double *)a_d_val.d_data, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, &buffer_size_d0);
+  cusparseCcsrsv2_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (float2 *)a_c_val.d_data, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, &buffer_size_c0);
+  cusparseZcsrsv2_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, (double2 *)a_z_val.d_data, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, &buffer_size_z0);
+
+  size_t buffer_size_s;
+  size_t buffer_size_d;
+  size_t buffer_size_c;
+  size_t buffer_size_z;
+  cusparseScsrsv2_bufferSizeExt(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,   (float *)a_s_val.d_data, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, &buffer_size_s);
+  cusparseDcsrsv2_bufferSizeExt(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (double *)a_d_val.d_data, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, &buffer_size_d);
+  cusparseCcsrsv2_bufferSizeExt(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (float2 *)a_c_val.d_data, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, &buffer_size_c);
+  cusparseZcsrsv2_bufferSizeExt(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, (double2 *)a_z_val.d_data, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, &buffer_size_z);
+
+  void* buffer_s;
+  void* buffer_d;
+  void* buffer_c;
+  void* buffer_z;
+  cudaMalloc(&buffer_s, buffer_size_s);
+  cudaMalloc(&buffer_d, buffer_size_d);
+  cudaMalloc(&buffer_c, buffer_size_c);
+  cudaMalloc(&buffer_z, buffer_size_z);
+
+  cusparseScsrsv2_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,   (float *)a_s_val.d_data, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, policy, buffer_s);
+  cusparseDcsrsv2_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (double *)a_d_val.d_data, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, policy, buffer_d);
+  cusparseCcsrsv2_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA,  (float2 *)a_c_val.d_data, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, policy, buffer_c);
+  cusparseZcsrsv2_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, descrA, (double2 *)a_z_val.d_data, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, policy, buffer_z);
 
   float alpha_s = 1;
   double alpha_d = 1;
   float2 alpha_c = float2{1, 0};
   double2 alpha_z = double2{1, 0};
 
-  cusparseCsrsv_solveEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, &alpha_s, CUDA_R_32F, descrA, a_s_val.d_data, CUDA_R_32F, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, f_s.d_data, CUDA_R_32F, x_s.d_data, CUDA_R_32F, CUDA_R_32F);
-  cusparseCsrsv_solveEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, &alpha_d, CUDA_R_64F, descrA, a_d_val.d_data, CUDA_R_64F, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, f_d.d_data, CUDA_R_64F, x_d.d_data, CUDA_R_64F, CUDA_R_64F);
-  cusparseCsrsv_solveEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, &alpha_c, CUDA_C_32F, descrA, a_c_val.d_data, CUDA_C_32F, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, f_c.d_data, CUDA_C_32F, x_c.d_data, CUDA_C_32F, CUDA_C_32F);
-  cusparseCsrsv_solveEx(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, &alpha_z, CUDA_C_64F, descrA, a_z_val.d_data, CUDA_C_64F, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, f_z.d_data, CUDA_C_64F, x_z.d_data, CUDA_C_64F, CUDA_C_64F);
+  cusparseScsrsv2_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, &alpha_s, descrA,   (float *)a_s_val.d_data, (int *)a_row_ptr_s.d_data, (int *)a_col_ind_s.d_data, info_s, f_s.d_data, x_s.d_data, policy, buffer_s);
+  cusparseDcsrsv2_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, &alpha_d, descrA,  (double *)a_d_val.d_data, (int *)a_row_ptr_d.d_data, (int *)a_col_ind_d.d_data, info_d, f_d.d_data, x_d.d_data, policy, buffer_d);
+  cusparseCcsrsv2_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, &alpha_c, descrA,  (float2 *)a_c_val.d_data, (int *)a_row_ptr_c.d_data, (int *)a_col_ind_c.d_data, info_c, f_c.d_data, x_c.d_data, policy, buffer_c);
+  cusparseZcsrsv2_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 6, &alpha_z, descrA, (double2 *)a_z_val.d_data, (int *)a_row_ptr_z.d_data, (int *)a_col_ind_z.d_data, info_z, f_z.d_data, x_z.d_data, policy, buffer_z);
 
   x_s.D2H();
   x_d.D2H();
@@ -191,27 +221,31 @@ void test_cusparseCsrsvEx() {
   x_z.D2H();
 
   cudaStreamSynchronize(0);
-  cusparseDestroySolveAnalysisInfo(info_s);
-  cusparseDestroySolveAnalysisInfo(info_d);
-  cusparseDestroySolveAnalysisInfo(info_c);
-  cusparseDestroySolveAnalysisInfo(info_z);
+  cusparseDestroyCsrsv2Info(info_s);
+  cusparseDestroyCsrsv2Info(info_d);
+  cusparseDestroyCsrsv2Info(info_c);
+  cusparseDestroyCsrsv2Info(info_z);
   cusparseDestroyMatDescr(descrA);
   cusparseDestroy(handle);
+  cudaFree(buffer_s);
+  cudaFree(buffer_d);
+  cudaFree(buffer_c);
+  cudaFree(buffer_z);
 
   float expect_x[4] = {1, 2, 3};
   if (compare_result(expect_x, x_s.h_data, 3) &&
       compare_result(expect_x, x_d.h_data, 3) &&
       compare_result(expect_x, x_c.h_data, 3) &&
       compare_result(expect_x, x_z.h_data, 3))
-    printf("CsrsvEx pass\n");
+    printf("Tcsrsv2 pass\n");
   else {
-    printf("CsrsvEx fail\n");
+    printf("Tcsrsv2 fail\n");
     test_passed = false;
   }
 }
 
 int main() {
-  test_cusparseCsrsvEx();
+  test_cusparseTcsrsv2();
 
   if (test_passed)
     return 0;

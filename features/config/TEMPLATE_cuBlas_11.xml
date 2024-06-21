@@ -10,6 +10,6 @@
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
         <platformRule OSFamily="Linux" kit="CUDA11.0" kitRange="OLDER" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA11.0" kitRange="OLDER" runOnThisPlatform="false"/>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

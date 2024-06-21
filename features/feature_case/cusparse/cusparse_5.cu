@@ -103,8 +103,6 @@ bool compare_result(float *expect, float *result, std::vector<int> indices) {
 
 bool test_passed = true;
 
-const bool run_complex_datatype = true;
-
 // A * C = B
 //
 // | 1 1 2 |   | 1 |   | 9  |  
@@ -211,15 +209,13 @@ void test_cusparseSpSV() {
   size_t ws_size_z = 0;
   cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, c_descr_s, CUDA_R_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_s, &ws_size_s);
   cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, c_descr_d, CUDA_R_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_d, &ws_size_d);
-  if (run_complex_datatype) {
-    cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c, &ws_size_c);
-    cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z, &ws_size_z);
-  }
+  cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c, &ws_size_c);
+  cusparseSpSV_bufferSize(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z, &ws_size_z);
 
-  void *ws_s;
-  void *ws_d;
-  void *ws_c;
-  void *ws_z;
+  void *ws_s = nullptr;
+  void *ws_d = nullptr;
+  void *ws_c = nullptr;
+  void *ws_z = nullptr;
   cudaMalloc(&ws_s, ws_size_s);
   cudaMalloc(&ws_d, ws_size_d);
   cudaMalloc(&ws_c, ws_size_c);
@@ -227,17 +223,13 @@ void test_cusparseSpSV() {
 
   cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, c_descr_s, CUDA_R_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_s, &ws_size_s);
   cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, c_descr_d, CUDA_R_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_d, &ws_size_d);
-  if (run_complex_datatype) {
-    cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c, &ws_size_c);
-    cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z, &ws_size_z);
-  }
+  cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c, &ws_size_c);
+  cusparseSpSV_analysis(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z, &ws_size_z);
 
   cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_s.d_data, a_descr_s, b_descr_s, c_descr_s, CUDA_R_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_s);
   cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_d.d_data, a_descr_d, b_descr_d, c_descr_d, CUDA_R_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_d);
-  if (run_complex_datatype) {
-    cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c);
-    cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z);
-  }
+  cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_c.d_data, a_descr_c, b_descr_c, c_descr_c, CUDA_C_32F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_c);
+  cusparseSpSV_solve(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, alpha_z.d_data, a_descr_z, b_descr_z, c_descr_z, CUDA_C_64F, CUSPARSE_SPSV_ALG_DEFAULT, SpSVDescr_z);
 
   c_s.D2H();
   c_d.D2H();

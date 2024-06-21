@@ -1,0 +1,298 @@
+---
+MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/out/MC_Particle.hh'
+Replacements:
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7178
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:0: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7269
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:1: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7354
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:2: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7475
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:3: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7532
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:4: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7581
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:5: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7638
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:6: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7698
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:7: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7744
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:8: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7806
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:9: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7863
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:10: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7925
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:11: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          7987
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:12: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8041
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:13: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8094
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:14: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8151
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:15: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8206
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:16: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8253
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:17: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8303
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:18: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8351
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:19: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8406
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:20: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8455
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:21: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8502
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:22: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8550
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:23: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Offset:          8603
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1040:24: Use sycl::stream instead of printf if your code is used on the device.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src/MC_Particle.hh'
+    Digest:          527af0727d791ca55e1a8b82f6151284
+DpctVersion:     18.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/local_user/sandbox/SYCLomatic-test/third-party-programs/Velocity-Bench/QuickSilver/CUDA/src'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

@@ -8,6 +8,5 @@
     </files>
     <rules>
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
     </rules>
 </test>

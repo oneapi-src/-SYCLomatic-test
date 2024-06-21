@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_multi_devices" name="TEMPLATE">
+    <description>WARNING: DON'T UPDATE THIS FILE MANUALLY!!!
+      This is auto-generated accessors configuration file which affects all tests in ported gcc suites
+      If you have any issue with this file please contact Compiler QA team</description>
+    <files>
+        <file path="src/${testName}.cpp"/>
+    </files>
+    <rules>
+	    <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu"/>
+        <optlevelRule excludeOptlevelNameString="cuda" />
+    </rules>
+</test>

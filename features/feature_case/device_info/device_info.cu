@@ -25,6 +25,9 @@ void test1() {
 
   const int id = properties.pciDeviceID;
   const cudaUUID_t uuid = properties.uuid;
+  auto maxTexture1D = properties.maxTexture1D;
+  auto maxTexture2D = properties.maxTexture2D;
+  auto maxTexture3D = properties.maxTexture3D;
 
   std::cout << "Device ID: " << id << std::endl;
   std::cout << "Device UUID: ";
@@ -34,6 +37,12 @@ void test1() {
               << " ";
   }
   std::cout << std::endl;
+  std::cout << "Device maxTexture1D: " << maxTexture1D << std::endl;
+  std::cout << "Device maxTexture2D: " << maxTexture2D[0] << " "
+            << properties.maxTexture2D[1] << std::endl;
+  std::cout << "Device maxTexture3D: " << maxTexture3D[0] << " "
+            << properties.maxTexture3D[1] << " " << maxTexture3D[2]
+            << std::endl;
 }
 
 int main() {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite>
+  <description>multi devices test</description>
+  <tests>
+    <test testName="rng" configFile="config/TEMPLATE_multi_devices.xml" splitGroup="double"/>
+  </tests>
+</suite>

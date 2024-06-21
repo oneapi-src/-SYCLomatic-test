@@ -6,6 +6,6 @@
         <file path="src/${testName}.cpp" />
     </files>
     <rules>
-        <optlevelRule excludeOptlevelNameString="cuda_backend" />
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>
