@@ -60,7 +60,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr', 'cuda_stream_query']
+              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform"]
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -166,7 +166,7 @@ def build_test():
              'cudnn-binary', 'cudnn-bnp1', 'cudnn-bnp2', 'cudnn-bnp3', 'cudnn-normp1', 'cudnn-normp2', 'cudnn-normp3',
              'cudnn-convp1', 'cudnn-convp2', 'cudnn-convp3', 'cudnn-convp4', 'cudnn-convp5', 'cudnn-convp6', 'cudnn-rnn',
              'cudnn-GetErrorString', 'cudnn-convp7',
-             'cudnn-types', 'cudnn-version', 'cudnn-dropout'
+             'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'matmul'
              ]
 
     no_fast_math_tests = ['math-emu-half-after11', 'math-emu-half2-after11', 'math-ext-half-after11', 'math-ext-half2-after11',

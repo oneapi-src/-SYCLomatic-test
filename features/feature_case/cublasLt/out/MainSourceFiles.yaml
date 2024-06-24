@@ -1,0 +1,3846 @@
+---
+MainSourceFile:  '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/MainSrcFiles_placehold'
+Replacements:
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          370
+    Length:          22
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n#include <dpct/blas_gemm_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          431
+    Length:          0
+    ReplacementText: "\n#include <dpct/lib_common_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          851
+    Length:          14
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          894
+    Length:          21
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1143
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1279
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1280
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1308
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::matmul_desc_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1352
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1421
+    Length:          17
+    ReplacementText: 'oneapi::mkl::transpose'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1445
+    Length:          11
+    ReplacementText: 'oneapi::mkl::transpose::trans'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1462
+    Length:          21
+    ReplacementText: 'dpct::blas_gemm::experimental::pointer_mode_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1495
+    Length:          51
+    ReplacementText: 'dpct::blas_gemm::experimental::pointer_mode_t::alpha_device_vector_beta_zero'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1552
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1576
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1602
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1631
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1663
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1692
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1757
+    Length:          56
+    ReplacementText: 'DPCT_CHECK_ERROR(Adesc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1851
+    Length:          56
+    ReplacementText: 'DPCT_CHECK_ERROR(Bdesc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          1946
+    Length:          92
+    ReplacementText: 'DPCT_CHECK_ERROR(Adesc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2108
+    Length:          102
+    ReplacementText: 'DPCT_CHECK_ERROR(Bdesc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col_turing))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2259
+    Length:          102
+    ReplacementText: 'DPCT_CHECK_ERROR(Bdesc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col_ampere))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2432
+    Length:          69
+    ReplacementText: 'DPCT_CHECK_ERROR(matmulDesc = new dpct::blas_gemm::experimental::matmul_desc_t(dpct::compute_type::i32, dpct::library_data_t::real_int32))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2541
+    Length:          90
+    ReplacementText: 'DPCT_CHECK_ERROR(matmulDesc->set_attribute(dpct::blas_gemm::experimental::matmul_desc_t::attribute::trans_b, &opT))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2671
+    Length:          57
+    ReplacementText: 'DPCT_CHECK_ERROR(Cdesc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int32, m, n, ldc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2768
+    Length:          92
+    ReplacementText: 'DPCT_CHECK_ERROR(Cdesc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          2931
+    Length:          128
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::blas_gemm::experimental::matmul(ltHandle, matmulDesc, &alpha, A, Adesc, B, Bdesc, &beta, (int32_t*)C, Cdesc, (int32_t*)C, Cdesc, 0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3120
+    Length:          69
+    ReplacementText: 'DPCT_CHECK_ERROR(matmulDesc = new dpct::blas_gemm::experimental::matmul_desc_t(dpct::compute_type::i32, dpct::library_data_t::real_float))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3229
+    Length:          90
+    ReplacementText: 'DPCT_CHECK_ERROR(matmulDesc->set_attribute(dpct::blas_gemm::experimental::matmul_desc_t::attribute::trans_b, &opT))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3359
+    Length:          56
+    ReplacementText: 'DPCT_CHECK_ERROR(Cdesc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, ldc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3455
+    Length:          92
+    ReplacementText: 'DPCT_CHECK_ERROR(Cdesc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3660
+    Length:          126
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::blas_gemm::experimental::matmul(ltHandle, matmulDesc, &alpha, A, Adesc, B, Bdesc, &beta, (int8_t*)C, Cdesc, (int8_t*)C, Cdesc, 0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          3855
+    Length:          106
+    ReplacementText: 'DPCT_CHECK_ERROR(matmulDesc->set_attribute(dpct::blas_gemm::experimental::matmul_desc_t::attribute::pointer_mode, &alphaVec))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4003
+    Length:          129
+    ReplacementText: 'DPCT_CHECK_ERROR(dpct::blas_gemm::experimental::matmul(ltHandle, matmulDesc, row_scale, A, Adesc, B, Bdesc, NULL, (int8_t*)C, Cdesc, (int8_t*)C, Cdesc, 0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4154
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4227
+    Length:          34
+    ReplacementText: 'DPCT_CHECK_ERROR(delete (Cdesc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4310
+    Length:          34
+    ReplacementText: 'DPCT_CHECK_ERROR(delete (Bdesc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4393
+    Length:          34
+    ReplacementText: 'DPCT_CHECK_ERROR(delete (Adesc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4481
+    Length:          37
+    ReplacementText: 'DPCT_CHECK_ERROR(delete (matmulDesc))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4600
+    Length:          0
+    ReplacementText: "\ncatch (sycl::exception const &exc) {\n  std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n  std::exit(1);\n}"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4617
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4686
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4758
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4797
+    Length:          29
+    ReplacementText: 'dpct::blas_gemm::experimental::transform_desc_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4852
+    Length:          62
+    ReplacementText: 'transform_desc = new dpct::blas_gemm::experimental::transform_desc_t(dpct::library_data_t::real_float)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          4953
+    Length:          137
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_transform(transform_desc, &alpha, in, layout_in, &beta, NULL, NULL, out, layout_out, 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5094
+    Length:          50
+    ReplacementText: 'delete (transform_desc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5193
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5196
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5225
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5428
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5473
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5518
+    Length:          42
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int32_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5682
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5728
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5757
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5803
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5828
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5833
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          5955
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6025
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6095
+    Length:          67
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int32, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6188
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6359
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6413
+    Length:          76
+    ReplacementText: 'B_col4_4r2_8c = (int8_t *)sycl::malloc_device(((n + 8 - 1) / 8) * 8 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6493
+    Length:          51
+    ReplacementText: 'C_col32 = (int32_t *)sycl::malloc_device(m * 32 * sizeof(std::int32_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6548
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6617
+    Length:          120
+    ReplacementText: 'Bdesc_col4_4r2_8c = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 8 - 1) / 8) * 8 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6741
+    Length:          66
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int32, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6811
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6835
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6859
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6889
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          6919
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          7056
+    Length:          186
+    ReplacementText: 'Bdesc_col4_4r2_8c->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          7246
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          7873
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          7944
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          7991
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8016
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8388
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8417
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8461
+    Length:          46
+    ReplacementText: 'delete (Bdesc_col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8511
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8555
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8603
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8651
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8699
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8717
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8735
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8815
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8818
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          8847
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9050
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9095
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9140
+    Length:          41
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9303
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9349
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9378
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9424
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9449
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9454
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9576
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9646
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9716
+    Length:          66
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9808
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          9978
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10032
+    Length:          76
+    ReplacementText: 'B_col4_4r2_8c = (int8_t *)sycl::malloc_device(((n + 8 - 1) / 8) * 8 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10112
+    Length:          50
+    ReplacementText: 'C_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10166
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10235
+    Length:          120
+    ReplacementText: 'Bdesc_col4_4r2_8c = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 8 - 1) / 8) * 8 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10359
+    Length:          65
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10428
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10452
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10476
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10506
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10536
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10673
+    Length:          186
+    ReplacementText: 'Bdesc_col4_4r2_8c->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          10863
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          11487
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          11557
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          11603
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          11628
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          11999
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12028
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12072
+    Length:          46
+    ReplacementText: 'delete (Bdesc_col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12122
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12166
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12214
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12262
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12310
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12328
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12346
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12426
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12429
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12458
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12661
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12706
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12751
+    Length:          41
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12914
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12960
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          12989
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13035
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13060
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13065
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13187
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13257
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13327
+    Length:          66
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13419
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13589
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13643
+    Length:          76
+    ReplacementText: 'B_col4_4r2_8c = (int8_t *)sycl::malloc_device(((n + 8 - 1) / 8) * 8 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13723
+    Length:          50
+    ReplacementText: 'C_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13777
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13846
+    Length:          120
+    ReplacementText: 'Bdesc_col4_4r2_8c = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 8 - 1) / 8) * 8 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          13970
+    Length:          65
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14039
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14063
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14087
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14117
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14147
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14284
+    Length:          186
+    ReplacementText: 'Bdesc_col4_4r2_8c->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14474
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          14815
+    Length:          44
+    ReplacementText: 'alpha = sycl::malloc_shared<float>(4, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15197
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15267
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15313
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15338
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15709
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15738
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15782
+    Length:          46
+    ReplacementText: 'delete (Bdesc_col4_4r2_8c)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15832
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15876
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15924
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          15972
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16020
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16038
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16056
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16074
+    Length:          15
+    ReplacementText: 'dpct::dpct_free(alpha, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16156
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16159
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16188
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16391
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16436
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16481
+    Length:          42
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int32_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16645
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16691
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16720
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16766
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16791
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16796
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16918
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          16988
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17058
+    Length:          67
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int32, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17151
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17324
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17378
+    Length:          93
+    ReplacementText: 'B_col32_2r_4r4 = (int8_t *)sycl::malloc_device(((n + 32 - 1) / 32) * 32 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17475
+    Length:          51
+    ReplacementText: 'C_col32 = (int32_t *)sycl::malloc_device(m * 32 * sizeof(std::int32_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17530
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17599
+    Length:          124
+    ReplacementText: 'Bdesc_col32_2r_4r4 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 32 - 1) / 32) * 32 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17727
+    Length:          66
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int32, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17797
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17821
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17845
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17876
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          17907
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          18044
+    Length:          189
+    ReplacementText: 'Bdesc_col32_2r_4r4->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          18237
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          18867
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          18938
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          18985
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19010
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19382
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19411
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19455
+    Length:          47
+    ReplacementText: 'delete (Bdesc_col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19506
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19550
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19598
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19646
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19694
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19712
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19730
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19810
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19813
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          19842
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20045
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20090
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20135
+    Length:          41
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20298
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20344
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20373
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20419
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20444
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20449
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20571
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20641
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20711
+    Length:          66
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20803
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          20975
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21029
+    Length:          93
+    ReplacementText: 'B_col32_2r_4r4 = (int8_t *)sycl::malloc_device(((n + 32 - 1) / 32) * 32 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21126
+    Length:          50
+    ReplacementText: 'C_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21180
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21249
+    Length:          124
+    ReplacementText: 'Bdesc_col32_2r_4r4 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 32 - 1) / 32) * 32 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21377
+    Length:          65
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21446
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21470
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21494
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21525
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21556
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21693
+    Length:          189
+    ReplacementText: 'Bdesc_col32_2r_4r4->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          21886
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          22513
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          22583
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          22629
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          22654
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23025
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23054
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23098
+    Length:          47
+    ReplacementText: 'delete (Bdesc_col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23149
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23193
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23241
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23289
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23337
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23355
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23373
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23453
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23456
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23485
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23688
+    Length:          41
+    ReplacementText: 'Adev = (void *)sycl::malloc_device(m * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23733
+    Length:          41
+    ReplacementText: 'Bdev = (void *)sycl::malloc_device(n * k * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23778
+    Length:          41
+    ReplacementText: 'Cdev = (void *)sycl::malloc_device(m * n * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23941
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          23987
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24016
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24062
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24087
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24092
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24214
+    Length:          66
+    ReplacementText: 'Adesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, lda)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24284
+    Length:          66
+    ReplacementText: 'Bdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, n, k, ldb)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24354
+    Length:          66
+    ReplacementText: 'Cdesc_col_major = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, ldc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24446
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24618
+    Length:          50
+    ReplacementText: 'A_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24672
+    Length:          93
+    ReplacementText: 'B_col32_2r_4r4 = (int8_t *)sycl::malloc_device(((n + 32 - 1) / 32) * 32 * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24769
+    Length:          50
+    ReplacementText: 'C_col32 = (int8_t *)sycl::malloc_device(m * 32 * sizeof(std::int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24823
+    Length:          65
+    ReplacementText: 'Adesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, k, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          24892
+    Length:          124
+    ReplacementText: 'Bdesc_col32_2r_4r4 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, k, n, ((n + 32 - 1) / 32) * 32 * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25020
+    Length:          65
+    ReplacementText: 'Cdesc_col32 = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, m, n, m * 32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25089
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25113
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25137
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25168
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25199
+    Length:          133
+    ReplacementText: 'Adesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25336
+    Length:          189
+    ReplacementText: 'Bdesc_col32_2r_4r4->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25529
+    Length:          133
+    ReplacementText: 'Cdesc_col32->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          25872
+    Length:          44
+    ReplacementText: 'alpha = sycl::malloc_shared<float>(4, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26255
+    Length:          24
+    ReplacementText: 'q_ct1.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26325
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26371
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26396
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26767
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26796
+    Length:          40
+    ReplacementText: 'delete (Adesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26840
+    Length:          47
+    ReplacementText: 'delete (Bdesc_col32_2r_4r4)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26891
+    Length:          40
+    ReplacementText: 'delete (Cdesc_col32)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26935
+    Length:          44
+    ReplacementText: 'delete (Adesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          26983
+    Length:          44
+    ReplacementText: 'delete (Bdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          27031
+    Length:          44
+    ReplacementText: 'delete (Cdesc_col_major)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          27079
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Adev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          27097
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Bdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          27115
+    Length:          14
+    ReplacementText: 'dpct::dpct_free(Cdev, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Offset:          27133
+    Length:          15
+    ReplacementText: 'dpct::dpct_free(alpha, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          370
+    Length:          22
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n#include <dpct/blas_gemm_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          410
+    Length:          0
+    ReplacementText: "\n#include <dpct/lib_common_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          427
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          490
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          554
+    Length:          15
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          605
+    Length:          22
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_layout_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          663
+    Length:          29
+    ReplacementText: 'dpct::blas_gemm::experimental::transform_desc_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          719
+    Length:          66
+    ReplacementText: 'in_desc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, dim1, dim2, ld_in)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          789
+    Length:          68
+    ReplacementText: 'out_desc = new dpct::blas_gemm::experimental::matrix_layout_t(dpct::library_data_t::real_int8, dim1, dim2, ld_out)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          862
+    Length:          135
+    ReplacementText: 'in_desc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &order_in)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1001
+    Length:          138
+    ReplacementText: 'out_desc->set_attribute(dpct::blas_gemm::experimental::matrix_layout_t::attribute::order, &order_out)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1144
+    Length:          62
+    ReplacementText: 'transform_desc = new dpct::blas_gemm::experimental::transform_desc_t(dpct::library_data_t::real_float)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1246
+    Length:          133
+    ReplacementText: 'dpct::blas_gemm::experimental::matrix_transform(transform_desc, &alpha, in, in_desc, &beta, NULL, NULL, out, out_desc, 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1384
+    Length:          36
+    ReplacementText: 'delete (in_desc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1424
+    Length:          37
+    ReplacementText: 'delete (out_desc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1465
+    Length:          50
+    ReplacementText: 'delete (transform_desc)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1537
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1648
+    Length:          47
+    ReplacementText: 'in_dev = (void *)sycl::malloc_device(n * in_ld * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          1980
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2034
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2072
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2077
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2106
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2188
+    Length:          49
+    ReplacementText: 'out_dev = (void *)sycl::malloc_device(out_ld * m * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2241
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2292
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2331
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2380
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::row'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2441
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2498
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          2536
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3236
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3285
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3381
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::row'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3428
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3457
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3511
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3549
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          3927
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4008
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4119
+    Length:          47
+    ReplacementText: 'in_dev = (void *)sycl::malloc_device(n * in_ld * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4451
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4505
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4543
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4548
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4577
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4659
+    Length:          49
+    ReplacementText: 'out_dev = (void *)sycl::malloc_device(out_ld * m * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4712
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4763
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4802
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4851
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4914
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          4971
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          5009
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          5893
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          5942
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6038
+    Length:          20
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6087
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6116
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6170
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6208
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6590
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6677
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          6788
+    Length:          47
+    ReplacementText: 'in_dev = (void *)sycl::malloc_device(n * in_ld * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7120
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7174
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7212
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7217
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7246
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7338
+    Length:          49
+    ReplacementText: 'out_dev = (void *)sycl::malloc_device(out_ld * m * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7391
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7442
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7481
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7530
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7599
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7656
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          7694
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          11838
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          11887
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          11983
+    Length:          26
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col4_4r2_8c'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12038
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12067
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12121
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12159
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12553
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12641
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.in_order_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          12752
+    Length:          47
+    ReplacementText: 'in_dev = (void *)sycl::malloc_device(n * in_ld * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13084
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13138
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13176
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13181
+    Length:          16
+    ReplacementText: 'dpct::blas_gemm::experimental::descriptor_ptr'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13210
+    Length:          25
+    ReplacementText: 'ltHandle = new dpct::blas_gemm::experimental::descriptor()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13303
+    Length:          49
+    ReplacementText: 'out_dev = (void *)sycl::malloc_device(out_ld * m * sizeof(int8_t), q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13356
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13407
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13446
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13495
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13565
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13622
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          13660
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27206
+    Length:          10
+    ReplacementText: q_ct1.memset
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27255
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27351
+    Length:          27
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col32_2r_4r4'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27407
+    Length:          18
+    ReplacementText: 'dpct::blas_gemm::experimental::order_t::col'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27436
+    Length:          10
+    ReplacementText: q_ct1.memcpy
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27490
+    Length:          37
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27528
+    Length:          0
+    ReplacementText: '.wait()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Offset:          27924
+    Length:          25
+    ReplacementText: 'delete (ltHandle)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/matmul.cu'
+    Digest:          c3a2078551737823d86d0b1d17ca234a
+  - MainSourceFile:  '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt/transform.cu'
+    Digest:          373b38f255915be55702128932b0b290
+DpctVersion:     19.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/cublasLt'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  BuildScript:
+    Value:           '0'
+    Specified:       false
+  CodePinEnabled:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           ''
+    Specified:       false
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
