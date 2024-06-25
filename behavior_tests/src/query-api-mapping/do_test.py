@@ -182,7 +182,7 @@ def migrate_test():
             ],
             [],
             [
-                "dpct::sparse::spmm(*handle, transa, transb, alpha, a, b, beta, c, computetype);"
+                "dpct::sparse::spmm(handle->get_queue(), transa, transb, alpha, a, b, beta, c, computetype);"
             ],
         ],
         [  # NCCL
