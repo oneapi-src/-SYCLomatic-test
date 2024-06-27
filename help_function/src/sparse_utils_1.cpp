@@ -71,6 +71,10 @@ bool test1() {
   if (ib != oneapi::mkl::index_base::one)
     return false;
 
+  dpct::sparse::matrix_format mf;
+  mf = dpct::sparse::matrix_format::csr;
+  mf = dpct::sparse::matrix_format::coo;
+
   return true;
 }
 
