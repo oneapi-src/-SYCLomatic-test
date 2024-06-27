@@ -28,6 +28,7 @@ void test1() {
   auto maxTexture1D = properties.maxTexture1D;
   auto maxTexture2D = properties.maxTexture2D;
   auto maxTexture3D = properties.maxTexture3D;
+  auto regsPerBlock = properties.regsPerBlock;
 
   std::cout << "Device ID: " << id << std::endl;
   std::cout << "Device UUID: ";
@@ -43,6 +44,7 @@ void test1() {
   std::cout << "Device maxTexture3D: " << maxTexture3D[0] << " "
             << properties.maxTexture3D[1] << " " << maxTexture3D[2]
             << std::endl;
+  std::cout << "Device regsPerBlock: " << regsPerBlock << std::endl;
 }
 
 int main() {
