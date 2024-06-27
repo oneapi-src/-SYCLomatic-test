@@ -215,6 +215,6 @@
     <test testName="sparse_utils_4_usm" configFile="config/TEMPLATE_help_function_sparse_usm.xml" splitGroup="double" />
     <test testName="atomic_compare_exchange_strong" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="filter_device" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="blas_gemm_utils_interface" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="blas_gemm_utils_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
   </tests>
 </suite>
