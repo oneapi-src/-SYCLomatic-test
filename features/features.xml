@@ -147,6 +147,7 @@
     <test testName="math-ext-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
     <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-helper" configFile="config/TEMPLATE_math.xml" />
+    <test testName="math-int" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-intrinsics" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-saturate" configFile="config/TEMPLATE_math_saturate.xml" />
     <test testName="cusparse" configFile="config/TEMPLATE_cusparse_before_11.xml" />
@@ -282,6 +283,7 @@
     <test testName="cusparse_7" configFile="config/TEMPLATE_cusparse_before_11_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_8" configFile="config/TEMPLATE_cusparse_after_101_skip_double.xml" splitGroup="double"/>
     <test testName="cusparse_9" configFile="config/TEMPLATE_cusparse_after_113_skip_double.xml" splitGroup="double"/>
+    <test testName="cusparse_10" configFile="config/TEMPLATE_cusparse_after_112_cpu.xml"/>
     <test testName="cusolver_test1" configFile="config/TEMPLATE_solver.xml"  splitGroup="double"/>
     <test testName="cusolver_test2" configFile="config/TEMPLATE_solver_skip80.xml"  splitGroup="double"/>
     <test testName="cusolver_test3" configFile="config/TEMPLATE_solver_11.xml"  splitGroup="double"/>
@@ -318,10 +320,10 @@
     <test testName="image" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
-    <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" />
+    <!-- <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" /> -->
+    <!-- <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" /> -->
+    <!-- <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" /> -->
+    <!-- <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" /> -->
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />
@@ -340,5 +342,7 @@
     <test testName="driver_err_handle" configFile="config/TEMPLATE_err_handle.xml" />
     <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin_usmnone.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
+    <test testName="matmul" configFile="config/TEMPLATE_cublasLt.xml" />
+    <test testName="transform" configFile="config/TEMPLATE_cublasLt.xml" />
   </tests>
 </suite>

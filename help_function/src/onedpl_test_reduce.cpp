@@ -18,7 +18,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include <limits>
 
 
 
@@ -376,6 +376,72 @@ int main() {
         sycl::free(dev_offsets, queue);
         sycl::free(dev_output, queue);
         
+    }
+
+    // Testing calls to dpct::argmin and dpct::argmax functors with unique and equivalent values
+    {
+        auto queue = dpct::get_default_queue();
+        test_name = "oneapi::dpl::reduce with dpct::argmin functor - All values are unique";
+        std::size_t n = 10;
+        sycl::buffer<dpct::key_value_pair<int, float>> input(n);
+        {
+            auto host_acc = input.get_host_access();
+            for (std::size_t i = 0; i < n; ++i)
+                host_acc[i].key = i + 10, host_acc[i].value = i + 20;
+            // inject min and max
+            host_acc[4].key = 9;
+            host_acc[4].value = 8;
+            host_acc[6].key = 101;
+            host_acc[6].value = 99;
+        }
+        auto argmin_res = oneapi::dpl::reduce(dpl::execution::make_device_policy(queue),
+                                              oneapi::dpl::begin(input),
+                                              oneapi::dpl::end(input),
+                                              dpct::key_value_pair<int, float>(std::numeric_limits<int>::max(),
+                                                                               std::numeric_limits<float>::max()),
+                                              dpct::argmin());
+
+        failed_tests += ASSERT_EQUAL(test_name, argmin_res.key, 9);
+        failed_tests += ASSERT_EQUAL(test_name, argmin_res.value, 8);
+
+        test_name = "oneapi::dpl::reduce with dpct::argmax functor - All values are unique";
+        auto argmax_res = oneapi::dpl::reduce(dpl::execution::make_device_policy(queue),
+                                              oneapi::dpl::begin(input),
+                                              oneapi::dpl::end(input),
+                                              dpct::key_value_pair<int, float>(std::numeric_limits<int>::min(),
+                                                                               std::numeric_limits<float>::min()),
+                                              dpct::argmax());
+
+        failed_tests += ASSERT_EQUAL(test_name, argmax_res.key, 101);
+        failed_tests += ASSERT_EQUAL(test_name, argmax_res.value, 99);
+
+        test_name = "oneapi::dpl::reduce with dpct::argmin functor - All values are the same";
+        {
+            auto host_acc = input.get_host_access();
+            for (std::size_t i = 0; i < n; ++i)
+                host_acc[i].key = i + 30, host_acc[i].value = 2;
+        }
+        // Expect the key_value_pair with the lower key to be returned when value compares equal
+        argmin_res = oneapi::dpl::reduce(dpl::execution::make_device_policy(queue),
+                                         oneapi::dpl::begin(input),
+                                         oneapi::dpl::end(input),
+                                         dpct::key_value_pair<int, float>(std::numeric_limits<int>::max(),
+                                                                          std::numeric_limits<float>::max()),
+                                         dpct::argmin());
+
+        failed_tests += ASSERT_EQUAL(test_name, argmin_res.key, 30);
+        failed_tests += ASSERT_EQUAL(test_name, argmin_res.value, 2);
+
+        argmax_res = oneapi::dpl::reduce(dpl::execution::make_device_policy(queue),
+                                         oneapi::dpl::begin(input),
+                                         oneapi::dpl::end(input),
+                                         dpct::key_value_pair<int, float>(std::numeric_limits<int>::min(),
+                                                                          std::numeric_limits<float>::min()),
+                                         dpct::argmax());
+
+        // Expect the key_value_pair with the lower key to be returned when value compares equal
+        failed_tests += ASSERT_EQUAL(test_name, argmax_res.key, 30);
+        failed_tests += ASSERT_EQUAL(test_name, argmax_res.value, 2);
     }
 
     std::cout << std::endl << failed_tests << " failing test(s) detected." << std::endl;
