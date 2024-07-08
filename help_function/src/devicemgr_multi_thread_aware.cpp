@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 
   unsigned long long queue_ptr[NUM_THREADS];
   for (t = 0; t < NUM_THREADS; t++) {
-    printf("In main: creating thread %ld\n", t);
+    printf("In main: creating thread %d\n", t);
     queue_ptr[t] = t;
     threads[t] = std::thread(thread_using_device, std::ref(queue_ptr[t]));
   }
