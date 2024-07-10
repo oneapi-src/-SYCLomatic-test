@@ -7,6 +7,5 @@
     </files>
     <rules>
         <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu"/>
-        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

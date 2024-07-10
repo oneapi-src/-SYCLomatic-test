@@ -321,6 +321,160 @@ void testVmax4UUS(
   }
 }
 
+__global__ void vavrg4UUS(int *Result, int a, int b, int c) {
+  asm("vavrg4.u32.u32.s32 %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(c));
+}
+
+__global__ void vavrg4UUSSat(int *Result, int a, int b, int c) {
+  asm("vavrg4.u32.u32.s32.sat %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(c));
+}
+
+__global__ void vavrg4UUSAdd(int *Result, int a, int b, int c) {
+  asm("vavrg4.u32.u32.s32.add %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(c));
+}
+
+void testVavrg4UUS(
+    const vector<pair<tuple<int, int, int>, tuple<int, int, int>>> &TestCases) {
+  int *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    string newCase = "{{" + to_string(get<0>(TestCase.first)) + ", " +
+                     to_string(get<1>(TestCase.first)) + ", " +
+                     to_string(get<2>(TestCase.first)) + "}, {";
+    vavrg4UUS<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first),
+                       get<2>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vavrg4.u32.u32.s32",
+                {get<0>(TestCase.first), get<1>(TestCase.first),
+                 get<2>(TestCase.first)},
+                get<0>(TestCase.second), *Result);
+    vavrg4UUSSat<<<1, 1>>>(Result, get<0>(TestCase.first),
+                          get<1>(TestCase.first), get<2>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vavrg4.u32.u32.s32.sat",
+                {get<0>(TestCase.first), get<1>(TestCase.first),
+                 get<2>(TestCase.first)},
+                get<1>(TestCase.second), *Result);
+    vavrg4UUSAdd<<<1, 1>>>(Result, get<0>(TestCase.first),
+                          get<1>(TestCase.first), get<2>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + "}},";
+    if (PRINT_CASE)
+      cout << newCase << endl;
+    checkResult("vavrg4.u32.u32.s32.add",
+                {get<0>(TestCase.first), get<1>(TestCase.first),
+                 get<2>(TestCase.first)},
+                get<2>(TestCase.second), *Result);
+  }
+}
+
+__global__ void vset4UUEq(int *Result, int a, int b) {
+  asm("vset4.u32.u32.eq %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UUNe(int *Result, int a, int b) {
+  asm("vset4.u32.u32.ne %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UULt(int *Result, int a, int b) {
+  asm("vset4.u32.u32.lt %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UULe(int *Result, int a, int b) {
+  asm("vset4.u32.u32.le %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UUGt(int *Result, int a, int b) {
+  asm("vset4.u32.u32.gt %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UUGe(int *Result, int a, int b) {
+  asm("vset4.u32.u32.ge %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(0));
+}
+
+__global__ void vset4UUAdd(int *Result, int a, int b, int c) {
+  asm("vset4.u32.u32.eq.add %0, %1, %2, %3;"
+      : "=r"(*Result)
+      : "r"(a), "r"(b), "r"(c));
+}
+
+void testvset4UU(
+    const vector<pair<tuple<int, int, int>, tuple<int, int, int, int, int, int, int>>> &TestCases) {
+  int *Result;
+  cudaMallocManaged(&Result, sizeof(*Result));
+  for (const auto &TestCase : TestCases) {
+    string newCase = "{{" + to_string(get<0>(TestCase.first)) + ", " +
+                     to_string(get<1>(TestCase.first)) + ", " +
+                     to_string(get<2>(TestCase.first)) + "}, {";
+    vset4UUEq<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.eq",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<0>(TestCase.second), *Result);
+    vset4UUNe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.ne",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<1>(TestCase.second), *Result);
+    vset4UULt<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.lt",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<2>(TestCase.second), *Result);
+    vset4UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.le",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<3>(TestCase.second), *Result);
+    vset4UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.gt",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<4>(TestCase.second), *Result);
+    vset4UULe<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + ", ";
+    checkResult("vset4.u32.u32.ge",
+                {get<0>(TestCase.first), get<1>(TestCase.first)},
+                get<5>(TestCase.second), *Result);
+    vset4UUAdd<<<1, 1>>>(Result, get<0>(TestCase.first), get<1>(TestCase.first),
+                         get<2>(TestCase.first));
+    cudaDeviceSynchronize();
+    newCase += to_string(*Result) + "}},";
+    if (PRINT_CASE)
+      cout << newCase << endl;
+    checkResult("vset4.u32.u32.eq.add",
+                {get<0>(TestCase.first), get<1>(TestCase.first),
+                 get<2>(TestCase.first)},
+                get<6>(TestCase.second), *Result);
+  }
+}
+
 int main() {
   srand(unsigned(time(nullptr)));
   int a = rand();
@@ -400,6 +554,36 @@ int main() {
       {{454422046, 990649001, 541577428}, {991292958, 991292958, 541577776}},
       {{2123447767, 63088206, 406272673}, {2123447767, 2123447767, 406273220}},
       {{1127203977, 209928516, 352777355}, {1127203977, 1127203977, 352777802}},
+  });
+  testVavrg4UUS({
+      // {{a, b, c}, {0, 0, 0}},
+      {{3, 4, 1}, {4, 4, 5}},
+      {{30000000, 400000000, 10}, {206578752, 206578752, 202}},
+      {{INT16_MAX, 1, 100}, {16512, 16512, 292}},
+      {{UINT16_MAX, 1, 1000}, {32896, 32896, 1256}},
+      {{UINT16_MAX, UINT16_MAX, 10000}, {32639, 32639, 10254}},
+      {{INT16_MAX, UINT16_MAX, 100000}, {16255, 16255, 100190}},
+      {{UINT32_MAX, UINT16_MAX, 1000000}, {-2139062401, -2139062401, 1000510}},
+      {{INT16_MAX, UINT32_MAX, 10000000}, {-49281, 16255, 10000188}},
+      {{INT16_MIN, INT32_MIN, 100000000}, {1082146816, 1082146816, 100000256}},
+      {{454422046, 990649001, 541577428}, {722568419, 722568192, 541577591}},
+      {{2123447767, 63088206, 406272673}, {1093333395, 1093271699, 406272912}},
+      {{1127203977, 209928516, 352777355}, {685343591, 671122279, 352777590}},
+  });
+  testvset4UU({
+    // {{a, b, c}, {0, 0, 0}},
+      {{3, 4, 1}, {16843008, 1, 1, 16843009, 16843009, 16843009, 4}},
+      {{30000000, 400000000, 10}, {0, 16843009, 16842752, 16842752, 16842752, 16842752, 10}},
+      {{INT16_MAX, 1, 100}, {16842752, 257, 0, 16842752, 16842752, 16842752, 102}},
+      {{UINT16_MAX, 1, 1000}, {16842752, 257, 0, 16842752, 16842752, 16842752, 1002}},
+      {{UINT16_MAX, UINT16_MAX, 10000}, {16843009, 0, 0, 16843009, 16843009, 16843009, 10004}},
+      {{INT16_MAX, UINT16_MAX, 100000}, {16842753, 256, 256, 16843009, 16843009, 16843009, 100003}},
+      {{UINT32_MAX, UINT16_MAX, 1000000}, {257, 16842752, 0, 257, 257, 257, 1000002}},
+      {{INT16_MAX, UINT32_MAX, 10000000}, {1, 16843008, 16843008, 16843009, 16843009, 16843009, 10000001}},
+      {{INT16_MIN, INT32_MIN, 100000000}, {1, 16843008, 0, 1, 1, 1, 100000001}},
+      {{454422046, 990649001, 541577428}, {0, 16843009, 16777217, 16777217, 16777217, 16777217, 541577428}},
+      {{2123447767, 63088206, 406272673}, {0, 16843009, 65792, 65792, 65792, 65792, 406272673}},
+      {{1127203977, 209928516, 352777355}, {0, 16843009, 65536, 65536, 65536, 65536, 352777355}},
   });
   cout << "passed " << passed << "/" << passed + failed << " cases!" << endl;
   if (failed) {

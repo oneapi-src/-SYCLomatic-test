@@ -25,6 +25,14 @@ curandStatus_t foo(
   curandStatus_t a12,
   curandStatus_t a13) {}
 
+curandOrdering_t goo(curandOrdering_t b1, curandOrdering_t b2,
+                     // curandOrdering_t b3,
+                     curandOrdering_t b4, curandOrdering_t b5
+                     // , curandOrdering_t b6
+) {
+  return b1;
+}
+
 int main() {
   curandStatus_t a1 = CURAND_STATUS_SUCCESS;
   curandStatus_t a2 = CURAND_STATUS_VERSION_MISMATCH;
@@ -55,4 +63,17 @@ int main() {
     CURAND_STATUS_INITIALIZATION_FAILED,
     CURAND_STATUS_ARCH_MISMATCH,
     CURAND_STATUS_INTERNAL_ERROR);
+
+  curandOrdering_t b1 = CURAND_ORDERING_PSEUDO_BEST;
+  curandOrdering_t b2 = CURAND_ORDERING_PSEUDO_DEFAULT;
+  // curandOrdering_t b3 = CURAND_ORDERING_PSEUDO_SEEDED;
+  curandOrdering_t b4 = CURAND_ORDERING_PSEUDO_LEGACY;
+  curandOrdering_t b5 = CURAND_ORDERING_PSEUDO_DYNAMIC;
+  // curandOrdering_t b6 = CURAND_ORDERING_QUASI_DEFAULT;
+
+  goo(CURAND_ORDERING_PSEUDO_BEST, CURAND_ORDERING_PSEUDO_DEFAULT,
+      // CURAND_ORDERING_PSEUDO_SEEDED,
+      CURAND_ORDERING_PSEUDO_LEGACY, CURAND_ORDERING_PSEUDO_DYNAMIC
+      // , CURAND_ORDERING_QUASI_DEFAULT
+  );
 }

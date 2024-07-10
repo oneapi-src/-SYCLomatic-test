@@ -2,6 +2,9 @@
     {
         "command": "nvcc hello1.c",
         "directory": "directory_placeholder",
-        "file": "hello1.c"
+        "file": "hello1.c",
+	"command": "nvcc hello2.c",
+        "directory": "directory_placeholder",
+        "file": "hello2.c"
     }
 ]

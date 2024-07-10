@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testDrivers>
+    <testDriver driverID="test_multi_devices" file="test_multi_devices.py" title="test_multi_devices">
+        <description>Test driver for multi_devices test of DPCT</description>
+    </testDriver>
+</testDrivers>

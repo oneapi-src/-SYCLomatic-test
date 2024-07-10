@@ -96,7 +96,7 @@ getTex(cudaArray_t input,
   cudaResourceDesc resDesc;
   memset(&resDesc, 0, sizeof(resDesc));
   resDesc.resType = cudaResourceTypeArray;
-  { resDesc.res.array.array = input; } // TODO: need delete {}.
+  resDesc.res.array.array = input;
 
   cudaTextureDesc texDesc;
   memset(&texDesc, 0, sizeof(texDesc));
@@ -106,7 +106,7 @@ getTex(cudaArray_t input,
   texDesc.filterMode = textureFilterMode;
   texDesc.normalizedCoords = normalizedCoords;
 
-  cudaTextureObject_t tex{0}; // TODO: need not "{0}".
+  cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
 
   return tex;
@@ -125,17 +125,17 @@ int main() {
     };
     auto *char2Input = getInput<char2>(char2Expect, char2W, char2H,
                                        cudaCreateChannelDesc<char2>());
-    short *char2Output;
+    char *char2Output;
     cudaMallocManaged(&char2Output, sizeof(char2Expect));
     auto char2Tex = getTex(char2Input);
     kernel2<char2><<<1, 1>>>(char2Output, char2Tex, char2W, char2H);
     cudaDeviceSynchronize();
     cudaDestroyTextureObject(char2Tex);
-    // cudaFreeArray(char2Input); // TODO: need support.
+    cudaFreeArray(char2Input);
     for (int i = 0; i < char2W * char2H; ++i) {
       if (char2Output[2 * i] != char2Expect[i].x ||
           char2Output[2 * i + 1] != char2Expect[i].y) {
-        // pass = false; // TODO: need support.
+        pass = false;
         break;
       }
     }
@@ -167,7 +167,7 @@ int main() {
     kernel4<short4><<<1, 1>>>(short4Output, short4Tex, short4W, short4H);
     cudaDeviceSynchronize();
     cudaDestroyTextureObject(short4Tex);
-    // cudaFreeArray(short4Input); // TODO: need support.
+    cudaFreeArray(short4Input);
     for (int i = 0; i < short4W * short4H; ++i) {
       if (short4Output[4 * i] != short4Expect[i].x ||
           short4Output[4 * i + 1] != short4Expect[i].y ||
@@ -788,7 +788,7 @@ int main() {
         }
       pass = true;
     }
-    // cudaFreeArray(float2Input); // TODO: need support.
+    cudaFreeArray(float2Input);
   }
 
   cout << "passed " << passed << "/" << passed + failed << " cases!" << endl;

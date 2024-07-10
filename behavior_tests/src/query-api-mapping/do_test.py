@@ -134,7 +134,7 @@ def migrate_test():
             ],
             [],
             [
-                "oneapi::mkl::blas::column_major::gemm(*handle, transa, transb, m, n, k, dpct::get_value(alpha, *handle), a, lda, b, ldb, dpct::get_value(beta, *handle), c, ldc);"
+                "oneapi::mkl::blas::column_major::gemm(handle->get_queue(), transa, transb, m, n, k, dpct::get_value(alpha, handle->get_queue()), a, lda, b, ldb, dpct::get_value(beta, handle->get_queue()), c, ldc);"
             ],
         ],
         [  # cuDNN
@@ -182,7 +182,7 @@ def migrate_test():
             ],
             [],
             [
-                "dpct::sparse::spmm(*handle, transa, transb, alpha, a, b, beta, c, computetype);"
+                "dpct::sparse::spmm(handle->get_queue(), transa, transb, alpha, a, b, beta, c, computetype);"
             ],
         ],
         [  # NCCL

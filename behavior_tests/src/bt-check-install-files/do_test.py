@@ -33,8 +33,8 @@ def migrate_test():
         print('Cannot found file:' + os.path.join(install_root, 'extensions/opt_rules/intel_specific_math.yaml'))
         res = False
 
-    if not os.path.isfile(os.path.join(install_root, 'extensions/opt_rules/cmake_rules/cmake_script_migration_rule.yaml')):
-        print('Cannot found file:' + os.path.join(install_root, 'extensions/opt_rules/cmake_rules/cmake_script_migration_rule.yaml'))
+    if not os.path.isfile(os.path.join(install_root, 'extensions/cmake_rules/cmake_script_migration_rule.yaml')):
+        print('Cannot found file:' + os.path.join(install_root, 'extensions/cmake_rules/cmake_script_migration_rule.yaml'))
         res = False
 
     return res

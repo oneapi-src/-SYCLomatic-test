@@ -7,6 +7,8 @@
 //
 // ===---------------------------------------------------------------------===//
 
+#include <cuda.h>
+
 static texture<float4, 2> r;
 
 void Runtime_MemoryManagement() {
@@ -26,8 +28,8 @@ void Runtime_TextureReferenceManagement() {
   void *v;
   cudaChannelFormatDesc d;
   cudaArray_t a = nullptr;
-  // cudaBindTexture(&s, &r, v, &d);            // TODO: need support.
-  // cudaBindTexture2D(&s, &r, v, &d, s, s, s); // TODO: need support.
+  cudaBindTexture(&s, &r, v, &d);
+  cudaBindTexture2D(&s, &r, v, &d, s, s, s);
   cudaBindTextureToArray(&r, a, &d);
   cudaUnbindTexture(&r);
 }

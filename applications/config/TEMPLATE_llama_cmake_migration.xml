@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_applications" name="TEMPLATE">
+   <description>test</description>
+    <files>
+         <file path="src/llama" />
+    </files>
+    <rules>
+        <platformRule OSFamily="Linux" kit="CUDA11.0" kitRange="OLDER" runOnThisPlatform="false"/>
+        <platformRule OSFamily="Windows" runOnThisPlatform="false" />
+        <optlevelRule excludeOptlevelNameString="usmnone" />
+         <optlevelRule excludeOptlevelNameString="gpu" />
+    </rules>
+</test>

@@ -18,7 +18,7 @@ def setup_test():
     return True
 
 def migrate_test():
-    call_subprocess(test_config.CT_TOOL + " --use-explicit-namespace=sycl,cl,dpct vector_add.cu --cuda-include-path=" + test_config.include_path)
+    call_subprocess(test_config.CT_TOOL + " --use-explicit-namespace=sycl,dpct,none vector_add.cu --cuda-include-path=" + test_config.include_path)
     return is_sub_string("Error: The input for option --use-explicit-namespace is not valid.", test_config.command_output)
 
 

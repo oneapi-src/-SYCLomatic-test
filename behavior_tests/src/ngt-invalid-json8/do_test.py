@@ -24,15 +24,13 @@ def migrate_test():
     with open("compile_commands.json", 'r') as f:
         data = f.readlines()
         for line in data:
-            if "directory_placeholder" in line:
-                ret.append("      \"arguments\": [\"nvcc hello_aaa.c\"],\n")
             line = line.replace("directory_placeholder", os.getcwd().replace("\\", "\\\\"))
             ret.append(line)
     with open("compile_commands.json", 'w') as f:
         f.writelines(ret)
 
     call_subprocess(test_config.CT_TOOL + ' -p=./ --cuda-include-path=' + test_config.include_path)
-    return is_sub_string("Unknown key: \"\"arguments\"\"", test_config.command_output)
+    return is_sub_string("The file name(s) in the \"command\" and \"file\" fields of the compilation database are inconsistent", test_config.command_output)
 
 
 def build_test():

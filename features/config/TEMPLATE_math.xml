@@ -5,7 +5,4 @@
     <files>
         <file path="feature_case/math/${testName}.cu" />
     </files>
-    <rules>
-        <optlevelRule excludeOptlevelNameString="cuda" />
-    </rules>
 </test>

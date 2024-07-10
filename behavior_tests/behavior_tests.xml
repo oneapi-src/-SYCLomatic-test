@@ -80,8 +80,8 @@
         <test testName="ngt-invalid-json6" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-json7" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-json8" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="ngt-invalid-json9" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="ngt-invalid-json10" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="standard-compilation-db-json1" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="standard-compilation-db-json2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="integer-overflow" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-suppress-warnings" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-report-only" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -116,7 +116,6 @@
         <test testName="bt-yaml-without-ct-version" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-ct-version" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-options1" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="bt-yaml-with-different-options2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-yaml-with-different-options3" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="relative_path_test" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-invalid-explicit-namespace1" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -125,7 +124,6 @@
         <test testName="bt-use-explicit-namespace1" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace2" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace3" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="bt-use-explicit-namespace4" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace5" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-use-explicit-namespace6" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-invalid-cuda-version" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -167,6 +165,12 @@
         <test testName="bt-no-dpct-helper-function" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="cmp-cmds-linker-entry-src-files" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="cmake_dpct_helper_compile_sycl_code" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="cmake_dpct_helper_sycl_compile" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="user-defined-sycl-file-extension" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="trap" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
+        <test testName="bt-code-pin-log-filename" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="analysis-mode" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="ngt-check-options" configFile="config/TEMPLATE_behavior_tests.xml" />
     </tests>
 
 </suite>

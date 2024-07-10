@@ -116,7 +116,7 @@ getTex(void *input, size_t w, size_t h, cudaChannelFormatDesc desc,
   texDesc.filterMode = textureFilterMode;
   texDesc.normalizedCoords = normalizedCoords;
 
-  cudaTextureObject_t tex{0}; // TODO: need not "{0}".
+  cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
 
   return tex;
@@ -455,7 +455,7 @@ int main() {
                  float4x3WrapLinearExpect[i].w - precision ||
              float4x3WrapLinearOutput[4 * i + 3] >
                  float4x3WrapLinearExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -538,7 +538,7 @@ int main() {
                  float4x3BorderLinearExpect[i].w - precision ||
              float4x3BorderLinearOutput[4 * i + 3] >
                  float4x3BorderLinearExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -613,7 +613,7 @@ int main() {
                  float4x3WrapNormExpect[i].w - precision ||
              float4x3WrapNormOutput[4 * i + 3] >
                  float4x3WrapNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -677,7 +677,7 @@ int main() {
                  float4x3ClampNormExpect[i].w - precision ||
              float4x3ClampNormOutput[4 * i + 3] >
                  float4x3ClampNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -743,7 +743,7 @@ int main() {
                  float4x3MirrorNormExpect[i].w - precision ||
              float4x3MirrorNormOutput[4 * i + 3] >
                  float4x3MirrorNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -810,7 +810,7 @@ int main() {
                  float4x3BorderNormExpect[i].w - precision ||
              float4x3BorderNormOutput[4 * i + 3] >
                  float4x3BorderNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -893,7 +893,7 @@ int main() {
                  float4x3WrapLinearNormExpect[i].w - precision ||
              float4x3WrapLinearNormOutput[4 * i + 3] >
                  float4x3WrapLinearNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -984,7 +984,7 @@ int main() {
                  float4x3ClampLinearNormExpect[i].w - precision ||
              float4x3ClampLinearNormOutput[4 * i + 3] >
                  float4x3ClampLinearNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -1076,7 +1076,7 @@ int main() {
                  float4x3MirrorLinearNormExpect[i].w - precision ||
              float4x3MirrorLinearNormOutput[4 * i + 3] >
                  float4x3MirrorLinearNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }
@@ -1169,7 +1169,7 @@ int main() {
                  float4x3BorderLinearNormExpect[i].w - precision ||
              float4x3BorderLinearNormOutput[4 * i + 3] >
                  float4x3BorderLinearNormExpect[i].w + precision)) {
-          pass = false; // TODO: need support.
+          pass = false;
           break;
         }
       }

@@ -38,14 +38,14 @@ def build_test():
                 "blas_utils_geqrf-complex-usm", "blas_utils_get_transpose", "blas_utils_get_value",
                 "blas_utils_get_value_usm", "blas_extension_api_buffer", "lib_common_utils_mkl_get_version",
                 "blas_extension_api_usm", "blas_utils_getrfnp", "blas_utils_getrfnp-usm", "blas_utils_getrfnp-complex",
-                "blas_utils_getrfnp-complex-usm"]
+                "blas_utils_getrfnp-complex-usm", "blas_utils_parameter_wrapper_buf", "blas_utils_parameter_wrapper_usm"]
     oneDNN_related = ["dnnl_utils_activation", "dnnl_utils_fill", "dnnl_utils_lrn", "dnnl_utils_memory",
                 "dnnl_utils_pooling", "dnnl_utils_reorder", "dnnl_utils_scale", "dnnl_utils_softmax",
                 "dnnl_utils_sum", "dnnl_utils_reduction", "dnnl_utils_binary", "dnnl_utils_batch_normalization_1",
                 "dnnl_utils_batch_normalization_2", "dnnl_utils_batch_normalization_3", "dnnl_utils_convolution_1",
                 "dnnl_utils_convolution_2", "dnnl_utils_convolution_3", "dnnl_utils_convolution_4", "dnnl_utils_convolution_5",
                 "dnnl_utils_normalization_1", "dnnl_utils_normalization_2", "dnnl_utils_normalization_3", "dnnl_utils_rnn",
-                "dnnl_utils_version", "dnnl_utils_dropout"]
+                "dnnl_utils_version", "dnnl_utils_dropout", "blas_gemm_utils_interface"]
     fft_cases = ["fft_utils_engine_buffer", "fft_utils_engine_usm", "fft_workspace_interface", "fft_set_workspace"]
     lapack_cases = ["lapack_utils_buffer", "lapack_utils_usm"]
     rng_cases = ["rng_generator", "rng_generator_vec_size_1", "rng_host"]

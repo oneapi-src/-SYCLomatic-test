@@ -7,14 +7,19 @@
 //
 // ===---------------------------------------------------------------------===//
 
+#include <cuda.h>
+
 __global__ void
 CppLanguageExtensions_TextureFunctions(cudaTextureObject_t tex) {
   int i = 1, t = 1;
-  float j = 1, k = 1, l = 1;
+  float j = 1, k = 1, l = 1, m = 1;
   tex1Dfetch<float4>(tex, i);
   tex1D<short2>(tex, i);
+  tex1DLod<ushort2>(tex, i, t);
   tex2D<int1>(tex, j, k);
-  // tex3D<char4>(tex, j, k, l); // TODO: need support.
+  tex2DLod<uint1>(tex, j, k, l);
+  tex3D<char4>(tex, j, k, l);
+  tex3DLod<uchar4>(tex, j, k, l, m);
   // tex1DLayered<uchar2>(tex, i, t); // TODO: need support.
   // tex2DLayered<uint2>(tex, j, k, t); // TODO: need support.
 }
@@ -24,6 +29,7 @@ void Runtime_MemoryManagement() {
   cudaExtent e;
   unsigned int u;
   cudaArray_t a = nullptr;
+  cudaMipmappedArray_t m;
   cudaPitchedPtr p;
   size_t s = 1;
   void *v;
@@ -31,10 +37,13 @@ void Runtime_MemoryManagement() {
   cudaMemcpy3DParms pm;
   int i = 1;
   cudaArrayGetInfo(&d, &e, &u, a);
-  // cudaFreeArray(a); // TODO: need support.
+  cudaFreeArray(a);
+  cudaFreeMipmappedArray(m);
+  cudaGetMipmappedArrayLevel(&a, m, u);
   cudaMalloc3D(&p, e);
   cudaMalloc3DArray(&a, &d, e, u);
   cudaMallocArray(&a, &d, s, s, u);
+  cudaMallocMipmappedArray(&m, &d, e, u, i);
   cudaMallocPitch(&v, &s, s, s);
   cudaMemcpy2D(v, s, v, s, s, s, k);
   cudaMemcpy2DArrayToArray(a, s, s, a, s, s, s, s, k);
@@ -54,7 +63,7 @@ void Runtime_MemoryManagement() {
 void Runtime_TextureObjectManagement() {
   int i = 1;
   cudaChannelFormatKind k = cudaChannelFormatKindSigned;
-  cudaTextureObject_t o{0}; // TODO: need not "{0}".
+  cudaTextureObject_t o;
   cudaResourceDesc r;
   cudaTextureDesc t;
   // cudaResourceViewDesc v; // TODO: need support.
@@ -99,14 +108,14 @@ void Driver_MemoryManagement() {
 }
 
 void Driver_TextureObjectManagement() {
-  CUtexObject o{0}; // TODO: need not "{0}".
+  CUtexObject o;
   CUDA_RESOURCE_DESC R;
   CUDA_TEXTURE_DESC T;
   // CUDA_RESOURCE_VIEW_DESC V; // TODO: need support.
-  // cuTexObjectCreate(&o, &R, &T, nullptr /*&V*/); // TODO: need support.
+  cuTexObjectCreate(&o, &R, &T, nullptr /*&V*/);
   cuTexObjectDestroy(o);
-  // cuTexObjectGetResourceDesc(&R, o); // TODO: need support.
-  // cuTexObjectGetTextureDesc(&T, o);  // TODO: need support.
+  cuTexObjectGetResourceDesc(&R, o);
+  cuTexObjectGetTextureDesc(&T, o);
 }
 
 int main() {
@@ -114,7 +123,7 @@ int main() {
   Runtime_TextureObjectManagement();
   Driver_MemoryManagement();
   Driver_TextureObjectManagement();
-  cudaTextureObject_t tex{0}; // TODO: need not "{0}".
+  cudaTextureObject_t tex;
   CppLanguageExtensions_TextureFunctions<<<1, 1>>>(tex);
   return 0;
 }

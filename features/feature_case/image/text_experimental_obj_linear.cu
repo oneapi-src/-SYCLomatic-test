@@ -74,7 +74,7 @@ cudaTextureObject_t getTex(void *input, cudaChannelFormatDesc desc,
   cudaTextureDesc texDesc;
   memset(&texDesc, 0, sizeof(texDesc));
 
-  cudaTextureObject_t tex{0}; // TODO: need not "{0}".
+  cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
 
   return tex;

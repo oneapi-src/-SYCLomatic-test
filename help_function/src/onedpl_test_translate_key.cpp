@@ -18,6 +18,9 @@
 
 #include <iostream>
 
+// TODO: If this test remains stable, then we may remove this macro entirely.
+#define VERBOSE_DEBUG
+
 template <typename String, typename _T1, typename _T2>
 int ASSERT_EQUAL(_T1 &&X, _T2 &&Y, String msg) {
   if (X != Y) {
@@ -44,6 +47,13 @@ void expect_rvalues(T_conv &&_expected, T &&_actual, const char *err_string) {
 
 int main() {
 
+// Print sizeof types we test
+#ifdef VERBOSE_DEBUG
+    std::cout << "onedpl_test_translate_key - sizeof test types:" << std::endl;
+    std::cout << "sizeof(int) = " << sizeof(int) << std::endl;
+    std::cout << "sizeof(float) = " << sizeof(float) << std::endl;
+    std::cout << "sizeof(double) = " << sizeof(double) << std::endl;
+#endif
   int test_suites_failed = 0;
   {
     ::std::string test_name = "translate int->uint32_t";
