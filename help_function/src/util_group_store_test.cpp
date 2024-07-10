@@ -116,7 +116,7 @@ template < dpct::group::store_algorithm S> bool test_group_store() {
         dpct::group::workgroup_store<4, S, int, int *, sycl::nd_item<3>>;
     size_t temp_storage_size = group_store::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
-    sycl::accessor dacc_read(buffer, h, sycl::read_write);
+    sycl::accessor dacc_read(buffer, h, sycl::read_only);
     sycl::accessor dacc_write(buffer_out, h, sycl::read_write);
     
     h.parallel_for(
@@ -131,14 +131,12 @@ template < dpct::group::store_algorithm S> bool test_group_store() {
             thread_data[i] = dacc_read[global_index * 4 + i];
           }
           
-          auto *d_r =
-              dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *d_w =
               dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *tmp = tacc.get_multi_ptr<sycl::access::decorated::yes>().get();
           
           // Store thread_data of each work item from blocked arrangement
-          group_store(tmp).store(item, d_r, thread_data);
+          group_store(tmp).store(item, d_w, thread_data);
           
           // Write thread_data of each work item at index to the global buffer
           global_index =
@@ -170,7 +168,7 @@ bool test_store_subgroup_striped_standalone() {
   sycl::buffer<int, 1> buffer_out(data_out, 512);
 
   q.submit([&](sycl::handler &h) {
-    sycl::accessor dacc_read(buffer, h, sycl::read_write);
+    sycl::accessor dacc_read(buffer, h, sycl::read_only);
     sycl::accessor dacc_write(buffer_out, h, sycl::read_write);
     sycl::accessor sg_sz_dacc(sg_sz_buf, h, sycl::read_write);
     
@@ -185,8 +183,6 @@ bool test_store_subgroup_striped_standalone() {
           for (int i = 0; i < 4; ++i) {
             thread_data[i] = dacc_read[global_index * 4 + i];
           }
-          auto *d_r =
-              dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *d_w =
               dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *sg_sz_acc =
@@ -195,7 +191,7 @@ bool test_store_subgroup_striped_standalone() {
           if (gid == 0) {
             sg_sz_acc[0] = item.get_sub_group().get_local_linear_range();
           }
-          dpct::group::store_subgroup_striped<4, int>(item, d_r, thread_data);
+          dpct::group::store_subgroup_striped<4, int>(item, d_w, thread_data);
           // Write thread_data of each work item at index to the global buffer
           global_index =
               (item.get_group(2) * item.get_local_range().get(2)) +
@@ -247,7 +243,7 @@ template <dpct::group::store_algorithm S> bool test_group_store_standalone() {
   
   
   q.submit([&](sycl::handler &h) {
-    sycl::accessor dacc_read(buffer, h, sycl::read_write);
+    sycl::accessor dacc_read(buffer, h, sycl::read_only);
     sycl::accessor dacc_write(buffer_out, h, sycl::read_write);
     h.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
@@ -261,15 +257,13 @@ template <dpct::group::store_algorithm S> bool test_group_store_standalone() {
             thread_data[i] = dacc_read[global_index * 4 + i];
           }
         
-          auto *d_r =
-              dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
           auto *d_w =
               dacc_write.get_multi_ptr<sycl::access::decorated::yes>().get();
           // Store thread_data of each work item from blocked arrangement
           if (S == dpct::group::store_algorithm::BLOCK_STORE_DIRECT) {
-            dpct::group::store_blocked<4, int>(item, d_r, thread_data);
+            dpct::group::store_blocked<4, int>(item, d_w, thread_data);
           } else {
-            dpct::group::store_striped<4, int>(item, d_r, thread_data);
+            dpct::group::store_striped<4, int>(item, d_w, thread_data);
           }
           // Write thread_data of each work item at index to the global buffer
           
