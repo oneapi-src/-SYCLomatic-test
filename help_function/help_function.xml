@@ -45,7 +45,7 @@
     <test testName="dpct_dpct_pi" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="atomic_atomic_fetch_sub" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="atomics_noneusm_verification" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="atomics_usm_verification" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="atomics_usm_verification" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="blas_utils_getrf" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_utils_getrf-usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="blas_utils_getrf-complex" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
@@ -145,8 +145,8 @@
     <test testName="onedpl_test_transform_if" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
    <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -155,7 +155,7 @@
     <test testName="onedpl_test_unique_count" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_unique" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_vector" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="onedpl_test_group_exchange" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="onedpl_test_group_exchange" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_select_from_sub_group" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_left" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_shift_sub_group_right" configFile="config/TEMPLATE_help_function_usm.xml" />

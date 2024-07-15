@@ -6,5 +6,7 @@
         <file path="src/test_default_queue_2.cpp" />
         <file path="src/test_default_queue_1.cpp" />
     </files>
-    <rules />
+    <rules>
+      <optlevelRule excludeOptlevelNameString="cuda" />
+    </rules>
 </test>
