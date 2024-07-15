@@ -199,10 +199,10 @@ template <dpct::group::load_algorithm T> bool test_group_load_standalone() {
           int thread_data[4];
           auto *d_r =
               dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
-          if (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
-            dpct::group::load_blocked<4, int>(item, d_r, thread_data);
+          if constexpr (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
+            dpct::group::load_blocked(item, d_r, thread_data);
           } else {
-            dpct::group::load_striped<4, int>(item, d_r, thread_data);
+            dpct::group::load_striped(item, d_r, thread_data);
           }
           // Write thread_data of each work item at index to the global buffer
           int global_index =
