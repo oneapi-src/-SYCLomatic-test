@@ -147,26 +147,38 @@ void foo() {
   double *y_d;
   float2 *y_c;
   double2 *y_z;
-  status = cublasSgemv_64(handle, transa, m, n, alpha_s, A_s, lda, x_s, incx, beta_s, y_s, incy);
-  status = cublasDgemv_64(handle, transa, m, n, alpha_d, A_d, lda, x_d, incx, beta_d, y_d, incy);
-  status = cublasCgemv_64(handle, transa, m, n, alpha_c, A_c, lda, x_c, incx, beta_c, y_c, incy);
-  status = cublasZgemv_64(handle, transa, m, n, alpha_z, A_z, lda, x_z, incx, beta_z, y_z, incy);
+  status = cublasSgemv_64(handle, transa, m, n, alpha_s, A_s, lda, x_s, incx,
+                          beta_s, y_s, incy);
+  status = cublasDgemv_64(handle, transa, m, n, alpha_d, A_d, lda, x_d, incx,
+                          beta_d, y_d, incy);
+  status = cublasCgemv_64(handle, transa, m, n, alpha_c, A_c, lda, x_c, incx,
+                          beta_c, y_c, incy);
+  status = cublasZgemv_64(handle, transa, m, n, alpha_z, A_z, lda, x_z, incx,
+                          beta_z, y_z, incy);
 
   int64_t kl, ku;
-  status = cublasSgbmv_64(handle, transa, m, n, kl, ku, alpha_s, A_s, lda, x_s, incx, beta_s, y_s, incy);
-  status = cublasDgbmv_64(handle, transa, m, n, kl, ku, alpha_d, A_d, lda, x_d, incx, beta_d, y_d, incy);
-  status = cublasCgbmv_64(handle, transa, m, n, kl, ku, alpha_c, A_c, lda, x_c, incx, beta_c, y_c, incy);
-  status = cublasZgbmv_64(handle, transa, m, n, kl, ku, alpha_z, A_z, lda, x_z, incx, beta_z, y_z, incy);
+  status = cublasSgbmv_64(handle, transa, m, n, kl, ku, alpha_s, A_s, lda, x_s,
+                          incx, beta_s, y_s, incy);
+  status = cublasDgbmv_64(handle, transa, m, n, kl, ku, alpha_d, A_d, lda, x_d,
+                          incx, beta_d, y_d, incy);
+  status = cublasCgbmv_64(handle, transa, m, n, kl, ku, alpha_c, A_c, lda, x_c,
+                          incx, beta_c, y_c, incy);
+  status = cublasZgbmv_64(handle, transa, m, n, kl, ku, alpha_z, A_z, lda, x_z,
+                          incx, beta_z, y_z, incy);
 
   status = cublasStrmv_64(handle, uplo, transa, diag, n, A_s, lda, y_s, incy);
   status = cublasDtrmv_64(handle, uplo, transa, diag, n, A_d, lda, y_d, incy);
   status = cublasCtrmv_64(handle, uplo, transa, diag, n, A_c, lda, y_c, incy);
   status = cublasZtrmv_64(handle, uplo, transa, diag, n, A_z, lda, y_z, incy);
 
-  status = cublasStbmv_64(handle, uplo, transa, diag, n, k, A_s, lda, y_s, incy);
-  status = cublasDtbmv_64(handle, uplo, transa, diag, n, k, A_d, lda, y_d, incy);
-  status = cublasCtbmv_64(handle, uplo, transa, diag, n, k, A_c, lda, y_c, incy);
-  status = cublasZtbmv_64(handle, uplo, transa, diag, n, k, A_z, lda, y_z, incy);
+  status =
+      cublasStbmv_64(handle, uplo, transa, diag, n, k, A_s, lda, y_s, incy);
+  status =
+      cublasDtbmv_64(handle, uplo, transa, diag, n, k, A_d, lda, y_d, incy);
+  status =
+      cublasCtbmv_64(handle, uplo, transa, diag, n, k, A_c, lda, y_c, incy);
+  status =
+      cublasZtbmv_64(handle, uplo, transa, diag, n, k, A_z, lda, y_z, incy);
 
   status = cublasStpmv_64(handle, uplo, transa, diag, n, A_s, y_s, incy);
   status = cublasDtpmv_64(handle, uplo, transa, diag, n, A_d, y_d, incy);
@@ -183,64 +195,107 @@ void foo() {
   status = cublasCtpsv_64(handle, uplo, transa, diag, n, A_c, y_c, incy);
   status = cublasZtpsv_64(handle, uplo, transa, diag, n, A_z, y_z, incy);
 
-  status = cublasSgemm_64(handle, transa, transb, m, n, k, alpha_s, A_s, lda, B_s, ldb, beta_s, C_s, ldc);
-  status = cublasDgemm_64(handle, transa, transb, m, n, k, alpha_d, A_d, lda, B_d, ldb, beta_d, C_d, ldc);
-  status = cublasCgemm_64(handle, transa, transb, m, n, k, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZgemm_64(handle, transa, transb, m, n, k, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
-  status = cublasHgemm_64(handle, transa, transb, m, n, k, alpha_h, A_h, lda, B_h, ldb, beta_h, C_h, ldc);
+  status = cublasSgemm_64(handle, transa, transb, m, n, k, alpha_s, A_s, lda,
+                          B_s, ldb, beta_s, C_s, ldc);
+  status = cublasDgemm_64(handle, transa, transb, m, n, k, alpha_d, A_d, lda,
+                          B_d, ldb, beta_d, C_d, ldc);
+  status = cublasCgemm_64(handle, transa, transb, m, n, k, alpha_c, A_c, lda,
+                          B_c, ldb, beta_c, C_c, ldc);
+  status = cublasZgemm_64(handle, transa, transb, m, n, k, alpha_z, A_z, lda,
+                          B_z, ldb, beta_z, C_z, ldc);
+  status = cublasHgemm_64(handle, transa, transb, m, n, k, alpha_h, A_h, lda,
+                          B_h, ldb, beta_h, C_h, ldc);
 
-  status = cublasCgemm3m_64(handle, transa, transb, m, n, k, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZgemm3m_64(handle, transa, transb, m, n, k, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
+  status = cublasCgemm3m_64(handle, transa, transb, m, n, k, alpha_c, A_c, lda,
+                            B_c, ldb, beta_c, C_c, ldc);
+  status = cublasZgemm3m_64(handle, transa, transb, m, n, k, alpha_z, A_z, lda,
+                            B_z, ldb, beta_z, C_z, ldc);
 
-  status = cublasSsyrk_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, beta_s, C_s, ldc);
-  status = cublasDsyrk_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, beta_d, C_d, ldc);
-  status = cublasCsyrk_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, beta_c, C_c, ldc);
-  status = cublasZsyrk_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, beta_z, C_z, ldc);
+  status = cublasSsyrk_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, beta_s,
+                          C_s, ldc);
+  status = cublasDsyrk_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, beta_d,
+                          C_d, ldc);
+  status = cublasCsyrk_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, beta_c,
+                          C_c, ldc);
+  status = cublasZsyrk_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, beta_z,
+                          C_z, ldc);
 
-  status = cublasSsymm_64(handle, side, uplo, m, n, alpha_s, A_s, lda, B_s, ldb, beta_s, C_s, ldc);
-  status = cublasDsymm_64(handle, side, uplo, m, n, alpha_d, A_d, lda, B_d, ldb, beta_d, C_d, ldc);
-  status = cublasCsymm_64(handle, side, uplo, m, n, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZsymm_64(handle, side, uplo, m, n, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
+  status = cublasSsymm_64(handle, side, uplo, m, n, alpha_s, A_s, lda, B_s, ldb,
+                          beta_s, C_s, ldc);
+  status = cublasDsymm_64(handle, side, uplo, m, n, alpha_d, A_d, lda, B_d, ldb,
+                          beta_d, C_d, ldc);
+  status = cublasCsymm_64(handle, side, uplo, m, n, alpha_c, A_c, lda, B_c, ldb,
+                          beta_c, C_c, ldc);
+  status = cublasZsymm_64(handle, side, uplo, m, n, alpha_z, A_z, lda, B_z, ldb,
+                          beta_z, C_z, ldc);
 
-  status = cublasStrsm_64(handle, side, uplo, transa, diag, m, n, alpha_s, A_s, lda, C_s, ldc);
-  status = cublasDtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_d, A_d, lda, C_d, ldc);
-  status = cublasCtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_c, A_c, lda, C_c, ldc);
-  status = cublasZtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_z, A_z, lda, C_z, ldc);
+  status = cublasStrsm_64(handle, side, uplo, transa, diag, m, n, alpha_s, A_s,
+                          lda, C_s, ldc);
+  status = cublasDtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_d, A_d,
+                          lda, C_d, ldc);
+  status = cublasCtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_c, A_c,
+                          lda, C_c, ldc);
+  status = cublasZtrsm_64(handle, side, uplo, transa, diag, m, n, alpha_z, A_z,
+                          lda, C_z, ldc);
 
-  status = cublasChemm_64(handle, side, uplo, m, n, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZhemm_64(handle, side, uplo, m, n, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
+  status = cublasChemm_64(handle, side, uplo, m, n, alpha_c, A_c, lda, B_c, ldb,
+                          beta_c, C_c, ldc);
+  status = cublasZhemm_64(handle, side, uplo, m, n, alpha_z, A_z, lda, B_z, ldb,
+                          beta_z, C_z, ldc);
 
-  status = cublasCherk_64(handle, uplo, transa, n, k, alpha_s, A_c, lda, beta_s, C_c, ldc);
-  status = cublasZherk_64(handle, uplo, transa, n, k, alpha_d, A_z, lda, beta_d, C_z, ldc);
+  status = cublasCherk_64(handle, uplo, transa, n, k, alpha_s, A_c, lda, beta_s,
+                          C_c, ldc);
+  status = cublasZherk_64(handle, uplo, transa, n, k, alpha_d, A_z, lda, beta_d,
+                          C_z, ldc);
 
-  status = cublasSsyr2k_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, B_s, ldb, beta_s, C_s, ldc);
-  status = cublasDsyr2k_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, B_d, ldb, beta_d, C_d, ldc);
-  status = cublasCsyr2k_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZsyr2k_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
+  status = cublasSsyr2k_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, B_s,
+                           ldb, beta_s, C_s, ldc);
+  status = cublasDsyr2k_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, B_d,
+                           ldb, beta_d, C_d, ldc);
+  status = cublasCsyr2k_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c,
+                           ldb, beta_c, C_c, ldc);
+  status = cublasZsyr2k_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
+                           ldb, beta_z, C_z, ldc);
 
-  status = cublasCher2k_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c, ldb, beta_s, C_c, ldc);
-  status = cublasZher2k_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z, ldb, beta_d, C_z, ldc);
+  status = cublasCher2k_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c,
+                           ldb, beta_s, C_c, ldc);
+  status = cublasZher2k_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
+                           ldb, beta_d, C_z, ldc);
 
-  status = cublasSgeam_64(handle, transa, transb, m, n, alpha_s, A_s, lda, beta_s, B_s, ldb, C_s, ldc);
-  status = cublasDgeam_64(handle, transa, transb, m, n, alpha_d, A_d, lda, beta_d, B_d, ldb, C_d, ldc);
-  status = cublasCgeam_64(handle, transa, transb, m, n, alpha_c, A_c, lda, beta_c, B_c, ldb, C_c, ldc);
-  status = cublasZgeam_64(handle, transa, transb, m, n, alpha_z, A_z, lda, beta_z, B_z, ldb, C_z, ldc);
+  status = cublasSgeam_64(handle, transa, transb, m, n, alpha_s, A_s, lda,
+                          beta_s, B_s, ldb, C_s, ldc);
+  status = cublasDgeam_64(handle, transa, transb, m, n, alpha_d, A_d, lda,
+                          beta_d, B_d, ldb, C_d, ldc);
+  status = cublasCgeam_64(handle, transa, transb, m, n, alpha_c, A_c, lda,
+                          beta_c, B_c, ldb, C_c, ldc);
+  status = cublasZgeam_64(handle, transa, transb, m, n, alpha_z, A_z, lda,
+                          beta_z, B_z, ldb, C_z, ldc);
 
   status = cublasSdgmm_64(handle, side, m, n, A_s, lda, B_s, ldb, C_s, ldc);
   status = cublasDdgmm_64(handle, side, m, n, A_d, lda, B_d, ldb, C_d, ldc);
   status = cublasCdgmm_64(handle, side, m, n, A_c, lda, B_c, ldb, C_c, ldc);
   status = cublasZdgmm_64(handle, side, m, n, A_z, lda, B_z, ldb, C_z, ldc);
 
-  status = cublasStrmm_64(handle, side, uplo, transa, diag, m, n, alpha_s, A_s, lda, B_s, ldb, C_s, ldc);
-  status = cublasDtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_d, A_d, lda, B_d, ldb, C_d, ldc);
-  status = cublasCtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_c, A_c, lda, B_c, ldb, C_c, ldc);
-  status = cublasZtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_z, A_z, lda, B_z, ldb, C_z, ldc);
+  status = cublasStrmm_64(handle, side, uplo, transa, diag, m, n, alpha_s, A_s,
+                          lda, B_s, ldb, C_s, ldc);
+  status = cublasDtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_d, A_d,
+                          lda, B_d, ldb, C_d, ldc);
+  status = cublasCtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_c, A_c,
+                          lda, B_c, ldb, C_c, ldc);
+  status = cublasZtrmm_64(handle, side, uplo, transa, diag, m, n, alpha_z, A_z,
+                          lda, B_z, ldb, C_z, ldc);
 
-  status = cublasSsyrkx_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, B_s, ldb, beta_s, C_s, ldc);
-  status = cublasDsyrkx_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, B_d, ldb, beta_d, C_d, ldc);
-  status = cublasCsyrkx_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c, ldb, beta_c, C_c, ldc);
-  status = cublasZsyrkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z, ldb, beta_z, C_z, ldc);
+  status = cublasSsyrkx_64(handle, uplo, transa, n, k, alpha_s, A_s, lda, B_s,
+                           ldb, beta_s, C_s, ldc);
+  status = cublasDsyrkx_64(handle, uplo, transa, n, k, alpha_d, A_d, lda, B_d,
+                           ldb, beta_d, C_d, ldc);
+  status = cublasCsyrkx_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c,
+                           ldb, beta_c, C_c, ldc);
+  status = cublasZsyrkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
+                           ldb, beta_z, C_z, ldc);
 
-  status = cublasCherkx_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c, ldb, beta_s, C_c, ldc);
-  status = cublasZherkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z, ldb, beta_d, C_z, ldc);
+  status = cublasCherkx_64(handle, uplo, transa, n, k, alpha_c, A_c, lda, B_c,
+                           ldb, beta_s, C_c, ldc);
+  status = cublasZherkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
+                           ldb, beta_d, C_z, ldc);
 }
