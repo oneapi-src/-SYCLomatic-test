@@ -45,7 +45,7 @@ int main() {
 
   int info;
   dpct::blas::gels_batch_wrapper(handle, oneapi::mkl::transpose::nontrans, 3, 3,
-                                 3, As, 3, Bs, 3, &info, 2);
+                                 3, As, 3, Bs, 3, &info, NULL, 2);
   q_ct1.wait();
 
   float A_host_mem[18];
