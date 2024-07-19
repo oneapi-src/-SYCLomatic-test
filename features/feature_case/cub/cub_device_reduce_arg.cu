@@ -85,6 +85,35 @@ bool test_arg_min_non_default_stream() {
   return out.key == 5 && out.value == 0;
 }
 
+__global__ void test_arg_min_max_op_in_device(int *Res) {
+  cub::KeyValuePair<int, int> LHS{1, 3}, RHS{2, 4};
+  cub::ArgMin MinOp;
+  cub::ArgMax MaxOp;
+  auto Min = MinOp(LHS, RHS);
+  auto Max = MaxOp(LHS, RHS);
+  *Res = Min.key == 1 && Min.value == 3 && Max.key == 2 && Max.value == 4;
+}
+
+bool test_arg_min_max_op_in_host() {
+  cub::KeyValuePair<int, int> LHS{1, 3}, RHS{2, 4};
+  cub::ArgMin MinOp;
+  cub::ArgMax MaxOp;
+  auto Min = MinOp(LHS, RHS);
+  auto Max = MaxOp(LHS, RHS);
+  return Min.key == 1 && Min.value == 3 && Max.key == 2 && Max.value == 4;
+}
+
+bool test_arg_min_max_op() {
+  int *Res;
+  cudaMallocManaged(&Res, sizeof(int));
+  *Res = 0;
+  test_arg_min_max_op_in_device<<<1, 1>>>(Res);
+  cudaDeviceSynchronize();
+  bool Val = *Res;
+  cudaFree(Res);
+  return Val && test_arg_min_max_op_in_host();
+}
+
 int main() {
   int res = 0;
   if (!test_arg_max()) {
@@ -105,6 +134,11 @@ int main() {
   if (!test_arg_min_non_default_stream()) {
     res = 1;
     std::cout << "cub::DeviceReduce::ArgMin(Non default stream) test failed\n";
+  }
+
+  if (!test_arg_min_max_op()) {
+    res = 1;
+    std::cout << "cub::{ArgMin, ArgMax} binary operator test failed\n";
   }
 
   return res;
