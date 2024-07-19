@@ -64,7 +64,7 @@ int main() {
   // test_feature:set_name(Name)
   Info.set_name(Name);
 
-  sycl::id<3> max_work_item_sizes;
+  sycl::range<3> max_work_item_sizes;
   // test_feature:set_max_work_item_sizes(max_work_item_sizes)
   Info.set_max_work_item_sizes(max_work_item_sizes);
 
