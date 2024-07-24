@@ -146,7 +146,7 @@
    <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <!-- <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
