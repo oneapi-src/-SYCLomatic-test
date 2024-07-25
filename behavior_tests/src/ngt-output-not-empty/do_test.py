@@ -14,10 +14,13 @@ import sys
 from test_utils import *
 
 def setup_test():
+    print(os.getcwd())
     change_dir(test_config.current_test)
+    print(os.getcwd())
     return True
 
 def migrate_test():
+#os.print(os.getcwd())
     os.mkdir("dpct_output")
     with open(os.path.join("dpct_output", "test"), 'w') as f:
         f.write("2")

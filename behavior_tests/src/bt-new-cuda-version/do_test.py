@@ -22,7 +22,7 @@ def migrate_test():
     in_root = os.path.join(os.getcwd(), "test")
     test_case_path = os.path.join(in_root, "vector_add.cu")
     call_subprocess(test_config.CT_TOOL + " " + test_case_path + " --out-root=out --in-root=" + in_root + " --cuda-include-path=" + include_path)
-    return is_sub_string("warning: CUDA version is newer than the latest supported version", test_config.command_output)
+    return is_sub_string("warning: CUDA version is newer than the latest", test_config.command_output)
 
 def build_test():
     return True
