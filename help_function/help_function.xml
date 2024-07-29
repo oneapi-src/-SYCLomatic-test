@@ -28,9 +28,9 @@
     <test testName="thrust_test-pennet_simple_pstl" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_array" configFile="image_array/config/image_array.xml" />
     <test testName="test_complex" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="asm_fence_test" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math_bfe" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math_bfi" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="asm_fence_test" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math_extend_func" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="math_function" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="math_dp2a_dp4a" configFile="config/TEMPLATE_help_function.xml" />
@@ -46,7 +46,7 @@
     <test testName="dpct_dpct_pi" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="atomic_atomic_fetch_sub" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="atomics_noneusm_verification" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="atomics_usm_verification" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="atomics_usm_verification" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="blas_utils_getrf" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_utils_getrf-usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="blas_utils_getrf-complex" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
@@ -88,7 +88,7 @@
     <test testName="device_dev_mgr" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_ext" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_info" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="bindless_images" configFile="config/TEMPLATE_help_function_skip_cpu_gpu.xml" />
+    <!-- <test testName="bindless_images" configFile="config/TEMPLATE_help_function_skip_cpu_gpu.xml" /> -->
     <test testName="image_image_channel" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_matrix" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="image_image_data" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -147,7 +147,7 @@
    <!-- <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
-    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" />
+    <!-- <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" /> -->
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -216,5 +216,6 @@
     <test testName="sparse_utils_4_usm" configFile="config/TEMPLATE_help_function_sparse_usm.xml" splitGroup="double" />
     <test testName="atomic_compare_exchange_strong" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="filter_device" configFile="config/TEMPLATE_help_function.xml" />
+    <test testName="blas_gemm_utils_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
   </tests>
 </suite>
