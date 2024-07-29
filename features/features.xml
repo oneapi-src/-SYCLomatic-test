@@ -6,6 +6,7 @@
   <tests>
     <test testName="asm" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_bar" configFile="config/TEMPLATE_asm.xml" />
+    <test testName="asm_mem" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_vinst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v2inst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v4inst" configFile="config/TEMPLATE_asm.xml" />
