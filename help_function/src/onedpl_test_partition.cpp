@@ -69,7 +69,7 @@ int main() {
             auto stn = stn_it.get_buffer().template get_access<sycl::access::mode::write>();
             for (int i = 0; i != 8; ++i) {
                 inp[i] = i;
-                stn[i] = i % 2;
+                stn[i] = is_odd{}(i);
             }
         }
 
@@ -83,14 +83,15 @@ int main() {
             test_name = "Regular call to dpct::partition";
             auto inp = inp_it.get_buffer().template get_access<sycl::access::mode::write>();
 
-            num_failing += ASSERT_EQUAL(test_name, inp[0], 1);
-            num_failing += ASSERT_EQUAL(test_name, inp[1], 3);
-            num_failing += ASSERT_EQUAL(test_name, inp[2], 5);
-            num_failing += ASSERT_EQUAL(test_name, inp[3], 7);
-            num_failing += ASSERT_EQUAL(test_name, inp[4], 0);
-            num_failing += ASSERT_EQUAL(test_name, inp[5], 2);
-            num_failing += ASSERT_EQUAL(test_name, inp[6], 4);
-            num_failing += ASSERT_EQUAL(test_name, inp[7], 6);
+            // requires no falses before any trues, but no specific order.
+            bool entered_falses = false;
+            
+            for (int i = 0; i < 8; i ++)
+            {
+                if (!is_odd{}(inp[i]))
+                    entered_falses = true;
+                num_failing += ASSERT_EQUAL(test_name, !(entered_falses && is_odd{}(inp[i])), true);
+            }
         }
 
         failed_tests += test_passed(num_failing, test_name);
