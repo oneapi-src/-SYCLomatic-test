@@ -82,16 +82,8 @@ int main() {
         {
             test_name = "Regular call to dpct::partition";
             auto inp = inp_it.get_buffer().template get_access<sycl::access::mode::write>();
-
-            // requires no falses before any trues, but no specific order.
-            bool entered_falses = false;
-            
-            for (int i = 0; i < 8; i ++)
-            {
-                if (!is_odd{}(inp[i]))
-                    entered_falses = true;
-                num_failing += ASSERT_EQUAL(test_name, !(entered_falses && is_odd{}(inp[i])), true);
-            }
+          
+            num_failing += ASSERT_EQUAL(test_name, std::is_partitioned(inp.get_pointer(), inp.get_pointer() + 8, is_odd{}), true);
         }
 
         failed_tests += test_passed(num_failing, test_name);
