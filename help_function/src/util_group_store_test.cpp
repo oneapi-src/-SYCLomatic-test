@@ -138,15 +138,6 @@ template < dpct::group::store_algorithm S> bool test_group_store() {
           // Store thread_data of each work item from blocked arrangement
           group_store(tmp).store(item, d_w, thread_data);
           
-          // Write thread_data of each work item at index to the global buffer
-          global_index =
-              item.get_group(2) * item.get_local_range().get(2) +
-              item.get_local_id(2);  // Each thread_data has 4 elements
-          #pragma unroll
-          for (int i = 0; i < 4; ++i) {
-            dacc_write[global_index * 4 + i] = thread_data[i];
-          }
-          
           });
   });
   q.wait_and_throw();
@@ -192,14 +183,7 @@ bool test_store_subgroup_striped_standalone() {
             sg_sz_acc[0] = item.get_sub_group().get_local_linear_range();
           }
           dpct::group::store_subgroup_striped<4, int>(item, d_w, thread_data);
-          // Write thread_data of each work item at index to the global buffer
-          global_index =
-              (item.get_group(2) * item.get_local_range().get(2)) +
-              item.get_local_id(2); // Each thread_data has 4 elements
-#pragma unroll
-          for (int i = 0; i < 4; ++i) {
-            dacc_write[global_index * 4 + i] = thread_data[i];
-          }
+          
         });
   });
   q.wait_and_throw();
@@ -265,15 +249,7 @@ template <dpct::group::store_algorithm S> bool test_group_store_standalone() {
           } else {
             dpct::group::store_striped<4, int>(item, d_w, thread_data);
           }
-          // Write thread_data of each work item at index to the global buffer
           
-          global_index =
-              item.get_group(2) * item.get_local_range().get(2) +
-              item.get_local_id(2);  // Each thread_data has 4 elements
-          #pragma unroll
-          for (int i = 0; i < 4; ++i) {
-            dacc_write[global_index * 4 + i] = thread_data[i];
-          }
         });
   });
   q.wait_and_throw();
