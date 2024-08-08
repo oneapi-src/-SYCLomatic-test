@@ -43,8 +43,6 @@ int main() {
       dev_info_output(device, "gpu  device");
   if(device.is_cpu())
       dev_info_output(device, "cpu  device");
-  if(device.is_host())
-      dev_info_output(device, "host device");
   if(device.is_accelerator())
       dev_info_output(device, "accelerator device");
 

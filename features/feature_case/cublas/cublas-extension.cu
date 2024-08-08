@@ -12,6 +12,7 @@
 #include <vector>
 #include <cstdio>
 #include <complex>
+#include <cstdint>
 
 template<class d_data_t>
 struct Data {
