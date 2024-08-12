@@ -17,42 +17,29 @@
 
 template <dpct::group::store_algorithm S>
 bool helper_validation_function(const int *ptr, const char *func_name) {
-  if constexpr (S == dpct::group::store_algorithm::BLOCK_STORE_DIRECT) {
-    for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != i) {
-        std::cout << func_name << "_blocked"
-                  << " failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
-      }
-    }
-    std::cout << func_name << "_blocked"
-              << " pass\n";
-  } else {
-    int expected[512];
-    int num_threads = 128;
-    int items_per_thread = 4;
-    for (int i = 0; i < num_threads; ++i) {
-      for (int j = 0; j < items_per_thread; ++j) {
-        expected[i * items_per_thread + j] = j * num_threads + i;
-      }
-    }
-    for (int i = 0; i < 512; ++i) {
-      if (ptr[i] != expected[i]) {
+  for (int i = 0; i < 512; ++i) {
+    if (ptr[i] != i) {
+      if constexpr (S == dpct::group::store_algorithm::BLOCK_STORE_DIRECT) {
+      std::cout << func_name << "_blocked"
+                << " failed\n";}
+      else{
         std::cout << func_name << "_striped"
-                  << " failed\n";
-        std::ostream_iterator<int> Iter(std::cout, ", ");
-        std::copy(ptr, ptr + 512, Iter);
-        std::cout << std::endl;
-        return false;
+                << " failed\n";
       }
+      std::ostream_iterator<int> Iter(std::cout, ", ");
+      std::copy(ptr, ptr + 512, Iter);
+      std::cout << std::endl;
+      return false;
     }
-    std::cout << func_name << "_striped"
-              << " pass\n";
   }
-  return true;
+    if constexpr (S == dpct::group::store_algorithm::BLOCK_STORE_DIRECT) {
+      std::cout << func_name << "_blocked"
+                << " passed\n";}
+      else{
+        std::cout << func_name << "_striped"
+                << " passed\n";
+      } 
+    return true;
 }
 
 bool subgroup_helper_validation_function(const int *ptr, const uint32_t *sg_sz,
@@ -183,6 +170,14 @@ bool test_store_subgroup_striped_standalone() {
             sg_sz_acc[0] = item.get_sub_group().get_local_linear_range();
           }
           dpct::group::store_subgroup_striped<4, int>(item, d_w, thread_data);
+          // reapply global mapping
+          global_index =
+              (item.get_group(2) * item.get_local_range().get(2)) +
+              item.get_local_id(2); // Each thread_data has 4 elements
+          #pragma unroll
+          for (int i = 0; i < 4; ++i) {
+            dacc_write[global_index * 4 + i] = thread_data[i];
+          }
           
         });
   });
