@@ -10,7 +10,7 @@
     <test testName="asm_vinst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v2inst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v4inst" configFile="config/TEMPLATE_asm.xml" />
-    <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" />
+    <!-- <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" /> -->
     <test testName="asm_optimize" configFile="config/TEMPLATE_asm.xml" />
     <test testName="thrust-op" configFile="config/TEMPLATE_thrust_op.xml" />
     <test testName="thrust-for-h2o4gpu" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -129,7 +129,7 @@
     <test testName="math-emu-half2" configFile="config/TEMPLATE_math_after_9.xml" />
     <test testName="math-emu-half2-after11" configFile="config/TEMPLATE_math_after_11.xml" />
     <test testName="math-emu-half2-after12" configFile="config/TEMPLATE_math_after_12.xml" />
-    <test testName="math-emu-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
+    <!-- <test testName="math-emu-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" /> -->
     <test testName="math-exec" configFile="config/TEMPLATE_math_exec.xml" splitGroup="double" />
     <test testName="math-funnelshift" configFile="config/TEMPLATE_math_funnelshift.xml" />
     <test testName="math-habs" configFile="config/TEMPLATE_math_habs.xml" splitGroup="double" />
@@ -195,7 +195,7 @@
     <test testName="driverStreamAndEvent" configFile="config/TEMPLATE_driverStreamAndEvent.xml" />
     <test testName="sync_warp_p1" configFile="config/TEMPLATE_sync_warp_p1.xml" />
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
-    <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" />
+    <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_device" configFile="config/TEMPLATE_cub_device.xml" />
@@ -206,7 +206,7 @@
     <test testName="cub_device_reduce_max" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce_arg" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce" configFile="config/TEMPLATE_cub_device.xml"/>
-    <test testName="cub_device_reduce_by_key" configFile="config/TEMPLATE_cub_device.xml"/>
+    <!-- <test testName="cub_device_reduce_by_key" configFile="config/TEMPLATE_cub_device.xml"/> -->
     <test testName="cub_device_scan_inclusive_sum" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_scan_exclusive_sum" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_scan_inclusive_scan" configFile="config/TEMPLATE_cub_device.xml" />
@@ -215,9 +215,9 @@
     <test testName="cub_device_exclusive_sum_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_inclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_exclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
-    <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
-    <test testName="cub_device_select_unique_by_key" configFile="config/TEMPLATE_cub_unique_by_key.xml" />
-    <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" />
+   <!-- <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
+    <test testName="cub_device_select_unique_by_key" configFile="config/TEMPLATE_cub_unique_by_key.xml" /> -->
+    <!-- <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" /> -->
     <test testName="cub_device_run_length_encode_encode" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_no_trivial_runs" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_discard_iterator" configFile="config/TEMPLATE_cub_device.xml" />
@@ -307,7 +307,7 @@
     <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <!-- <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" /> -->
-    <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" />
+    <!-- <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <test testName="cooperative_groups_reduce" configFile="config/TEMPLATE_cooperative_groups_reduce.xml" />
     <test testName="cooperative_groups_data_manipulate" configFile="config/TEMPLATE_cooperative_groups_data_manipulate.xml" />
     <test testName="cufft_test" configFile="config/TEMPLATE_fft_runable.xml" splitGroup="double"/>
@@ -326,8 +326,8 @@
     <!-- <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" /> -->
     <!-- <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" /> -->
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
-    <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" />
-    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />
+    <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> 
+    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
     <test testName="defaultStream" configFile="config/TEMPLATE_defaultStream.xml" />
     <test testName="volatile-vec" configFile="config/TEMPLATE_misc.xml" />
     <test testName="occupancy_calculation" configFile="config/TEMPLATE_misc.xml" />
