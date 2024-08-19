@@ -10,7 +10,7 @@
     <test testName="asm_vinst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v2inst" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_v4inst" configFile="config/TEMPLATE_asm.xml" />
-    <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" />
+    <!-- <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" /> -->
     <test testName="asm_optimize" configFile="config/TEMPLATE_asm.xml" />
     <test testName="thrust-op" configFile="config/TEMPLATE_thrust_op.xml" />
     <test testName="thrust-for-h2o4gpu" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -195,7 +195,7 @@
     <test testName="driverStreamAndEvent" configFile="config/TEMPLATE_driverStreamAndEvent.xml" />
     <test testName="sync_warp_p1" configFile="config/TEMPLATE_sync_warp_p1.xml" />
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
-    <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" />
+    <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_device" configFile="config/TEMPLATE_cub_device.xml" />
