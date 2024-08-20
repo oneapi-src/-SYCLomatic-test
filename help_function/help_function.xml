@@ -36,7 +36,7 @@
     <test testName="math" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="cpu_device_index_initializaion_test" configFile="config/cpu_device_index_initializaion_test.xml" />
     <test testName="image_wrapper_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" />
-    <!-- <test testName="image_wrapper_2_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" /> -->>
+    <!-- <test testName="image_wrapper_2_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" /> -->
     <test testName="memory_async_dpct_free" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="memory_is_device_ptr" configFile="config/TEMPLATE_help_function_usmnone.xml" />
     <test testName="dpct_dpct_align_and_dpct_inline" configFile="config/TEMPLATE_help_function.xml" />
