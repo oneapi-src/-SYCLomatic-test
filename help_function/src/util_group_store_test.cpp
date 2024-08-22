@@ -131,7 +131,8 @@ template < dpct::group::store_algorithm S> bool test_group_store() {
 
 
 bool test_store_subgroup_striped_standalone() {
-  // Tests dpct::group::load_subgroup_striped as standalone method
+  // Tests dpct::group::store_subgroup_striped as standalone method
+
   sycl::queue q(dpct::get_default_queue());
   int data[512];
   for(int i=0;i<512;i++){data[i]=i;}
