@@ -190,10 +190,7 @@ bool test_store_subgroup_striped_standalone() {
 
 
 template <dpct::group::store_algorithm S> bool test_group_store_standalone() {
-  // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT &
-  // dpct::group::load_algorithm::BLOCK_LOAD_STRIPED as standalone methods
-  // Tests dpct::group::store_algorithm::BLOCK_STORE_DIRECT &
-  // dpct::group::store_algorithm::BLOCK_STORE_STRIPED as standalone methods
+  // Tests standalone methods for group store using the specified store algorithm
   sycl::queue q(dpct::get_default_queue());
   int data[512];
   int num_threads = 128;
