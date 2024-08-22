@@ -72,12 +72,7 @@ bool subgroup_helper_validation_function(const int *ptr, const uint32_t *sg_sz,
 }
 
 template < dpct::group::store_algorithm S> bool test_group_store() {
-  // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT 
-  // dpct::group::load_algorithm::BLOCK_LOAD_STRIPED in its entirety as API
-  // functions
-  // Tests dpct::group::store_algorithm::BLOCK_STORE_DIRECT 
-  // dpct::group::store_algorithm::BLOCK_STORE_STRIPED in its entirety as API
-  // functions
+  // Tests dpct::group::workgroup_store using the specified store algorithm
   sycl::queue q(dpct::get_default_queue());
   int data[512];
   int num_threads = 128;
