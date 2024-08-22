@@ -134,6 +134,7 @@
     <test testName="math-emu-half2-after11" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-emu-half2-after12" configFile="config/TEMPLATE_math_after_12.xml" />
     <test testName="math-emu-simd" configFile="config/TEMPLATE_math_excluding_syclcompat.xml" />
+    <test testName="math-emu-simd-after12" configFile="config/TEMPLATE_math_excluding_syclcompat.xml" />
     <test testName="math-exec" configFile="config/TEMPLATE_math_exec.xml" splitGroup="double" />
     <test testName="math-funnelshift" configFile="config/TEMPLATE_math_funnelshift.xml" />
     <test testName="math-habs" configFile="config/TEMPLATE_math_habs.xml" splitGroup="double" />
@@ -150,6 +151,7 @@
     <test testName="math-ext-half2" configFile="config/TEMPLATE_math_after_9_skip_cuda_backend.xml" />
     <test testName="math-ext-half2-after11" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
     <test testName="math-ext-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
+    <test testName="math-ext-simd-after12" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
     <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-helper" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-int" configFile="config/TEMPLATE_math.xml" />
