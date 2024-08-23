@@ -88,12 +88,14 @@ def migrate_test():
     reference = 'sycl,dpct\n' + \
                 'sycl,none\n' + \
                 'sycl,sycl\n' + \
-                'sycl,sycl-math\n'
+                'sycl,sycl-math\n' + \
+                'sycl,syclcompat\n'
     res = res and (reference == test_config.command_output)
 
     call_subprocess(test_config.CT_TOOL + " --autocomplete=--usm-level=#none,restricted#--use-explicit-namespace=#sycl,s")
     reference = 'sycl,sycl\n' + \
-                'sycl,sycl-math\n'
+                'sycl,sycl-math\n' + \
+                'sycl,syclcompat\n'
     res = res and (reference == test_config.command_output)
 
     call_subprocess(test_config.CT_TOOL + " --autocomplete=")
