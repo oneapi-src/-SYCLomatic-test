@@ -17,88 +17,63 @@
 #include <iostream>
 // clang-format on
 
-template <typename InputT, int ITEMS_PER_THREAD, typename InputIteratorT>
-void LoadDirectBlocked(int linear_tid, InputIteratorT block_itr,
-                       InputT (&items)[ITEMS_PER_THREAD]) {
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    items[ITEM] = block_itr[(linear_tid * ITEMS_PER_THREAD) + ITEM];
-  }
-}
-
-template <typename T, int ITEMS_PER_THREAD, typename OutputIteratorT>
-void StoreDirectBlocked(int linear_tid, OutputIteratorT block_itr,
-                        T (&items)[ITEMS_PER_THREAD]) {
-  OutputIteratorT thread_itr = block_itr + (linear_tid * ITEMS_PER_THREAD);
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    thread_itr[ITEM] = items[ITEM];
-  }
-}
-
-template <int BLOCK_THREADS, typename InputT, int ITEMS_PER_THREAD,
-          typename InputIteratorT>
-void LoadDirectStriped(int linear_tid, InputIteratorT block_itr,
-                       InputT (&items)[ITEMS_PER_THREAD]) {
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    items[ITEM] = block_itr[linear_tid + ITEM * BLOCK_THREADS];
-  }
-}
-
-template <int BLOCK_THREADS, typename T, int ITEMS_PER_THREAD,
-          typename OutputIteratorT>
-void StoreDirectStriped(int linear_tid, OutputIteratorT block_itr,
-                        T (&items)[ITEMS_PER_THREAD]) {
-  OutputIteratorT thread_itr = block_itr + linear_tid;
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    thread_itr[(ITEM * BLOCK_THREADS)] = items[ITEM];
-  }
-}
-
 void StripedToBlockedKernel(int *d_data, const sycl::nd_item<3> &item_ct1,
+                            uint8_t *load_temp_storage,
+                            uint8_t *store_temp_storage,
                             uint8_t *temp_storage) {
+  using BlockLoadT =
+      dpct::group::group_load<int, 4,
+                              dpct::group::group_load_algorithm::striped>;
+  using BlockStoreT =
+      dpct::group::group_store<int, 4,
+                               dpct::group::group_store_algorithm::striped>;
   typedef dpct::group::exchange<int, 4> BlockExchange;
+
   int thread_data[4];
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  BlockLoadT(load_temp_storage).load(item_ct1, d_data, thread_data);
   BlockExchange(temp_storage)
       .striped_to_blocked(item_ct1, thread_data, thread_data);
-  StoreDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  BlockStoreT(store_temp_storage).store(item_ct1, d_data, thread_data);
 }
 
 void BlockedToStripedKernel(int *d_data, const sycl::nd_item<3> &item_ct1,
                             uint8_t *temp_storage) {
+
   typedef dpct::group::exchange<int, 4> BlockExchange;
+
   int thread_data[4];
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  dpct::group::load_direct_striped(item_ct1, d_data, thread_data);
   BlockExchange(temp_storage)
       .blocked_to_striped(item_ct1, thread_data, thread_data);
-  StoreDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  dpct::group::store_direct_striped(item_ct1, d_data, thread_data);
 }
 
 void ScatterToBlockedKernel(int *d_data, int *d_rank,
                             const sycl::nd_item<3> &item_ct1,
                             uint8_t *temp_storage) {
+
   using BlockExchange = dpct::group::exchange<int, 4>;
+
   int thread_data[4], thread_rank[4];
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_rank, thread_rank);
+  dpct::group::load_direct_striped(item_ct1, d_data, thread_data);
+  dpct::group::load_direct_striped(item_ct1, d_rank, thread_rank);
   BlockExchange(temp_storage)
       .scatter_to_blocked(item_ct1, thread_data, thread_rank);
-  StoreDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  dpct::group::store_direct_striped(item_ct1, d_data, thread_data);
 }
 
 void ScatterToStripedKernel(int *d_data, int *d_rank,
                             const sycl::nd_item<3> &item_ct1,
                             uint8_t *temp_storage) {
+
   using BlockExchange = dpct::group::exchange<int, 4>;
+
   int thread_data[4], thread_rank[4];
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
-  LoadDirectStriped<128>(item_ct1.get_local_id(2), d_rank, thread_rank);
+  dpct::group::load_direct_striped(item_ct1, d_data, thread_data);
+  dpct::group::load_direct_striped(item_ct1, d_rank, thread_rank);
   BlockExchange(temp_storage)
       .scatter_to_striped(item_ct1, thread_data, thread_rank);
-  StoreDirectStriped<128>(item_ct1.get_local_id(2), d_data, thread_data);
+  dpct::group::store_direct_striped(item_ct1, d_data, thread_data);
 }
 
 bool test_striped_to_blocked() {
@@ -114,6 +89,14 @@ bool test_striped_to_blocked() {
   }
 
   q_ct1.submit([&](sycl::handler &cgh) {
+    sycl::local_accessor<uint8_t, 1> load_temp_storage_acc(
+        dpct::group::group_load<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
+    sycl::local_accessor<uint8_t, 1> store_temp_storage_acc(
+        dpct::group::group_store<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
     sycl::local_accessor<uint8_t, 1> temp_storage_acc(
         dpct::group::exchange<int, 4>::get_local_memory_size(
             sycl::range<3>(1, 1, 128).size()),
@@ -122,7 +105,9 @@ bool test_striped_to_blocked() {
     cgh.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item_ct1) {
-          StripedToBlockedKernel(d_data, item_ct1, &temp_storage_acc[0]);
+          StripedToBlockedKernel(d_data, item_ct1, &load_temp_storage_acc[0],
+                                 &store_temp_storage_acc[0],
+                                 &temp_storage_acc[0]);
         });
   });
   dev_ct1.queues_wait_and_throw();

@@ -11,56 +11,17 @@
 #include <cuda_runtime.h>
 #include <iostream>
 
-template <typename InputT, int ITEMS_PER_THREAD, typename InputIteratorT>
-__device__ void LoadDirectBlocked(int linear_tid, InputIteratorT block_itr,
-                                  InputT (&items)[ITEMS_PER_THREAD]) {
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    items[ITEM] = block_itr[(linear_tid * ITEMS_PER_THREAD) + ITEM];
-  }
-}
-
-template <typename T, int ITEMS_PER_THREAD, typename OutputIteratorT>
-__device__ void StoreDirectBlocked(int linear_tid, OutputIteratorT block_itr,
-                                   T (&items)[ITEMS_PER_THREAD]) {
-  OutputIteratorT thread_itr = block_itr + (linear_tid * ITEMS_PER_THREAD);
-
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    thread_itr[ITEM] = items[ITEM];
-  }
-}
-
-template <int BLOCK_THREADS, typename InputT, int ITEMS_PER_THREAD,
-          typename InputIteratorT>
-__device__ void LoadDirectStriped(int linear_tid, InputIteratorT block_itr,
-                                  InputT (&items)[ITEMS_PER_THREAD]) {
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    items[ITEM] = block_itr[linear_tid + ITEM * BLOCK_THREADS];
-  }
-}
-
-template <int BLOCK_THREADS, typename T, int ITEMS_PER_THREAD,
-          typename OutputIteratorT>
-__device__ void StoreDirectStriped(int linear_tid, OutputIteratorT block_itr,
-                                   T (&items)[ITEMS_PER_THREAD]) {
-  OutputIteratorT thread_itr = block_itr + linear_tid;
-
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    thread_itr[(ITEM * BLOCK_THREADS)] = items[ITEM];
-  }
-}
-
 __global__ void StripedToBlockedKernel(int *d_data) {
-
+  using BlockLoadT = cub::BlockLoad<int, 128, 4, cub::BLOCK_LOAD_STRIPED>;
+  using BlockStoreT = cub::BlockStore<int, 128, 4, cub::BLOCK_STORE_STRIPED>;
   typedef cub::BlockExchange<int, 128, 4> BlockExchange;
+  __shared__ typename BlockLoadT::TempStorage load_temp_storage;
+  __shared__ typename BlockStoreT::TempStorage store_temp_storage;
   __shared__ typename BlockExchange::TempStorage temp_storage;
   int thread_data[4];
-  LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  BlockLoadT(load_temp_storage).Load(d_data, thread_data);
   BlockExchange(temp_storage).StripedToBlocked(thread_data, thread_data);
-  StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  BlockStoreT(store_temp_storage).Store(d_data, thread_data);
 }
 
 __global__ void BlockedToStripedKernel(int *d_data) {
@@ -68,9 +29,9 @@ __global__ void BlockedToStripedKernel(int *d_data) {
   typedef cub::BlockExchange<int, 128, 4> BlockExchange;
   __shared__ typename BlockExchange::TempStorage temp_storage;
   int thread_data[4];
-  LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
   BlockExchange(temp_storage).BlockedToStriped(thread_data, thread_data);
-  StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
 }
 
 __global__ void ScatterToBlockedKernel(int *d_data, int *d_rank) {
@@ -78,10 +39,10 @@ __global__ void ScatterToBlockedKernel(int *d_data, int *d_rank) {
   using BlockExchange = cub::BlockExchange<int, 128, 4>;
   __shared__ typename BlockExchange::TempStorage temp_storage;
   int thread_data[4], thread_rank[4];
-  LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
-  LoadDirectStriped<128>(threadIdx.x, d_rank, thread_rank);
+  cub::LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::LoadDirectStriped<128>(threadIdx.x, d_rank, thread_rank);
   BlockExchange(temp_storage).ScatterToBlocked(thread_data, thread_rank);
-  StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
 }
 
 __global__ void ScatterToStripedKernel(int *d_data, int *d_rank) {
@@ -89,10 +50,10 @@ __global__ void ScatterToStripedKernel(int *d_data, int *d_rank) {
   using BlockExchange = cub::BlockExchange<int, 128, 4>;
   __shared__ typename BlockExchange::TempStorage temp_storage;
   int thread_data[4], thread_rank[4];
-  LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
-  LoadDirectStriped<128>(threadIdx.x, d_rank, thread_rank);
+  cub::LoadDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::LoadDirectStriped<128>(threadIdx.x, d_rank, thread_rank);
   BlockExchange(temp_storage).ScatterToStriped(thread_data, thread_rank);
-  StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
+  cub::StoreDirectStriped<128>(threadIdx.x, d_data, thread_data);
 }
 
 bool test_striped_to_blocked() {
