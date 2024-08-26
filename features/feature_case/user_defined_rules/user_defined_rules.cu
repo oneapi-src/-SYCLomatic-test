@@ -119,3 +119,11 @@ void foo10(){
   filterfoo(3);
   filterfoo2(3);
 }
+
+template<class T> class MyClass{};
+int foo11(){
+  //CHECK: MyClass2<int> a;
+  MyClass<int> a;
+  //CHECK: MyClass2<MyClass2<float>> b;
+  MyClass<MyClass<float>> b;
+}
