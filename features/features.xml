@@ -160,6 +160,7 @@
     <test testName="system_atomic" configFile="config/TEMPLATE_system_atomic.xml" />
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
+    <test testName="grid_sync_root_group" configFile="config/TEMPLATE_grid_sync.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI.xml" />
     <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI_skip_cuda.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
