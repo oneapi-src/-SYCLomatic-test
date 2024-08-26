@@ -121,6 +121,7 @@ void foo10(){
 }
 
 template<class T> class MyClass{};
+template<class T> class MyClass2{};
 int foo11(){
   //CHECK: MyClass2<int> a;
   MyClass<int> a;
