@@ -28,7 +28,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'cub_device_scan_inclusive_scan', 'cub_device_scan_exclusive_scan', 'cub_device_seg_radix_sort_pairs', 'cub_device_no_trivial_runs', 'cub_device_merge_sort.cu',
               'cub_device_scan_inclusive_sum', 'cub_device_scan_exclusive_sum', 'cub_device_select_unique', 'cub_device_radix_sort_keys', 'cub_device_radix_sort_pairs',
               'cub_device_select_flagged', 'cub_device_run_length_encide_encode', 'cub_counting_iterator', 'cub_arg_index_input_iterator', 'cub_device_seg_radix_sort_keys',
-              'cub_device_inclusive_sum_by_key', 'cub_device_exclusive_sum_by_key', 'cub_device_inclusive_scan_by_key', 'cub_device_exclusive_scan_by_key',
+              'cub_device_inclusive_sum_by_key', 'cub_device_exclusive_sum_by_key', 'cub_device_inclusive_scan_by_key', 'cub_device_exclusive_scan_by_key', 'cub_shuffle',
               'cub_device_reduce_arg', 'cub_device_seg_sort_pairs', 'cub_intrinsic', 'cub_device_seg_sort_keys', 'thrust-math1', 'thrust-math2', 'cub_block_exchange',
               'cub_transform_iterator', 'activemask', 'complex', 'thrust-math', 'libcu_array', 'libcu_complex', 'libcu_tuple', 'cub_block_radix_sort',
               'user_defined_rules', 'math-exec', 'math-intrinsics', 'math-habs', 'math-emu-double', 'math-emu-float', 'math-emu-half', 'math-emu-half-after11', 'math-emu-half2', 'math-emu-half2-after11', 'math-emu-half2-after12', 'math-emu-simd',
@@ -103,7 +103,7 @@ def migrate_test():
         src.append(' --use-experimental-features=occupancy-calculation ')
     if test_config.current_test == 'feature_profiling':
         src.append(' --enable-profiling ')
-    if test_config.current_test == 'asm_bar':
+    if test_config.current_test == 'asm_bar' or test_config.current_test == 'cub_shuffle':
         src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'cub_block':
         src.append(' --use-experimental-features=user-defined-reductions ')

@@ -198,6 +198,7 @@
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
     <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
+    <test testName="cub_shuffle" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_exchange" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_radix_sort" configFile="config/TEMPLATE_cub.xml" />
