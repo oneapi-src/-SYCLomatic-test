@@ -43,7 +43,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
               'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
-              'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
+              'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_memcpy3d_api', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
               'curand-device2', 'curandEnum', 'codepin_all_public_dump',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
@@ -83,12 +83,15 @@ def migrate_test():
             src.append(os.path.abspath(os.path.join(dirpath, filename)))
 
     nd_range_bar_exper = ['grid_sync']
+    root_group_exper = ['grid_sync_root_group'] # Current build only.
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate']
     uniform_group_exper = ['cooperative_group_coalesced_group']
     experimental_bfloat16_tests = ['math-experimental-bf16', 'math-experimental-bf162']
 
     if test_config.current_test in nd_range_bar_exper:
         src.append(' --use-experimental-features=nd_range_barrier ')
+    if test_config.current_test in root_group_exper:
+        src.append(' --use-experimental-features=root-group ')
     if test_config.current_test == "user_defined_rules":
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test in logical_group_exper:

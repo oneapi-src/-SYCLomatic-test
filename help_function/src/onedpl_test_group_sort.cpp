@@ -17,116 +17,90 @@
 #include <dpct/group_utils.hpp>
 // clang-format on
 
-template <typename InputT, int ITEMS_PER_THREAD, typename InputIteratorT>
-void LoadDirectBlocked(int linear_tid, InputIteratorT block_itr,
-                       InputT (&items)[ITEMS_PER_THREAD]) {
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    items[ITEM] = block_itr[(linear_tid * ITEMS_PER_THREAD) + ITEM];
-  }
-}
-
-template <typename T, int ITEMS_PER_THREAD, typename OutputIteratorT>
-void StoreDirectBlocked(int linear_tid, OutputIteratorT block_itr,
-                        T (&items)[ITEMS_PER_THREAD]) {
-  OutputIteratorT thread_itr = block_itr + (linear_tid * ITEMS_PER_THREAD);
-#pragma unroll
-  for (int ITEM = 0; ITEM < ITEMS_PER_THREAD; ITEM++) {
-    thread_itr[ITEM] = items[ITEM];
-  }
-}
-
 void Sort(int *data, const sycl::nd_item<3> &item_ct1, uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage).sort(item_ct1, thread_keys);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 void SortDescending(int *data, const sycl::nd_item<3> &item_ct1,
                     uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage).sort_descending(item_ct1, thread_keys);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 void SortBlockedToStriped(int *data, const sycl::nd_item<3> &item_ct1,
-                          uint8_t *temp_storage) {
-
+                          uint8_t *load_temp_storage,
+                          uint8_t *store_temp_storage, uint8_t *temp_storage) {
+  using BlockLoadT = dpct::group::group_load<int, 4>;
+  using BlockStoreT = dpct::group::group_store<int, 4>;
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  BlockLoadT(load_temp_storage).load(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage).sort_blocked_to_striped(item_ct1, thread_keys);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  BlockStoreT(store_temp_storage).store(item_ct1, data, thread_keys);
 }
 
 void SortDescendingBlockedToStriped(int *data, const sycl::nd_item<3> &item_ct1,
+                                    uint8_t *load_temp_storage,
+                                    uint8_t *store_temp_storage,
                                     uint8_t *temp_storage) {
-
+  using BlockLoadT =
+      dpct::group::group_load<int, 4,
+                              dpct::group::group_load_algorithm::blocked>;
+  using BlockStoreT =
+      dpct::group::group_store<int, 4,
+                               dpct::group::group_store_algorithm::blocked>;
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  BlockLoadT(load_temp_storage).load(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage)
       .sort_descending_blocked_to_striped(item_ct1, thread_keys);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  BlockStoreT(store_temp_storage).store(item_ct1, data, thread_keys);
 }
 
 void SortBit(int *data, const sycl::nd_item<3> &item_ct1,
              uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage).sort(item_ct1, thread_keys, 4, 16);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 void SortDescendingBit(int *data, const sycl::nd_item<3> &item_ct1,
                        uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage).sort_descending(item_ct1, thread_keys, 4, 16);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 void SortBlockedToStripedBit(int *data, const sycl::nd_item<3> &item_ct1,
                              uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
-
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage)
       .sort_blocked_to_striped(item_ct1, thread_keys, 4, 16);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 void SortDescendingBlockedToStripedBit(int *data,
                                        const sycl::nd_item<3> &item_ct1,
                                        uint8_t *temp_storage) {
-
   using BlockRadixSort = dpct::group::group_radix_sort<int, 4>;
-
   int thread_keys[4];
-  LoadDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
-
+  dpct::group::load_direct_blocked(item_ct1, data, thread_keys);
   BlockRadixSort(temp_storage)
       .sort_descending_blocked_to_striped(item_ct1, thread_keys, 4, 16);
-  StoreDirectBlocked(item_ct1.get_local_id(2), data, thread_keys);
+  dpct::group::store_direct_blocked(item_ct1, data, thread_keys);
 }
 
 template <typename T, int N> void print_array(T (&arr)[N]) {
@@ -224,6 +198,14 @@ bool test_sort_blocked_to_striped() {
   q_ct1.memcpy(d_data, data, sizeof(data)).wait();
 
   q_ct1.submit([&](sycl::handler &cgh) {
+    sycl::local_accessor<uint8_t, 1> load_temp_storage_acc(
+        dpct::group::group_load<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
+    sycl::local_accessor<uint8_t, 1> store_temp_storage_acc(
+        dpct::group::group_store<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
     sycl::local_accessor<uint8_t, 1> temp_storage_acc(
         dpct::group::group_radix_sort<int, 4>::get_local_memory_size(
             sycl::range<3>(1, 1, 128).size()),
@@ -232,7 +214,9 @@ bool test_sort_blocked_to_striped() {
     cgh.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item_ct1) {
-          SortBlockedToStriped(d_data, item_ct1, &temp_storage_acc[0]);
+          SortBlockedToStriped(d_data, item_ct1, &load_temp_storage_acc[0],
+                               &store_temp_storage_acc[0],
+                               &temp_storage_acc[0]);
         });
   });
   dev_ct1.queues_wait_and_throw();
@@ -269,6 +253,14 @@ bool test_sort_descending_blocked_to_striped() {
   q_ct1.memcpy(d_data, data, sizeof(data)).wait();
 
   q_ct1.submit([&](sycl::handler &cgh) {
+    sycl::local_accessor<uint8_t, 1> load_temp_storage_acc(
+        dpct::group::group_load<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
+    sycl::local_accessor<uint8_t, 1> store_temp_storage_acc(
+        dpct::group::group_store<int, 4>::get_local_memory_size(
+            sycl::range<3>(1, 1, 128).size()),
+        cgh);
     sycl::local_accessor<uint8_t, 1> temp_storage_acc(
         dpct::group::group_radix_sort<int, 4>::get_local_memory_size(
             sycl::range<3>(1, 1, 128).size()),
@@ -277,8 +269,9 @@ bool test_sort_descending_blocked_to_striped() {
     cgh.parallel_for(
         sycl::nd_range<3>(sycl::range<3>(1, 1, 128), sycl::range<3>(1, 1, 128)),
         [=](sycl::nd_item<3> item_ct1) {
-          SortDescendingBlockedToStriped(d_data, item_ct1,
-                                         &temp_storage_acc[0]);
+          SortDescendingBlockedToStriped(
+              d_data, item_ct1, &load_temp_storage_acc[0],
+              &store_temp_storage_acc[0], &temp_storage_acc[0]);
         });
   });
   dev_ct1.queues_wait_and_throw();
