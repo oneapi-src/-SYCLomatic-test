@@ -588,6 +588,13 @@ bool test_COL32_2R_4R4() {
   return pass_1st && pass_2nd;
 }
 
+bool test_version() {
+  size_t v = cublasLtGetVersion();
+  printf("version: %lu\n", v);
+  printf("test_version pass\n");
+  return true;
+}
+
 // Input col_major matrix:
 // 2 rows * 33 columns, ld is 4
 int main() {
@@ -596,5 +603,6 @@ int main() {
   pass = test_COL32() && pass;
   pass = test_COL4_4R2_8C() && pass;
   pass = test_COL32_2R_4R4() && pass;
+  pass = test_version() && pass;
   return pass ? 0 : 1;
 }
