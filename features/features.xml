@@ -330,8 +330,8 @@
     <!-- <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" /> -->
     <!-- <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" /> -->
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
-    <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> 
-    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
+    <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" />
+    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="defaultStream" configFile="config/TEMPLATE_defaultStream.xml" />
     <test testName="volatile-vec" configFile="config/TEMPLATE_misc.xml" />
     <test testName="occupancy_calculation" configFile="config/TEMPLATE_misc.xml" />

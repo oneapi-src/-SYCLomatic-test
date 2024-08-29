@@ -141,12 +141,14 @@ def prepare_test_case(case_name, test_config_path, root_path, split_group):
 def import_test_module(workspace):
     do_test_script = os.path.join(workspace, "do_test.py")
     driver_path = os.path.dirname(do_test_script)
-
     sys.path.append(driver_path)
     if os.path.exists(do_test_script):
         module = importlib.import_module("do_test")
         importlib.invalidate_caches()
-        importlib.reload(module)
+        try:
+            importlib.reload(module)
+        except SyntaxError:
+            return ""
         return module
     return ""
 
@@ -191,14 +193,17 @@ def run_test_driver(module):
     test_config.test_status = ""
     ret_val = True
     specific_module = ""
-
-    if is_registered_module(case_workspace):
-        specific_module = import_test_module(case_workspace)
     migrated = False
     built = False
     run = False
+    if is_registered_module(case_workspace):
+        specific_module = import_test_module(case_workspace)
+        if not specific_module:
+            test_config.test_status = "BADTEST"
+            ret_val = False
 
-    ret_val = test_setup(module, specific_module)
+    if ret_val:
+        ret_val = test_setup(module, specific_module)
     if ret_val:
         ret_val = test_migrate(module, specific_module)
         migrated = True
@@ -329,6 +334,7 @@ failed_cases = []
 passed_cases = []
 def collect_result(result):
     global failed_cases
+    global passed_cases
     if not result[0]:
         failed_cases.append(result[1]) # Case Name
     else:
