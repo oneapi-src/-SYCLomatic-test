@@ -392,7 +392,7 @@ def test_single_case_in_suite(suite_root_path, suite_name, case, option):
     if case not in test_config.suite_cfg.test_config_map.keys():
         exit("The test case " + case + " is not in the " + suite_name + " test suite! Please double check.")
     single_case_config = test_config.suite_cfg.test_config_map[case]
-    retval, name, status = test_single_case(case, single_case_config, test_workspace, suite_root_path, test_config)
+    retval, name, status = test_single_case(case, single_case_config, test_workspace, suite_root_path, option)
     return retval
 
 # Before run the test:
