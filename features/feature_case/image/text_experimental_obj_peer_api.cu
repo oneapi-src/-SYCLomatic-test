@@ -1,4 +1,4 @@
-// ===-------- text_experimental_obj_memcpy3d_api.cu ----- *- CUDA -* -----===//
+// ===-------- text_experimental_obj_peer_api.cu ------- *- CUDA -* -------===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -75,8 +75,123 @@ int main() {
   };
   auto desc = cudaCreateChannelDesc<short4>();
 
+  { // peer
+    short *src;
+    cudaMallocManaged(&src, sizeof(input));
+    cudaMemcpy(src, input, sizeof(input), cudaMemcpyHostToDevice);
+    {
+      short4 expect[w] = {
+          {1, 2, 3, 4},
+          {5, 6, 7, 8},
+          {9, 10, 11, 12},
+          {13, 14, 15, 16},
+      };
+      short *output;
+      cudaMallocManaged(&output, sizeof(expect));
+      cudaMemcpyPeer(output, 0, src, 0, 4 * sizeof(short4));
+      for (int i = 0; i < w; ++i) {
+        if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
+            output[4 * i + 2] != expect[i].z ||
+            output[4 * i + 3] != expect[i].w) {
+          pass = false;
+          break;
+        }
+      }
+      checkResult("cudaMemcpyPeer:4", pass);
+      if (PRINT_PASS || !pass)
+        for (int i = 0; i < w; ++i)
+          cout << "{" << output[4 * i] << ", " << output[4 * i + 1] << ", "
+               << output[4 * i + 2] << ", " << output[4 * i + 3] << "}, ";
+      cout << endl;
+      pass = true;
+    }
+    {
+      short4 expect[w] = {
+          {1, 2, 3, 4},
+          {5, 6, 7, 8},
+          {9, 10, 11, 12},
+          {0, 0, 0, 0},
+      };
+      short *output;
+      cudaMallocManaged(&output, sizeof(expect));
+      cudaMemcpyPeer(output, 0, src, 0, 3 * sizeof(short4));
+      for (int i = 0; i < w; ++i) {
+        if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
+            output[4 * i + 2] != expect[i].z ||
+            output[4 * i + 3] != expect[i].w) {
+          pass = false;
+          break;
+        }
+      }
+      checkResult("cudaMemcpyPeer:3", pass);
+      if (PRINT_PASS || !pass)
+        for (int i = 0; i < w; ++i)
+          cout << "{" << output[4 * i] << ", " << output[4 * i + 1] << ", "
+               << output[4 * i + 2] << ", " << output[4 * i + 3] << "}, ";
+      cout << endl;
+      pass = true;
+    }
+    {
+      short4 expect[w] = {
+          {1, 2, 3, 4},
+          {0, 0, 0, 0},
+          {0, 0, 0, 0},
+          {0, 0, 0, 0},
+      };
+      short *output;
+      cudaMallocManaged(&output, sizeof(expect));
+      cudaMemcpyPeerAsync(output, 0, src, 0, sizeof(short4));
+      cudaDeviceSynchronize();
+      for (int i = 0; i < w; ++i) {
+        if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
+            output[4 * i + 2] != expect[i].z ||
+            output[4 * i + 3] != expect[i].w) {
+          pass = false;
+          break;
+        }
+      }
+      checkResult("cudaMemcpyPeerAsync:1", pass);
+      if (PRINT_PASS || !pass)
+        for (int i = 0; i < w; ++i)
+          cout << "{" << output[4 * i] << ", " << output[4 * i + 1] << ", "
+               << output[4 * i + 2] << ", " << output[4 * i + 3] << "}, ";
+      cout << endl;
+      pass = true;
+    }
+    {
+      short4 expect[w] = {
+          {0, 0, 0, 0},
+          {0, 0, 0, 0},
+          {0, 0, 0, 0},
+          {0, 0, 0, 0},
+      };
+      short *output;
+      cudaMallocManaged(&output, sizeof(expect));
+      cudaMemcpyPeerAsync(output, 0, src, 0, 0);
+      cudaDeviceSynchronize();
+      for (int i = 0; i < w; ++i) {
+        if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
+            output[4 * i + 2] != expect[i].z ||
+            output[4 * i + 3] != expect[i].w) {
+          pass = false;
+          break;
+        }
+      }
+      checkResult("cudaMemcpyPeerAsync:0", pass);
+      if (PRINT_PASS || !pass)
+        for (int i = 0; i < w; ++i)
+          cout << "{" << output[4 * i] << ", " << output[4 * i + 1] << ", "
+               << output[4 * i + 2] << ", " << output[4 * i + 3] << "}, ";
+      cout << endl;
+      pass = true;
+    }
+  }
+
   { // p2p
-    const auto src = make_cudaPitchedPtr(input, w * sizeof(short4), w, h);
+    short *srcDevice;
+    cudaMallocManaged(&srcDevice, sizeof(input));
+    cudaMemcpy(srcDevice, input, sizeof(input), cudaMemcpyHostToDevice);
+    const auto src = make_cudaPitchedPtr(srcDevice, w * sizeof(short4), w, h);
     {
       short4 expect[d * h * w] = {
           {1, 2, 3, 4},     {5, 6, 7, 8},
@@ -90,12 +205,13 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent(w * sizeof(short4), h, d);
-      p.kind = cudaMemcpyHostToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w * sizeof(short4), h, d);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -104,7 +220,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2p:1", pass);
+      checkResult("cudaMemcpy3DPeer:p2p:1", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -128,12 +244,13 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
-      p.kind = cudaMemcpyHostToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -142,7 +259,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2p:2", pass);
+      checkResult("cudaMemcpy3DPeer:p2p:2", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -170,13 +287,14 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.srcPos = make_cudaPos(1 * sizeof(short4), 1, 1);
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
-      p.kind = cudaMemcpyHostToHost;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcPos = make_cudaPos(1 * sizeof(short4), 1, 1);
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
@@ -186,7 +304,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:p2p:3", pass);
+      checkResult("cudaMemcpy3DPeerAsync:p2p:3", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -210,13 +328,14 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.dstPos = make_cudaPos(1 * sizeof(short4), 1, 1);
-      p.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
-      p.kind = cudaMemcpyHostToHost;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstPos = make_cudaPos(1 * sizeof(short4), 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent((w - 1) * sizeof(short4), h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
@@ -226,7 +345,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:p2p:4", pass);
+      checkResult("cudaMemcpy3DPeerAsync:p2p:4", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -250,14 +369,15 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.srcPos = make_cudaPos(2 * sizeof(short4), 1, 1);
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.dstPos = make_cudaPos(2 * sizeof(short4), 1, 1);
-      p.extent = make_cudaExtent((w - 2) * sizeof(short4), h - 1, d - 1);
-      p.kind = cudaMemcpyHostToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcPos = make_cudaPos(2 * sizeof(short4), 1, 1);
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstPos = make_cudaPos(2 * sizeof(short4), 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent((w - 2) * sizeof(short4), h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -266,7 +386,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2p:5", pass);
+      checkResult("cudaMemcpy3DPeer:p2p:5", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -286,7 +406,10 @@ int main() {
   return failed; // TODO: Need open following cases after bug fixing.
 
   { // p2a
-    const auto src = make_cudaPitchedPtr(input, w * sizeof(short4), w, h);
+    short *srcDevice;
+    cudaMallocManaged(&srcDevice, sizeof(input));
+    cudaMemcpy(srcDevice, input, sizeof(input), cudaMemcpyHostToDevice);
+    const auto src = make_cudaPitchedPtr(srcDevice, w * sizeof(short4), w, h);
     {
       short4 expect[d * h * w] = {
           {1, 2, 3, 4},     {5, 6, 7, 8},
@@ -302,12 +425,13 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w, h, d);
-      p.kind = cudaMemcpyHostToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w, h, d);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -321,7 +445,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2a:1", pass);
+      checkResult("cudaMemcpy3DPeer:p2a:1", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -347,12 +471,13 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyHostToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -366,7 +491,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2a:2", pass);
+      checkResult("cudaMemcpy3DPeer:p2a:2", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -396,13 +521,14 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.srcPos = make_cudaPos(1, 1, 1);
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyHostToDevice;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcPos = make_cudaPos(1, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
@@ -417,7 +543,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:p2a:3", pass);
+      checkResult("cudaMemcpy3DPeerAsync:p2a:3", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -443,13 +569,14 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.dstArray = array;
-      p.dstPos = make_cudaPos(1, 1, 1);
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyHostToDevice;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstPos = make_cudaPos(1, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
@@ -464,7 +591,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:p2a:4", pass);
+      checkResult("cudaMemcpy3DPeerAsync:p2a:4", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -490,14 +617,15 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcPtr = src;
-      p.srcPos = make_cudaPos(2, 1, 1);
-      p.dstArray = array;
-      p.dstPos = make_cudaPos(2, 1, 1);
-      p.extent = make_cudaExtent(w - 2, h - 1, d - 1);
-      p.kind = cudaMemcpyHostToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcPtr = src;
+      pp.srcPos = make_cudaPos(2, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstPos = make_cudaPos(2, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 2, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -511,7 +639,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:p2a:5", pass);
+      checkResult("cudaMemcpy3DPeer:p2a:5", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -550,12 +678,13 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent(w, h, d);
-      p.kind = cudaMemcpyDeviceToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w, h, d);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -564,7 +693,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2p:1", pass);
+      checkResult("cudaMemcpy3DPeer:a2p:1", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -588,12 +717,13 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -602,7 +732,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2p:2", pass);
+      checkResult("cudaMemcpy3DPeer:a2p:2", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -630,13 +760,14 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.srcPos = make_cudaPos(1, 1, 1);
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToHost;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcPos = make_cudaPos(1, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
@@ -646,7 +777,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:a2p:3", pass);
+      checkResult("cudaMemcpy3DPeerAsync:a2p:3", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -670,13 +801,14 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.dstPos = make_cudaPos(1, 1, 1);
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToHost;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstPos = make_cudaPos(1, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
@@ -686,7 +818,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:a2p:4", pass);
+      checkResult("cudaMemcpy3DPeerAsync:a2p:4", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -710,14 +842,15 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.srcPos = make_cudaPos(2, 1, 1);
-      p.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
-      p.dstPos = make_cudaPos(2, 1, 1);
-      p.extent = make_cudaExtent(w - 2, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToHost;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcPos = make_cudaPos(2, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
+      pp.dstPos = make_cudaPos(2, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 2, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       for (int i = 0; i < w * h * d; ++i) {
         if (output[4 * i] != expect[i].x || output[4 * i + 1] != expect[i].y ||
             output[4 * i + 2] != expect[i].z ||
@@ -726,7 +859,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2p:5", pass);
+      checkResult("cudaMemcpy3DPeer:a2p:5", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -768,12 +901,13 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w, h, d);
-      p.kind = cudaMemcpyDeviceToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w, h, d);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -787,7 +921,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2a:1", pass);
+      checkResult("cudaMemcpy3DPeer:a2a:1", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -817,12 +951,13 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -836,7 +971,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2a:2", pass);
+      checkResult("cudaMemcpy3DPeer:a2a:2", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -866,13 +1001,14 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.srcPos = make_cudaPos(1, 1, 1);
-      p.dstArray = array;
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToDevice;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcPos = make_cudaPos(1, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
@@ -887,7 +1023,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:a2a:3", pass);
+      checkResult("cudaMemcpy3DPeerAsync:a2a:3", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -917,13 +1053,14 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.dstArray = array;
-      p.dstPos = make_cudaPos(1, 1, 1);
-      p.extent = make_cudaExtent(w - 1, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToDevice;
-      cudaMemcpy3DAsync(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstPos = make_cudaPos(1, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 1, h - 1, d - 1);
+      cudaMemcpy3DPeerAsync(&pp);
       cudaDeviceSynchronize();
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
@@ -938,7 +1075,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3DAsync:a2a:4", pass);
+      checkResult("cudaMemcpy3DPeerAsync:a2a:4", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {
@@ -968,14 +1105,15 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DParms p = {0};
-      p.srcArray = src;
-      p.srcPos = make_cudaPos(2, 1, 1);
-      p.dstArray = array;
-      p.dstPos = make_cudaPos(2, 1, 1);
-      p.extent = make_cudaExtent(w - 2, h - 1, d - 1);
-      p.kind = cudaMemcpyDeviceToDevice;
-      cudaMemcpy3D(&p);
+      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      pp.srcArray = src;
+      pp.srcPos = make_cudaPos(2, 1, 1);
+      pp.srcDevice = 0;
+      pp.dstArray = array;
+      pp.dstPos = make_cudaPos(2, 1, 1);
+      pp.dstDevice = 0;
+      pp.extent = make_cudaExtent(w - 2, h - 1, d - 1);
+      cudaMemcpy3DPeer(&pp);
       auto tex = getTex(array);
       kernel<<<1, 1>>>(output, tex, w, h, d);
       cudaDeviceSynchronize();
@@ -989,7 +1127,7 @@ int main() {
           break;
         }
       }
-      checkResult("cudaMemcpy3D:a2a:5", pass);
+      checkResult("cudaMemcpy3DPeer:a2a:5", pass);
       if (PRINT_PASS || !pass)
         for (int i = 0; i < d; ++i) {
           for (int j = 0; j < h; ++j) {

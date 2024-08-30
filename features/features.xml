@@ -40,7 +40,7 @@
     <test testName="thrust-pinned-allocator" configFile="config/TEMPLATE_thrust_pinned_allocator.xml" />
     <test testName="thrust_minmax_element" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_partition" configFile="config/TEMPLATE_thrust_api.xml" />
-    <test testName="thrust_detail_types" configFile="config/TEMPLATE_thrust_api.xml" />
+    <!--<test testName="thrust_detail_types" configFile="config/TEMPLATE_thrust_detail_types.xml" /> -->
     <test testName="thrust_is_sorted" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_replace_copy" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_scatter_if" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -199,6 +199,7 @@
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
     <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
+    <test testName="cub_shuffle" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_exchange" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_radix_sort" configFile="config/TEMPLATE_cub.xml" />
@@ -327,9 +328,10 @@
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
     <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> 

@@ -114,7 +114,7 @@ def migrate_test():
             ["cuDeviceGetName(pc /*char **/, i /*int*/, d /*CUdevice*/);"],
             [],
             [
-                "memcpy(pc, dpct::dev_mgr::instance().get_device(d).get_info<sycl::info::device::name>().c_str(), i);"
+                "memcpy(pc, dpct::get_device(d).get_info<sycl::info::device::name>().c_str(), i);"
             ],
         ],
         [  # Math
