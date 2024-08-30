@@ -865,6 +865,12 @@ bool test7() {
   return !error;
 }
 
+bool test_version() {
+  size_t v = cublasLtGetVersion();
+  printf("version: %lu\n", v);
+  printf("test_version pass\n");
+  return true;
+}
 
 // clang-format off
 // A (4*3)    B (2*3)
@@ -895,5 +901,6 @@ int main() {
   pass = test5() && pass;
   pass = test6() && pass;
   pass = test7() && pass;
+  pass = test_version() && pass;
   return pass ? 0 : 1;
 }
