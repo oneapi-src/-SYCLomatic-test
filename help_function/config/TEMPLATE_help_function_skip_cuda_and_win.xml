@@ -7,6 +7,6 @@
     </files>
     <rules>
       <optlevelRule excludeOptlevelNameString="cuda" />
-      <optlevelRule excludeOptlevelNameString="cuda" />
+      <platformRule OSFamily="Windows" runOnThisPlatform="false"/>
     </rules>
 </test>

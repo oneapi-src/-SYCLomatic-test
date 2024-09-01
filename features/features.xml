@@ -248,8 +248,8 @@
     <test testName="cudnn-memory" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-pooling" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-reorder" configFile="config/TEMPLATE_cuDNN.xml" />
-    <test testName="cudnn-scale" configFile="config/TEMPLATE_cuDNN.xml" />
-    <test testName="cudnn-softmax" configFile="config/TEMPLATE_cuDNN.xml" />
+    <test testName="cudnn-scale" configFile="config/TEMPLATE_cuDNN_lin.xml" />
+    <test testName="cudnn-softmax" configFile="config/TEMPLATE_cuDNN_lin.xml" />
     <test testName="cudnn-sum" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-reduction" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-binary" configFile="config/TEMPLATE_cuDNN.xml" />

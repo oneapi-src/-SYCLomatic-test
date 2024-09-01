@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <test driverID="test_help" name="TEMPLATE">
-    <description>test help function</description>
+    <description>test help function cases with usm switch on </description>
     <files>
         <file path="src/${testName}.cpp" />
     </files>
     <rules>
       <optlevelRule excludeOptlevelNameString="cuda" />
-      <optlevelRule excludeOptlevelNameString="cuda" />
+      <platformRule OSFamily="Windows" runOnThisPlatform="false"/>
     </rules>
 </test>
