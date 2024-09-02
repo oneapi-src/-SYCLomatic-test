@@ -161,7 +161,7 @@
     <test testName="system_atomic" configFile="config/TEMPLATE_system_atomic.xml" />
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
-    <test testName="grid_sync_root_group" configFile="config/TEMPLATE_grid_sync.xml" />
+    <test testName="grid_sync_root_group" configFile="config/TEMPLATE_grid_sync_excluding_syclcompat.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI.xml" />
     <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI_skip_cuda.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
@@ -199,7 +199,7 @@
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
     <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
-    <test testName="cub_shuffle" configFile="config/TEMPLATE_cub.xml" />
+    <test testName="cub_shuffle" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_exchange" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block_radix_sort" configFile="config/TEMPLATE_cub.xml" />
@@ -307,7 +307,7 @@
     <test testName="cublas_v1_runable" configFile="config/TEMPLATE_cuBlas_11.xml" splitGroup="double"/>
     <test testName="complex" configFile="config/TEMPLATE_complex.xml" splitGroup="double"/>
     <test testName="cooperative_groups" configFile="config/TEMPLATE_cooperative_groups.xml" />
-    <test testName="cooperative_group_coalesced_group" configFile="config/TEMPLATE_cooperative_groups.xml" />
+    <test testName="cooperative_group_coalesced_group" configFile="config/TEMPLATE_cooperative_groups_excluding_syclcompat.xml" />
     <test testName="cooperative_groups_thread_group" configFile="config/TEMPLATE_cooperative_groups.xml" />
     <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
@@ -326,14 +326,14 @@
     <test testName="image" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only" configFile="config/TEMPLATE_image.xml" />
     <test testName="text_experimental_build_only_before12" configFile="config/TEMPLATE_image_before_12.xml" />
-    <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image.xml" />
-    <test testName="text_experimental_obj_sample_api" configFile="config/TEMPLATE_image.xml" />
+    <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_sample_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> 
     <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
