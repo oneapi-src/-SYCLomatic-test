@@ -8,7 +8,7 @@
         <test testName="test-1126-1" configFile="config/test-1126-1.xml" />
         <test testName="test-1127" configFile="config/TEMPLATE_regressions_cuda12.0_not_support.xml" />
         <test testName="test-1151" configFile="config/TEMPLATE_regressions_cuda12.0_not_support.xml" />
-        <test testName="test-1207" configFile="config/TEMPLATE_regressions.xml" />
+        <test testName="test-1207" configFile="config/TEMPLATE_regressions_excluding_syclcompat.xml" />
         <test testName="test-1215" configFile="config/TEMPLATE_regressions.xml" />
         <test testName="test-1227" configFile="config/TEMPLATE_regressions.xml" />
         <test testName="test-1377" configFile="config/TEMPLATE_regressions.xml" />

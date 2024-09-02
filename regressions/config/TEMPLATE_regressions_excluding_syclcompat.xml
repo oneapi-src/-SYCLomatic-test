@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_regression" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="regress_case/${testName}" />
+    </files>
+    <rules>
+        <optlevelRule excludeOptlevelNameString="syclcompat" />
+    </rules>
+</test>
