@@ -132,20 +132,14 @@ int main() {
         {5, 6},
         {7, 8},
     };
-    cout << "111" << endl;
     cudaArray *input;
-    cudaMallocArray(&input, &desc, w,
-                    0); // TODO: cannot handle using default param of height.
-    cout << "222" << endl;
+    cudaMallocArray(&input, &desc, w);
     cudaMemcpy2DToArray(input, 0, 0, expect, sizeof(float2) * w,
                         sizeof(float2) * w, 1, cudaMemcpyHostToDevice);
-    cout << "333" << endl;
     auto tex = getTex(input);
-    cout << "444" << endl;
     float *output;
     cudaMallocManaged(&output, sizeof(expect));
     kernel1D<<<1, 1>>>(output, tex, w);
-    cout << "555" << endl;
     cudaDeviceSynchronize();
     cudaDestroyTextureObject(tex);
     float precision = 0.001;
@@ -323,7 +317,7 @@ int main() {
              output[2 * i] > expect[i].x + precision) ||
             (output[2 * i + 1] < expect[i].y - precision ||
              output[2 * i + 1] > expect[i].y + precision)) {
-          // pass = false; // TODO: Need open after bug fixing.
+          pass = false;
           break;
         }
       }
@@ -358,7 +352,7 @@ int main() {
              output[2 * i] > expect[i].x + precision) ||
             (output[2 * i + 1] < expect[i].y - precision ||
              output[2 * i + 1] > expect[i].y + precision)) {
-          // pass = false; // TODO: Need open after bug fixing.
+          pass = false;
           break;
         }
       }

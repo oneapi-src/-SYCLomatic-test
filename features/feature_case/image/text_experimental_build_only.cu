@@ -20,8 +20,8 @@ CppLanguageExtensions_TextureFunctions(cudaTextureObject_t tex) {
   tex2DLod<uint1>(tex, j, k, l);
   tex3D<char4>(tex, j, k, l);
   tex3DLod<uchar4>(tex, j, k, l, m);
-  // tex1DLayered<uchar2>(tex, i, t); // TODO: need support.
-  // tex2DLayered<uint2>(tex, j, k, t); // TODO: need support.
+  tex1DLayered<uchar2>(tex, i, t);
+  tex2DLayered<uint2>(tex, j, k, t);
 }
 
 void Runtime_MemoryManagement() {
@@ -35,6 +35,7 @@ void Runtime_MemoryManagement() {
   void *v;
   cudaMemcpyKind k = cudaMemcpyDefault;
   cudaMemcpy3DParms pm;
+  cudaMemcpy3DPeerParms ppm;
   int i = 1;
   cudaArrayGetInfo(&d, &e, &u, a);
   cudaFreeArray(a);
@@ -54,6 +55,8 @@ void Runtime_MemoryManagement() {
   cudaMemcpy2DToArrayAsync(a, s, s, v, s, s, s, k);
   cudaMemcpy3D(&pm);
   cudaMemcpy3DAsync(&pm);
+  cudaMemcpy3DPeer(&ppm);
+  cudaMemcpy3DPeerAsync(&ppm);
   cudaMemset2D(v, s, i, s, s);
   cudaMemset2DAsync(v, s, i, s, s);
   cudaMemset3D(p, i, e);
@@ -79,19 +82,24 @@ void Runtime_TextureObjectManagement() {
 
 void Driver_MemoryManagement() {
   CUarray a;
+  CUDA_ARRAY3D_DESCRIPTOR D3;
   CUDA_ARRAY_DESCRIPTOR D;
   CUDA_MEMCPY2D C2;
   CUstream cs;
   CUDA_MEMCPY3D C3;
+  CUDA_MEMCPY3D_PEER CP;
   size_t s;
   CUdeviceptr d;
   void *v;
+  cuArray3DCreate(&a, &D3);
   cuArrayCreate(&a, &D);
   cuArrayDestroy(a);
   cuMemcpy2D(&C2);
   cuMemcpy2DAsync(&C2, cs);
   cuMemcpy3D(&C3);
   cuMemcpy3DAsync(&C3, cs);
+  cuMemcpy3DPeer(&CP);
+  cuMemcpy3DPeerAsync(&CP, cs);
   cuMemcpyAtoA(a, s, a, s, s);
   cuMemcpyAtoD(d, a, s, s);
   cuMemcpyAtoH(&v, a, s, s);

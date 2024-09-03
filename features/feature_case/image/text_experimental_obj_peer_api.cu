@@ -48,8 +48,7 @@ cudaTextureObject_t getTex(cudaArray_t input) {
   resDesc.resType = cudaResourceTypeArray;
   resDesc.res.array.array = input;
 
-  cudaTextureDesc texDesc;
-  memset(&texDesc, 0, sizeof(texDesc));
+  cudaTextureDesc texDesc = {};
 
   cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
@@ -205,7 +204,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -244,7 +243,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -287,7 +286,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcPos = make_cudaPos(1 * sizeof(short4), 1, 1);
       pp.srcDevice = 0;
@@ -328,7 +327,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -369,7 +368,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcPos = make_cudaPos(2 * sizeof(short4), 1, 1);
       pp.srcDevice = 0;
@@ -403,8 +402,6 @@ int main() {
     }
   }
 
-  return failed; // TODO: Need open following cases after bug fixing.
-
   { // p2a
     short *srcDevice;
     cudaMallocManaged(&srcDevice, sizeof(input));
@@ -425,7 +422,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -471,7 +468,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -521,7 +518,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcPos = make_cudaPos(1, 1, 1);
       pp.srcDevice = 0;
@@ -569,7 +566,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -617,7 +614,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcPtr = src;
       pp.srcPos = make_cudaPos(2, 1, 1);
       pp.srcDevice = 0;
@@ -678,7 +675,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -717,7 +714,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -760,7 +757,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcPos = make_cudaPos(1, 1, 1);
       pp.srcDevice = 0;
@@ -801,7 +798,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstPtr = make_cudaPitchedPtr(output, w * sizeof(short4), w, h);
@@ -842,7 +839,7 @@ int main() {
       };
       short *output;
       cudaMallocManaged(&output, sizeof(expect));
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcPos = make_cudaPos(2, 1, 1);
       pp.srcDevice = 0;
@@ -901,7 +898,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -951,7 +948,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -1001,7 +998,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcPos = make_cudaPos(1, 1, 1);
       pp.srcDevice = 0;
@@ -1053,7 +1050,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcDevice = 0;
       pp.dstArray = array;
@@ -1105,7 +1102,7 @@ int main() {
       cudaMallocManaged(&output, sizeof(expect));
       cudaArray *array;
       cudaMalloc3DArray(&array, &desc, {w, h, d});
-      cudaMemcpy3DPeerParms pp = {/*0*/}; // TODO: Need open after bug fixing.
+      cudaMemcpy3DPeerParms pp = {0};
       pp.srcArray = src;
       pp.srcPos = make_cudaPos(2, 1, 1);
       pp.srcDevice = 0;

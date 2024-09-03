@@ -48,8 +48,7 @@ cudaTextureObject_t getTex(cudaArray_t input) {
   resDesc.resType = cudaResourceTypeArray;
   resDesc.res.array.array = input;
 
-  cudaTextureDesc texDesc;
-  memset(&texDesc, 0, sizeof(texDesc));
+  cudaTextureDesc texDesc = {};
 
   cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
@@ -282,8 +281,6 @@ int main() {
       pass = true;
     }
   }
-
-  return failed; // TODO: Need open following cases after bug fixing.
 
   { // p2a
     const auto src = make_cudaPitchedPtr(input, w * sizeof(short4), w, h);

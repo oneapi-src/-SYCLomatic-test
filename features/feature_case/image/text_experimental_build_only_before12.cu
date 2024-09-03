@@ -28,9 +28,11 @@ void Runtime_TextureReferenceManagement() {
   void *v;
   cudaChannelFormatDesc d;
   cudaArray_t a = nullptr;
+  cudaMipmappedArray_t ma = nullptr;
   cudaBindTexture(&s, &r, v, &d);
   cudaBindTexture2D(&s, &r, v, &d, s, s, s);
   cudaBindTextureToArray(&r, a, &d);
+  cudaBindTextureToMipmappedArray(&r, ma, &d);
   cudaUnbindTexture(&r);
 }
 
