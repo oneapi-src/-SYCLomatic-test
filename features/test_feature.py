@@ -61,7 +61,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform"]
+              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform", "graphics_texture"]
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -121,7 +121,7 @@ def migrate_test():
         src.append(' --use-experimental-features=bfloat16_math_functions ')
     if test_config.current_test == 'const_opt' or test_config.current_test == 'asm_optimize':
         src.append(' --optimize-migration ')
-    if test_config.current_test.startswith('text_experimental_'):
+    if test_config.current_test.startswith(('text_experimental_', 'graphics_interop_')):
         src.append(' --use-experimental-features=bindless_images')
     if "codepin" in test_config.current_test:
         src.append(' --enable-codepin ')
@@ -232,7 +232,7 @@ def build_test():
 def run_test():
     if test_config.current_test not in exec_tests:
         return True
-    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter.count("cuda") == 0:
+    if test_config.current_test.startswith(('text_experimental_obj_', 'graphics_interop_')) and test_config.device_filter.count("cuda") == 0:
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

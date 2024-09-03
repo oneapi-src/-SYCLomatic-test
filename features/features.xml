@@ -354,5 +354,6 @@
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
     <test testName="matmul" configFile="config/TEMPLATE_cublasLt.xml" />
     <test testName="transform" configFile="config/TEMPLATE_cublasLt.xml" />
+    <test testName="graphics_interop_d3d11" configFile="config/TEMPLATE_cudaGraphics_Interop.xml" />
   </tests>
 </suite>
