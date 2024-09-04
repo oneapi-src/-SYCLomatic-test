@@ -221,6 +221,10 @@ int main() {
             // values is now = {19, 10, 18, 11, 13, 17, 15, 12, 16, 14}
         }
 
+        {
+            int check_keys[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            int check_values[10] = {19, 10, 18, 11, 13, 17, 15, 12, 16, 14};
+            test_name = "sort using device_vector";
 
             // check that values and keys are correct
 
