@@ -17,6 +17,22 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
+#define PRINT_PASS 1
+
+int passed = 0;
+int failed = 0;
+
+void checkResult(std::string name, bool IsPassed) {
+  std::cout << name;
+  if (IsPassed) {
+    std::cout << " ---- passed" << std::endl;
+    passed++;
+  } else {
+    std::cout << " ---- failed" << std::endl;
+    failed++;
+  }
+}
+
 #define CHECK_D3D11_ERROR(call, errMsg)                     \
     do                                                      \
     {                                                       \
@@ -187,7 +203,6 @@ int main() {
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 if (output[i * w + j] != input[i * w + j]) {
-                    std::cout << "Failed: output[" << i << "][" << j << "] = " << output[i * w + j] << std::endl;
                     pass = false;
                 }
             }
@@ -197,11 +212,14 @@ int main() {
             }
         }
 
-        if (pass) {
-            std::cout << "Case: float passed!" << std::endl;
-        }
-        else {
-            std::cout << "Case: float failed!" << std::endl;
+        checkResult("float", pass);
+        if (PRINT_PASS || !pass)
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (output[i * w + j] != input[i * w + j]) {
+                    std::cout << "Failed: output[" << i << "][" << j << "] = " << output[i * w + j] << std::endl;
+                }
+            }
         }
 
         cudaDestroyTextureObject(tex);
@@ -251,12 +269,6 @@ int main() {
                     output[i * w + j].y != input[i * w + j].y ||
                     output[i * w + j].z != input[i * w + j].z ||
                     output[i * w + j].w != input[i * w + j].w) {
-                    std::cout << "Failed: output[" << i << "][" << j << "] = {"
-                              << output[i * w + j].x << ", "
-                              << output[i * w + j].y << ", "
-                              << output[i * w + j].z << ", "
-                              << output[i * w + j].w << "}"
-                              << std::endl;
                     pass = false;
                 }
             }
@@ -266,11 +278,22 @@ int main() {
             }
         }
 
-        if (pass) {
-            std::cout << "Case: uchar4 passed!" << std::endl;
-        }
-        else {
-            std::cout << "Case: uchar4 failed!" << std::endl;
+        checkResult("uchar4", pass);
+        if (PRINT_PASS || !pass)
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (output[i * w + j].x != input[i * w + j].x ||
+                    output[i * w + j].y != input[i * w + j].y ||
+                    output[i * w + j].z != input[i * w + j].z ||
+                    output[i * w + j].w != input[i * w + j].w) {
+                    std::cout << "Failed: output[" << i << "][" << j << "] = {"
+                              << output[i * w + j].x << ", "
+                              << output[i * w + j].y << ", "
+                              << output[i * w + j].z << ", "
+                              << output[i * w + j].w << "}"
+                              << std::endl;
+                }
+            }
         }
 
         cudaDestroyTextureObject(tex);
@@ -286,5 +309,10 @@ int main() {
 
     cudaDeviceReset();
 
-    return 0;
+    std::cout << "Passed " << passed << "/" << passed + failed << " cases!" << std::endl;
+    if (failed) {
+        std::cout << "Failed!" << std::endl;
+    }
+
+    return failed;
 }
