@@ -17,61 +17,21 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
 
-
-#define PRINT_PASS 1
-
-#define CHECK_CUDA_ERROR(call, errMsg, stsMsg) \
-    do { \
-        try { \
-            cudaError_t cu_status = call; \
-            cudaDeviceSynchronize(); \
-            cu_status = cudaGetLastError(); \
-            if (cu_status != cudaSuccess) { \
-                std::cout << "[ERROR] " << errMsg << std::endl; \
-                std::cout << "[ERROR] " << cu_status << ": " << cudaGetErrorName(cu_status) << std::endl; \
-            } else { \
-                std::cout << "[SUCCESS] " << stsMsg << std::endl; \
-            } \
-        } \
-        catch (const std::exception& e) {                                      \
-            std::cerr << "[ERROR]: " << e.what() << std::endl;                 \
-        }                                                                      \
-    } while(0)
-
-#define CHECK_D3D11_ERROR(call, errMsg, stsMsg) \
-    do { \
-        HRESULT d11_status = call; \
-        if (d11_status != S_OK) { \
+#define CHECK_D3D11_ERROR(call, errMsg)                     \
+    do                                                      \
+    {                                                       \
+        HRESULT d11_status = call;                          \
+        if (d11_status != S_OK) {                           \
             std::cout << "[ERROR] " << errMsg << std::endl; \
-        } else { \
-            std::cout << "[SUCCESS] " << stsMsg << std::endl; \
-        } \
-    } while(0)
+        }                                                   \
+    } while (0)
 
-
-#define WIDTH 16
-#define HEIGHT 16
-
-
-// CUDA kernel for processing data
-__global__ void updateTexData(float* data, int pitch, int width, int height) {
-    int x = blockIdx.x * blockDim.x + threadIdx.x;
-    int y = blockIdx.y * blockDim.y + threadIdx.y;
-
-    if (x < width && y < height) {
-        // Perform some computation on the data
-        int index = y * pitch + x;
-        data[index] += 2.0f;
-    }
-}
-
-
-ID3D11Device* create_d3d11_dev(ID3D11DeviceContext** d3dContext, IDXGIAdapter1* pAdapter1) {
-    ID3D11Device* d3dDevice;
+ID3D11Device *create_d3d11_dev(ID3D11DeviceContext **d3dContext, IDXGIAdapter1 *pAdapter1) {
+    ID3D11Device *d3dDevice;
 
     CHECK_D3D11_ERROR(
         D3D11CreateDevice(
-            pAdapter1, /*nullptr*/
+            pAdapter1,               /*nullptr*/
             D3D_DRIVER_TYPE_UNKNOWN, /*D3D_DRIVER_TYPE_HARDWARE*/
             nullptr,
             0,
@@ -80,24 +40,23 @@ ID3D11Device* create_d3d11_dev(ID3D11DeviceContext** d3dContext, IDXGIAdapter1* 
             D3D11_SDK_VERSION,
             &d3dDevice,
             nullptr,
-            d3dContext
-        ),
-        "Cannot create D3D11 device",
-        "Created D3D11 device"
-    );
+            d3dContext),
+        "Cannot create D3D11 device");
 
     return d3dDevice;
 }
 
-ID3D11Texture2D* create_d3d11_tex(D3D11_TEXTURE2D_DESC &texDesc, ID3D11Device* d3dDevice) {
+ID3D11Texture2D *create_d3d11_tex(ID3D11Device *d3dDevice, int w, int h, DXGI_FORMAT dxFormat = DXGI_FORMAT_R32_FLOAT,
+                                  int aSize = 1, int mLevels = 1) {
+    D3D11_TEXTURE2D_DESC texDesc;
     ID3D11Texture2D *d3dTexture;
 
     ZeroMemory(&texDesc, sizeof(texDesc));
-    texDesc.Width = WIDTH;
-    texDesc.Height = HEIGHT;
-    texDesc.ArraySize = 1;
-    texDesc.MipLevels = 1;
-    texDesc.Format = DXGI_FORMAT_R32_FLOAT;
+    texDesc.Width = w;
+    texDesc.Height = h;
+    texDesc.ArraySize = aSize;
+    texDesc.MipLevels = mLevels;
+    texDesc.Format = dxFormat;
     texDesc.SampleDesc.Count = 1;
     texDesc.Usage = D3D11_USAGE_DEFAULT;
     texDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
@@ -105,99 +64,225 @@ ID3D11Texture2D* create_d3d11_tex(D3D11_TEXTURE2D_DESC &texDesc, ID3D11Device* d
 
     CHECK_D3D11_ERROR(
         d3dDevice->CreateTexture2D(&texDesc, nullptr, &d3dTexture),
-        "Cannot create D3D11 2D texture",
-        "Created D3D11 2D texture"
-    );
+        "Cannot create D3D11 texture");
 
     return d3dTexture;
 }
 
+cudaTextureObject_t getTex(cudaArray_t input) {
+    cudaResourceDesc resDesc;
+    memset(&resDesc, 0, sizeof(resDesc));
+    resDesc.resType = cudaResourceTypeArray;
+    resDesc.res.array.array = input;
+
+    cudaTextureDesc texDesc = {};
+
+    cudaTextureObject_t tex;
+    cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);
+
+    return tex;
+}
+
+template <typename T>
+__global__ void accessTexture(T *output, cudaTextureObject_t texObj, int width, int height) {
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+
+    if (x < width && y < height)
+    {
+        // Access the texture element
+        T value = tex2D<T>(texObj, x, y);
+        output[y * width + x] = value;
+    }
+}
+
+cudaGraphicsResource_t initInterop(ID3D11Resource *d3dResource) {
+    cudaGraphicsResource_t cudaResource;
+
+    // Register the DirectX resource with CUDA
+    cudaGraphicsD3D11RegisterResource(&cudaResource, d3dResource, cudaGraphicsRegisterFlagsNone);
+
+    // Set the flags for CUDA resource mapping
+    cudaGraphicsResourceSetMapFlags(cudaResource, cudaGraphicsMapFlagsNone);
+
+    // Map the CUDA resource for access
+    cudaGraphicsMapResources(1, &cudaResource);
+
+    return cudaResource;
+}
+
+void cleanupInterop(cudaGraphicsResource_t cudaResource) {
+    // Unmap the CUDA resource
+    cudaGraphicsUnmapResources(1, &cudaResource);
+
+    // Unregister the CUDA resource
+    cudaGraphicsUnregisterResource(cudaResource);
+}
+
 int main() {
-    // Check CUDA-D3D11 env
-    int cudaDevIx = -1;
-    IDXGIFactory1* pFactory1 = nullptr;
-    IDXGIAdapter1* pAdapter1 = nullptr;
+    // Init DX env
+    IDXGIFactory1 *pFactory1 = nullptr;
+    IDXGIAdapter1 *pAdapter1 = nullptr;
+    ID3D11DeviceContext *d3dContext = nullptr;
+    ID3D11Device *d3dDevice = nullptr;
 
     if (SUCCEEDED(CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&pFactory1))) {
-        if (pFactory1->EnumAdapters1(1, &pAdapter1) == DXGI_ERROR_NOT_FOUND)
-            return 1;
+        for (UINT adapterIndex = 0; pFactory1->EnumAdapters1(adapterIndex, &pAdapter1) != DXGI_ERROR_NOT_FOUND; ++adapterIndex) {
+            DXGI_ADAPTER_DESC1 desc;
+            pAdapter1->GetDesc1(&desc);
+
+            if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE) {
+                continue;
+            }
+
+            d3dDevice = create_d3d11_dev(&d3dContext, pAdapter1);
+
+            if (d3dDevice != nullptr) {
+                break;
+            }
+        }
     }
-    
-    // Initialize DirectX
-    ID3D11DeviceContext* d3dContext = nullptr;
-    ID3D11Device* d3dDevice = create_d3d11_dev(&d3dContext, pAdapter1);
 
-    // Create a texture for DirectX and CUDA interoperability
-    D3D11_TEXTURE2D_DESC texDesc;
-    ID3D11Texture2D* d3dTexture = create_d3d11_tex(texDesc, d3dDevice);
+    {
+        // Init test data
+        const int w = 16;
+        const int h = 16;
 
-    // STEP: 1
-    // Register the DirectX resource with CUDA
-    cudaGraphicsResource_t cudaResource;
-    CHECK_CUDA_ERROR(
-        cudaGraphicsD3D11RegisterResource(&cudaResource, d3dTexture, cudaGraphicsRegisterFlagsNone),
-        "Cannot register D3D11 2D texture with CUDA resource",
-        "Registered D3D11 2D texture with CUDA resource"
-    );
+        float input[h * w] = {
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+            5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+            6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+            7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+            8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8
+        };
+        float *output;
+        cudaMallocManaged(&output, sizeof(input));
 
-    // STEP: 2
-    // Set the flags for CUDA resource mapping
-    CHECK_CUDA_ERROR(
-        cudaGraphicsResourceSetMapFlags(cudaResource, cudaGraphicsMapFlagsNone),
-        "Cannot set map flags for CUDA resource",
-        "Set map flags for CUDA resource"
-    );
+        // Create a texture for DirectX and CUDA interoperability
+        ID3D11Texture2D *d3dTexture = create_d3d11_tex(d3dDevice, w, h);
 
-    // STEP: 3
-    // Map the CUDA resource for access
-    CHECK_CUDA_ERROR(
-        cudaGraphicsMapResources(1, &cudaResource),
-        "Cannot map CUDA resource",
-        "Mapped CUDA resource"
-    );
+        // Init interop
+        cudaGraphicsResource_t cudaResource = initInterop(d3dTexture);
+        
+        // Get the mapped array from the CUDA resource
+        cudaArray_t cudaArr;
+        cudaGraphicsSubResourceGetMappedArray(&cudaArr, cudaResource, 0, 0);
 
-    // STEP: 4
-    // Get the mapped array from the CUDA resource
-    cudaArray_t cudaArr;
-    CHECK_CUDA_ERROR(
-        cudaGraphicsSubResourceGetMappedArray(&cudaArr, cudaResource, 0, 0),
-        "Cannot aquire texture data as a CUDA array",
-        "Aquired texture data as a CUDA array"
-    );
+        // Access the underlying memory of interop CUDA resource
+        cudaMemcpy2DToArray(cudaArr, 0, 0, input, sizeof(float) * w,
+                            sizeof(float) * w, h, cudaMemcpyHostToDevice);
+        cudaTextureObject_t tex = getTex(cudaArr);
 
-    if (!cudaArr)
-        std::cout << "[ERROR] cudaArr is nullptr" << std::endl;
+        dim3 blockSize(4, 4);
+        dim3 gridSize((w + blockSize.x - 1) / blockSize.x, (h + blockSize.y - 1) / blockSize.y);
+        accessTexture<<<gridSize, blockSize>>>(output, tex, w, h);
+        cudaDeviceSynchronize();
 
-    /*
-    // STEP: 5
-    // Test copying dummy data to the imported texture memory
-    bool status = write_to_imported_tex_mem(cudaArr);
-    std::cout << "[STATUS] Result: " << (status? "Success": "Fail") << std::endl;
-    */
+        cleanupInterop(cudaResource);
 
-    // STEP: 6
-    // Unmap the CUDA resource
-    CHECK_CUDA_ERROR(
-        cudaGraphicsUnmapResources(1, &cudaResource),
-        "Cannot unmap CUDA resource",
-        "Unmapped CUDA resource"
-    );
+        bool pass = true;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (output[i * w + j] != input[i * w + j]) {
+                    std::cout << "Failed: output[" << i << "][" << j << "] = " << output[i * w + j] << std::endl;
+                    pass = false;
+                }
+            }
 
-    // STEP: 7
-    // Unregister the CUDA resource
-    CHECK_CUDA_ERROR(
-        cudaGraphicsUnregisterResource(cudaResource),
-        "Cannot unregister D3D11 2D texture with CUDA resource",
-        "Unregistered D3D11 2D Texture with CUDA resource"
-    );
+            if (!pass) {
+                break;
+            }
+        }
 
-    // Cleanup
-    pFactory1->Release();
-    pAdapter1->Release();
+        if (pass) {
+            std::cout << "Case: float passed!" << std::endl;
+        }
+        else {
+            std::cout << "Case: float failed!" << std::endl;
+        }
 
-    d3dTexture->Release();
+        cudaDestroyTextureObject(tex);
+        cudaFree(output);
+        d3dTexture->Release();
+    }
+
+    {
+        // Init test data
+        const int w = 16;
+        const int h = 16;
+
+        uchar4 input[h * w] = {
+            {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1},
+            {2, 2, 2, 2}, {2, 2, 2, 2}, {2, 2, 2, 2}, {2, 2, 2, 2},
+            {3, 3, 3, 3}, {3, 3, 3, 3}, {3, 3, 3, 3}, {3, 3, 3, 3},
+            {4, 4, 4, 4}, {4, 4, 4, 4}, {4, 4, 4, 4}, {4, 4, 4, 4}};
+        uchar4 *output;
+        cudaMallocManaged(&output, sizeof(input));
+
+        // Create a texture for DirectX and CUDA interoperability
+        ID3D11Texture2D *d3dTexture = create_d3d11_tex(d3dDevice, w, h, DXGI_FORMAT_R8G8B8A8_UNORM);
+
+        // Init interop
+        cudaGraphicsResource_t cudaResource = initInterop(d3dTexture);
+        
+        // Get the mapped array from the CUDA resource
+        cudaArray_t cudaArr;
+        cudaGraphicsSubResourceGetMappedArray(&cudaArr, cudaResource, 0, 0);
+
+        // Access the underlying memory of interop CUDA resource
+        cudaMemcpy2DToArray(cudaArr, 0, 0, input, sizeof(uchar4) * w,
+                            sizeof(uchar4) * w, h, cudaMemcpyHostToDevice);
+        cudaTextureObject_t tex = getTex(cudaArr);
+
+        dim3 blockSize(4, 4);
+        dim3 gridSize((w + blockSize.x - 1) / blockSize.x, (h + blockSize.y - 1) / blockSize.y);
+        accessTexture<<<gridSize, blockSize>>>(output, tex, w, h);
+        cudaDeviceSynchronize();
+
+        cleanupInterop(cudaResource);
+
+        bool pass = true;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (output[i * w + j].x != input[i * w + j].x ||
+                    output[i * w + j].y != input[i * w + j].y ||
+                    output[i * w + j].z != input[i * w + j].z ||
+                    output[i * w + j].w != input[i * w + j].w) {
+                    std::cout << "Failed: output[" << i << "][" << j << "] = {"
+                              << output[i * w + j].x << ", "
+                              << output[i * w + j].y << ", "
+                              << output[i * w + j].z << ", "
+                              << output[i * w + j].w << "}"
+                              << std::endl;
+                    pass = false;
+                }
+            }
+
+            if (!pass) {
+                break;
+            }
+        }
+
+        if (pass) {
+            std::cout << "Case: uchar4 passed!" << std::endl;
+        }
+        else {
+            std::cout << "Case: uchar4 failed!" << std::endl;
+        }
+
+        cudaDestroyTextureObject(tex);
+        cudaFree(output);
+        d3dTexture->Release();
+    }
+
+    // DX cleanup
     d3dContext->Release();
     d3dDevice->Release();
+    pFactory1->Release();
+    pAdapter1->Release();
 
     cudaDeviceReset();
 
