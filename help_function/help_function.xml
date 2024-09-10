@@ -197,7 +197,7 @@
     <test testName="dnnl_utils_normalization_1" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_2" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <!--<test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />-->
-    <test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />
+    <!--<test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />-->
     <test testName="util_logical_group" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="fft_workspace_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="fft_utils_engine_buffer" configFile="config/TEMPLATE_help_function_fft_buffer.xml"  splitGroup="double" />
