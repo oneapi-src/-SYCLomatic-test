@@ -94,10 +94,7 @@ template <dpct::group::group_load_algorithm T> bool test_group_load() {
 
   q.submit([&](sycl::handler &h) {
     using BlockLoadT = 
-         dpct::group::group_load<int, 4,
-                              T>;
-    //using group_load =
-    //    dpct::group::workgroup_load<4, T, int, const int *, sycl::nd_item<3>>;
+         dpct::group::group_load<int, 4, T>;
     size_t temp_storage_size = BlockLoadT::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
     sycl::accessor data_accessor_read(buffer, h, sycl::read_only);
