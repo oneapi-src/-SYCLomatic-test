@@ -7,10 +7,11 @@
 //
 // ===---------------------------------------------------------------------===//
 
-#include <cstdio>
-
-#include <dpct/rng_utils.hpp>
 #include <sycl/sycl.hpp>
+#include <dpct/dpct.hpp>
+#include <dpct/rng_utils.hpp>
+
+#include <cstdio>
 
 using namespace dpct::rng;
 

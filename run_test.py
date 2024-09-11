@@ -141,12 +141,14 @@ def prepare_test_case(case_name, test_config_path, root_path, split_group):
 def import_test_module(workspace):
     do_test_script = os.path.join(workspace, "do_test.py")
     driver_path = os.path.dirname(do_test_script)
-
     sys.path.append(driver_path)
     if os.path.exists(do_test_script):
         module = importlib.import_module("do_test")
         importlib.invalidate_caches()
-        importlib.reload(module)
+        try:
+            importlib.reload(module)
+        except SyntaxError:
+            return ""
         return module
     return ""
 
@@ -191,14 +193,16 @@ def run_test_driver(module):
     test_config.test_status = ""
     ret_val = True
     specific_module = ""
-
-    if is_registered_module(case_workspace):
-        specific_module = import_test_module(case_workspace)
     migrated = False
     built = False
     run = False
-
-    ret_val = test_setup(module, specific_module)
+    if is_registered_module(case_workspace):
+        specific_module = import_test_module(case_workspace)
+        if not specific_module:
+            test_config.test_status = "BADTEST"
+            ret_val = False
+    if ret_val:
+        ret_val = test_setup(module, specific_module)
     if ret_val:
         ret_val = test_migrate(module, specific_module)
         migrated = True
@@ -267,10 +271,18 @@ def is_option_supported(option_rule_list):
             if test_config.backend_device not in test_config.support_double_gpu:
                 return False
     return True
-
-def test_single_case(current_test, single_case_config, workspace, suite_root_path):
-    module = import_test_driver(suite_root_path)
+def set_global_test_config(workspace, current_test, option):
+    if not test_config.command_file:
+        test_config.command_file = workspace + "command.tst"
+    if not test_config.result_text:
+        test_config.result_text = workspace + "result.md"
+    test_config.log_file = os.path.join(workspace, current_test + ".lf")
     test_config.current_test = current_test
+    set_default_compiler(option == 'option_cuda_backend')
+
+def test_single_case(current_test, single_case_config, workspace, suite_root_path, option):
+    set_global_test_config(workspace, current_test, option)
+    module = import_test_driver(suite_root_path)
     test_config.executed_command = "================= " + test_config.current_test + " ==================\n"
     if single_case_config.platform_rule_list and not is_platform_supported(single_case_config.platform_rule_list):
         append_log_to_file(test_config.result_text, current_test + " Skip " + "\n")
@@ -285,7 +297,6 @@ def test_single_case(current_test, single_case_config, workspace, suite_root_pat
         os.makedirs(case_workspace)
     os.chdir(workspace)
 
-    test_config.log_file = os.path.join(workspace, current_test + ".lf")
     copy_source_to_ws(single_case_config.test_dep_files, case_workspace, suite_root_path)
     test_result = run_test_driver(module)
     # Write the execution command to command.tst, execution log to <test case>.lf, execution result to result.md
@@ -329,6 +340,7 @@ failed_cases = []
 passed_cases = []
 def collect_result(result):
     global failed_cases
+    global passed_cases
     if not result[0]:
         failed_cases.append(result[1]) # Case Name
     else:
@@ -343,7 +355,7 @@ def test_suite(suite_root_path, suite_name, opt):
     pool = mp.Pool(cpu_count)
     test_config.suite_cfg.test_config_map = get_gpu_split_test_suite(test_config.suite_cfg)
     for current_test, single_case_config in test_config.suite_cfg.test_config_map.items():
-        args = (current_test, single_case_config, test_workspace, suite_root_path)
+        args = (current_test, single_case_config, test_workspace, suite_root_path, opt)
         pool.apply_async(test_single_case, args, callback=collect_result)
     pool.close()
     pool.join()
@@ -353,7 +365,7 @@ def test_suite(suite_root_path, suite_name, opt):
     global passed_cases
     failed_logs = []
     for current_test in failed_cases:
-        ret_val, test_name, test_status = test_single_case(current_test, test_config.suite_cfg.test_config_map[current_test], test_workspace, suite_root_path)
+        ret_val, test_name, test_status = test_single_case(current_test, test_config.suite_cfg.test_config_map[current_test], test_workspace, suite_root_path, opt)
         if not ret_val:
             failed_logs.append(test_name + " " + test_status)
         else:
@@ -376,12 +388,11 @@ def test_single_case_in_suite(suite_root_path, suite_name, case, option):
     test_ws_root = os.path.join(os.path.dirname(suite_root_path), "test_workspace")
     test_config.suite_cfg = parse_suite_cfg(suite_name, suite_root_path)
     test_workspace = prepare_test_workspace(test_ws_root, suite_name, option, case)
-
     config_running_device(option)
     if case not in test_config.suite_cfg.test_config_map.keys():
         exit("The test case " + case + " is not in the " + suite_name + " test suite! Please double check.")
     single_case_config = test_config.suite_cfg.test_config_map[case]
-    retval, name, status = test_single_case(case, single_case_config, test_workspace, suite_root_path)
+    retval, name, status = test_single_case(case, single_case_config, test_workspace, suite_root_path, option)
     return retval
 
 # Before run the test:

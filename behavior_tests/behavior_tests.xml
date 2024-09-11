@@ -170,6 +170,7 @@
         <test testName="trap" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-code-pin-log-filename" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="analysis-mode" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="codepin-graph" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="ngt-check-options" configFile="config/TEMPLATE_behavior_tests.xml" />
     </tests>
 

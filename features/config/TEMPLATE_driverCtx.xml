@@ -5,4 +5,7 @@
     <files>
       <file path="feature_case/driverCtx/driverCtx.cu" />
     </files>
+    <rules>
+      <optlevelRule excludeOptlevelNameString="syclcompat" />
+    </rules>
 </test>

@@ -25,8 +25,7 @@ def migrate_test():
     print("expected dpct version output: {0}".format(dpct_version_expected))
     print(f"expected clang version output: {clang_version_expected}")
     print("\n'dpct --version' outputs {0}".format(test_config.command_output))
-    return is_sub_string(dpct_version_expected, test_config.command_output) 
-            and is_sub_string(clang_version_expected, test_config.command_output)
+    return is_sub_string(dpct_version_expected, test_config.command_output) and is_sub_string(clang_version_expected, test_config.command_output)
 
 def build_test():
     return True

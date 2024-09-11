@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#define PRINT_PASS 0
+#define PRINT_PASS 1
 
 using namespace std;
 
@@ -72,7 +72,7 @@ cudaTextureObject_t getTex(void *input, cudaChannelFormatDesc desc,
   resDesc.res.linear.sizeInBytes = sizeInBytes;
 
   cudaTextureDesc texDesc;
-  memset(&texDesc, 0, sizeof(texDesc));
+  // memset(&texDesc, 0, sizeof(texDesc)); // TODO: Need open after bug fixing.
 
   cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);

@@ -114,7 +114,7 @@ def migrate_test():
             ["cuDeviceGetName(pc /*char **/, i /*int*/, d /*CUdevice*/);"],
             [],
             [
-                "memcpy(pc, dpct::dev_mgr::instance().get_device(d).get_info<sycl::info::device::name>().c_str(), i);"
+                "memcpy(pc, dpct::get_device(d).get_info<sycl::info::device::name>().c_str(), i);"
             ],
         ],
         [  # Math
@@ -182,7 +182,7 @@ def migrate_test():
             ],
             [],
             [
-                "dpct::sparse::spmm(*handle, transa, transb, alpha, a, b, beta, c, computetype);"
+                "dpct::sparse::spmm(handle->get_queue(), transa, transb, alpha, a, b, beta, c, computetype);"
             ],
         ],
         [  # NCCL

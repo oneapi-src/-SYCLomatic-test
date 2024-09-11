@@ -88,12 +88,14 @@ def migrate_test():
     reference = 'sycl,dpct\n' + \
                 'sycl,none\n' + \
                 'sycl,sycl\n' + \
-                'sycl,sycl-math\n'
+                'sycl,sycl-math\n' + \
+                'sycl,syclcompat\n'
     res = res and (reference == test_config.command_output)
 
     call_subprocess(test_config.CT_TOOL + " --autocomplete=--usm-level=#none,restricted#--use-explicit-namespace=#sycl,s")
     reference = 'sycl,sycl\n' + \
-                'sycl,sycl-math\n'
+                'sycl,sycl-math\n' + \
+                'sycl,syclcompat\n'
     res = res and (reference == test_config.command_output)
 
     call_subprocess(test_config.CT_TOOL + " --autocomplete=")
@@ -114,22 +116,34 @@ def migrate_test():
 
     call_subprocess(test_config.CT_TOOL + " --autocomplete=-")
     opts = ['--always-use-async-handler\n',
+            '--analysis-mode\n',
+            '--analysis-mode-output-file\n',
             '--analysis-scope-path\n',
             '--assume-nd-range-dim=\n',
             '--build-script-file\n',
+            '--change-cuda-files-extension-only\n',
             '--check-unicode-security\n',
+            '--codepin-report\n',
             '--comments\n',
+            '--compilation-database\n',
             '--cuda-include-path\n',
+            '--enable-codepin\n',
             '--enable-ctad\n',
             '--enable-profiling\n',
             '--extra-arg\n',
             '--format-range=\n',
             '--format-style=\n',
             '--gen-build-script\n',
+            '--gen-helper-function\n',
             '--help=\n',
+            '--helper-function-dir\n',
+            '--helper-function-preference=\n',
             '--in-root\n',
             '--in-root-exclude\n',
+            '--intercept-build\n',
             '--keep-original-code\n',
+            '--migrate-build-script-only\n',
+            '--migrate-build-script=\n',
             '--no-dpcpp-extensions=\n',
             '--no-dry-pattern\n',
             '--no-incremental-migration\n',
@@ -138,6 +152,7 @@ def migrate_test():
             '--output-file\n',
             '--output-verbosity=\n',
             '--process-all\n',
+            '--query-api-mapping\n',
             '--report-file-prefix\n',
             '--report-format=\n',
             '--report-only\n',
@@ -146,10 +161,12 @@ def migrate_test():
             '--stop-on-parse-err\n',
             '--suppress-warnings\n',
             '--suppress-warnings-all\n',
+            '--sycl-file-extension=\n',
             '--sycl-named-lambda\n',
             '--use-dpcpp-extensions=\n',
             '--use-experimental-features=\n',
             '--use-explicit-namespace=\n',
+            '--use-syclcompat\n',
             '--usm-level=\n',
             '--version\n',
             '-p\n']

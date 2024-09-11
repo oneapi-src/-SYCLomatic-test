@@ -5,5 +5,7 @@
     <files>
       <file path="feature_case/driverStreamAndEvent/defaultStream.cu" />
     </files>
-    <rules />
+    <rules>
+      <optlevelRule excludeOptlevelNameString="syclcompat" />
+    </rules>
 </test>

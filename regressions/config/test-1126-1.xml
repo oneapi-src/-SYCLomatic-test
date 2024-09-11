@@ -7,5 +7,6 @@
    </files>
    <rules>
      <optlevelRule excludeOptlevelNameString="acc" />
+     <optlevelRule excludeOptlevelNameString="syclcompat" />
    </rules>
 </test>

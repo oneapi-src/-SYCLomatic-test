@@ -5,4 +5,7 @@
     <files>
       <file path="feature_case/driverArray/driverArray.cu" />
     </files>
+    <rules>
+      <optlevelRule excludeOptlevelNameString="syclcompat" />
+   </rules>
 </test>

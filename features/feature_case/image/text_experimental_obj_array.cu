@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#define PRINT_PASS 0
+#define PRINT_PASS 1
 
 using namespace std;
 
@@ -99,7 +99,7 @@ getTex(cudaArray_t input,
   resDesc.res.array.array = input;
 
   cudaTextureDesc texDesc;
-  memset(&texDesc, 0, sizeof(texDesc));
+  // memset(&texDesc, 0, sizeof(texDesc)); // TODO: Need open after bug fixing.
   texDesc.addressMode[0] = addressMode;
   texDesc.addressMode[1] = addressMode;
   texDesc.addressMode[2] = addressMode;

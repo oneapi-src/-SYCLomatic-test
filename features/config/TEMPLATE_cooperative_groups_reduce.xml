@@ -8,8 +8,9 @@
     <rules>
         <platformRule OSFamily="Linux" kit="CUDA11.8" kitRange="OLDER" runOnThisPlatform="false"/>
         <platformRule OSFamily="Windows" kit="CUDA11.8" kitRange="OLDER" runOnThisPlatform="false"/>
-	<platformRule OSFamily="Linux" kit="GCC9.3.0" kitRange="OLDER" runOnThisPlatform="false" />
+        <platformRule OSFamily="Linux" kit="GCC9.3.0" kitRange="OLDER" runOnThisPlatform="false" />
         <optlevelRule excludeOptlevelNameString="cpu" />
         <optlevelRule excludeOptlevelNameString="cuda" />
+        <optlevelRule excludeOptlevelNameString="syclcompat" />
     </rules>
 </test>
