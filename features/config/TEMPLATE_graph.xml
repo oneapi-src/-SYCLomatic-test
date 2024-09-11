@@ -7,5 +7,6 @@
     </files>
     <rules>
         <optlevelRule excludeOptlevelNameString="cpu" />
+        <optlevelRule excludeOptlevelNameString="usmnone" />
     </rules>
 </test>
