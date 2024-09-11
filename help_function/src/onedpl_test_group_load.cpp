@@ -13,9 +13,9 @@
 #include <oneapi/dpl/iterator>
 #include <sycl/sycl.hpp>
 
-template <dpct::group::load_algorithm T>
+template <dpct::group::group_load_algorithm T>
 bool helper_validation_function(const int *ptr, const char *func_name) {
-  if constexpr (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
+  if constexpr (T == dpct::group::group_load_algorithm::blocked) {
     for (int i = 0; i < 512; ++i) {
       if (ptr[i] != i) {
         std::cout << func_name << "_blocked"
@@ -80,9 +80,9 @@ bool subgroup_helper_validation_function(const int *ptr, const uint32_t *sg_sz,
   return true;
 }
 
-template <dpct::group::load_algorithm T> bool test_group_load() {
-  // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT &
-  // dpct::group::load_algorithm::BLOCK_LOAD_STRIPED in its entirety as API
+template <dpct::group::group_load_algorithm T> bool test_group_load() {
+  // Tests dpct::group::group_load_algorithm::blocked &
+  // dpct::group::group_load_algorithm::striped in its entirety as API
   // functions
   sycl::queue q(dpct::get_default_queue());
   oneapi::dpl::counting_iterator<int> count_it(0);
@@ -93,9 +93,12 @@ template <dpct::group::load_algorithm T> bool test_group_load() {
   sycl::buffer<int, 1> buffer_out(data_out, 512);
 
   q.submit([&](sycl::handler &h) {
-    using group_load =
-        dpct::group::workgroup_load<4, T, int, const int *, sycl::nd_item<3>>;
-    size_t temp_storage_size = group_load::get_local_memory_size(128);
+    using BlockLoadT = 
+         dpct::group::group_load<int, 4,
+                              T>;
+    //using group_load =
+    //    dpct::group::workgroup_load<4, T, int, const int *, sycl::nd_item<3>>;
+    size_t temp_storage_size = BlockLoadT::get_local_memory_size(128);
     sycl::local_accessor<uint8_t, 1> tacc(sycl::range<1>(temp_storage_size), h);
     sycl::accessor data_accessor_read(buffer, h, sycl::read_only);
     sycl::accessor data_accessor_write(buffer_out, h, sycl::write_only);
@@ -107,7 +110,7 @@ template <dpct::group::load_algorithm T> bool test_group_load() {
               data_accessor_read.get_multi_ptr<sycl::access::decorated::yes>()
                   .get();
           auto *tmp = tacc.get_multi_ptr<sycl::access::decorated::yes>().get();
-          group_load(tmp).load(item, d_r, thread_data);
+          BlockLoadT(tmp).load(item, d_r, thread_data);
           // Write thread_data of each work item at index to the global buffer
           int global_index =
               item.get_group(2) * item.get_local_range().get(2) +
@@ -177,7 +180,7 @@ bool test_load_subgroup_striped_standalone() {
       ptr, ptr_sg, "test_subgroup_striped_standalone");
 }
 
-template <dpct::group::load_algorithm T> bool test_group_load_standalone() {
+template <dpct::group::group_load_algorithm T> bool test_group_load_standalone() {
   // Tests dpct::group::load_algorithm::BLOCK_LOAD_DIRECT &
   // dpct::group::load_algorithm::BLOCK_LOAD_STRIPED as standalone methods
   sycl::queue q(dpct::get_default_queue());
@@ -199,10 +202,10 @@ template <dpct::group::load_algorithm T> bool test_group_load_standalone() {
           int thread_data[4];
           auto *d_r =
               dacc_read.get_multi_ptr<sycl::access::decorated::yes>().get();
-          if constexpr (T == dpct::group::load_algorithm::BLOCK_LOAD_DIRECT) {
-            dpct::group::load_blocked(item, d_r, thread_data);
+          if constexpr (T == dpct::group::group_load_algorithm::blocked) {
+            dpct::group::load_direct_blocked(item, d_r, thread_data);
           } else {
-            dpct::group::load_striped(item, d_r, thread_data);
+            dpct::group::load_direct_striped(item, d_r, thread_data);
           }
           // Write thread_data of each work item at index to the global buffer
           int global_index =
@@ -226,14 +229,14 @@ int main() {
   return !(
       // Calls test_group_load with blocked and striped strategies , should pass
       // both results.
-      test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>() &&
-      test_group_load<dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() &&
+      test_group_load<dpct::group::group_load_algorithm::blocked>() &&
+      test_group_load<dpct::group::group_load_algorithm::striped>() &&
       // Calls test_load_subgroup_striped_standalone and should pass
       test_load_subgroup_striped_standalone() &&
       // Calls test_group_load_standalone with blocked and striped strategies as
       // free functions, should pass both results.
       test_group_load_standalone<
-          dpct::group::load_algorithm::BLOCK_LOAD_STRIPED>() &&
+          dpct::group::group_load_algorithm::striped>() &&
       test_group_load_standalone<
-          dpct::group::load_algorithm::BLOCK_LOAD_DIRECT>());
+          dpct::group::group_load_algorithm::blocked>());
 }
