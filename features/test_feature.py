@@ -62,7 +62,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
               'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform",
-              "graphics_interop_d3d11"]
+              "graphics_interop_d3d11", 'graph']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -126,6 +126,8 @@ def migrate_test():
         src.append(' --use-experimental-features=bindless_images')
     if "codepin" in test_config.current_test:
         src.append(' --enable-codepin ')
+    if test_config.current_test == 'graph':
+        src.append(' --use-experimental-features=graph ')
     return do_migrate(src, in_root, test_config.out_root, extra_args)
 
 def manual_fix_for_cufft_external_workspace(migrated_file):
