@@ -1,7 +1,7 @@
 #include <cuda.h>
 #include <iostream>
 
-int main() {
+int driverStreamQuery(void) {
     CUstream stream;
 
     // Initialize the CUDA Driver API
