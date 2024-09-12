@@ -7,6 +7,8 @@
 //
 // ===---------------------------------------------------------------------===//
 
+#include <sycl/sycl.hpp>
+
 #include <dpct/dpct.hpp>
 
 int passed = 0;
@@ -14,32 +16,30 @@ int failed = 0;
 
 template <typename T>
 void check(const std::string &name, const T &expect, const T &output) {
-  printf("%s: ", name.c_str());
+  std::cout << name << ": (" << expect << "==" << output << ") -- ";
   if constexpr (std::is_integral_v<T>) {
-    printf("(%d==%d) -- ", expect, output);
     if (expect == output) {
-      printf("pass\n");
+      std::cout << "pass" << std::endl;
       ++passed;
       return;
     }
   } else {
-    printf("(%f==%f) -- ", expect, output);
     if (expect > output - 0.0001 && expect < output + 0.0001) {
-      printf("pass\n");
+      std::cout << "pass" << std::endl;
       ++passed;
       return;
     }
   }
   ++failed;
-  printf("failed\n");
+  std::cout << "failed" << std::endl;
 }
 
 int main() {
-  double d;
-  float f;
-  int i;
-  dpct::fast_length(&f, i);
-  dpct::length(&d, i);
+  std::cout << "test start" << std::endl;
+  double d = 1;
+  float f = 1;
+  check("clamp", (float)1.0, dpct::fast_length(&f, 1));
+  check("clamp", 1.0, dpct::length(&d, 1));
   check("clamp", 4, dpct::clamp(5, 3, 4));
   check("clamp", 4.0, dpct::clamp(5.0, 3.0, 4.0));
   check("compare", true,
@@ -100,9 +100,10 @@ int main() {
         dpct::vectorized_unary<sycl::short2>(1, dpct::abs()));
   check("vectorized_sum_abs_diff", (unsigned)1,
         dpct::vectorized_sum_abs_diff<sycl::short2>(1, 2));
-  printf("passed %d/%d cases!\n", passed, passed + failed);
+  std::cout << "passed " << passed << "/" << passed + failed << " cases!"
+            << std::endl;
   if (failed) {
-    printf("failed!\n");
+    std::cout << "failed!" << std::endl;
   }
   return failed;
 }

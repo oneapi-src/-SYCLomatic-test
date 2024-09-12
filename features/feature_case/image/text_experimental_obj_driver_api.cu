@@ -22,11 +22,11 @@ const int d = 2;
 const int h = 2;
 const int w = 4;
 const float2 data1d[w] = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
-/*const*/ float2 data2d[h * w] = {
+const float2 data2d[h * w] = {
     {1, 2},  {3, 4},   {5, 6},   {7, 8},   // 1
     {9, 10}, {11, 12}, {13, 14}, {15, 16}, // 2
 };
-/*const*/ float2 data3d[d * h * w] = {
+const float2 data3d[d * h * w] = {
     {1, 2},   {3, 4},   {5, 6},   {7, 8},   // 1:1
     {9, 10},  {11, 12}, {13, 14}, {15, 16}, // 1:2
 
@@ -597,9 +597,9 @@ int main() {
   p2d.dstArray = a;
   p2d.WidthInBytes = w * sizeof(float2);
   p2d.Height = h;
-  // cuMemcpy2D(&p2d); // TODO: Need open after bug fixing.
+  cuMemcpy2D(&p2d);
 
-  // testCuMemcpy2D(a); // TODO: Need open after bug fixing.
+  testCuMemcpy2D(a);
 
   cuArrayDestroy(a);
 
@@ -619,9 +619,9 @@ int main() {
   p3d.WidthInBytes = w * sizeof(float2);
   p3d.Height = h;
   p3d.Depth = d;
-  // cuMemcpy3D(&p3d); // TODO: Need open after bug fixing.
+  cuMemcpy3D(&p3d);
 
-  // testCuMemcpy3D(a); // TODO: Need open after bug fixing.
+  testCuMemcpy3D(a);
 
   cuArrayDestroy(a);
 
