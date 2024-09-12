@@ -9,6 +9,7 @@
 // ===----------------------------------------------------------------------===//
 #include <dpct/dpct.hpp>
 #include <dpct/dpl_utils.hpp>
+#include <dpct/group_utils.hpp>
 #include <iostream>
 #include <oneapi/dpl/iterator>
 #include <sycl/sycl.hpp>

@@ -83,6 +83,7 @@
     <test testName="util_vectorized_max_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_vectorized_min_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="util_DataType_test" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="util_group_load_test" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_util" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_dev_mgr" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="device_device_ext" configFile="config/TEMPLATE_help_function.xml" />
