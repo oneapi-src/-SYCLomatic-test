@@ -5,5 +5,7 @@
     <files>
         <file path="feature_case/context_push_n_pop/${testName}.cu" />
     </files>
-    <rules />
+    <rules>
+        <optlevelRule excludeOptlevelNameString="syclcompat" />
+    </rules>
 </test>
