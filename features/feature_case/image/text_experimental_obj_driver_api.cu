@@ -318,7 +318,6 @@ void testCuMemcpyAtoA(const CUarray &a) {
   expect = {{0, 0}, {1, 2}, {3, 4}, {5, 6}};
   testCuMemcpyAtoA("testCuMemcpyAtoA:1,0;-1", a, 1 * sizeof(float2), 0,
                    (w - 1) * sizeof(float2), expect);
-  return; // TODO: Need open following cases after bug fixing.
   expect = {{3, 4}, {5, 6}, {7, 8}, {0, 0}};
   testCuMemcpyAtoA("testCuMemcpyAtoA:0,1;-1", a, 0, 1 * sizeof(float2),
                    (w - 1) * sizeof(float2), expect);
@@ -364,7 +363,6 @@ void testCuMemcpyAtoD(const CUarray &a) {
   expect = {{1, 2}, {3, 4}, {5, 6}, {0, 0}};
   testCuMemcpyAtoD("testCuMemcpyAtoD:0;-1", a, 0, (w - 1) * sizeof(float2),
                    expect);
-  return; // TODO: Need open following cases after bug fixing.
   expect = {{3, 4}, {5, 6}, {7, 8}, {0, 0}};
   testCuMemcpyAtoD("testCuMemcpyAtoD:1;-1", a, 1 * sizeof(float2),
                    (w - 1) * sizeof(float2), expect);
@@ -410,7 +408,6 @@ void testCuMemcpyAtoH(const CUarray &a) {
                    expect, false);
   testCuMemcpyAtoH("testCuMemcpyAtoHAsync:0;-1", a, 0, (w - 1) * sizeof(float2),
                    expect, true);
-  return; // TODO: Need open following cases after bug fixing.
   expect = {{3, 4}, {5, 6}, {7, 8}, {0, 0}};
   testCuMemcpyAtoH("testCuMemcpyAtoH:1;-1", a, 1 * sizeof(float2),
                    (w - 1) * sizeof(float2), expect, false);
