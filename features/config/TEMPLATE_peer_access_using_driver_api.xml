@@ -3,9 +3,7 @@
 <test driverID="test_feature" name="TEMPLATE">
     <description>test</description>
     <files>
-        <file path="feature_case/math/${testName}.cu" />
+        <file path="feature_case/peer_access_using_driver_api/${testName}.cu" />
     </files>
-    <rules>
-        <optlevelRule excludeOptlevelNameString="syclcompat" />
-    </rules>
+    <rules />
 </test>

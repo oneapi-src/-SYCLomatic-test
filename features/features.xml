@@ -329,6 +329,7 @@
     <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_memcpy2d_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
@@ -356,5 +357,7 @@
     <test testName="transform" configFile="config/TEMPLATE_cublasLt.xml" />
     <test testName="graphics_interop_d3d11" configFile="config/TEMPLATE_cudaGraphics_Interop.xml" />
     <test testName="graph" configFile="config/TEMPLATE_graph.xml" />
+    <test testName="peer_access_using_driver_api" configFile="config/TEMPLATE_peer_access_using_driver_api.xml" />
+    <test testName="context_push_n_pop" configFile="config/TEMPLATE_context_push_n_pop.xml" />
   </tests>
 </suite>

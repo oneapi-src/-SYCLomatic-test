@@ -4,6 +4,7 @@
     <description>test</description>
     <files>
       <file path="feature_case/driverStreamAndEvent/driverStreamAndEvent.cu" />
+      <file path="feature_case/driverStreamAndEvent/driverStreamQuery.cu" />
     </files>
     <rules />
 </test>

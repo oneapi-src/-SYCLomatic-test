@@ -3,7 +3,7 @@
 <test driverID="test_feature" name="TEMPLATE">
     <description>test</description>
     <files>
-        <file path="feature_case/math/${testName}.cu" />
+        <file path="feature_case/context_push_n_pop/${testName}.cu" />
     </files>
     <rules>
         <optlevelRule excludeOptlevelNameString="syclcompat" />

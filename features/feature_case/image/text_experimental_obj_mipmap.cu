@@ -72,7 +72,7 @@ getTex(cudaMipmappedArray_t input, float minMipmapLevelClamp,
   resDesc.res.mipmap.mipmap = input;
 
   cudaTextureDesc texDesc;
-  // memset(&texDesc, 0, sizeof(texDesc)); // TODO: Need open after bug fixing.
+  memset(&texDesc, 0, sizeof(texDesc));
   texDesc.maxAnisotropy = maxAnisotropy;
   texDesc.mipmapFilterMode = mipmapFilterMode;
   texDesc.minMipmapLevelClamp = minMipmapLevelClamp;

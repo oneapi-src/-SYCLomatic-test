@@ -18,6 +18,8 @@ void callback(CUstream hStream, CUresult status, void* userData) {
   process(hStream, data, status);
 }
 
+int driverStreamQuery(void);
+
 int main(){
   CUfunction f;
   CUstream s;
@@ -61,6 +63,7 @@ int main(){
   cuStreamDestroy(s);
   cuEventDestroy(start);
   cuEventDestroy(end);
-  return 0;
+
+  return driverStreamQuery();
 }
 
