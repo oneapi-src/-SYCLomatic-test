@@ -61,7 +61,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform",
+              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform",  "context_push_n_pop",
               "graphics_interop_d3d11", 'graph']
 
 occupancy_calculation_exper = ['occupancy_calculation']
