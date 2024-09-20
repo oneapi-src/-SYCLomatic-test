@@ -1,3 +1,11 @@
+// ====------ graph.cu ------------------------------------ *- CUDA -* ---===//
+//
+// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+// See https://llvm.org/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+//
+//===----------------------------------------------------------------------===//
+
 #include <stdio.h>
 
 const int blockSize = 256;
@@ -46,7 +54,7 @@ int main() {
   cudaMemcpy(h_a, d_a, 10 * sizeof(float), cudaMemcpyDeviceToHost);
 
   for (int i = 0; i < 10; i++) {
-    if (h_a[i] != 2.0f) {
+    if (fabs(h_a[i] - 2.0) < 1e-6) {
       printf("Results do not match\n");
       return -1;
     }
