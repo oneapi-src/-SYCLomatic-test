@@ -6,7 +6,9 @@
         <file path="feature_case/graph/${testName}.cu" />
     </files>
     <rules>
-        <optlevelRule excludeOptlevelNameString="cpu" />
+	<platformRule OSFamily="Linux" kit="CUDA10.0" kitRange="OLDER" runOnThisPlatform="false"/>
+	<platformRule OSFamily="Windows" kit="CUDA10.0" kitRange="OLDER" runOnThisPlatform="false"/>
+	<optlevelRule excludeOptlevelNameString="cpu" />
 	<optlevelRule excludeOptlevelNameString="usmnone" />
 	<optlevelRule excludeOptlevelNameString="syclcompat" />
     </rules>
