@@ -12,14 +12,14 @@
     <test testName="async_exception" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="dpct_device_info" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="max" configFile="config/TEMPLATE_help_function.xml" />
-    <!-- <test testName="memcpy3D" configFile="config/TEMPLATE_help_function.xml" /> -->
+    <test testName="memcpy3D" configFile="config/TEMPLATE_help_function.xml" /> 
     <test testName="memcpy3D_2" configFile="config/TEMPLATE_help_function.xml" />
-    <!-- <test testName="memory_management_test1" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <test testName="memory_management_test1" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="memory_management_test2" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="memory_management_test3" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+    <test testName="memory_management_test3" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> 
     <test testName="global_memory" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="global_memory_usm" configFile="config/TEMPLATE_help_function.xml" />
-     <!-- <test testName="multi_definition_test" configFile="config/multi_definition_test_lin.xml" /> -->
+     <test testName="multi_definition_test" configFile="config/multi_definition_test_lin.xml" /> 
     <test testName="shared_memory" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="shared_memory_usm" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="test_default_queue_2" configFile="config/test_default_queue_2.xml" />
@@ -36,7 +36,7 @@
     <test testName="math" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="cpu_device_index_initializaion_test" configFile="config/cpu_device_index_initializaion_test.xml" />
     <test testName="image_wrapper_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" />
-    <!-- <test testName="image_wrapper_2_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" /> -->
+    <test testName="image_wrapper_2_usm" configFile="config/TEMPLATE_syclct_help_function_image_wrapper_usm.xml" /> 
     <test testName="memory_async_dpct_free" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="memory_is_device_ptr" configFile="config/TEMPLATE_help_function_usmnone.xml" />
     <test testName="dpct_dpct_align_and_dpct_inline" configFile="config/TEMPLATE_help_function.xml" />
@@ -118,8 +118,8 @@
     <test testName="onedpl_test_min_element" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_nontrivial_run_length_encode" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-   <!-- <test testName="onedpl_test_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> 
-    <test testName="onedpl_test_partition_flagged" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
+   <test testName="onedpl_test_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> 
+    <test testName="onedpl_test_partition_flagged" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> 
     <test testName="onedpl_test_partition_if" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_partition_point" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_raw_pointer_cast" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double" />
@@ -138,7 +138,7 @@
     <test testName="onedpl_test_null_type" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_segmented_sort_keys" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_stable_partition_copy" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
- <!--   <test testName="onedpl_test_stable_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />-->
+   <test testName="onedpl_test_stable_partition" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_sys_tag_utils" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="onedpl_test_tabulate" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_tagged_pointer" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -147,7 +147,7 @@
     <test testName="onedpl_test_transform" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_transform_output_iterator" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="onedpl_test_group_sort" configFile="config/TEMPLATE_help_function.xml" />
-    <!-- <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" /> -->
+    <test testName="onedpl_test_group_load" configFile="config/TEMPLATE_help_function.xml" /> 
     <test testName="onedpl_test_transform_reduce" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_translate_key" configFile="config/TEMPLATE_help_function_skip_double.xml"  splitGroup="double" />
     <test testName="onedpl_test_uninitialized_fill" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
@@ -171,21 +171,21 @@
     <test testName="lib_common_utils_mkl_get_version" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="rng_generator" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double"/>
     <test testName="rng_generator_vec_size_1" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double"/>
-    <!--<test testName="rng_host" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double"/>-->
+    <test testName="rng_host" configFile="config/TEMPLATE_help_function_skip_double.xml" splitGroup="double"/>
     <test testName="blas_extension_api_buffer" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_extension_api_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="dnnl_utils_version" configFile="config/TEMPLATE_help_function_usm.xml" />
-    <!--<test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />-->
+    <test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />
     <test testName="dnnl_utils_activation" configFile="config/TEMPLATE_help_function_usm_skip_win.xml" />
     <test testName="dnnl_utils_fill" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_lrn" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_memory" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_pooling" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_reorder" configFile="config/TEMPLATE_help_function_usm.xml" />
-   <!-- <test testName="dnnl_utils_scale" configFile="config/TEMPLATE_help_function_usm.xml" /> -->
-   <!-- <test testName="dnnl_utils_softmax" configFile="config/TEMPLATE_help_function_usm.xml" />  -->
+   <test testName="dnnl_utils_scale" configFile="config/TEMPLATE_help_function_usm.xml" /> 
+   <test testName="dnnl_utils_softmax" configFile="config/TEMPLATE_help_function_usm.xml" />  
     <test testName="dnnl_utils_sum" configFile="config/TEMPLATE_help_function_usm.xml" />
-   <!-- <test testName="dnnl_utils_binary" configFile="config/TEMPLATE_help_function_usm.xml" /> -->
+   <test testName="dnnl_utils_binary" configFile="config/TEMPLATE_help_function_usm.xml" /> 
     <test testName="dnnl_utils_reduction" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_convolution_1" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_convolution_2" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -197,8 +197,8 @@
     <test testName="dnnl_utils_batch_normalization_3" configFile="config/TEMPLATE_help_function_usmnone_skip_double.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_1" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_2" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
-    <!--<test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />-->
-    <!--<test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />-->
+    <test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
+    <test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_logical_group" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="fft_workspace_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="fft_utils_engine_buffer" configFile="config/TEMPLATE_help_function_fft_buffer.xml"  splitGroup="double" />
