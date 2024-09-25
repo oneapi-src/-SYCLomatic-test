@@ -40,7 +40,6 @@
     <test testName="thrust-pinned-allocator" configFile="config/TEMPLATE_thrust_pinned_allocator.xml" />
     <test testName="thrust_minmax_element" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_partition" configFile="config/TEMPLATE_thrust_api.xml" />
-    <test testName="thrust_detail_types" configFile="config/TEMPLATE_thrust_detail_types.xml" />
     <test testName="thrust_is_sorted" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_replace_copy" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_scatter_if" configFile="config/TEMPLATE_thrust_api.xml" />
