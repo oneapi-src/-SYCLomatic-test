@@ -1,4 +1,4 @@
-// ====------ onedpl_test_group_load.cpp------------ *- C++ -* ----===//
+// ====------ util_group_load_test.cpp ------------ *- C++ -* ----===//
 
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
