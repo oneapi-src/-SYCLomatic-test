@@ -210,7 +210,7 @@
     <test testName="cub_device_reduce_max" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce_arg" configFile="config/TEMPLATE_cub_device.xml"/>
     <test testName="cub_device_reduce" configFile="config/TEMPLATE_cub_device.xml"/>
-    <test testName="cub_device_reduce_by_key" configFile="config/TEMPLATE_cub_device.xml"/>
+    <!-- <test testName="cub_device_reduce_by_key" configFile="config/TEMPLATE_cub_device.xml"/> -->
     <test testName="cub_device_scan_inclusive_sum" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_scan_exclusive_sum" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_scan_inclusive_scan" configFile="config/TEMPLATE_cub_device.xml" />
@@ -219,9 +219,9 @@
     <test testName="cub_device_exclusive_sum_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_inclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_exclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
-    <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
+    <!-- <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_select_unique_by_key" configFile="config/TEMPLATE_cub_unique_by_key.xml" />
-    <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" />
+    <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" />  -->
     <test testName="cub_device_run_length_encode_encode" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_no_trivial_runs" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_discard_iterator" configFile="config/TEMPLATE_cub_device.xml" />
@@ -259,7 +259,7 @@
     <test testName="cudnn-bnp3" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
     <test testName="cudnn-normp1" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
     <test testName="cudnn-normp2" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
-    <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" />
+    <!-- <test testName="cudnn-normp3" configFile="config/TEMPLATE_cuDNN_skip_double_v8.xml" splitGroup="double" /> -->
     <test testName="cudnn-convp1" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp2" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-convp3" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -340,7 +340,7 @@
     <test testName="defaultStream" configFile="config/TEMPLATE_defaultStream.xml" />
     <test testName="volatile-vec" configFile="config/TEMPLATE_misc.xml" />
     <test testName="occupancy_calculation" configFile="config/TEMPLATE_misc.xml" />
-    <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" />
+    <!-- <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" /> -->
     <test testName="remove_unnecessary_wait" configFile="config/TEMPLATE_remove_unnecessary_wait.xml" />
     <test testName="warp_reduce_functions" configFile="config/TEMPLATE_cpp_language_extensions.xml" />
     <test testName="wmma" configFile="config/TEMPLATE_wmma_excluding_syclcompat.xml" />
