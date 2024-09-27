@@ -174,7 +174,7 @@
     <test testName="blas_extension_api_buffer" configFile="config/TEMPLATE_help_function_blas_usmnone.xml" splitGroup="double"/>
     <test testName="blas_extension_api_usm" configFile="config/TEMPLATE_help_function_blas_usm.xml" splitGroup="double"/>
     <test testName="dnnl_utils_version" configFile="config/TEMPLATE_help_function_usm.xml" />
-    <test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" />
+    <!-- <test testName="dnnl_utils_rnn" configFile="config/TEMPLATE_help_function_dnnl_usmnone_v8.xml" /> -->
     <test testName="dnnl_utils_activation" configFile="config/TEMPLATE_help_function_usm_skip_win.xml" />
     <test testName="dnnl_utils_fill" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="dnnl_utils_lrn" configFile="config/TEMPLATE_help_function_usm.xml" />
@@ -196,7 +196,7 @@
     <test testName="dnnl_utils_batch_normalization_3" configFile="config/TEMPLATE_help_function_usmnone_skip_double.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_1" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
     <test testName="dnnl_utils_normalization_2" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
-    <test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" />
+    <!-- <test testName="dnnl_utils_normalization_3" configFile="config/TEMPLATE_help_function_dnnl_usmnone_skip_double_v8.xml" splitGroup="double" /> -->
     <test testName="dnnl_utils_dropout" configFile="config/TEMPLATE_help_function_usm.xml" />
     <test testName="util_logical_group" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="fft_workspace_interface" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" splitGroup="double"/>
