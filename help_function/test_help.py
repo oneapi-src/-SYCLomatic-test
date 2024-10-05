@@ -89,8 +89,9 @@ def build_test():
     if (test_config.current_test in blas_cases) or (test_config.current_test in fft_cases) or (
        test_config.current_test in lapack_cases) or (test_config.current_test in rng_cases) or (
        test_config.current_test in oneDNN_related) or (test_config.current_test in sparse_cases):
-        mkl_opts = []
-        if platform.system() == "Linux":
+        if test_config.device_filter == "cuda:gpu" :
+            mkl_opts = test_config.mkl_cuda_link_lin
+        elif platform.system() == "Linux":
             mkl_opts = test_config.mkl_link_opt_lin
         else:
             mkl_opts = test_config.mkl_link_opt_win

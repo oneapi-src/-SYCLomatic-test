@@ -48,6 +48,8 @@ device_filter = "level_zero:gpu"
 mkl_link_opt_lin = ["-lmkl_intel_ilp64", "-lmkl_sequential", "-lmkl_core",
                     "-lOpenCL", "-lmkl_sycl", "-lpthread", "-ldl"]
 
+mkl_cuda_link_lin = ["-lonemkl"]
+
 mkl_link_opt_win = ["mkl_sycl_dll.lib", "mkl_intel_ilp64_dll.lib", "mkl_sequential_dll.lib", "mkl_core_dll.lib", "OpenCL.lib"]
 
 mkl_comp_opt = ["-DMKL_ILP64"]
