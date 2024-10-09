@@ -2060,24 +2060,30 @@ void test_cusparseTcsrgemm() {
   int c_nnz_z;
   dpct::sparse::csrgemm_nnz(
       handle, oneapi::mkl::transpose::nontrans,
-      oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA, 4, a_s_val.d_data,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, 4, a_s_val.d_data,
       a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_s_val.d_data,
-      b_row_ptr.d_data, b_col_ind.d_data, descrC, c_s_row_ptr.d_data, &c_nnz_s);
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, 0, nullptr, nullptr, nullptr,
+      descrC, c_s_row_ptr.d_data, &c_nnz_s);
   dpct::sparse::csrgemm_nnz(
       handle, oneapi::mkl::transpose::nontrans,
-      oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA, 4, a_d_val.d_data,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, 4, a_d_val.d_data,
       a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_d_val.d_data,
-      b_row_ptr.d_data, b_col_ind.d_data, descrC, c_d_row_ptr.d_data, &c_nnz_d);
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, 0, nullptr, nullptr, nullptr,
+      descrC, c_d_row_ptr.d_data, &c_nnz_d);
   dpct::sparse::csrgemm_nnz(
       handle, oneapi::mkl::transpose::nontrans,
-      oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA, 4, a_c_val.d_data,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, 4, a_c_val.d_data,
       a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_c_val.d_data,
-      b_row_ptr.d_data, b_col_ind.d_data, descrC, c_c_row_ptr.d_data, &c_nnz_c);
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, 0, nullptr, nullptr, nullptr,
+      descrC, c_c_row_ptr.d_data, &c_nnz_c);
   dpct::sparse::csrgemm_nnz(
       handle, oneapi::mkl::transpose::nontrans,
-      oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA, 4, a_z_val.d_data,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, 4, a_z_val.d_data,
       a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_z_val.d_data,
-      b_row_ptr.d_data, b_col_ind.d_data, descrC, c_z_row_ptr.d_data, &c_nnz_z);
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, 0, nullptr, nullptr, nullptr,
+      descrC, c_z_row_ptr.d_data, &c_nnz_z);
+
+  q_ct1.wait();
 
   Data<float> c_s_val(c_nnz_s);
   Data<double> c_d_val(c_nnz_d);
@@ -2088,30 +2094,30 @@ void test_cusparseTcsrgemm() {
   Data<int> c_c_col_ind(c_nnz_c);
   Data<int> c_z_col_ind(c_nnz_z);
 
-  dpct::sparse::csrgemm(handle, oneapi::mkl::transpose::nontrans,
-                        oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA,
-                        a_s_val.d_data, a_row_ptr.d_data, a_col_ind.d_data,
-                        descrB, b_s_val.d_data, b_row_ptr.d_data,
-                        b_col_ind.d_data, descrC, c_s_val.d_data,
-                        c_s_row_ptr.d_data, c_s_col_ind.d_data);
-  dpct::sparse::csrgemm(handle, oneapi::mkl::transpose::nontrans,
-                        oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA,
-                        a_d_val.d_data, a_row_ptr.d_data, a_col_ind.d_data,
-                        descrB, b_d_val.d_data, b_row_ptr.d_data,
-                        b_col_ind.d_data, descrC, c_d_val.d_data,
-                        c_d_row_ptr.d_data, c_d_col_ind.d_data);
-  dpct::sparse::csrgemm(handle, oneapi::mkl::transpose::nontrans,
-                        oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA,
-                        a_c_val.d_data, a_row_ptr.d_data, a_col_ind.d_data,
-                        descrB, b_c_val.d_data, b_row_ptr.d_data,
-                        b_col_ind.d_data, descrC, c_c_val.d_data,
-                        c_c_row_ptr.d_data, c_c_col_ind.d_data);
-  dpct::sparse::csrgemm(handle, oneapi::mkl::transpose::nontrans,
-                        oneapi::mkl::transpose::nontrans, 3, 3, 4, descrA,
-                        a_z_val.d_data, a_row_ptr.d_data, a_col_ind.d_data,
-                        descrB, b_z_val.d_data, b_row_ptr.d_data,
-                        b_col_ind.d_data, descrC, c_z_val.d_data,
-                        c_z_row_ptr.d_data, c_z_col_ind.d_data);
+  dpct::sparse::csrgemm(
+      handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, a_s_val.d_data,
+      a_row_ptr.d_data, a_col_ind.d_data, descrB, b_s_val.d_data,
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, nullptr, nullptr, nullptr,
+      descrC, c_s_val.d_data, c_s_row_ptr.d_data, c_s_col_ind.d_data);
+  dpct::sparse::csrgemm(
+      handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, a_d_val.d_data,
+      a_row_ptr.d_data, a_col_ind.d_data, descrB, b_d_val.d_data,
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, nullptr, nullptr, nullptr,
+      descrC, c_d_val.d_data, c_d_row_ptr.d_data, c_d_col_ind.d_data);
+  dpct::sparse::csrgemm(
+      handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, a_c_val.d_data,
+      a_row_ptr.d_data, a_col_ind.d_data, descrB, b_c_val.d_data,
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, nullptr, nullptr, nullptr,
+      descrC, c_c_val.d_data, c_c_row_ptr.d_data, c_c_col_ind.d_data);
+  dpct::sparse::csrgemm(
+      handle, oneapi::mkl::transpose::nontrans,
+      oneapi::mkl::transpose::nontrans, 3, 4, 3, descrA, a_z_val.d_data,
+      a_row_ptr.d_data, a_col_ind.d_data, descrB, b_z_val.d_data,
+      b_row_ptr.d_data, b_col_ind.d_data, nullptr, nullptr, nullptr, nullptr,
+      descrC, c_z_val.d_data, c_z_row_ptr.d_data, c_z_col_ind.d_data);
 
   q_ct1.wait();
 

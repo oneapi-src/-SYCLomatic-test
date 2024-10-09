@@ -861,10 +861,12 @@ void test_cusparseTcsrgemm() {
   int c_nnz_d;
   int c_nnz_c;
   int c_nnz_z;
-  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_s_row_ptr.d_data, &c_nnz_s);
-  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_d_row_ptr.d_data, &c_nnz_d);
-  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_c_row_ptr.d_data, &c_nnz_c);
-  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_z_row_ptr.d_data, &c_nnz_z);
+  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_s_row_ptr.d_data, &c_nnz_s);
+  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_d_row_ptr.d_data, &c_nnz_d);
+  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_c_row_ptr.d_data, &c_nnz_c);
+  cusparseXcsrgemmNnz(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_z_row_ptr.d_data, &c_nnz_z);
+
+  cudaStreamSynchronize(0);
 
   Data<float> c_s_val(c_nnz_s);
   Data<double> c_d_val(c_nnz_d);
@@ -875,10 +877,10 @@ void test_cusparseTcsrgemm() {
   Data<int> c_c_col_ind(c_nnz_c);
   Data<int> c_z_col_ind(c_nnz_z);
 
-  cusparseScsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_s_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_s_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_s_val.d_data, c_s_row_ptr.d_data, c_s_col_ind.d_data);
-  cusparseDcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_d_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_d_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_d_val.d_data, c_d_row_ptr.d_data, c_d_col_ind.d_data);
-  cusparseCcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_c_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_c_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_c_val.d_data, c_c_row_ptr.d_data, c_c_col_ind.d_data);
-  cusparseZcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 3, 4, descrA, 4, a_z_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_z_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_z_val.d_data, c_z_row_ptr.d_data, c_z_col_ind.d_data);
+  cusparseScsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_s_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_s_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_s_val.d_data, c_s_row_ptr.d_data, c_s_col_ind.d_data);
+  cusparseDcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_d_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_d_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_d_val.d_data, c_d_row_ptr.d_data, c_d_col_ind.d_data);
+  cusparseCcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_c_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_c_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_c_val.d_data, c_c_row_ptr.d_data, c_c_col_ind.d_data);
+  cusparseZcsrgemm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, CUSPARSE_OPERATION_NON_TRANSPOSE, 3, 4, 3, descrA, 4, a_z_val.d_data, a_row_ptr.d_data, a_col_ind.d_data, descrB, 5, b_z_val.d_data, b_row_ptr.d_data, b_col_ind.d_data, descrC, c_z_val.d_data, c_z_row_ptr.d_data, c_z_col_ind.d_data);
 
   cudaStreamSynchronize(0);
 
