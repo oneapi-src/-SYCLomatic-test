@@ -292,7 +292,7 @@ void test4() {
 #define DataH 100
 dpct::constant_memory<float, 2> c_A(DataW, DataH);
 dpct::constant_memory<float, 2> c_B(DataW, DataH);
-dpct::constant_memory<float, 2> c_C(DataW, DataH);
+dpct::global_memory<float, 2> c_C(DataW, DataH);
 
 void test5() {
 
@@ -330,7 +330,7 @@ void test5() {
             dpct::accessor<float, dpct::constant, 2> B(c_B_acc);
             //test_feature:accessor
             //test_feature:memory_region
-            dpct::accessor<float, dpct::constant, 2> C(c_C_acc);
+            dpct::accessor<float, dpct::global, 2> C(c_C_acc);
             int i = id[0], j = id[1];
             C[i][j] = A[i][j] + B[i][j];
           });
