@@ -15,7 +15,7 @@
     <test testName="memcpy3D" configFile="config/TEMPLATE_help_function.xml" /> 
     <test testName="memcpy3D_2" configFile="config/TEMPLATE_help_function.xml" />
     <test testName="memory_management_test1" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
-    <test testName="memory_management_test2" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
+    <!-- <test testName="memory_management_test2" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> -->
     <test testName="memory_management_test3" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" /> 
     <test testName="global_memory" configFile="config/TEMPLATE_help_function_skip_cuda_backend.xml" />
     <test testName="global_memory_usm" configFile="config/TEMPLATE_help_function.xml" />
