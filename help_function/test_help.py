@@ -90,10 +90,13 @@ def build_test():
        test_config.current_test in lapack_cases) or (test_config.current_test in rng_cases) or (
        test_config.current_test in oneDNN_related) or (test_config.current_test in sparse_cases):
         mkl_opts = []
-        if platform.system() == "Linux":
-            mkl_opts = test_config.mkl_link_opt_lin
+        if test_config.test_option == 'option_cuda_backend':
+            mkl_opts = ["-lonemkl"]
         else:
-            mkl_opts = test_config.mkl_link_opt_win
+            if platform.system() == "Linux":
+                mkl_opts = test_config.mkl_link_opt_lin
+            else:
+                mkl_opts = test_config.mkl_link_opt_win
 
         link_opts += mkl_opts
         cmp_opts.append("-DMKL_ILP64")
