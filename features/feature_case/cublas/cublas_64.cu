@@ -299,6 +299,52 @@ void foo() {
   status = cublasZherkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
                            ldb, beta_d, C_z, ldc);
 
+  cudaDataType type_x;
+  cudaDataType type_y;
+  cudaDataType type_res;
+  cudaDataType type_exec;
+  cudaDataType type_alpha;
+  cudaDataType type_cs;
+  void *res;
+  void *x;
+  void *y;
+  void *alpha;
+  status = cublasNrm2Ex_64(handle, n, x, type_x, incx, res, type_res, type_exec);
+  status = cublasDotEx_64(handle, n, x, type_x, incx, y, type_y, incy, res, type_res, type_exec);
+  status = cublasDotcEx_64(handle, n, x, type_x, incx, y, type_y, incy, res, type_res, type_exec);
+  status = cublasScalEx_64(handle, n, alpha, type_alpha, x, type_x, incx, type_exec);
+  status = cublasAxpyEx_64(handle, n, alpha, type_alpha, x, type_x, incx, y, type_y, incy, type_exec);
+  status = cublasRotEx_64(handle, n, x, type_x, incx, y, type_y, incy, c, s, type_cs, type_exec);
+
+  void **a_array;
+  void **b_array;
+  void **c_array;
+  void *aa;
+  void *bb;
+  void *cc;
+  cudaDataType type_a;
+  cudaDataType type_b;
+  cudaDataType type_c;
+  void *beta;
+  cublasGemmAlgo_t algo;
+  int64_t batch;
+  int64_t stride_a;
+  int64_t stride_b;
+  int64_t stride_c;
+  cublasComputeType_t type_compute;
+  status = cublasGemmStridedBatchedEx_64(handle, transa, transb, m, n, k, alpha, aa, type_a, lda, stride_a, bb, type_b, ldb, stride_b, beta, cc, type_c, ldc, stride_c, batch, type_compute, algo);
+
+  cublasSgemmEx_64(handle, transa, transb, m, n, k, alpha_s, A_s, type_a, lda, B_s, type_b, ldb, beta_s, C_s, type_c, ldc);
+  cublasCgemmEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc);
+  cublasCgemm3mEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc);
+  cublasGemmEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc, type_compute, algo);
+
+  cublasOperation_t trans;
+  cublasCsyrkEx_64(handle, uplo, trans, n, k, alpha_c, A_c, type_a, lda, beta_c, C_c, type_c, ldc);
+  cublasCsyrk3mEx_64(handle, uplo, trans, n, k, alpha_c, A_c, type_a, lda, beta_c, C_c, type_c, ldc);
+  cublasCherkEx_64(handle, uplo, trans, n, k, alpha_s, A_c, type_a, lda, beta_s, C_c, type_c, ldc);
+  cublasCherk3mEx_64(handle, uplo, trans, n, k, alpha_s, A_c, type_a, lda, beta_s, C_c, type_c, ldc);
+
   status = cublasStbsv_64(handle, uplo, transa, diag, n, k, A_s, lda, y_s, incx);
   status = cublasDtbsv_64(handle, uplo, transa, diag, n, k, A_d, lda, y_d, incx);
   status = cublasCtbsv_64(handle, uplo, transa, diag, n, k, A_c, lda, y_c, incx);
@@ -358,4 +404,20 @@ void foo() {
 
   status = cublasChpr2_64(handle, uplo, n, alpha_c, x_c, incx, y_c, incy, C_c);
   status = cublasZhpr2_64(handle, uplo, n, alpha_z, x_z, incx, y_z, incy, C_z);
+}
+
+void foo2() {
+  cublasHandle_t handle;
+  int n;
+  void *x, *y;
+  int incx, incy;
+  void *res;
+  int64_t *idx;
+  void *param;
+  cublasCopyEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy);
+  cublasSwapEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy);
+  cublasIamaxEx_64(handle, n, x, CUDA_R_32F, incx, idx);
+  cublasIaminEx_64(handle, n, x, CUDA_R_32F, incx, idx);
+  cublasAsumEx_64(handle, n, x, CUDA_R_32F, incx, res, CUDA_R_32F, CUDA_R_32F);
+  cublasRotmEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy, param, CUDA_R_32F, CUDA_R_32F);
 }
