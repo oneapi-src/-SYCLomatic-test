@@ -1,0 +1,169 @@
+---
+MainSourceFile:  '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/MainSrcFiles_placehold'
+Replacements:
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          370
+    Length:          27
+    ReplacementText: "#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n#include \"../sycl_helper.h\"\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          399
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          448
+    Length:          23
+    ReplacementText: "static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream()).parallel_for(\n    sycl::nd_range<3>(sycl::range<3>(1, 1, 1), sycl::range<3>(1, 1, 1)), \n    [=](sycl::nd_item<3> item_ct1) {\n      foo1_kernel();\n    });"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          471
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          476
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          548
+    Length:          30
+    ReplacementText: 'd = sycl::malloc_device<double>(1, static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          582
+    Length:          24
+    ReplacementText: "{\n    dpct::has_capability_or_fail(static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream()).get_device(), {sycl::aspect::fp64});\n\n    static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream()).parallel_for(\n      sycl::nd_range<3>(sycl::range<3>(1, 1, 1), sycl::range<3>(1, 1, 1)), \n      [=](sycl::nd_item<3> item_ct1) {\n        foo2_kernel(d);\n      });\n  }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          606
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          610
+    Length:          11
+    ReplacementText: 'dpct::dpct_free(d, static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream()))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Offset:          660
+    Length:          23
+    ReplacementText: 'dpct::get_current_device().queues_wait_and_throw()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src/user_defined_rules_2.cu'
+    Digest:          04b763978e4ae8842a505ffc484297b3
+    HasCUDASyntax:   true
+DpctVersion:     19.0.0
+MainHelperFileName: ''
+USMLevel:        ''
+FeatureMap:      {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/src'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  BuildScript:
+    Value:           '0'
+    Specified:       false
+  CodePinEnabled:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           ''
+    Specified:       false
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    ValueVec:
+      - '/home/zhiwei/newdisk/SYCLomatic-test/features/feature_case/user_defined_rules_2/rules.yaml'
+    Specified:       true
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UseSYCLCompat:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
