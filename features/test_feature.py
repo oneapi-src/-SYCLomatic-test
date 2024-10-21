@@ -18,7 +18,7 @@ sys.path.append(parent)
 
 from test_utils import *
 
-exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_optimize', 'thrust-vector-2', 'thrust-binary-search', 'thrust-count', 'thrust-copy',
+exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4inst', 'asm_optimize', 'thrust-vector-2', 'thrust-binary-search', 'thrust-count', 'thrust-copy',
               'thrust-qmc', 'thrust-transform-if', 'thrust-policy', 'thrust-list', 'module-kernel',
               'kernel-launch', 'thrust-gather', 'thrust-gather_if', 'cub_device_partition',
               'thrust-scatter', 'thrust-unique_by_key_copy', 'thrust-for-hypre', 'thrust-merge_by_key',
@@ -28,9 +28,9 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'cub_device_scan_inclusive_scan', 'cub_device_scan_exclusive_scan', 'cub_device_seg_radix_sort_pairs', 'cub_device_no_trivial_runs', 'cub_device_merge_sort.cu',
               'cub_device_scan_inclusive_sum', 'cub_device_scan_exclusive_sum', 'cub_device_select_unique', 'cub_device_radix_sort_keys', 'cub_device_radix_sort_pairs',
               'cub_device_select_flagged', 'cub_device_run_length_encide_encode', 'cub_counting_iterator', 'cub_arg_index_input_iterator', 'cub_device_seg_radix_sort_keys',
-              'cub_device_inclusive_sum_by_key', 'cub_device_exclusive_sum_by_key', 'cub_device_inclusive_scan_by_key', 'cub_device_exclusive_scan_by_key',
-              'cub_device_reduce_arg', 'cub_device_seg_sort_pairs', 'cub_intrinsic', 'cub_device_seg_sort_keys', 'thrust-math1', 'thrust-math2',
-              'cub_transform_iterator', 'activemask', 'complex', 'thrust-math', 'libcu_array', 'libcu_complex', 'libcu_tuple',
+              'cub_device_inclusive_sum_by_key', 'cub_device_exclusive_sum_by_key', 'cub_device_inclusive_scan_by_key', 'cub_device_exclusive_scan_by_key', 'cub_shuffle',
+              'cub_device_reduce_arg', 'cub_device_seg_sort_pairs', 'cub_intrinsic', 'cub_device_seg_sort_keys', 'thrust-math1', 'thrust-math2', 'cub_block_exchange',
+              'cub_transform_iterator', 'activemask', 'complex', 'thrust-math', 'libcu_array', 'libcu_complex', 'libcu_tuple', 'cub_block_radix_sort',
               'user_defined_rules', 'math-exec', 'math-intrinsics', 'math-habs', 'math-emu-double', 'math-emu-float', 'math-emu-half', 'math-emu-half-after11', 'math-emu-half2', 'math-emu-half2-after11', 'math-emu-half2-after12', 'math-emu-simd',
               'math-emu-bf16', 'math-emu-bf162-after12', 'math-emu-bf162', 'math-experimental-bf16', 'math-experimental-bf162', "math-half-raw",
               'math-ext-bf16-conv', 'math-ext-double', 'math-ext-float', 'math-ext-half', 'math-ext-half-after11', 'math-ext-half-conv', 'math-ext-half2', 'math-ext-half2-after11', 'math-ext-simd', 'cudnn-activation',
@@ -43,7 +43,8 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
               'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
-              'text_experimental_obj_array', 'text_experimental_obj_mipmap', 'text_experimental_obj_linear', 'text_experimental_obj_pitch2d',
+              'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_linear', 'text_experimental_obj_memcpy2d_api', 'text_experimental_obj_memcpy3d_api',
+              'text_experimental_obj_mipmap', 'text_experimental_obj_peer_api', 'text_experimental_obj_pitch2d', 'text_experimental_obj_sample_api',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
               'curand-device2', 'curandEnum', 'codepin_all_public_dump',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
@@ -60,7 +61,8 @@ exec_tests = ['asm', 'asm_bar', 'asm_arith', 'asm_vinst', 'asm_v2inst', 'asm_v4i
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr', 'cuda_stream_query']
+              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform",  "context_push_n_pop",
+              "graphics_interop_d3d11", 'graph']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -83,12 +85,15 @@ def migrate_test():
             src.append(os.path.abspath(os.path.join(dirpath, filename)))
 
     nd_range_bar_exper = ['grid_sync']
+    root_group_exper = ['grid_sync_root_group'] # Current build only.
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate']
     uniform_group_exper = ['cooperative_group_coalesced_group']
     experimental_bfloat16_tests = ['math-experimental-bf16', 'math-experimental-bf162']
 
     if test_config.current_test in nd_range_bar_exper:
         src.append(' --use-experimental-features=nd_range_barrier ')
+    if test_config.current_test in root_group_exper:
+        src.append(' --use-experimental-features=root-group ')
     if test_config.current_test == "user_defined_rules":
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test in logical_group_exper:
@@ -103,7 +108,7 @@ def migrate_test():
         src.append(' --use-experimental-features=occupancy-calculation ')
     if test_config.current_test == 'feature_profiling':
         src.append(' --enable-profiling ')
-    if test_config.current_test == 'asm_bar':
+    if test_config.current_test == 'asm_bar' or test_config.current_test == 'cub_shuffle':
         src.append(' --use-experimental-features=non-uniform-groups ')
     if test_config.current_test == 'cub_block':
         src.append(' --use-experimental-features=user-defined-reductions ')
@@ -117,10 +122,12 @@ def migrate_test():
         src.append(' --use-experimental-features=bfloat16_math_functions ')
     if test_config.current_test == 'const_opt' or test_config.current_test == 'asm_optimize':
         src.append(' --optimize-migration ')
-    if test_config.current_test.startswith('text_experimental_'):
+    if test_config.current_test.startswith(('text_experimental_', 'graphics_interop_')):
         src.append(' --use-experimental-features=bindless_images')
     if "codepin" in test_config.current_test:
         src.append(' --enable-codepin ')
+    if test_config.current_test == 'graph':
+        src.append(' --use-experimental-features=graph ')
     return do_migrate(src, in_root, test_config.out_root, extra_args)
 
 def manual_fix_for_cufft_external_workspace(migrated_file):
@@ -166,7 +173,7 @@ def build_test():
              'cudnn-binary', 'cudnn-bnp1', 'cudnn-bnp2', 'cudnn-bnp3', 'cudnn-normp1', 'cudnn-normp2', 'cudnn-normp3',
              'cudnn-convp1', 'cudnn-convp2', 'cudnn-convp3', 'cudnn-convp4', 'cudnn-convp5', 'cudnn-convp6', 'cudnn-rnn',
              'cudnn-GetErrorString', 'cudnn-convp7',
-             'cudnn-types', 'cudnn-version', 'cudnn-dropout'
+             'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'matmul'
              ]
 
     no_fast_math_tests = ['math-emu-half-after11', 'math-emu-half2-after11', 'math-ext-half-after11', 'math-ext-half2-after11',
@@ -228,7 +235,7 @@ def build_test():
 def run_test():
     if test_config.current_test not in exec_tests:
         return True
-    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter.count("cuda") == 0:
+    if test_config.current_test.startswith(('text_experimental_obj_', 'graphics_interop_')) and test_config.device_filter.count("cuda") == 0:
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

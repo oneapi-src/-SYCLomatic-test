@@ -7,10 +7,11 @@
 //
 // ===---------------------------------------------------------------------===//
 
-#include <cstdio>
-
-#include <dpct/rng_utils.hpp>
 #include <sycl/sycl.hpp>
+#include <dpct/dpct.hpp>
+#include <dpct/rng_utils.hpp>
+
+#include <cstdio>
 
 using namespace dpct::rng;
 
@@ -61,14 +62,14 @@ void test_engine(host_rng_ptr rng0, engine_type &rng1) {
     rng0->generate_uniform_bits(output_i_0, num);
     oneapi::mkl::rng::generate(
         oneapi::mkl::rng::uniform_bits<std::uint32_t>(), rng1, num,
-        dpct::detail::get_memory((std::uint32_t *)output_i_1));
+        dpct::detail::get_memory<std::uint32_t>((void *)output_i_1));
     check(std::string(typeid(engine_type).name()) + "::generate_uniform_bits_i",
           output_i_0, output_i_1);
 
     rng0->generate_uniform_bits(output_ll_0, num);
     oneapi::mkl::rng::generate(
         oneapi::mkl::rng::uniform_bits<std::uint64_t>(), rng1, num,
-        dpct::detail::get_memory((std::uint64_t *)output_ll_1));
+        dpct::detail::get_memory<std::uint64_t>((void *)output_ll_1));
     check(std::string(typeid(engine_type).name()) +
               "::generate_uniform_bits_ll",
           output_ll_0, output_ll_1);
@@ -76,43 +77,43 @@ void test_engine(host_rng_ptr rng0, engine_type &rng1) {
 
   rng0->generate_lognormal(output_f_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::lognormal<float>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_f_1));
+                             num, dpct::detail::get_memory<float>(output_f_1));
   check(std::string(typeid(engine_type).name()) + "::generate_lognormal_f",
         output_f_0, output_f_1);
 
   rng0->generate_lognormal(output_d_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::lognormal<double>(0.5, 0.5),
-                             rng1, num, dpct::detail::get_memory(output_d_1));
+                             rng1, num, dpct::detail::get_memory<double>(output_d_1));
   check(std::string(typeid(engine_type).name()) + "::generate_lognormal_d",
         output_d_0, output_d_1);
 
   rng0->generate_gaussian(output_f_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::gaussian<float>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_f_1));
+                             num, dpct::detail::get_memory<float>(output_f_1));
   check(std::string(typeid(engine_type).name()) + "::generate_gaussian_f",
         output_f_0, output_f_1);
 
   rng0->generate_gaussian(output_d_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::gaussian<double>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_d_1));
+                             num, dpct::detail::get_memory<double>(output_d_1));
   check(std::string(typeid(engine_type).name()) + "::generate_gaussian_d",
         output_d_0, output_d_1);
 
   rng0->generate_poisson(output_i_0, num, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::poisson<unsigned int>(0.5), rng1,
-                             num, dpct::detail::get_memory(output_i_1));
+                             num, dpct::detail::get_memory<unsigned int>(output_i_1));
   check(std::string(typeid(engine_type).name()) + "::generate_poisson",
         output_i_0, output_i_1);
 
   rng0->generate_uniform(output_f_0, num);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::uniform<float>(), rng1, num,
-                             dpct::detail::get_memory(output_f_1));
+                             dpct::detail::get_memory<float>(output_f_1));
   check(std::string(typeid(engine_type).name()) + "::generate_uniform_f",
         output_f_0, output_f_1);
 
   rng0->generate_uniform(output_d_0, num);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::uniform<double>(), rng1, num,
-                             dpct::detail::get_memory(output_d_1));
+                             dpct::detail::get_memory<double>(output_d_1));
   check(std::string(typeid(engine_type).name()) + "::generate_uniform_d",
         output_d_0, output_d_1);
 }
@@ -129,7 +130,7 @@ void test_engine_with_skip(host_rng_ptr rng0, engine_type &rng1) {
   oneapi::mkl::rng::skip_ahead(rng1, skip);
   rng0->generate_uniform(output_d_0, num);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::uniform<double>(), rng1, num,
-                             dpct::detail::get_memory(output_d_1));
+                             dpct::detail::get_memory<double>(output_d_1));
   check(std::string(typeid(engine_type).name()) + "::skip_ahead", output_d_0,
         output_d_1);
 }
@@ -153,48 +154,48 @@ void test_sobol_with_set_direction_numbers(host_rng_ptr rng0,
 
   rng0->generate_lognormal(output_f_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::lognormal<float>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_f_1));
+                             num, dpct::detail::get_memory<float>(output_f_1));
   check("oneapi::mkl::rng::sobol::generate_lognormal_f with "
         "set_direction_numbers",
         output_f_0, output_f_1);
 
   rng0->generate_lognormal(output_d_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::lognormal<double>(0.5, 0.5),
-                             rng1, num, dpct::detail::get_memory(output_d_1));
+                             rng1, num, dpct::detail::get_memory<double>(output_d_1));
   check("oneapi::mkl::rng::sobol::generate_lognormal_d with "
         "set_direction_numbers",
         output_d_0, output_d_1);
 
   rng0->generate_gaussian(output_f_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::gaussian<float>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_f_1));
+                             num, dpct::detail::get_memory<float>(output_f_1));
   check(
       "oneapi::mkl::rng::sobol::generate_gaussian_f with set_direction_numbers",
       output_f_0, output_f_1);
 
   rng0->generate_gaussian(output_d_0, num, 0.5, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::gaussian<double>(0.5, 0.5), rng1,
-                             num, dpct::detail::get_memory(output_d_1));
+                             num, dpct::detail::get_memory<double>(output_d_1));
   check(
       "oneapi::mkl::rng::sobol::generate_gaussian_d with set_direction_numbers",
       output_d_0, output_d_1);
 
   rng0->generate_poisson(output_i_0, num, 0.5);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::poisson<unsigned int>(0.5), rng1,
-                             num, dpct::detail::get_memory(output_i_1));
+                             num, dpct::detail::get_memory<unsigned int>(output_i_1));
   check("oneapi::mkl::rng::sobol::generate_poisson with set_direction_numbers",
         output_i_0, output_i_1);
 
   rng0->generate_uniform(output_f_0, num);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::uniform<float>(), rng1, num,
-                             dpct::detail::get_memory(output_f_1));
+                             dpct::detail::get_memory<float>(output_f_1));
   check(
       "oneapi::mkl::rng::sobol::generate_uniform_f with set_direction_numbers",
       output_f_0, output_f_1);
 
   rng0->generate_uniform(output_d_0, num);
   oneapi::mkl::rng::generate(oneapi::mkl::rng::uniform<double>(), rng1, num,
-                             dpct::detail::get_memory(output_d_1));
+                             dpct::detail::get_memory<double>(output_d_1));
   check(
       "oneapi::mkl::rng::sobol::generate_uniform_d with set_direction_numbers",
       output_d_0, output_d_1);

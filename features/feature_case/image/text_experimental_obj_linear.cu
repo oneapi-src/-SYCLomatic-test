@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-#define PRINT_PASS 0
+#define PRINT_PASS 1
 
 using namespace std;
 

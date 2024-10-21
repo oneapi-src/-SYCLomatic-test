@@ -9,5 +9,6 @@
     </files>
     <rules>
         <platformRule OSFamily="Windows" runOnThisPlatform="false"/>
+        <optlevelRule excludeOptlevelNameString="cuda" />
     </rules>
 </test>

@@ -786,7 +786,7 @@ void testHltu2Cases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
 }
 
 __global__ void hmax2(float *const Result, __nv_bfloat162 Input1,
-                     __nv_bfloat162 Input2) {
+                      __nv_bfloat162 Input2) {
   auto ret = __hmax2(Input1, Input2);
   Result[0] = __low2float(ret);
   Result[1] = __high2float(ret);
@@ -811,13 +811,14 @@ void testHmax2Cases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
 }
 
 __global__ void hmax2_nan(float *const Result, __nv_bfloat162 Input1,
-                     __nv_bfloat162 Input2) {
+                          __nv_bfloat162 Input2) {
   auto ret = __hmax2_nan(Input1, Input2);
   Result[0] = __low2float(ret);
   Result[1] = __high2float(ret);
 }
 
-void testHmax2_nanCases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
+void testHmax2_nanCases(
+    const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
   float *Result;
   cudaMallocManaged(&Result, 2 * sizeof(*Result));
   // Boundary values.
@@ -846,7 +847,7 @@ void testHmax2_nanCases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) 
 }
 
 __global__ void hmin2(float *const Result, __nv_bfloat162 Input1,
-                     __nv_bfloat162 Input2) {
+                      __nv_bfloat162 Input2) {
   auto ret = __hmin2(Input1, Input2);
   Result[0] = __low2float(ret);
   Result[1] = __high2float(ret);
@@ -871,13 +872,14 @@ void testHmin2Cases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
 }
 
 __global__ void hmin2_nan(float *const Result, __nv_bfloat162 Input1,
-                     __nv_bfloat162 Input2) {
+                          __nv_bfloat162 Input2) {
   auto ret = __hmin2_nan(Input1, Input2);
   Result[0] = __low2float(ret);
   Result[1] = __high2float(ret);
 }
 
-void testHmin2_nanCases(const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
+void testHmin2_nanCases(
+    const vector<pair<bf162_pair, bf162i_pair>> &TestCases) {
   float *Result;
   cudaMallocManaged(&Result, 2 * sizeof(*Result));
   // Boundary values.

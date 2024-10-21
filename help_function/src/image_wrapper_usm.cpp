@@ -91,6 +91,9 @@ int main() {
   }
   {
     sycl::buffer<sycl::float4, 1> buf(d, sycl::range<1>(32));
+    tex42.create_image();
+    tex43.create_image();
+    static_cast<dpct::image_wrapper<sycl::float4, 1> *>(tex41)->create_image();
     dpct::get_default_queue().submit([&](sycl::handler &cgh) {
       auto acc42 = tex42.get_access(cgh);
       auto acc13 = tex43.get_access(cgh);

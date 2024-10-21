@@ -8,12 +8,11 @@
 // ===----------------------------------------------------------------------===//
 #define DPCT_USM_LEVEL_NONE
 #include <sycl/sycl.hpp>
-#include <dpct/memory.hpp>
-
+#include<dpct/memory.hpp>
 void check(float *h_data, float *h_ref, size_t width, size_t height,
            size_t depth) {
   for (int i = 0; i < width * height * depth; i++) {
-    float diff = fabs(h_data[i] - h_ref[i]);
+    float diff = sycl::fabs(h_data[i] - h_ref[i]);
     if (diff > 1.e-6) {
       printf("Verification failed!");
       printf("h_data[%d]=%f, h_ref[%d]=%f, diff=%f\n", i, h_data[i], i,
@@ -128,7 +127,7 @@ void test2() {
 
   // verify
   for(int i = 0; i < Num; i++){
-      if (fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f, C = %f:\n", i,h_A[i],  h_B[i],  h_C[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);
@@ -198,7 +197,7 @@ void test3() {
 
   // verify
   for(int i = 0; i < Num; i++){
-      if (fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f, C = %f:\n", i,h_A[i],  h_B[i],  h_C[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);
@@ -275,7 +274,7 @@ void test4() {
 
   // verify
   for(int i = Offset; i < Num; i++){
-      if (fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f, C = %f:\n", i,h_A[i],  h_B[i],  h_C[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);
@@ -293,7 +292,7 @@ void test4() {
 #define DataH 100
 dpct::constant_memory<float, 2> c_A(DataW, DataH);
 dpct::constant_memory<float, 2> c_B(DataW, DataH);
-dpct::constant_memory<float, 2> c_C(DataW, DataH);
+dpct::global_memory<float, 2> c_C(DataW, DataH);
 
 void test5() {
 
@@ -331,7 +330,7 @@ void test5() {
             dpct::accessor<float, dpct::constant, 2> B(c_B_acc);
             //test_feature:accessor
             //test_feature:memory_region
-            dpct::accessor<float, dpct::constant, 2> C(c_C_acc);
+            dpct::accessor<float, dpct::global, 2> C(c_C_acc);
             int i = id[0], j = id[1];
             C[i][j] = A[i][j] + B[i][j];
           });
@@ -343,7 +342,7 @@ void test5() {
   // verify hostD
   for (int i = 0; i < DataW; i++) {
     for (int j = 0; j < DataH; j++) {
-      if (fabs(h_C[i][j] - h_A[i][j] - h_B[i][j]) > 1e-5) {
+      if (sycl::fabs(h_C[i][j] - h_A[i][j] - h_B[i][j]) > 1e-5) {
         fprintf(stderr, "Result verification failed at element [%d][%d]:\n", i, j);
         exit(EXIT_FAILURE);
       }
@@ -405,7 +404,7 @@ void test6() {
   // verify hostD
   for (int i = 0; i < DataW; i++) {
     for (int j = 0; j < DataH; j++) {
-      if (fabs(h_C[i][j] - h_A[i][j] - h_B[i][j]) > 1e-5) {
+      if (sycl::fabs(h_C[i][j] - h_A[i][j] - h_B[i][j]) > 1e-5) {
         fprintf(stderr, "Result verification failed at element [%d][%d]:\n", i, j);
         exit(EXIT_FAILURE);
       }
@@ -454,7 +453,7 @@ void test7() {
   // verify hostD
   for (int i = 0; i < DataW; i++) {
     for (int j = 0; j < DataH; j++) {
-      if (fabs(s_C[i] - s_A[i] - s_B[i]) > 1e-5) {
+      if (sycl::fabs(s_C[i] - s_A[i] - s_B[i]) > 1e-5) {
         fprintf(stderr, "Result verification failed at element [%d][%d]:\n", i, j);
         exit(EXIT_FAILURE);
       }
@@ -508,7 +507,7 @@ void test9() {
 
   // verify
   for(int i = 0; i < Num * Num; i++){
-      if (fabs(h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f\n", i, h_A[i],  h_B[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);

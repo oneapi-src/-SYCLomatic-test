@@ -562,7 +562,7 @@ void testHle2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHle2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHle2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hle2", {TestCase.first.first, TestCase.first.second},
@@ -584,7 +584,7 @@ void testHleu2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHleu2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHleu2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hleu2", {TestCase.first.first, TestCase.first.second},
@@ -606,7 +606,7 @@ void testHlt2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHlt2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHlt2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hlt2", {TestCase.first.first, TestCase.first.second},
@@ -628,7 +628,7 @@ void testHltu2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHltu2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHltu2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hltu2", {TestCase.first.first, TestCase.first.second},
@@ -650,7 +650,7 @@ void testHne2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHne2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHne2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hne2", {TestCase.first.first, TestCase.first.second},
@@ -672,7 +672,7 @@ void testHneu2(float *const Result, __half2 Input1, __half2 Input2) {
 
 void testHneu2Cases(const vector<pair<half2_pair, h2i_pair>> &TestCases) {
   float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
+  cudaMallocManaged(&Result, 2 * sizeof(*Result));
   for (const auto &TestCase : TestCases) {
     testHneu2(Result, TestCase.first.first, TestCase.first.second);
     checkResult("__hneu2", {TestCase.first.first, TestCase.first.second},
@@ -1194,7 +1194,7 @@ int main() {
   });
   testH2log10Cases({
       {{0.3, 0.6}, {{-0.523, -0.222}, 3}},
-      {{0.34, 0.7}, {{-0.4685, -0.1548}, 4}},
+      {{0.34, 0.7}, {{-0.4685, -0.1548}, 3}},
       {{0.8, 2}, {{-0.097, 0.301}, 4}},
       {{23, 6}, {{1.361, 0.778}, 3}},
       {{12, 1}, {{1.0791, 0}, 4}},

@@ -11,9 +11,9 @@
 // test_feature:dropout_desc
 // test_feature:dropout_forward
 // test_feature:dropout_backward
-#include <dpct/dnnl_utils.hpp>
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
+#include <dpct/dnnl_utils.hpp>
 #include <iostream>
 
 void test1() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="feature_case/cooperative_groups/${testName}.cu" />
+    </files>
+    <rules>
+        <platformRule OSFamily="Linux" kit="CUDA9.2" kitRange="OLDER" runOnThisPlatform="false"/>
+        <platformRule OSFamily="Windows" kit="CUDA9.2" kitRange="OLDER" runOnThisPlatform="false"/>
+        <optlevelRule excludeOptlevelNameString="cuda" />
+        <optlevelRule excludeOptlevelNameString="usmnone" />
+        <optlevelRule excludeOptlevelNameString="syclcompat" />
+    </rules>
+</test>

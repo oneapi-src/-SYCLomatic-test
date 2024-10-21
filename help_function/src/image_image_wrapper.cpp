@@ -53,7 +53,7 @@ int main() {
 
   // test_feature:attach(image_matrix *, image_channel)
   tex43.attach(array3, chn1);
-
+  tex43.create_image();
   dpct::get_default_queue().submit([&](sycl::handler &cgh) {
     // test_feature:get_access
     tex43.get_access(cgh);

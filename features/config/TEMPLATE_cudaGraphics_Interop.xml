@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>test</description>
+    <files>
+        <file path="feature_case/cudaGraphics_Interop/${testName}.cu" />
+    </files>
+    <rules>
+        <platformRule OSFamily="Linux" runOnThisPlatform="false"/>
+        <platformRule OSFamily="Windows" kit="CUDA9.2" kitRange="OLDER" runOnThisPlatform="false"/>
+        <optlevelRule excludeOptlevelNameString="cpu"/>
+        <optlevelRule excludeOptlevelNameString="syclcompat"/>
+    </rules>
+</test>

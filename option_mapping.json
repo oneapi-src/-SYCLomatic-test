@@ -5,6 +5,8 @@
         "option_usmnone_gpu" : "--usm-level=none",
         "opt_ctad_cpu" : "--enable-ctad",
         "opt_ctad_gpu" : "--enable-ctad",
+        "option_use_syclcompat_cpu" : "--use-syclcompat",
+        "option_use_syclcompat_gpu" : "--use-syclcompat",
         "opt_async_handler_cpu" : "--always-use-async-handler",
         "opt_async_handler_gpu" : "--always-use-async-handler",
         "opt_format_range_migrated_cpu" : "--format-range=migrated",

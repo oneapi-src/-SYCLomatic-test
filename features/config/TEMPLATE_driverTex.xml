@@ -5,4 +5,7 @@
     <files>
       <file path="feature_case/driverTex/driverTex.cu" />
     </files>
+    <rules>
+      <optlevelRule excludeOptlevelNameString="syclcompat" />
+   </rules>
 </test>

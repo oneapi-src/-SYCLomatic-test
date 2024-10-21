@@ -51,8 +51,8 @@
         <test testName="cmps_cuda_compile_test_2" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="sh-ct-1306" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-version" configFile="config/TEMPLATE_behavior_tests.xml" />
-	    <test testName="ngt-no-db-specified" configFile="config/TEMPLATE_behavior_tests.xml" />
-	    <test testName="bt-extra-arg" configFile="config/TEMPLATE_behavior_tests.xml" />
+	<test testName="ngt-no-db-specified" configFile="config/TEMPLATE_behavior_tests.xml" />
+	<test testName="bt-extra-arg" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-extra-arg-comma-separate" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-output" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="ngt-report-type-diags" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -170,6 +170,7 @@
         <test testName="trap" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-code-pin-log-filename" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="analysis-mode" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="codepin-graph" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="ngt-check-options" configFile="config/TEMPLATE_behavior_tests.xml" />
     </tests>
 

@@ -111,8 +111,8 @@ void test1(volatile int *acc_d1, int *acc_d2, int *c1, int c2, dpct::accessor<in
   unsigned *d_d = (unsigned *)acc_d2;
   unsigned *d_e = (unsigned *)(acc_d2 + 5);
   int *d_f = acc_d2 - 6;
-  int *c_2d_a_ptr = c_2d_a_acc.get_ptr();
-  int *c_3d_ptr = c_3d_acc.get_ptr();
+  const int *c_2d_a_ptr = c_2d_a_acc.get_ptr();
+  const int *c_3d_ptr = c_3d_acc.get_ptr();
   test2(*acc_d1);
 }
 

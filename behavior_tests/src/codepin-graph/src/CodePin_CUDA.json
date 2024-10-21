@@ -1,0 +1,1323 @@
+[
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:50:5:prolog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  0
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      },
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:50:5:epilog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0.301056",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      },
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:52:5:prolog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      },
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:52:5:epilog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0.201216",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      },
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:56:5:prolog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0x55eceda805b0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      },
+      {
+        "ID": "vectorAdd:/export/users/wanghao2/tmp/codepin/test.cu:56:5:epilog",
+        "Device Name": "NVIDIA GeForce GTX 1060 6GB",
+        "Device ID": "0",
+        "Stream Address": "0x55eceda805b0",
+        "Free Device Memory": "6289031168",
+        "Total Device Memory": "6360465408",
+        "Elapse Time(ms)": "0.145376",
+        "CheckPoint": {
+          "d_a": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400000",
+            "Index": "0",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  1
+                ]
+              }
+            ]
+          },
+          "d_b": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400200",
+            "Index": "1",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  2
+                ]
+              }
+            ]
+          },
+          "d_result": {
+            "Type": "Pointer",
+            "Address": "0x7fbe0e400400",
+            "Index": "2",
+            "Data": [
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  3
+                ]
+              },
+              {
+                "Type": "int",
+                "Data": [
+                  4
+                ]
+              }
+            ]
+          },
+          "vectorSize": {
+            "Type": "int",
+            "Address": "0x7ffc272f7b2c",
+            "Index": "3",
+            "Data": [
+              10
+            ]
+          }
+        }
+      }
+]
+    

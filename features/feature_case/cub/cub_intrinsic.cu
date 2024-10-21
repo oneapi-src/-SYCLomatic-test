@@ -161,6 +161,15 @@ bool test_bfi() {
   return *res == 0;
 }
 
+bool test_sm_version() {
+  int a = 0;
+  cub::SmVersion(a);
+  cub::SmVersion(a, 0);
+  cub::SmVersionUncached(a);
+  cub::SmVersionUncached(a, 0);
+  return true;
+}
+
 #define TEST(FUNC)                                                             \
   if (!FUNC()) {                                                               \
     printf(#FUNC " failed\n");                                                 \
@@ -176,5 +185,6 @@ int main() {
   TEST(test_ptx_version);
   TEST(test_bfe);
   TEST(test_bfi);
+  TEST(test_sm_version);
   return 0;
 }
