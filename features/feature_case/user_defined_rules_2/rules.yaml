@@ -2,6 +2,6 @@
 - Rule: rule1
   Kind: HelperFunction
   Priority: Takeover
-  In: DefaultQueue
+  In: get_in_order_queue
   Out: static_cast<sycl::queue&>(c10::xpu::getCurrentXPUStream())
   Includes: ["../sycl_helper.h"]
