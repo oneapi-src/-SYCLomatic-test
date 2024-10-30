@@ -9,4 +9,7 @@
       <file path="feature_case/user_defined_rules_2/rules.yaml" />
       <file path="feature_case/user_defined_rules_2/sycl_helper.h" />
     </files>
+    <rules>
+      <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
+    </rules>
 </test>
