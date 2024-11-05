@@ -22,6 +22,12 @@ def migrate_test():
     dpct_path = shutil.which("dpct")
     c2s_path = shutil.which("c2s")
 
+    print("dpct_path:", dpct_path)
+    print("c2s_path:", c2s_path)
+
+    subprocess.run(["ls", "-l", dpct_path])
+    subprocess.run(["ls", "-l", c2s_path])
+
     dpct_file = open(dpct_path, "rb")
     c2s_file = open(c2s_path, "rb")
 
