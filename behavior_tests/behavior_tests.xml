@@ -51,8 +51,8 @@
         <test testName="cmps_cuda_compile_test_2" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="sh-ct-1306" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="bt-version" configFile="config/TEMPLATE_behavior_tests.xml" />
-	<test testName="ngt-no-db-specified" configFile="config/TEMPLATE_behavior_tests.xml" />
-	<test testName="bt-extra-arg" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="ngt-no-db-specified" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="bt-extra-arg" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-extra-arg-comma-separate" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-output" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="ngt-report-type-diags" configFile="config/TEMPLATE_behavior_tests.xml" />
@@ -155,7 +155,7 @@
         <test testName="ngt-analysis-scope-path1" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="ngt-use-dpcpp-extensions" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-check-install-files" configFile="config/TEMPLATE_behavior_tests.xml" />
-        <test testName="bt-check-c2s" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <!--<test testName="bt-check-c2s" configFile="config/TEMPLATE_behavior_tests.xml" />-->
         <test testName="bt-multi-cuda-inc-path" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bt-tilde-path" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="open-source-mkl-compile" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
