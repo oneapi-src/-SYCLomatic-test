@@ -6,8 +6,14 @@
       If you have any issue with this file please contact Compiler QA team</description>
     <files>
       <file path="feature_case/user_defined_rules_2/user_defined_rules_2.cu" />
-      <file path="feature_case/user_defined_rules_2/rules.yaml" />
-      <file path="feature_case/user_defined_rules_2/sycl_helper.h" />
+      <file path="feature_case/user_defined_rules_2/Tensor.h" />
+      <file path="feature_case/user_defined_rules_2/CUDATensorMethods.cuh" />
+      <file path="feature_case/user_defined_rules_2/DeviceGuard.h" />
+      <file path="feature_case/user_defined_rules_2/Device.h" />
+      <file path="feature_case/user_defined_rules_2/CUDAGuard.h" />
+      <file path="feature_case/user_defined_rules_2/CUDAStream.h" />
+      <file path="feature_case/user_defined_rules_2/Half.h" />
+      <file path="feature_case/user_defined_rules_2/XPUStream.h" />
     </files>
     <rules>
       <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />

@@ -6,10 +6,12 @@
 //
 // ===---------------------------------------------------------------------===//
 
+#include "ATen/cuda/CUDATensorMethods.cuh"
+#include "c10/cuda/CUDAGuard.h"
+#include "c10/cuda/CUDAStream.h"
+
 __global__ void foo1_kernel() {}
-void foo1() {
-  foo1_kernel<<<1, 1>>>();
-}
+void foo1() { foo1_kernel<<<1, 1>>>(); }
 
 __global__ void foo2_kernel(double *d) {}
 
@@ -20,7 +22,9 @@ void foo2() {
   cudaFree(d);
 }
 
-int main(){
+int main() {
+  std::optional<c10::Device> device;
+  c10::cuda::OptionalCUDAGuard device_guard(device);
   foo1();
   foo2();
   cudaDeviceSynchronize();

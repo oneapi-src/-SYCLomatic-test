@@ -67,6 +67,22 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
 occupancy_calculation_exper = ['occupancy_calculation']
 
 def setup_test():
+    if test_config.current_test == 'user_defined_rules_2':
+        call_subprocess('mkdir -p user_defined_rules_2/ATen/cuda')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/core')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/cuda')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/util')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/xpu')
+        call_subprocess('mkdir -p user_defined_rules_2/src')
+        call_subprocess('mv user_defined_rules_2/CUDATensorMethods.cuh user_defined_rules_2/ATen/cuda')
+        call_subprocess('mv user_defined_rules_2/Tensor.h user_defined_rules_2/ATen')
+        call_subprocess('mv user_defined_rules_2/DeviceGuard.h user_defined_rules_2/c10/core')
+        call_subprocess('mv user_defined_rules_2/Device.h user_defined_rules_2/c10/core')
+        call_subprocess('mv user_defined_rules_2/CUDAGuard.h user_defined_rules_2/c10/cuda')
+        call_subprocess('mv user_defined_rules_2/CUDAStream.h user_defined_rules_2/c10/cuda')
+        call_subprocess('mv user_defined_rules_2/Half.h user_defined_rules_2/c10/util')
+        call_subprocess('mv user_defined_rules_2/XPUStream.h user_defined_rules_2/c10/xpu')
+        call_subprocess('mv user_defined_rules_2/user_defined_rules_2.cu user_defined_rules_2/src')
     return True
 
 def migrate_test():
@@ -96,8 +112,11 @@ def migrate_test():
         src.append(' --use-experimental-features=root-group ')
     if test_config.current_test == "user_defined_rules":
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
-    if test_config.current_test == "user_defined_rules_2":
-        src.append(' --rule-file=./user_defined_rules_2/rules.yaml')
+    if test_config.current_test == 'user_defined_rules_2':
+        dpct_dir = os.path.dirname(shutil.which("dpct"))
+        src.append(' --rule-file=' + dpct_dir + '/../extensions/pytorch_api_rule_rules/pytorch_api.yaml ')
+        src.append(' --extra-arg="-I ./user_defined_rules_2" ')
+        return do_migrate(src, 'user_defined_rules_2/src', test_config.out_root, extra_args)
     if test_config.current_test in logical_group_exper:
         src.append(' --use-experimental-features=logical-group ')
     if test_config.current_test in uniform_group_exper:
@@ -205,6 +224,9 @@ def build_test():
             cmp_options.append("-std=c++20")
         else:
             cmp_options.append("-Qstd=c++20")
+
+    if test_config.current_test == 'user_defined_rules_2':
+        cmp_options.append("-I ./user_defined_rules_2")
 
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
