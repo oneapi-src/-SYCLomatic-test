@@ -62,7 +62,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
               'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform",  "context_push_n_pop",
-              "graphics_interop_d3d11", 'graph']
+              "graphics_interop_d3d11", 'graph', 'asm_shfl', 'asm_shfl_sync', 'asm_shfl_sync_with_exp']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
@@ -85,6 +85,7 @@ def migrate_test():
             src.append(os.path.abspath(os.path.join(dirpath, filename)))
 
     nd_range_bar_exper = ['grid_sync']
+    use_masked_sub_group_operation_exper = ['sync_warp_p2', 'asm_shfl_sync_with_exp']
     root_group_exper = ['grid_sync_root_group'] # Current build only.
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate']
     uniform_group_exper = ['cooperative_group_coalesced_group']
@@ -116,7 +117,7 @@ def migrate_test():
         src.append(' --use-experimental-features=user-defined-reductions ')
     if test_config.current_test == 'device_global':
         src.append(' --use-experimental-features=device_global ')
-    if test_config.current_test == 'sync_warp_p2':
+    if test_config.current_test in use_masked_sub_group_operation_exper:
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
         src.append(' --use-experimental-features=matrix ')
