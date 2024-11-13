@@ -115,7 +115,7 @@ def migrate_test():
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test == 'user_defined_rules_2':
         dpct_dir = os.path.dirname(shutil.which("dpct"))
-        src.append(' --rule-file=' + dpct_dir + '/../opt/dpct/extensions/pytorch_api_rule_rules/pytorch_api.yaml ')
+        src.append(' --rule-file=' + dpct_dir + '/../extensions/pytorch_api_rule_rules/pytorch_api.yaml ')
         include_dir = os.path.abspath('user_defined_rules_2')
         src.append(' --extra-arg="-I ' + include_dir + '" ')
         return do_migrate(src, 'user_defined_rules_2/src', test_config.out_root, extra_args)
@@ -229,7 +229,7 @@ def build_test():
 
     if test_config.current_test == 'user_defined_rules_2':
         include_dir = os.path.abspath('.')
-        cmp_options.append('-I ' + include_dir + '')
+        cmp_options.append('-I ' + include_dir + ' ')
 
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
