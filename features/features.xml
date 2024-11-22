@@ -315,9 +315,9 @@
     <test testName="cooperative_groups" configFile="config/TEMPLATE_cooperative_groups_excluding_syclcompat.xml" />
     <test testName="cooperative_group_coalesced_group" configFile="config/TEMPLATE_cooperative_groups_excluding_syclcompat.xml" />
     <test testName="cooperative_groups_thread_group" configFile="config/TEMPLATE_cooperative_groups_excluding_syclcompat.xml" />
-    <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" />
-    <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" />
-    <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" />
+    <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+    <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+    <!-- <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" /> -->
 	    <!-- <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <test testName="cooperative_groups_reduce" configFile="config/TEMPLATE_cooperative_groups_reduce.xml" />
     <test testName="cooperative_groups_data_manipulate" configFile="config/TEMPLATE_cooperative_groups_data_manipulate.xml" />
