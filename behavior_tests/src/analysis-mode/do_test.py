@@ -38,7 +38,12 @@ def migrate_test():
                         ["APIs/Types - Low manual effort for checking and code fixing."],
                         ["APIs/Types - Medium manual effort for code fixing."],
                         ["lines of code", "will not be automatically migrated."],
-                        ["APIs/Types - High manual effort for code fixing."]]
+                        ["APIs/Types - High manual effort for code fixing."],
+                        ["Library Dependencies of SYCL Project:"],
+                        ["oneAPI Math Kernel Library (oneMKL)"],
+                        ["oneAPI DPC++ Library (oneDPL)"],
+                        ["oneAPI Deep Neural Network Library (oneDNN)"],
+                        ["oneAPI Collective Communications Library (oneCCL)"]]
     
     ret_lines = test_config.command_output.splitlines()
     res = True

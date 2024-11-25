@@ -7,6 +7,11 @@
 //
 // ===----------------------------------------------------------------------===//
 
+#include "cublas.h"
+#include "nccl.h"
+#include "cudnn.h"
+#include "thrust/complex.h"
+
 __global__ void kernel(int *a) {
     *a = clock64();
     __syncthreads();
