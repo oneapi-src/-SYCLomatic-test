@@ -4,6 +4,15 @@
 #include <cuda_runtime.h>
 #include <cublasLt.h>
 
+
+float* make_fixed_float(size_t n){
+  float* arr = (float*)malloc(sizeof(float));
+  for(int i=0;i<n;i++){
+    arr[i] = 1.0f;
+  }
+  return arr;
+}
+
 void matmul_forward_cublaslt(float *out, const float *input, const float *weight, const float *bias, int B, int T, int C, int OC){
 
   int has_bias = (bias!=NULL);
@@ -117,9 +126,9 @@ int main(int argc, char **argv) {
 
     // create host memory of random numbers
     float* out = (float*)malloc(B * T * OC * sizeof(float));
-    float* inp = make_random_float(B * T * C);
-    float* weight = make_random_float(OC * C);
-    float* bias = make_random_float(OC);
+    float* inp = make_fixed_float(B * T * C);
+    float* weight = make_fixed_float(OC * C);
+    float* bias = make_fixed_float(OC);
 
     // move to GPU
     float* d_out;
