@@ -4,22 +4,50 @@
 #include <cuda_runtime.h>
 #include <cublasLt.h>
 
+//global vars for cublaslt
+const size_t cublaslt_workspace_size = 32 * 1024 * 1024;
+void* cublaslt_workspace = NULL;
+cublasComputeType_t cublas_compute = CUBLAS_COMPUTE_32F;
+cublasLtHandle_t cublaslt_handle;
+
+
+
+void cuda_check(cudaError_t error, const char *file, int line) {
+    if (error != cudaSuccess) {
+        printf("[CUDA ERROR] at file %s:%d:\n%s\n", file, line,
+               cudaGetErrorString(error));
+        exit(EXIT_FAILURE);
+    }
+};
+#define cudaCheck(err) (cuda_check(err, __FILE__, __LINE__))
+
+
+void cublasCheck(cublasStatus_t status, const char *file, int line)
+{
+    if (status != CUBLAS_STATUS_SUCCESS) {
+        printf("[cuBLAS ERROR]: %d %s %d\n", status, file, line);
+        exit(EXIT_FAILURE);
+    }
+}
+#define cublasCheck(status) { cublasCheck((status), __FILE__, __LINE__); }
+
+
 
 float* make_fixed_float(size_t n){
-  float* arr = (float*)malloc(sizeof(float));
+  float* arr = (float*)malloc(n * sizeof(float));
   for(int i=0;i<n;i++){
     arr[i] = 1.0f;
   }
   return arr;
 }
 
-void matmul_forward_cublaslt(float *out, const float *input, const float *weight, const float *bias, int B, int T, int C, int OC){
+void matmul_forward_cublaslt(float *out, const float *inp, const float *weight, const float *bias, int B, int T, int C, int OC){
 
   int has_bias = (bias!=NULL);
   int has_gelu =0;
   
   
-  if((uintptr_t)bias % 16 ==0){
+  if((uintptr_t)bias % 16 !=0){
     printf("Bias pointer is not aligned (cuBLASLt requirement)!\n");
     exit(EXIT_FAILURE);
   }
