@@ -7,8 +7,9 @@
 //global vars for cublaslt
 const size_t cublaslt_workspace_size = 32 * 1024 * 1024;
 void* cublaslt_workspace = NULL;
-cublasComputeType_t cublas_compute = CUBLAS_COMPUTE_32F;
+cublasComputeType_t cublas_compute_type = CUBLAS_COMPUTE_32F;
 cublasLtHandle_t cublaslt_handle;
+cublasHandle_t cublas_handle;
 
 
 
@@ -125,6 +126,27 @@ void matmul_forward(float* out,
 
 }
 
+void validate_results(const float* kernel_result, int num_elements) {
+    int nfaults = 0;
+    for (int i = 0; i < num_elements; i++) {
+        // print the first few comparisons
+        if (kernel_result[i] == 769.0f) {
+            printf("%f %f\n", kernel_result[i]);
+        }
+        else{
+            nfaults++;
+            if (nfaults >= 10) {
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+    if (nfaults > 0) {
+        exit(EXIT_FAILURE);
+    }
+    printf("OK\n");
+}
+
+
 int main(int argc, char **argv) {
     srand(0);
 
@@ -135,6 +157,7 @@ int main(int argc, char **argv) {
 
     // set up the device
     int deviceIdx = 0;
+    cudaCheck(cudaDeviceSynchronize());
     cudaCheck(cudaSetDevice(deviceIdx));
     cudaDeviceProp deviceProp;
     cudaGetDeviceProperties(&deviceProp, deviceIdx);
@@ -171,6 +194,7 @@ int main(int argc, char **argv) {
     cudaCheck(cudaMemcpy(d_weight, weight, C * OC * sizeof(float), cudaMemcpyHostToDevice));
     cudaCheck(cudaMemcpy(d_bias, bias, OC * sizeof(float), cudaMemcpyHostToDevice));
     matmul_forward(out, inp, weight, bias, B, T, C, OC);   
+    validate_results(out, B * T * OC);
     
     // free memory
     free(out);
@@ -187,4 +211,3 @@ int main(int argc, char **argv) {
     
     return 0;
 }
-
