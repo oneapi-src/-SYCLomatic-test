@@ -37,10 +37,12 @@ __global__ void ld(int *arr, int *arr2) {
   asm volatile("ld.global.s32 %0, [%1 + 4];" : "=r"(b) : "l"(arr));
   asm volatile("ld.global.s32 %0, [%1 + 8];" : "=r"(c) : "l"(arr));
   asm volatile("ld.global.s32 %0, [%1 + 12];" : "=r"(d) : "l"(arr));
+  asm volatile("ld.volatile.global.s32 %0, [%1];" : "=r"(a) : "l"(arr));
   asm volatile("st.global.s32 [%0], %1;" ::"l"(arr2), "r"(a));
   asm volatile("st.global.s32 [%0 + 4], %1;" ::"l"(arr2), "r"(b));
   asm volatile("st.global.s32 [%0 + 8], %1;" ::"l"(arr2), "r"(c));
   asm volatile("st.global.s32 [%0 + 12], %1;" ::"l"(arr2), "r"(d));
+  asm volatile("st.volatile.global.s32 [%0], %1;" ::"l"(arr2), "r"(a));
 }
 
 bool test_load() {
