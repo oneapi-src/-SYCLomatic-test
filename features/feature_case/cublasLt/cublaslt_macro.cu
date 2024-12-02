@@ -131,7 +131,7 @@ void validate_results(const float* kernel_result, int num_elements) {
     for (int i = 0; i < num_elements; i++) {
         // print the first few comparisons
         if (kernel_result[i] == 769.0f) {
-            printf("%f %f\n", kernel_result[i]);
+            printf("%f\n", kernel_result[i]);
         }
         else{
             nfaults++;
