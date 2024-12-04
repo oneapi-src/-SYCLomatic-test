@@ -40,6 +40,7 @@ __global__ void kernel1(EleT *output, cudaSurfaceObject_t surf, int w, int h) {
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
       auto ret = surf2Dread<T>(surf, j * sizeof(T), i);
+
       output[w * i + j] = ret.x;
     }
   }
