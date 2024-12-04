@@ -151,7 +151,7 @@
     <test testName="math-ext-half2" configFile="config/TEMPLATE_math_after_9_skip_cuda_backend.xml" />
     <test testName="math-ext-half2-after11" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
     <test testName="math-ext-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
-    <test testName="math-ext-simd-after12" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
+    <test testName="math-ext-simd-after12" configFile="config/TEMPLATE_math_after_12_skip_cuda_backend.xml" />
     <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-helper" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-int" configFile="config/TEMPLATE_math.xml" />
@@ -206,6 +206,7 @@
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_shuffle" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
+    <test testName="cub_block_store" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_exchange" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_radix_sort" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_device" configFile="config/TEMPLATE_cub_device.xml" />
