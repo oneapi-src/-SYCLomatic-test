@@ -342,6 +342,7 @@
     <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_sample_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_surf" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda_excluding_syclcompat.xml" />
     <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
     <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />
