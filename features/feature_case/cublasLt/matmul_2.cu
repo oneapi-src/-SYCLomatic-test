@@ -220,11 +220,11 @@ bool test_gelu_aux() {
 // 8 12 16     1  0
 // 9 13 17     p  p
 //
-// alpha * A          * B    + C           = alpha * A*B    + C           = D              gelu
-// 2       6  10  14    5  4     -29   -7       2   14  4       -29   -7      -1   1    -0.158806 0.841194
-//         7  11  15   -3 -2   -33.5  -13           17  6     -33.5  -13     0.5  -1         2034     6012
-//         8  12  16    1  0   -41.1  -14           20  8     -41.1  -14    -1.1   2         3040     7016
-//         9  13  17    p  p   -44.2  -23           23  10    -44.2  -23     1.8  -3         4046     8020
+// alpha * A          * B     = alpha * A*B    = D          aux           dgelu
+// 2       6  10  14    5  4        2   14  4    28  8     -0.1  -0.1     0.082964 -35.846096
+//         7  11  15   -3 -2            17  6    34 12     -0.2  -0.2     27       -2
+//         8  12  16    1  0            20  8    40 16      0.1   0.1     6.5      -28.200001
+//         9  13  17    p  p            23  10   46 20      0.05  0.05    33       -3
 // clang-format on
 bool test_dgelu() {
   printf("========test_dgelu=========\n");
@@ -235,41 +235,34 @@ bool test_dgelu() {
   const constexpr int k = 3;
   const constexpr int lda = m;
   const constexpr int ldb = m;
-  const constexpr int ldc = m;
   const constexpr int ldd = m;
   void *Adev;
   void *Bdev;
-  void *Cdev;
   void *Ddev;
   cudaMalloc(&Adev, lda * k * sizeof(float));
   cudaMalloc(&Bdev, ldb * n * sizeof(float));
-  cudaMalloc(&Cdev, ldc * n * sizeof(float));
   cudaMalloc(&Ddev, ldd * n * sizeof(float));
 
   float Ahost[lda * k] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
   float Bhost[ldb * n] = {5, -3, 1, 99, 4, -2, 0, 99};
-  float Chost[ldc * n] = {-29, -7, -33.5, -13, -41.1, -14, -44.2, -23};
 
   cudaMemcpy(Adev, Ahost, lda * k * sizeof(float), cudaMemcpyHostToDevice);
   cudaMemcpy(Bdev, Bhost, ldb * n * sizeof(float), cudaMemcpyHostToDevice);
-  cudaMemcpy(Cdev, Chost, ldc * n * sizeof(float), cudaMemcpyHostToDevice);
 
   cublasLtMatrixLayout_t Adesc_col_major = NULL,
                          Bdesc_col_major = NULL,
-                         Cdesc_col_major = NULL,
                          Ddesc_col_major = NULL;
   cublasLtMatrixLayoutCreate(&Adesc_col_major, CUDA_R_32F, m, k, lda);
   cublasLtMatrixLayoutCreate(&Bdesc_col_major, CUDA_R_32F, k, n, ldb);
-  cublasLtMatrixLayoutCreate(&Cdesc_col_major, CUDA_R_32F, m, n, ldc);
   cublasLtMatrixLayoutCreate(&Ddesc_col_major, CUDA_R_32F, m, n, ldd);
 
   float alpha = 2;
-  float beta = 1;
+  float beta = 0;
 
   float *aux_dev;
   size_t aux_ld = 4;
   cudaMalloc(&aux_dev, aux_ld * n * sizeof(float));
-  float aux_host[8] = {-1, 2034, 3040, 4046, 1, 6012, 7016, 8020};
+  float aux_host[8] = {-0.1, -0.2, 0.1, 0.05, -0.1, -0.2, 0.1, 0.05};
   cudaMemcpy(aux_dev, aux_host, aux_ld * n * sizeof(float), cudaMemcpyHostToDevice);
 
   // Matmul
@@ -279,7 +272,7 @@ bool test_dgelu() {
   cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_LD, &aux_ld, sizeof(aux_ld));
   cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_EPILOGUE_AUX_POINTER, &aux_dev, sizeof(aux_dev));
   cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_EPILOGUE, &ep, sizeof(ep));
-  cublasLtMatmul(ltHandle, matmulDesc, &alpha, Adev, Adesc_col_major, Bdev, Bdesc_col_major, &beta, Cdev, Cdesc_col_major, Ddev, Ddesc_col_major, NULL, NULL, 0, 0);
+  cublasLtMatmul(ltHandle, matmulDesc, &alpha, Adev, Adesc_col_major, Bdev, Bdesc_col_major, &beta, Ddev, Ddesc_col_major, Ddev, Ddesc_col_major, NULL, NULL, 0, 0);
   cudaStreamSynchronize(0);
   cublasLtMatmulDescDestroy(matmulDesc);
 
@@ -288,7 +281,7 @@ bool test_dgelu() {
   cudaMemcpy(Dhost, Ddev, ldd * n * sizeof(float), cudaMemcpyDeviceToHost);
 
   bool error = false;
-  float D_ref[ldd * n] = {0.082964, 27.000000, 6.500000, 33.000000, -35.846096, -2.000000, -28.200001, -3.000000};
+  float D_ref[ldd * n] = {11.773392, 11.646420, 23.180870, 24.833599, 3.363826, 4.110501, 9.272348, 10.797216};
   for (int i = 0; i < ldd * n; i++) {
     if (std::abs(Dhost[i] - D_ref[i]) > 0.01) {
       error = true;
@@ -310,7 +303,6 @@ bool test_dgelu() {
   cublasLtDestroy(ltHandle);
   cublasLtMatrixLayoutDestroy(Adesc_col_major);
   cublasLtMatrixLayoutDestroy(Bdesc_col_major);
-  cublasLtMatrixLayoutDestroy(Cdesc_col_major);
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
