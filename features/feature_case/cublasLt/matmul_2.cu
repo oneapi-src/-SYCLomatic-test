@@ -9,6 +9,7 @@
 #include "cublasLt.h"
 
 #define __PART1
+#define __PART2
 
 #ifdef __PART1
 // clang-format off
