@@ -658,5 +658,8 @@ int main() {
   pass = test_dgelu() && pass;
 #endif
 
+  if (pass)
+    printf("matmul_2 all passed.\n");
+
   return pass ? 0 : 1;
 }

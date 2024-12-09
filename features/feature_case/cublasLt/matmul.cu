@@ -902,5 +902,9 @@ int main() {
   pass = test6() && pass;
   pass = test7() && pass;
   pass = test_version() && pass;
+
+  if (pass)
+    printf("matmul all passed.\n");
+
   return pass ? 0 : 1;
 }
