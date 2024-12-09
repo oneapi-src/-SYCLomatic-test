@@ -196,6 +196,9 @@ bool test1() {
   cudaFree(Adev);
   cudaFree(Bdev);
   cudaFree(Cdev);
+  cudaFree(A_col32);
+  cudaFree(B_col4_4r2_8c);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -297,6 +300,9 @@ bool test2() {
   cudaFree(Adev);
   cudaFree(Bdev);
   cudaFree(Cdev);
+  cudaFree(A_col32);
+  cudaFree(B_col4_4r2_8c);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -405,6 +411,9 @@ bool test3() {
   cudaFree(Bdev);
   cudaFree(Cdev);
   cudaFree(alpha);
+  cudaFree(A_col32);
+  cudaFree(B_col4_4r2_8c);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -507,6 +516,9 @@ bool test4() {
   cudaFree(Adev);
   cudaFree(Bdev);
   cudaFree(Cdev);
+  cudaFree(A_col32);
+  cudaFree(B_col32_2r_4r4);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -609,6 +621,9 @@ bool test5() {
   cudaFree(Adev);
   cudaFree(Bdev);
   cudaFree(Cdev);
+  cudaFree(A_col32);
+  cudaFree(B_col32_2r_4r4);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -718,6 +733,9 @@ bool test6() {
   cudaFree(Bdev);
   cudaFree(Cdev);
   cudaFree(alpha);
+  cudaFree(A_col32);
+  cudaFree(B_col32_2r_4r4);
+  cudaFree(C_col32);
 
   return !error;
 }
@@ -756,6 +774,9 @@ void fgemmlt(cublasLtHandle_t ltHandle, int m, int n, int k,
 
   cudaStreamSynchronize(0);
   cublasLtMatmulDescDestroy(matmulDesc);
+  cudaFree(scale_a);
+  cudaFree(scale_b);
+  cudaFree(scale_d);
 }
 
 // clang-format off
@@ -859,6 +880,7 @@ bool test7() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
   cudaFree(amax_d);
 

@@ -104,6 +104,7 @@ bool test_gelu() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
 
   return !error;
@@ -208,6 +209,7 @@ bool test_bias() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
   cudaFree(bias_vec_dev);
 
@@ -313,6 +315,7 @@ bool test_gelu_bias() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
   cudaFree(bias_vec_dev);
 
@@ -423,7 +426,9 @@ bool test_gelu_aux() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
+  cudaFree(aux_dev);
 
   return !error;
 }
@@ -536,7 +541,9 @@ bool test_gelu_aux_bias() {
   cublasLtMatrixLayoutDestroy(Ddesc_col_major);
   cudaFree(Adev);
   cudaFree(Bdev);
+  cudaFree(Cdev);
   cudaFree(Ddev);
+  cudaFree(aux_dev);
   cudaFree(bias_vec_dev);
 
   return !error;
@@ -638,6 +645,7 @@ bool test_dgelu() {
   cudaFree(Adev);
   cudaFree(Bdev);
   cudaFree(Ddev);
+  cudaFree(aux_dev);
 
   return !error;
 }
