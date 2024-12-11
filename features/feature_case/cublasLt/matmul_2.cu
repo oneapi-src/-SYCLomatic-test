@@ -8,10 +8,6 @@
 
 #include "cublasLt.h"
 
-#define __PART1
-#define __PART2
-
-#ifdef __PART1
 // clang-format off
 // A (4*3)     B (3*2)
 // 6 10 14     5  4
@@ -322,9 +318,7 @@ bool test_gelu_bias() {
 
   return !error;
 }
-#endif
 
-#ifdef __PART2
 bool test_gelu_aux() {
   printf("========test_gelu_aux=========\n");
   cublasLtHandle_t ltHandle;
@@ -549,9 +543,7 @@ bool test_gelu_aux_bias() {
 
   return !error;
 }
-#endif
 
-#ifdef __PART3
 // clang-format off
 // A (4*3)     B (3*2)
 // 6 10 14     5  4
@@ -650,22 +642,15 @@ bool test_dgelu() {
 
   return !error;
 }
-#endif
 
 int main() {
   bool pass = true;
-#ifdef __PART1
   pass = test_gelu() && pass;
   pass = test_bias() && pass;
   pass = test_gelu_bias() && pass;
-#endif
-#ifdef __PART2
   pass = test_gelu_aux() && pass;
   pass = test_gelu_aux_bias() && pass;
-#endif
-#ifdef __PART3
   pass = test_dgelu() && pass;
-#endif
 
   if (pass)
     printf("matmul_2 all passed.\n");
