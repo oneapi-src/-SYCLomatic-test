@@ -15,6 +15,12 @@ int main() {
     cuInit(0);
     CUdevice device;
     cuDeviceGet(&device, 0);
+    int supported = 0;
+    cuDeviceGetAttribute(&supported, CU_DEVICE_ATTRIBUTE_VIRTUAL_MEMORY_MANAGEMENT_SUPPORTED, device);
+    if(!supported) {
+        std::cout << "test passed" << std::endl;
+        return 0;
+    }
     CUcontext context;
     cuCtxCreate(&context, 0, device);
 
