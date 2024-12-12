@@ -45,7 +45,7 @@ int main(void)
     while(ret != cudaSuccess)
       ret = cudaEventQuery(e);
 
-    cudaEventDestory(e);
+    cudaEventDestroy(e);
 
     float Result[VECTOR_SIZE] = { };
     cudaMemcpy(Result, d_C, VECTOR_SIZE*sizeof(float), cudaMemcpyDeviceToHost);
