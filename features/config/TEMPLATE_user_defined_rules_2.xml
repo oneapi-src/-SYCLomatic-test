@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test driverID="test_feature" name="TEMPLATE">
+    <description>WARNING: DON'T UPDATE THIS FILE MANUALLY!!!
+      This is auto-generated accessors configuration file which affects all tests in ported gcc suites
+      If you have any issue with this file please contact Compiler QA team</description>
+    <files>
+      <file path="feature_case/user_defined_rules_2/user_defined_rules_2.cu" />
+      <file path="feature_case/user_defined_rules_2/Tensor.h" />
+      <file path="feature_case/user_defined_rules_2/CUDATensorMethods.cuh" />
+      <file path="feature_case/user_defined_rules_2/DeviceGuard.h" />
+      <file path="feature_case/user_defined_rules_2/Device.h" />
+      <file path="feature_case/user_defined_rules_2/CUDAGuard.h" />
+      <file path="feature_case/user_defined_rules_2/CUDAStream.h" />
+      <file path="feature_case/user_defined_rules_2/Half.h" />
+      <file path="feature_case/user_defined_rules_2/XPUStream.h" />
+    </files>
+    <rules>
+      <optlevelRule GPUFeature="NOT double" excludeOptlevelNameString="gpu" />
+    </rules>
+</test>

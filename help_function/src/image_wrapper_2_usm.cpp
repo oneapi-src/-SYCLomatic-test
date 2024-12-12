@@ -62,6 +62,7 @@ int main() {
 
   float *result;
   result = sycl::malloc_device<float>(24, q_ct1);
+  static_cast<dpct::image_wrapper<sycl::float4, 2> *>(texObj)->create_image();
   q_ct1.submit([&](sycl::handler &cgh) {
     auto texObj_acc =
         static_cast<dpct::image_wrapper<sycl::float4, 2> *>(texObj)->get_access(

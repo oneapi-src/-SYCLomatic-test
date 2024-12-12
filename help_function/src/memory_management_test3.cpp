@@ -15,7 +15,7 @@
 void check(float *h_data, float *h_ref, size_t width, size_t height,
            size_t depth) {
   for (int i = 0; i < width * height * depth; i++) {
-    float diff = fabs(h_data[i] - h_ref[i]);
+    float diff = sycl::fabs(h_data[i] - h_ref[i]);
     if (diff > 1.e-6) {
       printf("Verification failed!");
       printf("h_data[%d]=%f, h_ref[%d]=%f, diff=%f\n", i, h_data[i], i,
@@ -56,7 +56,7 @@ void test1() {
 
   // verify
   for(int i = 0; i < N1; i++){
-      if (fabs(h_A[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_A[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -64,7 +64,7 @@ void test1() {
   }
 
   for(int i = N1; i < Num; i++){
-      if (fabs(h_B[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_B[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -113,7 +113,7 @@ void test2() {
 
   // verify
   for(int i = 0; i < N1; i++){
-      if (fabs(h_A[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_A[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -121,7 +121,7 @@ void test2() {
   }
 
   for(int i = N1; i < Num; i++){
-      if (fabs(h_B[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_B[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -211,7 +211,7 @@ void test3() {
 
   // verify
   for(int i = Offset; i < Num; i++){
-      if (fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f, C = %f:\n", i,h_A[i],  h_B[i],  h_C[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);
@@ -319,7 +319,7 @@ void test5() {
   dpct::get_default_queue().wait_and_throw();
   // verify hostD
   for (int i = 0; i < N1; i++) {
-    if (fabs(h_A[i] - h_D[i]) > 1e-5) {
+    if (sycl::fabs(h_A[i] - h_D[i]) > 1e-5) {
       fprintf(stderr, "Check: Elements are A = %f, D = %f:\n", h_A[i], h_D[i]);
       fprintf(stderr, "Result verification failed at element %d:\n", i);
       exit(EXIT_FAILURE);
@@ -327,7 +327,7 @@ void test5() {
   }
 
   for (int i = N1; i < Num; i++) {
-    if (fabs(h_B[i] - h_D[i]) > 1e-5) {
+    if (sycl::fabs(h_B[i] - h_D[i]) > 1e-5) {
       fprintf(stderr, "Check: Elements are B = %f, D = %f:\n",   h_B[i], h_D[i]);
       fprintf(stderr, "Result verification failed at element %d:\n", i);
       exit(EXIT_FAILURE);
@@ -418,7 +418,7 @@ void test1(sycl::queue &q) {
 
   // verify
   for(int i = 0; i < N1; i++){
-      if (fabs(h_A[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_A[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -426,7 +426,7 @@ void test1(sycl::queue &q) {
   }
 
   for(int i = N1; i < Num; i++){
-      if (fabs(h_B[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_B[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -473,7 +473,7 @@ void test2(sycl::queue &q) {
 
   // verify
   for(int i = 0; i < N1; i++){
-      if (fabs(h_A[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_A[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -481,7 +481,7 @@ void test2(sycl::queue &q) {
   }
 
   for(int i = N1; i < Num; i++){
-      if (fabs(h_B[i] - h_C[i]) > 1e-5) {
+      if (sycl::fabs(h_B[i] - h_C[i]) > 1e-5) {
           fprintf(stderr,"Check: Elements are A = %f, B = %f, C = %f:\n", h_A[i],  h_B[i],  h_C[i]);
           fprintf(stderr,"Result verification failed at element %d:\n", i);
           exit(EXIT_FAILURE);
@@ -566,7 +566,7 @@ void test3(sycl::queue &q) {
 
   // verify
   for(int i = Offset; i < Num; i++){
-      if (fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
+      if (sycl::fabs(h_C[i] - h_A[i] - h_B[i]) > 1e-5) {
         fprintf(stderr,"Check %d: Elements are A = %f, B = %f, C = %f:\n", i,h_A[i],  h_B[i],  h_C[i]);
         fprintf(stderr,"Result verification failed at element %d:\n", i);
         exit(EXIT_FAILURE);
@@ -671,7 +671,7 @@ void test5(sycl::queue &q) {
   q.wait_and_throw();
   // verify hostD
   for (int i = 0; i < N1; i++) {
-    if (fabs(h_A[i] - h_D[i]) > 1e-5) {
+    if (sycl::fabs(h_A[i] - h_D[i]) > 1e-5) {
       fprintf(stderr, "Check: Elements are A = %f, D = %f:\n", h_A[i], h_D[i]);
       fprintf(stderr, "Result verification failed at element %d:\n", i);
       exit(EXIT_FAILURE);
@@ -679,7 +679,7 @@ void test5(sycl::queue &q) {
   }
 
   for (int i = N1; i < Num; i++) {
-    if (fabs(h_B[i] - h_D[i]) > 1e-5) {
+    if (sycl::fabs(h_B[i] - h_D[i]) > 1e-5) {
       fprintf(stderr, "Check: Elements are B = %f, D = %f:\n",   h_B[i], h_D[i]);
       fprintf(stderr, "Result verification failed at element %d:\n", i);
       exit(EXIT_FAILURE);

@@ -118,10 +118,10 @@ def migrate_test():
             ],
         ],
         [  # Math
-            "__vaddss4",
-            ["__vaddss4(u1 /*unsigned int*/, u2 /*unsigned int*/);"],
+            "__half2int_rd",
+            ["__half2int_rd(h /*__half*/);"],
             ["--use-dpcpp-extensions=intel_device_math"],
-            ["sycl::ext::intel::math::vaddss4(u1, u2);"],
+            ["sycl::ext::intel::math::half2int_rd(h);"],
         ],
         [  # cuBLAS
             "cublasSgemm",

@@ -109,7 +109,7 @@ getTex(void *input, size_t w, size_t h, cudaChannelFormatDesc desc,
   resDesc.res.pitch2D.pitchInBytes = pitchInBytes;
 
   cudaTextureDesc texDesc;
-  // memset(&texDesc, 0, sizeof(texDesc)); // TODO: Need open after bug fixing.
+  memset(&texDesc, 0, sizeof(texDesc));
   texDesc.addressMode[0] = addressMode;
   texDesc.addressMode[1] = addressMode;
   texDesc.addressMode[2] = addressMode;

@@ -31,7 +31,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'cub_device_inclusive_sum_by_key', 'cub_device_exclusive_sum_by_key', 'cub_device_inclusive_scan_by_key', 'cub_device_exclusive_scan_by_key', 'cub_shuffle',
               'cub_device_reduce_arg', 'cub_device_seg_sort_pairs', 'cub_intrinsic', 'cub_device_seg_sort_keys', 'thrust-math1', 'thrust-math2', 'cub_block_exchange',
               'cub_transform_iterator', 'activemask', 'complex', 'thrust-math', 'libcu_array', 'libcu_complex', 'libcu_tuple', 'cub_block_radix_sort',
-              'user_defined_rules', 'math-exec', 'math-intrinsics', 'math-habs', 'math-emu-double', 'math-emu-float', 'math-emu-half', 'math-emu-half-after11', 'math-emu-half2', 'math-emu-half2-after11', 'math-emu-half2-after12', 'math-emu-simd',
+              'user_defined_rules', 'user_defined_rules_2', 'math-exec', 'math-intrinsics', 'math-habs', 'math-emu-double', 'math-emu-float', 'math-emu-half', 'math-emu-half-after11', 'math-emu-half2', 'math-emu-half2-after11', 'math-emu-half2-after12', 'math-emu-simd',
               'math-emu-bf16', 'math-emu-bf162-after12', 'math-emu-bf162', 'math-experimental-bf16', 'math-experimental-bf162', "math-half-raw",
               'math-ext-bf16-conv', 'math-ext-double', 'math-ext-float', 'math-ext-half', 'math-ext-half-after11', 'math-ext-half-conv', 'math-ext-half2', 'math-ext-half2-after11', 'math-ext-simd', 'cudnn-activation',
               'cudnn-fill', 'cudnn-lrn', 'cudnn-memory', 'cudnn-pooling', 'cudnn-reorder', 'cudnn-scale', 'cudnn-softmax',
@@ -43,8 +43,8 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
               'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
               'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
-              'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_linear', 'text_experimental_obj_memcpy3d_api',
-              'text_experimental_obj_mipmap', 'text_experimental_obj_peer_api', 'text_experimental_obj_pitch2d', 'text_experimental_obj_sample_api',
+              'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_linear', 'text_experimental_obj_memcpy2d_api', 'text_experimental_obj_memcpy3d_api',
+              'text_experimental_obj_mipmap', 'text_experimental_obj_peer_api', 'text_experimental_obj_pitch2d', 'text_experimental_obj_sample_api', 'text_experimental_obj_surf',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
               'curand-device2', 'curandEnum', 'codepin_all_public_dump', 'virtual_memory',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
@@ -61,11 +61,29 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'thrust_swap_ranges', 'thrust_uninitialized_fill_n', 'thrust_equal', 'system_atomic', 'thrust_detail_types',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
-              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "transform"]
+              'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "matmul_2", "transform",  "context_push_n_pop",
+              "graphics_interop_d3d11", 'graph', 'asm_shfl', 'asm_shfl_sync', 'asm_shfl_sync_with_exp', 'asm_membar_fence',
+              'cub_block_store']
 
 occupancy_calculation_exper = ['occupancy_calculation']
 
 def setup_test():
+    if test_config.current_test == 'user_defined_rules_2':
+        call_subprocess('mkdir -p user_defined_rules_2/ATen/cuda')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/core')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/cuda')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/util')
+        call_subprocess('mkdir -p user_defined_rules_2/c10/xpu')
+        call_subprocess('mkdir -p user_defined_rules_2/src')
+        call_subprocess('mv user_defined_rules_2/CUDATensorMethods.cuh user_defined_rules_2/ATen/cuda')
+        call_subprocess('mv user_defined_rules_2/Tensor.h user_defined_rules_2/ATen')
+        call_subprocess('mv user_defined_rules_2/DeviceGuard.h user_defined_rules_2/c10/core')
+        call_subprocess('mv user_defined_rules_2/Device.h user_defined_rules_2/c10/core')
+        call_subprocess('mv user_defined_rules_2/CUDAGuard.h user_defined_rules_2/c10/cuda')
+        call_subprocess('mv user_defined_rules_2/CUDAStream.h user_defined_rules_2/c10/cuda')
+        call_subprocess('mv user_defined_rules_2/Half.h user_defined_rules_2/c10/util')
+        call_subprocess('mv user_defined_rules_2/XPUStream.h user_defined_rules_2/c10/xpu')
+        call_subprocess('mv user_defined_rules_2/user_defined_rules_2.cu user_defined_rules_2/src')
     return True
 
 def migrate_test():
@@ -84,6 +102,7 @@ def migrate_test():
             src.append(os.path.abspath(os.path.join(dirpath, filename)))
 
     nd_range_bar_exper = ['grid_sync']
+    use_masked_sub_group_operation_exper = ['sync_warp_p2', 'asm_shfl_sync_with_exp']
     root_group_exper = ['grid_sync_root_group'] # Current build only.
     logical_group_exper = ['cooperative_groups', 'cooperative_groups_thread_group', 'cooperative_groups_data_manipulate']
     uniform_group_exper = ['cooperative_group_coalesced_group']
@@ -95,6 +114,12 @@ def migrate_test():
         src.append(' --use-experimental-features=root-group ')
     if test_config.current_test == "user_defined_rules":
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
+    if test_config.current_test == 'user_defined_rules_2':
+        dpct_dir = os.path.dirname(shutil.which("dpct"))
+        src.append(' --rule-file=' + dpct_dir + '/../extensions/pytorch_api_rule_rules/pytorch_api.yaml ')
+        include_dir = os.path.abspath('user_defined_rules_2')
+        src.append(' --extra-arg="-I ' + include_dir + '" ')
+        return do_migrate(src, 'user_defined_rules_2/src', test_config.out_root, extra_args)
     if test_config.current_test in logical_group_exper:
         src.append(' --use-experimental-features=logical-group ')
     if test_config.current_test in uniform_group_exper:
@@ -115,7 +140,7 @@ def migrate_test():
         src.append(' --use-experimental-features=device_global ')
     if test_config.current_test == 'virtual_memory':
         src.append(' --use-experimental-features=virtual_mem ')
-    if test_config.current_test == 'sync_warp_p2':
+    if test_config.current_test in use_masked_sub_group_operation_exper:
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
         src.append(' --use-experimental-features=matrix ')
@@ -123,10 +148,12 @@ def migrate_test():
         src.append(' --use-experimental-features=bfloat16_math_functions ')
     if test_config.current_test == 'const_opt' or test_config.current_test == 'asm_optimize':
         src.append(' --optimize-migration ')
-    if test_config.current_test.startswith('text_experimental_'):
+    if test_config.current_test.startswith(('text_experimental_', 'graphics_interop_')):
         src.append(' --use-experimental-features=bindless_images')
     if "codepin" in test_config.current_test:
         src.append(' --enable-codepin ')
+    if test_config.current_test == 'graph':
+        src.append(' --use-experimental-features=graph ')
     return do_migrate(src, in_root, test_config.out_root, extra_args)
 
 def manual_fix_for_cufft_external_workspace(migrated_file):
@@ -172,7 +199,7 @@ def build_test():
              'cudnn-binary', 'cudnn-bnp1', 'cudnn-bnp2', 'cudnn-bnp3', 'cudnn-normp1', 'cudnn-normp2', 'cudnn-normp3',
              'cudnn-convp1', 'cudnn-convp2', 'cudnn-convp3', 'cudnn-convp4', 'cudnn-convp5', 'cudnn-convp6', 'cudnn-rnn',
              'cudnn-GetErrorString', 'cudnn-convp7',
-             'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'matmul'
+             'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'matmul', 'matmul_2'
              ]
 
     no_fast_math_tests = ['math-emu-half-after11', 'math-emu-half2-after11', 'math-ext-half-after11', 'math-ext-half2-after11',
@@ -202,6 +229,10 @@ def build_test():
             cmp_options.append("-std=c++20")
         else:
             cmp_options.append("-Qstd=c++20")
+
+    if test_config.current_test == 'user_defined_rules_2':
+        include_dir = os.path.abspath('.')
+        cmp_options.append('-I ' + include_dir + ' ')
 
     for dirpath, dirnames, filenames in os.walk(test_config.out_root):
         for filename in [f for f in filenames if re.match('.*(cpp|c)$', f)]:
@@ -234,7 +265,7 @@ def build_test():
 def run_test():
     if test_config.current_test not in exec_tests:
         return True
-    if test_config.current_test.startswith('text_experimental_obj_') and test_config.device_filter.count("cuda") == 0:
+    if test_config.current_test.startswith(('text_experimental_obj_', 'graphics_interop_')) and test_config.device_filter.count("cuda") == 0:
         return True
     os.environ['ONEAPI_DEVICE_SELECTOR'] = test_config.device_filter
     os.environ['CL_CONFIG_CPU_EXPERIMENTAL_FP16']="1"

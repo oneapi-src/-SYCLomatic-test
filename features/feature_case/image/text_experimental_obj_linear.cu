@@ -72,7 +72,7 @@ cudaTextureObject_t getTex(void *input, cudaChannelFormatDesc desc,
   resDesc.res.linear.sizeInBytes = sizeInBytes;
 
   cudaTextureDesc texDesc;
-  // memset(&texDesc, 0, sizeof(texDesc)); // TODO: Need open after bug fixing.
+  memset(&texDesc, 0, sizeof(texDesc));
 
   cudaTextureObject_t tex;
   cudaCreateTextureObject(&tex, &resDesc, &texDesc, NULL);

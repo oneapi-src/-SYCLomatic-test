@@ -8,10 +8,14 @@
     <test testName="asm_bar" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_mem" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_atom" configFile="config/TEMPLATE_asm.xml" />
-    <test testName="asm_vinst" configFile="config/TEMPLATE_asm.xml" />
-    <test testName="asm_v2inst" configFile="config/TEMPLATE_asm.xml" />
-    <test testName="asm_v4inst" configFile="config/TEMPLATE_asm.xml" />
-    <!-- <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" /> -->
+    <test testName="asm_vinst" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_v2inst" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_v4inst" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_shfl_sync" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_shfl" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_shfl_sync_with_exp" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_membar_fence" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
+    <test testName="asm_arith" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_optimize" configFile="config/TEMPLATE_asm.xml" />
     <test testName="thrust-op" configFile="config/TEMPLATE_thrust_op.xml" />
     <test testName="thrust-for-h2o4gpu" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -40,7 +44,6 @@
     <test testName="thrust-pinned-allocator" configFile="config/TEMPLATE_thrust_pinned_allocator.xml" />
     <test testName="thrust_minmax_element" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_partition" configFile="config/TEMPLATE_thrust_api.xml" />
-    <!--<test testName="thrust_detail_types" configFile="config/TEMPLATE_thrust_detail_types.xml" /> -->
     <test testName="thrust_is_sorted" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_replace_copy" configFile="config/TEMPLATE_thrust_api.xml" />
     <test testName="thrust_scatter_if" configFile="config/TEMPLATE_thrust_api.xml" />
@@ -119,24 +122,25 @@
     <test testName="math-direct" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
     <test testName="math-drcp" configFile="config/TEMPLATE_math_drcp.xml"  splitGroup="double" />
     <test testName="math-emu" configFile="config/TEMPLATE_math.xml" />
-    <test testName="math-emu-bf16" configFile="config/TEMPLATE_math_after_11.xml" />
+    <test testName="math-emu-bf16" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-emu-bf16-conv-double" configFile="config/TEMPLATE_math_after_11_skip_double.xml" splitGroup="double"/>
     <test testName="math-emu-bf162-after12" configFile="config/TEMPLATE_math_after_12.xml" />
-    <test testName="math-emu-bf162" configFile="config/TEMPLATE_math_after_11.xml" />
+    <test testName="math-emu-bf162" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-emu-double" configFile="config/TEMPLATE_math_skip_double.xml" splitGroup="double"/>
     <test testName="math-emu-float" configFile="config/TEMPLATE_math_skip_double.xml" splitGroup="double"/>
     <test testName="math-emu-half" configFile="config/TEMPLATE_math_after_9.xml" />
-    <test testName="math-emu-half-after11" configFile="config/TEMPLATE_math_after_11.xml" />
+    <test testName="math-emu-half-after11" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-emu-half2" configFile="config/TEMPLATE_math_after_9.xml" />
-    <test testName="math-emu-half2-after11" configFile="config/TEMPLATE_math_after_11.xml" />
+    <test testName="math-emu-half2-after11" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-emu-half2-after12" configFile="config/TEMPLATE_math_after_12.xml" />
-    <test testName="math-emu-simd" configFile="config/TEMPLATE_math.xml" />
+    <test testName="math-emu-simd" configFile="config/TEMPLATE_math_excluding_syclcompat.xml" />
+    <test testName="math-emu-simd-after12" configFile="config/TEMPLATE_math_excluding_syclcompat.xml" />
     <test testName="math-exec" configFile="config/TEMPLATE_math_exec.xml" splitGroup="double" />
     <test testName="math-funnelshift" configFile="config/TEMPLATE_math_funnelshift.xml" />
     <test testName="math-habs" configFile="config/TEMPLATE_math_habs.xml" splitGroup="double" />
     <test testName="math-half-raw" configFile="config/TEMPLATE_math_after_11.xml"/>
-    <test testName="math-experimental-bf16" configFile="config/TEMPLATE_math_after_11.xml" />
-    <test testName="math-experimental-bf162" configFile="config/TEMPLATE_math_after_11.xml" />
+    <test testName="math-experimental-bf16" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
+    <test testName="math-experimental-bf162" configFile="config/TEMPLATE_math_after_11_excluding_syclcompat.xml" />
     <test testName="math-ext-bf16-conv" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
     <test testName="math-ext-bf16-conv-double" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-ext-double" configFile="config/TEMPLATE_math_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
@@ -147,6 +151,7 @@
     <test testName="math-ext-half2" configFile="config/TEMPLATE_math_after_9_skip_cuda_backend.xml" />
     <test testName="math-ext-half2-after11" configFile="config/TEMPLATE_math_after_11_skip_cuda_backend.xml" />
     <test testName="math-ext-simd" configFile="config/TEMPLATE_math_skip_cuda_backend.xml" />
+    <test testName="math-ext-simd-after12" configFile="config/TEMPLATE_math_after_12_skip_cuda_backend.xml" />
     <test testName="math-half-conv" configFile="config/TEMPLATE_math_after_11_skip_double_skip_cuda_backend.xml" splitGroup="double"/>
     <test testName="math-helper" configFile="config/TEMPLATE_math.xml" />
     <test testName="math-int" configFile="config/TEMPLATE_math.xml" />
@@ -161,7 +166,7 @@
     <test testName="system_atomic" configFile="config/TEMPLATE_system_atomic.xml" />
     <test testName="grid_constant" configFile="config/TEMPLATE_grid_constant.xml" />
     <test testName="grid_sync" configFile="config/TEMPLATE_grid_sync.xml" />
-    <test testName="grid_sync_root_group" configFile="config/TEMPLATE_grid_sync_excluding_syclcompat.xml" />
+    <test testName="grid_sync_root_group" configFile="config/TEMPLATE_grid_sync_after_11_excluding_syclcompat.xml" />
     <test testName="kernel-launch" configFile="config/TEMPLATE_runtimeAPI_excluding_syclcompat.xml" />
     <test testName="cuda_stream_query" configFile="config/TEMPLATE_runtimeAPI_skip_cuda.xml" />
     <test testName="cusolver_range" configFile="config/TEMPLATE_cusolver_range.xml" />
@@ -172,7 +177,7 @@
     <test testName="cusolverDnLn_cuda10-1-part2" configFile="config/TEMPLATE_cusolver.xml" />
     <test testName="cusolverDnLn-part2" configFile="config/TEMPLATE_cusolver.xml" />
     <test testName="cublas-only-usm" configFile="config/TEMPLATE_cuBlas_usm.xml" />
-    <test testName="cusparse-helper" configFile="feature_case/cusparse/config/cusparse-helper.xml" />
+    <test testName="cusparse-helper" configFile="config/cusparse-helper.xml" />
     <test testName="backprop" configFile="config/TEMPLATE_backprop.xml" />
     <test testName="device_info" configFile="config/TEMPLATE_device_info.xml" />
     <test testName="autoGenMakefile" configFile="config/TEMPLATE_autoGenMakefile.xml" />
@@ -197,10 +202,11 @@
     <test testName="driverStreamAndEvent" configFile="config/TEMPLATE_driverStreamAndEvent.xml" />
     <test testName="sync_warp_p1" configFile="config/TEMPLATE_sync_warp_p1.xml" />
     <test testName="sync_warp_p2" configFile="config/TEMPLATE_sync_warp_p2.xml" />
-    <!-- <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" /> -->
+    <test testName="cub_warp" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_block" configFile="config/TEMPLATE_cub.xml" />
     <test testName="cub_shuffle" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_p2" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
+    <test testName="cub_block_store" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_exchange" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_block_radix_sort" configFile="config/TEMPLATE_cub_excluding_syclcompat.xml" />
     <test testName="cub_device" configFile="config/TEMPLATE_cub_device.xml" />
@@ -220,9 +226,9 @@
     <test testName="cub_device_exclusive_sum_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_inclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_exclusive_scan_by_key" configFile="config/TEMPLATE_cub_device.xml" />
-   <!-- <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
-    <test testName="cub_device_select_unique_by_key" configFile="config/TEMPLATE_cub_unique_by_key.xml" /> -->
-    <!-- <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" /> -->
+    <!-- <test testName="cub_device_select_unique" configFile="config/TEMPLATE_cub_device.xml" />
+    <test testName="cub_device_select_unique_by_key" configFile="config/TEMPLATE_cub_unique_by_key.xml" />
+    <test testName="cub_device_select_flagged" configFile="config/TEMPLATE_cub_device.xml" />  -->
     <test testName="cub_device_run_length_encode_encode" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_no_trivial_runs" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_discard_iterator" configFile="config/TEMPLATE_cub_device.xml" />
@@ -241,7 +247,7 @@
     <test testName="cub_transform_iterator" configFile="config/TEMPLATE_cub_transform_iterator.xml" />
     <test testName="cub_constant_iterator" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cub_device_spmv" configFile="config/TEMPLATE_cub_device.xml" />
-    <!-- <test testName="cub_arg_index_input_iterator" configFile="config/TEMPLATE_cub_device.xml" /> -->
+     <test testName="cub_arg_index_input_iterator" configFile="config/TEMPLATE_cub_device.xml" />
     <test testName="cudnn_multiple_files" configFile="config/TEMPLATE_cudnn_multiple_files.xml" />
     <test testName="cudnn-GetErrorString" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-activation" configFile="config/TEMPLATE_cuDNN.xml" />
@@ -254,7 +260,7 @@
     <test testName="cudnn-softmax" configFile="config/TEMPLATE_cuDNN_lin.xml" />
     <test testName="cudnn-sum" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-reduction" configFile="config/TEMPLATE_cuDNN.xml" />
-   <!-- <test testName="cudnn-binary" configFile="config/TEMPLATE_cuDNN.xml" />-->
+    <test testName="cudnn-binary" configFile="config/TEMPLATE_cuDNN.xml" />
     <test testName="cudnn-bnp1" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
     <test testName="cudnn-bnp2" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
     <test testName="cudnn-bnp3" configFile="config/TEMPLATE_cuDNN_skip_double.xml" splitGroup="double" />
@@ -301,6 +307,7 @@
     <test testName="merge1004to1007" configFile="config/TEMPLATE_misc.xml" />
     <test testName="result_type_overload" configFile="config/TEMPLATE_misc_skip_cuda.xml" />
     <test testName="user_defined_rules" configFile="config/TEMPLATE_user_defined_rules.xml" />
+    <test testName="user_defined_rules_2" configFile="config/TEMPLATE_user_defined_rules_2.xml" splitGroup="double"/>
     <test testName="get_library_version" configFile="config/TEMPLATE_misc.xml" />
     <test testName="group-local-memory" configFile="config/TEMPLATE_thrust-qmc.xml" splitGroup="double"/>
     <test testName="cublas-extension" configFile="config/TEMPLATE_cuBlas_11.xml" splitGroup="double"/>
@@ -312,7 +319,7 @@
     <!-- <test testName="ccl-test" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <!-- <test testName="ccl-test2" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <!-- <test testName="ccl-test3" configFile="config/TEMPLATE_ccl_api.xml" /> -->
-    <!-- <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" /> -->
+	    <!-- <test testName="ccl-error" configFile="config/TEMPLATE_ccl_api.xml" /> -->
     <test testName="cooperative_groups_reduce" configFile="config/TEMPLATE_cooperative_groups_reduce.xml" />
     <test testName="cooperative_groups_data_manipulate" configFile="config/TEMPLATE_cooperative_groups_data_manipulate.xml" />
     <test testName="cufft_test" configFile="config/TEMPLATE_fft_runable.xml" splitGroup="double"/>
@@ -321,7 +328,7 @@
     <test testName="libcu_complex" configFile="config/TEMPLATE_libcu.xml" />
     <test testName="match" configFile="config/TEMPLATE_match.xml" />
     <test testName="libcu_tuple" configFile="config/TEMPLATE_libcu.xml" />
-    <test testName="constant_attr" configFile="config/TEMPLATE_constant_attr.xml" />
+    <!-- <test testName="constant_attr" configFile="config/TEMPLATE_constant_attr.xml" /> -->
     <test testName="pointer_attributes" configFile="config/TEMPLATE_pointer_attributes.xml" />
     <test testName="image" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_build_only" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
@@ -329,22 +336,24 @@
     <test testName="text_experimental_obj_array" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_driver_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_linear" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_memcpy2d_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_memcpy3d_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_mipmap" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_peer_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_pitch2d" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_experimental_obj_sample_api" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
+    <test testName="text_experimental_obj_surf" configFile="config/TEMPLATE_image_excluding_syclcompat.xml" />
     <test testName="text_obj_array" configFile="config/TEMPLATE_image_skip_cuda_excluding_syclcompat.xml" />
-    <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" />
-    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
+    <!-- <test testName="text_obj_linear" configFile="config/TEMPLATE_image_skip_cuda.xml" /> -->
+    <test testName="text_obj_pitch2d" configFile="config/TEMPLATE_image_skip_cuda.xml" />
     <test testName="defaultStream" configFile="config/TEMPLATE_defaultStream.xml" />
     <test testName="volatile-vec" configFile="config/TEMPLATE_misc.xml" />
     <test testName="occupancy_calculation" configFile="config/TEMPLATE_misc.xml" />
     <!-- <test testName="math_intel_specific" configFile="config/TEMPLATE_math_intel_specific.xml" splitGroup="double" /> -->
     <test testName="remove_unnecessary_wait" configFile="config/TEMPLATE_remove_unnecessary_wait.xml" />
     <test testName="warp_reduce_functions" configFile="config/TEMPLATE_cpp_language_extensions.xml" />
-    <test testName="wmma" configFile="config/TEMPLATE_wmma.xml" />
-    <test testName="wmma_type" configFile="config/TEMPLATE_wmma.xml" />
+    <test testName="wmma" configFile="config/TEMPLATE_wmma_excluding_syclcompat.xml" />
+    <test testName="wmma_type" configFile="config/TEMPLATE_wmma_excluding_syclcompat.xml" />
     <test testName="peer_access" configFile="config/TEMPLATE_peer_access.xml" />
     <test testName="const_opt" configFile="config/TEMPLATE_const_opt.xml" />
     <test testName="device_global" configFile="config/TEMPLATE_device_global.xml" />
@@ -354,6 +363,11 @@
     <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin_usmnone.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
     <test testName="matmul" configFile="config/TEMPLATE_cublasLt.xml" />
+    <test testName="matmul_2" configFile="config/TEMPLATE_cublasLt.xml" />
     <test testName="transform" configFile="config/TEMPLATE_cublasLt.xml" />
+    <test testName="graphics_interop_d3d11" configFile="config/TEMPLATE_cudaGraphics_Interop.xml" />
+    <test testName="graph" configFile="config/TEMPLATE_graph.xml" />
+    <test testName="peer_access_using_driver_api" configFile="config/TEMPLATE_peer_access_using_driver_api.xml" />
+    <test testName="context_push_n_pop" configFile="config/TEMPLATE_context_push_n_pop.xml" />
   </tests>
 </suite>

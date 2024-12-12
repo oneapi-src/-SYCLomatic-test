@@ -298,4 +298,126 @@ void foo() {
                            ldb, beta_s, C_c, ldc);
   status = cublasZherkx_64(handle, uplo, transa, n, k, alpha_z, A_z, lda, B_z,
                            ldb, beta_d, C_z, ldc);
+
+  cudaDataType type_x;
+  cudaDataType type_y;
+  cudaDataType type_res;
+  cudaDataType type_exec;
+  cudaDataType type_alpha;
+  cudaDataType type_cs;
+  void *res;
+  void *x;
+  void *y;
+  void *alpha;
+  status = cublasNrm2Ex_64(handle, n, x, type_x, incx, res, type_res, type_exec);
+  status = cublasDotEx_64(handle, n, x, type_x, incx, y, type_y, incy, res, type_res, type_exec);
+  status = cublasDotcEx_64(handle, n, x, type_x, incx, y, type_y, incy, res, type_res, type_exec);
+  status = cublasScalEx_64(handle, n, alpha, type_alpha, x, type_x, incx, type_exec);
+  status = cublasAxpyEx_64(handle, n, alpha, type_alpha, x, type_x, incx, y, type_y, incy, type_exec);
+  status = cublasRotEx_64(handle, n, x, type_x, incx, y, type_y, incy, c, s, type_cs, type_exec);
+
+  void **a_array;
+  void **b_array;
+  void **c_array;
+  void *aa;
+  void *bb;
+  void *cc;
+  cudaDataType type_a;
+  cudaDataType type_b;
+  cudaDataType type_c;
+  void *beta;
+  cublasGemmAlgo_t algo;
+  int64_t batch;
+  int64_t stride_a;
+  int64_t stride_b;
+  int64_t stride_c;
+  cublasComputeType_t type_compute;
+  status = cublasGemmStridedBatchedEx_64(handle, transa, transb, m, n, k, alpha, aa, type_a, lda, stride_a, bb, type_b, ldb, stride_b, beta, cc, type_c, ldc, stride_c, batch, type_compute, algo);
+
+  cublasSgemmEx_64(handle, transa, transb, m, n, k, alpha_s, A_s, type_a, lda, B_s, type_b, ldb, beta_s, C_s, type_c, ldc);
+  cublasCgemmEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc);
+  cublasCgemm3mEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc);
+  cublasGemmEx_64(handle, transa, transb, m, n, k, alpha_c, A_c, type_a, lda, B_c, type_b, ldb, beta_c, C_c, type_c, ldc, type_compute, algo);
+
+  cublasOperation_t trans;
+  cublasCsyrkEx_64(handle, uplo, trans, n, k, alpha_c, A_c, type_a, lda, beta_c, C_c, type_c, ldc);
+  cublasCsyrk3mEx_64(handle, uplo, trans, n, k, alpha_c, A_c, type_a, lda, beta_c, C_c, type_c, ldc);
+  cublasCherkEx_64(handle, uplo, trans, n, k, alpha_s, A_c, type_a, lda, beta_s, C_c, type_c, ldc);
+  cublasCherk3mEx_64(handle, uplo, trans, n, k, alpha_s, A_c, type_a, lda, beta_s, C_c, type_c, ldc);
+
+  status = cublasStbsv_64(handle, uplo, transa, diag, n, k, A_s, lda, y_s, incx);
+  status = cublasDtbsv_64(handle, uplo, transa, diag, n, k, A_d, lda, y_d, incx);
+  status = cublasCtbsv_64(handle, uplo, transa, diag, n, k, A_c, lda, y_c, incx);
+  status = cublasZtbsv_64(handle, uplo, transa, diag, n, k, A_z, lda, y_z, incx);
+
+  status = cublasSsymv_64(handle, uplo, n, alpha_s, A_s, lda, x_s, incx, beta_s, y_s, incy);
+  status = cublasDsymv_64(handle, uplo, n, alpha_d, A_d, lda, x_d, incx, beta_d, y_d, incy);
+  status = cublasCsymv_64(handle, uplo, n, alpha_c, A_c, lda, x_c, incx, beta_c, y_c, incy);
+  status = cublasZsymv_64(handle, uplo, n, alpha_z, A_z, lda, x_z, incx, beta_z, y_z, incy);
+
+  status = cublasChemv_64(handle, uplo, n, alpha_c, A_c, lda, x_c, incx, beta_c, y_c, incy);
+  status = cublasZhemv_64(handle, uplo, n, alpha_z, A_z, lda, x_z, incx, beta_z, y_z, incy);
+
+  status = cublasSsbmv_64(handle, uplo, n, k, alpha_s, A_s, lda, x_s, incx, beta_s, y_s, incy);
+  status = cublasDsbmv_64(handle, uplo, n, k, alpha_d, A_d, lda, x_d, incx, beta_d, y_d, incy);
+
+  status = cublasChbmv_64(handle, uplo, n, k, alpha_c, A_c, lda, x_c, incx, beta_c, y_c, incy);
+  status = cublasZhbmv_64(handle, uplo, n, k, alpha_z, A_z, lda, x_z, incx, beta_z, y_z, incy);
+
+  status = cublasSspmv_64(handle, uplo, n, alpha_s, A_s, x_s, incx, beta_s, y_s, incy);
+  status = cublasDspmv_64(handle, uplo, n, alpha_d, A_d, x_d, incx, beta_d, y_d, incy);
+
+  status = cublasChpmv_64(handle, uplo, n, alpha_c, A_c, x_c, incx, beta_c, y_c, incy);
+  status = cublasZhpmv_64(handle, uplo, n, alpha_z, A_z, x_z, incx, beta_z, y_z, incy);
+
+  status = cublasSger_64(handle, m, n, alpha_s, x_s, incx, y_s, incy, C_s, lda);
+  status = cublasDger_64(handle, m, n, alpha_d, x_d, incx, y_d, incy, C_d, lda);
+  status = cublasCgeru_64(handle, m, n, alpha_c, x_c, incx, y_c, incy, C_c, lda);
+  status = cublasCgerc_64(handle, m, n, alpha_c, x_c, incx, y_c, incy, C_c, lda);
+  status = cublasZgeru_64(handle, m, n, alpha_z, x_z, incx, y_z, incy, C_z, lda);
+  status = cublasZgerc_64(handle, m, n, alpha_z, x_z, incx, y_z, incy, C_z, lda);
+
+  status = cublasSsyr_64(handle, uplo, n, alpha_s, x_s, incx, C_s, lda);
+  status = cublasDsyr_64(handle, uplo, n, alpha_d, x_d, incx, C_d, lda);
+  status = cublasCsyr_64(handle, uplo, n, alpha_c, x_c, incx, C_c, lda);
+  status = cublasZsyr_64(handle, uplo, n, alpha_z, x_z, incx, C_z, lda);
+
+  status = cublasCher_64(handle, uplo, n, alpha_s, x_c, incx, C_c, lda);
+  status = cublasZher_64(handle, uplo, n, alpha_d, x_z, incx, C_z, lda);
+
+  status = cublasSspr_64(handle, uplo, n, alpha_s, x_s, incx, C_s);
+  status = cublasDspr_64(handle, uplo, n, alpha_d, x_d, incx, C_d);
+
+  status = cublasChpr_64(handle, uplo, n, alpha_s, x_c, incx, C_c);
+  status = cublasZhpr_64(handle, uplo, n, alpha_d, x_z, incx, C_z);
+
+  status = cublasSsyr2_64(handle, uplo, n, alpha_s, x_s, incx, y_s, incy, C_s, lda);
+  status = cublasDsyr2_64(handle, uplo, n, alpha_d, x_d, incx, y_d, incy, C_d, lda);
+  status = cublasCsyr2_64(handle, uplo, n, alpha_c, x_c, incx, y_c, incy, C_c, lda);
+  status = cublasZsyr2_64(handle, uplo, n, alpha_z, x_z, incx, y_z, incy, C_z, lda);
+
+  status = cublasCher2_64(handle, uplo, n, alpha_c, x_c, incx, y_c, incy, C_c, lda);
+  status = cublasZher2_64(handle, uplo, n, alpha_z, x_z, incx, y_z, incy, C_z, lda);
+
+  status = cublasSspr2_64(handle, uplo, n, alpha_s, x_s, incx, y_s, incy, C_s);
+  status = cublasDspr2_64(handle, uplo, n, alpha_d, x_d, incx, y_d, incy, C_d);
+
+  status = cublasChpr2_64(handle, uplo, n, alpha_c, x_c, incx, y_c, incy, C_c);
+  status = cublasZhpr2_64(handle, uplo, n, alpha_z, x_z, incx, y_z, incy, C_z);
+}
+
+void foo2() {
+  cublasHandle_t handle;
+  int n;
+  void *x, *y;
+  int incx, incy;
+  void *res;
+  int64_t *idx;
+  void *param;
+  cublasCopyEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy);
+  cublasSwapEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy);
+  cublasIamaxEx_64(handle, n, x, CUDA_R_32F, incx, idx);
+  cublasIaminEx_64(handle, n, x, CUDA_R_32F, incx, idx);
+  cublasAsumEx_64(handle, n, x, CUDA_R_32F, incx, res, CUDA_R_32F, CUDA_R_32F);
+  cublasRotmEx_64(handle, n, x, CUDA_R_32F, incx, y, CUDA_R_32F, incy, param, CUDA_R_32F, CUDA_R_32F);
 }
