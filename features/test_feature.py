@@ -46,7 +46,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_linear', 'text_experimental_obj_memcpy3d_api',
               'text_experimental_obj_mipmap', 'text_experimental_obj_peer_api', 'text_experimental_obj_pitch2d', 'text_experimental_obj_sample_api',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
-              'curand-device2', 'curandEnum', 'codepin_all_public_dump',
+              'curand-device2', 'curandEnum', 'codepin_all_public_dump', 'virtual_memory',
               'thrust-unique_by_key', 'cufft_test', 'cufft-external-workspace', "pointer_attributes", 'math_intel_specific', 'math-drcp', 'thrust-pinned-allocator', 'driverMem',
               'cusolver_test1', 'cusolver_test2', 'cusolver_test3', 'cusolver_test4', 'cusolver_test5', 'thrust_op', 'cublas-extension', 'cublas_v1_runable', 'thrust_minmax_element',
               'thrust_is_sorted', 'thrust_partition', 'thrust_remove_copy', 'thrust_unique_copy', 'thrust_transform_exclusive_scan',
@@ -113,6 +113,8 @@ def migrate_test():
         src.append(' --use-experimental-features=user-defined-reductions ')
     if test_config.current_test == 'device_global':
         src.append(' --use-experimental-features=device_global ')
+    if test_config.current_test == 'virtual_memory':
+        src.append(' --use-experimental-features=virtual_mem ')
     if test_config.current_test == 'sync_warp_p2':
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':
