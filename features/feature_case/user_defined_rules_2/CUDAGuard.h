@@ -1,3 +1,6 @@
+#ifndef __CUDAGUARD_H__
+#define __CUDAGUARD_H__
+
 #include "c10/core/Device.h"
 #include <optional>
 #include <string>
@@ -9,3 +12,5 @@ public:
 };
 } // namespace cuda
 } // namespace c10
+
+#endif // __CUDAGUARD_H__

@@ -1,1 +1,6 @@
+#ifndef __CUDATENSORMETHODS_CUH__
+#define __CUDATENSORMETHODS_CUH__
+
 // empty
+
+#endif // __CUDATENSORMETHODS_CUH__
