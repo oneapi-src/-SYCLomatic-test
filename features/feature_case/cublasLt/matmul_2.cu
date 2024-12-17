@@ -764,7 +764,9 @@ int main() {
   pass = test_gelu_aux() && pass;
   pass = test_gelu_aux_bias() && pass;
   pass = test_dgelu() && pass;
+#ifndef DPCT_USM_LEVEL_NONE
   pass = test_batch() && pass;
+#endif
 
   if (pass)
     printf("matmul_2 all passed.\n");
