@@ -643,6 +643,119 @@ bool test_dgelu() {
   return !error;
 }
 
+// clang-format off
+// A (4*3)     B (3*2)
+// 6 10 14     5  4
+// 7 11 15    -3 -2
+// 8 12 16     1  0
+// 9 13 17     p  p
+//
+// alpha * A          * B    + C            = alpha * A*B    + C           = D              gelu
+// 2       6  10  14    5  4     -29    -7        2   14  4      -29    -7     -1      1    -0.158806 0.841194
+//         7  11  15   -3 -2    2000  6000            17  6     2000  6000   2034   6012         2034     6012
+//         8  12  16    1  0    3000  7000            20  8     3000  7000   3040   7016         3040     7016
+//         9  13  17    p  p    4000  8000            23  10    4000  8000   4046   8020         4046     8020
+// clang-format on
+bool test_batch() {
+  printf("========test_batch=========\n");
+  const constexpr int batch = 2;
+  cublasLtHandle_t ltHandle;
+  cublasLtCreate(&ltHandle);
+  const constexpr int m = 4;
+  const constexpr int n = 2;
+  const constexpr int k = 3;
+  const constexpr int lda = m;
+  const constexpr int ldb = m;
+  const constexpr int ldc = m;
+  const constexpr int ldd = m;
+  void *Adev;
+  void *Bdev;
+  void *Cdev;
+  void *Ddev;
+  cudaMalloc(&Adev, lda * k * sizeof(float) * batch);
+  cudaMalloc(&Bdev, ldb * n * sizeof(float) * batch);
+  cudaMalloc(&Cdev, ldc * n * sizeof(float) * batch);
+  cudaMalloc(&Ddev, ldd * n * sizeof(float) * batch);
+
+  float Ahost[lda * k * batch] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+  float Bhost[ldb * n * batch] = {5, -3, 1, 99, 4, -2, 0, 99, 5, -3, 1, 99, 4, -2, 0, 99};
+  float Chost[ldc * n * batch] = {-29, 2000, 3000, 4000, -7, 6000, 7000, 8000, -29, 2000, 3000, 4000, -7, 6000, 7000, 8000};
+
+  cudaMemcpy(Adev, Ahost, lda * k * sizeof(float) * batch, cudaMemcpyHostToDevice);
+  cudaMemcpy(Bdev, Bhost, ldb * n * sizeof(float) * batch, cudaMemcpyHostToDevice);
+  cudaMemcpy(Cdev, Chost, ldc * n * sizeof(float) * batch, cudaMemcpyHostToDevice);
+
+  cublasLtMatrixLayout_t Adesc_col_major = NULL,
+                         Bdesc_col_major = NULL,
+                         Cdesc_col_major = NULL,
+                         Ddesc_col_major = NULL;
+  cublasLtMatrixLayoutCreate(&Adesc_col_major, CUDA_R_32F, m, k, lda);
+  cublasLtMatrixLayoutCreate(&Bdesc_col_major, CUDA_R_32F, k, n, ldb);
+  cublasLtMatrixLayoutCreate(&Cdesc_col_major, CUDA_R_32F, m, n, ldc);
+  cublasLtMatrixLayoutCreate(&Ddesc_col_major, CUDA_R_32F, m, n, ldd);
+
+  cublasLtMatrixLayoutSetAttribute(Adesc_col_major, CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT, &batch, sizeof(batch));
+  cublasLtMatrixLayoutSetAttribute(Bdesc_col_major, CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT, &batch, sizeof(batch));
+  cublasLtMatrixLayoutSetAttribute(Cdesc_col_major, CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT, &batch, sizeof(batch));
+  cublasLtMatrixLayoutSetAttribute(Ddesc_col_major, CUBLASLT_MATRIX_LAYOUT_BATCH_COUNT, &batch, sizeof(batch));
+  int64_t offset_a = 12;
+  int64_t offset_b = 8;
+  int64_t offset_c = 8;
+  int64_t offset_d = 8;
+  cublasLtMatrixLayoutSetAttribute(Adesc_col_major, CUBLASLT_MATRIX_LAYOUT_STRIDED_BATCH_OFFSET, &offset_a, sizeof(offset_a));
+  cublasLtMatrixLayoutSetAttribute(Bdesc_col_major, CUBLASLT_MATRIX_LAYOUT_STRIDED_BATCH_OFFSET, &offset_b, sizeof(offset_b));
+  cublasLtMatrixLayoutSetAttribute(Cdesc_col_major, CUBLASLT_MATRIX_LAYOUT_STRIDED_BATCH_OFFSET, &offset_c, sizeof(offset_c));
+  cublasLtMatrixLayoutSetAttribute(Ddesc_col_major, CUBLASLT_MATRIX_LAYOUT_STRIDED_BATCH_OFFSET, &offset_d, sizeof(offset_d));
+
+  float alpha = 2;
+  float beta = 1;
+
+  // Matmul
+  cublasLtMatmulDesc_t matmulDesc = NULL;
+  cublasLtMatmulDescCreate(&matmulDesc, CUBLAS_COMPUTE_32F, CUDA_R_32F);
+  cublasLtEpilogue_t ep = CUBLASLT_EPILOGUE_GELU;
+  cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_EPILOGUE, &ep, sizeof(ep));
+  cublasLtMatmul(ltHandle, matmulDesc, &alpha, Adev, Adesc_col_major, Bdev, Bdesc_col_major, &beta, Cdev, Cdesc_col_major, Ddev, Ddesc_col_major, NULL, NULL, 0, 0);
+  cudaStreamSynchronize(0);
+  cublasLtMatmulDescDestroy(matmulDesc);
+
+  // Check result
+  float Dhost[ldd * n * batch];
+  cudaMemcpy(Dhost, Ddev, ldd * n * sizeof(float) * batch, cudaMemcpyDeviceToHost);
+
+  bool error = false;
+  float D_ref[ldd * n * batch] = {-0.158806, 2034, 3040, 4046, 0.841194, 6012, 7016, 8020, -0.158806, 2034, 3040, 4046, 0.841194, 6012, 7016, 8020};
+  for (int i = 0; i < ldd * n * batch; i++) {
+    if (std::abs(Dhost[i] - D_ref[i]) > 0.01) {
+      error = true;
+      break;
+    }
+  }
+
+  printf("d:\n");
+  for (int i = 0; i < ldd * n * batch; i++)
+    printf("%f, ", Dhost[i]);
+  printf("\n");
+
+  if (error) {
+    printf("error\n");
+  } else {
+    printf("success\n");
+  }
+
+  cublasLtDestroy(ltHandle);
+  cublasLtMatrixLayoutDestroy(Adesc_col_major);
+  cublasLtMatrixLayoutDestroy(Bdesc_col_major);
+  cublasLtMatrixLayoutDestroy(Cdesc_col_major);
+  cublasLtMatrixLayoutDestroy(Ddesc_col_major);
+  cudaFree(Adev);
+  cudaFree(Bdev);
+  cudaFree(Cdev);
+  cudaFree(Ddev);
+
+  return !error;
+}
+
 int main() {
   bool pass = true;
   pass = test_gelu() && pass;
@@ -651,6 +764,7 @@ int main() {
   pass = test_gelu_aux() && pass;
   pass = test_gelu_aux_bias() && pass;
   pass = test_dgelu() && pass;
+  pass = test_batch() && pass;
 
   if (pass)
     printf("matmul_2 all passed.\n");
