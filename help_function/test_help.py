@@ -91,7 +91,7 @@ def build_test():
        test_config.current_test in oneDNN_related) or (test_config.current_test in sparse_cases):
         mkl_opts = []
         if test_config.test_option == 'option_cuda_backend':
-            mkl_opts = ["-lonemkl"]
+            mkl_opts = ["-lonemath"]
         else:
             if platform.system() == "Linux":
                 mkl_opts = test_config.mkl_link_opt_lin
