@@ -41,8 +41,8 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'cudnn-normp1', 'cudnn-normp2', 'cudnn-normp3', 'cudnn-convp1', 'cudnn-convp2', 'cudnn-convp3', 'cudnn-convp4', 'cudnn-convp5', 'cudnn-convp6', 'cudnn-convp7', 
               'cudnn_mutilple_files', "cusparse_1", "cusparse_2", "cusparse_3", "cusparse_4", "cusparse_5", "cusparse_6", "cusparse_7", "cusparse_8", "cusparse_9", "cusparse_10",
               'cudnn-GetErrorString', 'cub_device_histgram', 'peer_access', 'driver_err_handle',
-              'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt',
-              'constant_attr', 'sync_warp_p2', 'occupancy_calculation',
+              'cudnn-types', 'cudnn-version', 'cudnn-dropout', 'const_opt', 'in_order_queue_events',
+              'constant_attr', 'sync_warp_p2', 'occupancy_calculation', 'kernel_function_pointer',
               'text_experimental_obj_array', 'text_experimental_obj_driver_api', 'text_experimental_obj_linear', 'text_experimental_obj_memcpy2d_api', 'text_experimental_obj_memcpy3d_api',
               'text_experimental_obj_mipmap', 'text_experimental_obj_peer_api', 'text_experimental_obj_pitch2d', 'text_experimental_obj_sample_api', 'text_experimental_obj_surf',
               'text_obj_array', 'text_obj_linear', 'text_obj_pitch2d', 'match',
@@ -140,6 +140,8 @@ def migrate_test():
         src.append(' --use-experimental-features=device_global ')
     if test_config.current_test == 'virtual_memory':
         src.append(' --use-experimental-features=virtual_mem ')
+    if test_config.current_test == 'in_order_queue_events':
+        src.append(' --use-experimental-features=in_order_queue_events ')
     if test_config.current_test in use_masked_sub_group_operation_exper:
         src.append(' --use-experimental-features=masked-sub-group-operation ')
     if test_config.current_test == 'wmma' or test_config.current_test == 'wmma_type':

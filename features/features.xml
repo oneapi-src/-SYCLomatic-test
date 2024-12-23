@@ -359,6 +359,8 @@
     <test testName="device_global" configFile="config/TEMPLATE_device_global.xml" />
     <test testName="assert" configFile="config/TEMPLATE_misc.xml" />
     <test testName="virtual_memory" configFile="config/TEMPLATE_virtual_memory.xml" />
+    <test testName="kernel_function_pointer" configFile="config/TEMPLATE_kernel_function_pointer.xml" />
+    <test testName="in_order_queue_events" configFile="config/TEMPLATE_in_order_queue_events.xml" />
     <test testName="driver_err_handle" configFile="config/TEMPLATE_err_handle.xml" />
     <test testName="codepin_all_public_dump" configFile="config/TEMPLATE_codepin_usmnone.xml" />
     <test testName="codepin_basic" configFile="config/TEMPLATE_codepin.xml" />
