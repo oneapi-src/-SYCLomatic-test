@@ -15,6 +15,7 @@ using namespace std;
 
 int passed = 0;
 int failed = 0;
+float precision = 0.001;
 
 void checkResult(string name, bool IsPassed) {
   cout << name;
@@ -179,9 +180,520 @@ cudaSurfaceObject_t getSurf(cudaArray_t input) {
   return surf;
 }
 
-int main() {
+template <typename T>
+__global__ void surfDwrite(T *input, cudaSurfaceObject_t surf, int width) {
+  unsigned int x = blockIdx.x * blockDim.x + threadIdx.x;
+  surf1Dwrite(input[x], surf, x * sizeof(T));
+}
+template <typename T>
+__global__ void surfDwrite(T *input, cudaSurfaceObject_t surf, int width, int height) {
+  unsigned int x = blockIdx.x * blockDim.x + threadIdx.x;
+  unsigned int y = blockIdx.y * blockDim.y + threadIdx.y;
+  surf2Dwrite(input[x + y * blockDim.x], surf, x * sizeof(T), y);
+}
+
+template <typename T>
+__global__ void surfDwrite(T *input, cudaSurfaceObject_t surf, int width, int height, int depth) {
+    int x = threadIdx.x;
+    int y = threadIdx.y;
+    int z = threadIdx.z;
+    surf3Dwrite(input[x + width *y  + width * height *z], surf, x * sizeof(T), y, z);
+}
+template <class T, class ArrayType>
+cudaSurfaceObject_t createSurface(ArrayType &inputArray,int w, int h) {
+  cudaChannelFormatDesc desc = cudaCreateChannelDesc<T>();
+
+  cudaMallocArray(&inputArray, &desc, w, h);
+  cudaResourceDesc surfRes;
+  cudaSurfaceObject_t surf;
+  memset(&surfRes, 0, sizeof(surfRes));
+  surfRes.res.array.array = inputArray;
+  surfRes.resType = cudaResourceTypeArray;
+  cudaCreateSurfaceObject(&surf, &surfRes);
+  return surf;
+}
+
+template <class T, class ArrayType>
+cudaSurfaceObject_t createSurface(ArrayType &inputArray, cudaExtent & extent) {
+  cudaChannelFormatDesc desc = cudaCreateChannelDesc<T>();
+
+  cudaMalloc3DArray(&inputArray, &desc, extent);
+  cudaResourceDesc surfRes;
+  cudaSurfaceObject_t surf;
+  memset(&surfRes, 0, sizeof(surfRes));
+  surfRes.res.array.array = inputArray;
+  surfRes.resType = cudaResourceTypeArray;
+  cudaCreateSurfaceObject(&surf, &surfRes);
+  return surf;
+}
+
+// Compare the uint1 type with 1 Dinmesion image.
+int test_surface_write_uint1() {
   bool pass = true;
 
+  int width = 8;
+  cudaArray_t inputArray;
+  cudaSurfaceObject_t surf = createSurface<uint1>(inputArray, width, 0);
+  uint1 expect[width] = {
+        {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8},
+  };
+  uint1 *inputData;
+  cudaMalloc(&inputData, width * sizeof(uint1));
+  cudaMemcpy(inputData, expect, width * sizeof(uint1), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, 1, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width);
+  cudaDeviceSynchronize();
+  unsigned int *output;
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, width * sizeof(uint1), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width; ++i) {
+    if (output[i] != expect[i].x) {
+      pass = false;
+      break;
+    }
+  }
+  checkResult("surface_write_uint1", pass);
+  if (!pass) {
+    for (int i = 0; i < width; ++i)
+      cout << "{" << output[i] << "}, ";
+    cout << endl;
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+  
+}
+// 2 element char 1D image.
+int test_surface_write_char2() {
+  bool pass = true;
+
+  unsigned int width = 4;
+
+  cudaArray_t inputArray;
+  cudaSurfaceObject_t surf = createSurface<char2>(inputArray, width, 0);
+  char2 expect[width] = {
+        {1, 2}, 
+        {3, 4}, 
+        {5, 6}, 
+        {7, 8},
+  };
+
+  char2 *inputData;
+  cudaMalloc(&inputData, width * sizeof(char2));
+  cudaMemcpy(inputData, expect, width * sizeof(char2), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, 1, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width);
+  cudaDeviceSynchronize();
+  char *output;
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, width * sizeof(char2), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width; i++) {
+    if (output[2*i] != expect[i].x || output[2*i+1] != expect[i].y) {
+      pass = false;
+      break;
+    }
+  }
+  checkResult("test_surface_write_char2", pass);
+  if (!pass) {
+    for (int i = 0; i < width; ++i)
+      cout << "{" << (int)output[2*i] << ", " << (int)output[2*i+1] << "}, ";
+    cout << endl;
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+}
+
+// 1 element int1 2D image.
+int test_surface_write_int1() {
+  bool pass = true;
+
+  const int h = 3;
+  const int w = 2;  
+
+  cudaArray_t inputArray;
+  cudaSurfaceObject_t surf = createSurface<int1>(inputArray, w, h);
+  int1 expect[h * w] = {
+        {1}, {2}, 
+        {3}, {4},
+        {5}, {6},
+  };
+  int1 *inputData;
+  cudaMalloc(&inputData, h * w * sizeof(int1));
+  cudaMemcpy(inputData, expect, h * w * sizeof(int1), cudaMemcpyHostToDevice);
+  dim3 dimBlock(w, h, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, w, h);
+  cudaDeviceSynchronize();
+  unsigned int *output;
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, h * w * sizeof(int1), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < h * w; ++i) {
+    if (output[i] != expect[i].x) {
+      pass =false;
+      break;
+    }
+  }
+
+  checkResult("test_surface_write_int1", pass);
+  if (!pass) {
+    for (int i = 0; i < h * w; ++i)
+      cout << "{" << output[i] << "}, ";
+    cout << endl;
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+}
+
+// 1 element short1 3D image.
+int test_surface_write_short1() {
+  bool pass = true;
+
+  cudaChannelFormatDesc desc = cudaCreateChannelDesc<short1>();
+  unsigned int width = 2;
+  unsigned int height = 3;
+  unsigned int depth = 3;
+  cudaArray_t inputArray;
+  cudaExtent extent = make_cudaExtent(width, height, depth);
+  cudaSurfaceObject_t surf = createSurface<short1>(inputArray, extent);
+  short1 expect[width * height * depth]= {
+    {1}, {2},
+    {3}, {4},
+    {5}, {6},
+
+    {7}, {8},
+    {9}, {10},
+    {11}, {12},
+
+    {13}, {14},
+    {15}, {16},
+    {17}, {18},
+  };
+  short1 *inputData;
+  cudaMalloc(&inputData, width * height * depth * sizeof(short1));
+  cudaMemcpy(inputData, expect, width * height * depth * sizeof(short1), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, height, depth);
+  dim3 dimGrid(1, 1, 1);
+  #if 1
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height, depth); 
+  #else
+  cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(short1) * width * height * depth, cudaMemcpyHostToDevice);
+  #endif
+  cudaDeviceSynchronize();
+  short1 *hostData = new short1[width * height * depth];
+  cudaMemcpy3DParms copyParams = {0};
+  copyParams.srcArray = inputArray;
+  copyParams.dstPtr = make_cudaPitchedPtr(hostData, width * sizeof(short1), width, height);
+  copyParams.extent = extent;
+  copyParams.kind = cudaMemcpyDeviceToHost;
+
+
+  cudaMemcpy3D(&copyParams);
+
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width * height * depth; ++i) {
+    if (hostData[i].x != expect[i].x) {
+      pass = false; 
+      break;
+    }
+  }
+  checkResult("test_surface_write_short1", pass);
+  if (!pass) {
+    for (int i = 0; i < width * height * depth; ++i)
+      cout << "{" << hostData[i].x << "}, ";
+    cout << endl;
+  }
+  delete[] hostData;
+  cudaFree(inputData);
+  pass = true;
+  return 0;
+}
+// 2 element char 2D image.
+int test_surface_write_uchar2() {
+  bool pass = true;
+  unsigned int width = 2;
+  unsigned int height = 3;
+
+  cudaArray_t inputArray;
+  cudaSurfaceObject_t surf = createSurface<uchar2>(inputArray, width, height);
+
+  uchar2 expect[width * height] = {
+        {1, 2}, {3, 4}, 
+        {5, 6}, {7, 8},
+        {9, 10}, {11, 12},
+  };
+
+  uchar2 *inputData;
+  cudaMalloc(&inputData, width * height * sizeof(uchar2));
+  cudaMemcpy(inputData, expect, width * height * sizeof(uchar2), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, height, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height);
+  cudaDeviceSynchronize();
+  char *output;
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(char2), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width * height; i++) {
+    if (output[2*i] != expect[i].x || output[2*i+1] != expect[i].y) {
+      pass = false;
+      break;
+    }
+  }
+  checkResult("test_surface_write_uchar2", pass);
+  if (!pass) {
+    for (int i = 0; i < width * height; ++i)
+      cout << "{" << (int)output[2*i] << ", " << (int)output[2*i+1] << "}, ";
+    cout << endl;
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+}
+
+
+
+// 2 element ushort2 3D image.
+int test_surface_write_ushort2() {
+  bool pass = true;
+
+  cudaChannelFormatDesc desc = cudaCreateChannelDesc<ushort2>();
+  unsigned int width = 2;
+  unsigned int height = 3;
+  unsigned int depth = 3;
+  cudaArray_t inputArray;
+  cudaExtent extent = make_cudaExtent(width, height, depth);
+  cudaSurfaceObject_t surf = createSurface<ushort2>(inputArray, extent);
+
+  ushort2 expect[width * height * depth]= {
+    {1, 2}, {3, 4},
+    {5, 6}, {7, 8},
+    {9, 10}, {11, 12}, 
+    
+    {13, 14}, {15, 16},
+    {17, 18}, {19, 20},
+    {21, 22}, {23, 24},
+    
+    {25, 26}, {27, 28},
+    {29, 30}, {31, 32},
+    {33, 34}, {35, 36},
+  };
+  ushort2 *inputData;
+  cudaMalloc(&inputData, width * height * depth * sizeof(ushort2));
+  cudaMemcpy(inputData, expect, width * height * depth * sizeof(ushort2), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, height, depth);
+  dim3 dimGrid(1, 1, 1);
+  #if 1
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height, depth); 
+  #else
+  cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(ushort2) * width * height * depth, cudaMemcpyHostToDevice);
+  #endif
+  cudaDeviceSynchronize();
+  ushort *hostData = new ushort[sizeof(expect)];
+  cudaMemcpy3DParms copyParams = {0};
+  copyParams.srcArray = inputArray;
+  copyParams.dstPtr = make_cudaPitchedPtr(hostData, width * sizeof(ushort2), width, height);
+  copyParams.extent = extent;
+  copyParams.kind = cudaMemcpyDeviceToHost;
+  cudaMemcpy3D(&copyParams);
+
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width * height * depth; ++i) {
+    if (hostData[2 * i] != expect[i].x || hostData[2 * i + 1] != expect[i].y) {
+      pass = false;
+      break;
+    }
+  }
+  checkResult("test_surface_write_ushort2", pass);
+  if (!pass) {
+    for (int i = 0; i < width * height * depth; ++i)
+      cout << "{" << hostData[2 * i] << ", " << hostData[2 * i + 1] << "}, ";
+    cout << endl;
+  }
+  delete []hostData;
+  cudaFree(inputData);
+  pass = true;
+  return 0;
+}
+
+// 4 element char 1D image.
+int test_surface_write_float4() {
+  bool pass = true;
+
+  unsigned int width = 4;
+
+  cudaArray_t inputArray;
+  cudaSurfaceObject_t surf = createSurface<float4>(inputArray, width, 0);
+
+  float4 expect[width] = {
+    {1, 2, 3, 4}, 
+    {5, 6, 7, 8},
+    {9, 10, 11, 12},
+    {13, 14, 15, 16}
+  };
+
+  float4 *inputData;
+  cudaMalloc(&inputData, width * sizeof(float4));
+  cudaMemcpy(inputData, expect, width * sizeof(float4), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, 1, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width);
+  cudaDeviceSynchronize();
+  float *output;
+
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, sizeof(expect), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width; i++) {
+    if (fabs(output[4*i] + output[4*i + 1] + output[4 *i + 2] + output[4*i +3] - expect[i].x - expect[i].y - expect[i].z - expect[i].w) > precision) {
+      pass =false;
+      break;
+    }
+  }
+
+  checkResult("test_surface_write_float4", pass);
+  if (!pass) {
+      for (int i = 0; i < width; i++) {
+      cout << "{" << output[4 * i] << ", " << output[4 * i + 1] <<", " << output[4 * i + 2] <<", " << output[4 * i + 3] << "}, ";
+      cout << endl;
+      }
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+}
+// 4 element char 2D image.
+int test_surface_write_int4() {
+  bool pass = true;
+
+  unsigned int width = 2;
+  unsigned int height = 3;
+
+  cudaArray_t inputArray;
+
+  cudaSurfaceObject_t surf =createSurface<int4>(inputArray, width, height);
+
+  int4 expect[width * height] = {
+    {1, 2, 3, 4}, {5, 6, 7, 8},
+    {9, 10, 11, 12}, {13, 14, 15, 16},
+    {17, 18, 19, 20}, {21, 22, 23, 24}};
+
+  int4 *inputData;
+  cudaMalloc(&inputData, width * height * sizeof(int4));
+  cudaMemcpy(inputData, expect, width * height * sizeof(int4), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, height, 1);
+  dim3 dimGrid(1, 1, 1);
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height);
+  cudaDeviceSynchronize();
+  int *output;
+  cudaMallocManaged(&output, sizeof(expect));
+  cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(int4), cudaMemcpyDeviceToHost);
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width * height; i++) {
+
+    if (output[4*i] != expect[i].x || output[4*i+1] != expect[i].y || output[4*i + 2] != expect[i].z || output[4*i + 3] != expect[i].w) {
+      pass = false;
+      break;
+    }
+  }
+
+  checkResult("test_surface_write_int4", pass);
+  if (!pass) {
+      for (int i = 0; i < width * height; i++) {
+      cout << "{ " << output[4*i] << " ," << output[4*i+1] << " , " << output[4*i+2] << " , " << output[4*i+3] << "} " << endl;
+      }
+  }
+  cudaFree(output);
+  pass = true;
+  return 0;
+}
+
+
+
+// 4 element uint4 3D image.
+int test_surface_write_uint4() {
+  bool pass = true;
+
+  unsigned int width = 2;
+  unsigned int height = 3;
+  unsigned int depth = 3;
+  cudaArray_t inputArray;
+  cudaExtent extent = make_cudaExtent(width, height, depth);
+
+  cudaSurfaceObject_t surf = createSurface<uint4>(inputArray, extent);
+  uint4 expect[width * height * depth]= {
+        {1, 2, 3, 4},     {5, 6, 7, 8},     // 1.1
+        {9, 10, 11, 12},  {13, 14, 15, 16}, // 1.2
+        {17, 18, 19, 20}, {21, 22, 23, 24}, // 1.3
+
+        {25, 26, 27, 28}, {29, 30, 31, 32}, // 2.1
+        {33, 34, 35, 36}, {37, 38, 39, 40}, // 2.2
+        {41, 42, 43, 44}, {45, 46, 47, 48}, // 2.3
+
+        {49, 50, 51, 52}, {53, 54, 55, 56}, // 2.4
+        {57, 58, 59, 60}, {61, 62, 63, 64}, // 2.5
+        {65, 66, 67, 68}, {69, 70, 71, 72}, // 2.6
+  };
+  uint4 *inputData;
+  cudaMalloc(&inputData, width * height * depth * sizeof(uint4));
+  cudaMemcpy(inputData, expect, width * height * depth * sizeof(uint4), cudaMemcpyHostToDevice);
+  dim3 dimBlock(width, height, depth);
+  dim3 dimGrid(1, 1, 1);
+  #if 1
+  surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height, depth); 
+  #else
+  cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(uint) * width * height * depth, cudaMemcpyHostToDevice);
+  #endif
+  cudaDeviceSynchronize();
+  uint *hostData = new uint[width * height * depth * 4];
+  cudaMemcpy3DParms copyParams = {0};
+  copyParams.srcArray = inputArray;
+  copyParams.dstPtr = make_cudaPitchedPtr(hostData, width * sizeof(uint4), width, height);
+  copyParams.extent = extent;
+  copyParams.kind = cudaMemcpyDeviceToHost;
+  cudaMemcpy3D(&copyParams);
+
+  cudaDeviceSynchronize();
+  for (int i = 0; i < width * height * depth; ++i) {
+     
+    if (hostData[4 * i] != expect[i].x || hostData[4 * i + 1] != expect[i].y ||
+        hostData[4 * i + 2] != expect[i].z || hostData[4 * i + 3] != expect[i].w) {
+      pass = false;
+      break;
+    }
+  }
+  checkResult("test_surface_write_uint4", pass);
+  if (!pass) {
+      for (int i = 0; i < width * height; i++) {
+      cout << "{ " << hostData[4*i] << " ," << hostData[4*i+1] << " , " << hostData[4*i+2] << " , " << hostData[4*i+3] << "} " << endl;
+      }
+  }
+  // cudaFree(output);
+  delete []hostData;
+  cudaFree(inputData);
+  pass = true;
+  return 0;
+}
+
+int main() {
+  bool pass = true;
+  {// Test the surface write function with different data type.
+  test_surface_write_uint1();
+  test_surface_write_char2();
+  test_surface_write_int1();
+  test_surface_write_short1();
+  test_surface_write_uchar2();
+  test_surface_write_ushort2();
+  test_surface_write_float4();
+  test_surface_write_int4();
+  test_surface_write_uint4();
+  }
   { // 1 element uint 1D image.
     const int w = 8;
     uint1 expect[w] = {
@@ -412,7 +924,6 @@ int main() {
     cudaDeviceSynchronize();
     cudaDestroySurfaceObject(surf);
     cudaFreeArray(input);
-    float precision = 0.001;
     for (int i = 0; i < w; ++i) {
       if ((output[4 * i] < expect[i].x - precision ||
            output[4 * i] > expect[i].x + precision) ||
