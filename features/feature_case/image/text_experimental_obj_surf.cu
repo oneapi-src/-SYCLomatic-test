@@ -8,7 +8,8 @@
 // ===---------------------------------------------------------------------===//
 
 #include <iostream>
-
+#include <cuda_runtime.h>
+#include <cuda.h>
 #define PRINT_PASS 1
 
 using namespace std;
@@ -214,6 +215,20 @@ cudaSurfaceObject_t createSurface(ArrayType &inputArray,int w, int h) {
 }
 
 template <class T, class ArrayType>
+CUsurfObject createSurfaceDriver(ArrayType &inputArray,int w, int h) {
+  cudaChannelFormatDesc desc = cudaCreateChannelDesc<T>();
+
+  cudaMallocArray(&inputArray, &desc, w, h);
+  CUDA_RESOURCE_DESC  surfRes;
+  CUsurfObject surf;
+  memset(&surfRes, 0, sizeof(surfRes));
+  surfRes.res.array.hArray = inputArray;
+  surfRes.resType = CU_RESOURCE_TYPE_ARRAY;
+  cuSurfObjectCreate(&surf, &surfRes);
+  return surf;
+}
+
+template <class T, class ArrayType>
 cudaSurfaceObject_t createSurface(ArrayType &inputArray, cudaExtent & extent) {
   cudaChannelFormatDesc desc = cudaCreateChannelDesc<T>();
 
@@ -231,7 +246,7 @@ cudaSurfaceObject_t createSurface(ArrayType &inputArray, cudaExtent & extent) {
 int test_surface_write_uint1() {
   bool pass = true;
 
-  int width = 8;
+  const int width = 8;
   cudaArray_t inputArray;
   cudaSurfaceObject_t surf = createSurface<uint1>(inputArray, width, 0);
   uint1 expect[width] = {
@@ -260,16 +275,35 @@ int test_surface_write_uint1() {
       cout << "{" << output[i] << "}, ";
     cout << endl;
   }
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   cudaFree(output);
   pass = true;
   return 0;
   
 }
+// Compare the uint1 type with 1 Dinmesion image through cuda driver API.
+int test_surface_driver() {
+  const int width = 8;
+  CUarray inputArray;
+  CUDA_RESOURCE_DESC  surfRes;
+  CUsurfObject surf;
+  memset(&surfRes, 0, sizeof(surfRes));
+  surfRes.res.array.hArray = inputArray;
+  surfRes.resType = CU_RESOURCE_TYPE_ARRAY;
+  cuSurfObjectCreate(&surf, &surfRes);
+  
+  cudaDeviceSynchronize();
+  cuSurfObjectDestroy(surf);
+  CUDA_RESOURCE_DESC pResDesc;
+  cuSurfObjectGetResourceDesc(&pResDesc, surf);
+  return 0;
+}
 // 2 element char 1D image.
 int test_surface_write_char2() {
   bool pass = true;
 
-  unsigned int width = 4;
+  const unsigned int width = 4;
 
   cudaArray_t inputArray;
   cudaSurfaceObject_t surf = createSurface<char2>(inputArray, width, 0);
@@ -303,6 +337,8 @@ int test_surface_write_char2() {
       cout << "{" << (int)output[2*i] << ", " << (int)output[2*i+1] << "}, ";
     cout << endl;
   }
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   cudaFree(output);
   pass = true;
   return 0;
@@ -331,7 +367,8 @@ int test_surface_write_int1() {
   cudaDeviceSynchronize();
   unsigned int *output;
   cudaMallocManaged(&output, sizeof(expect));
-  cudaMemcpyFromArray(output, inputArray, 0, 0, h * w * sizeof(int1), cudaMemcpyDeviceToHost);
+  // cudaMemcpyFromArray(output, inputArray, 0, 0, h * w * sizeof(int1), cudaMemcpyDeviceToHost);
+  cudaMemcpy2DFromArray(output, sizeof(int1)*w, inputArray, 0,0, w * sizeof(int1), h,cudaMemcpyDeviceToHost);
   cudaDeviceSynchronize();
   for (int i = 0; i < h * w; ++i) {
     if (output[i] != expect[i].x) {
@@ -346,6 +383,8 @@ int test_surface_write_int1() {
       cout << "{" << output[i] << "}, ";
     cout << endl;
   }
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   cudaFree(output);
   pass = true;
   return 0;
@@ -356,9 +395,9 @@ int test_surface_write_short1() {
   bool pass = true;
 
   cudaChannelFormatDesc desc = cudaCreateChannelDesc<short1>();
-  unsigned int width = 2;
-  unsigned int height = 3;
-  unsigned int depth = 3;
+  const unsigned int width = 2;
+  const unsigned int height = 3;
+  const unsigned int depth = 3;
   cudaArray_t inputArray;
   cudaExtent extent = make_cudaExtent(width, height, depth);
   cudaSurfaceObject_t surf = createSurface<short1>(inputArray, extent);
@@ -410,6 +449,8 @@ int test_surface_write_short1() {
     cout << endl;
   }
   delete[] hostData;
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   cudaFree(inputData);
   pass = true;
   return 0;
@@ -417,8 +458,8 @@ int test_surface_write_short1() {
 // 2 element char 2D image.
 int test_surface_write_uchar2() {
   bool pass = true;
-  unsigned int width = 2;
-  unsigned int height = 3;
+  const unsigned int width = 2;
+  const unsigned int height = 3;
 
   cudaArray_t inputArray;
   cudaSurfaceObject_t surf = createSurface<uchar2>(inputArray, width, height);
@@ -438,7 +479,8 @@ int test_surface_write_uchar2() {
   cudaDeviceSynchronize();
   char *output;
   cudaMallocManaged(&output, sizeof(expect));
-  cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(char2), cudaMemcpyDeviceToHost);
+  // cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(char2), cudaMemcpyDeviceToHost);
+    cudaMemcpy2DFromArray(output, sizeof(char2)*width, inputArray, 0, 0, width * sizeof(char2), height,cudaMemcpyDeviceToHost);
   cudaDeviceSynchronize();
   for (int i = 0; i < width * height; i++) {
     if (output[2*i] != expect[i].x || output[2*i+1] != expect[i].y) {
@@ -453,6 +495,8 @@ int test_surface_write_uchar2() {
     cout << endl;
   }
   cudaFree(output);
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   pass = true;
   return 0;
 }
@@ -464,9 +508,9 @@ int test_surface_write_ushort2() {
   bool pass = true;
 
   cudaChannelFormatDesc desc = cudaCreateChannelDesc<ushort2>();
-  unsigned int width = 2;
-  unsigned int height = 3;
-  unsigned int depth = 3;
+  const unsigned int width = 2;
+  const unsigned int height = 3;
+  const unsigned int depth = 3;
   cudaArray_t inputArray;
   cudaExtent extent = make_cudaExtent(width, height, depth);
   cudaSurfaceObject_t surf = createSurface<ushort2>(inputArray, extent);
@@ -518,6 +562,8 @@ int test_surface_write_ushort2() {
   }
   delete []hostData;
   cudaFree(inputData);
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   pass = true;
   return 0;
 }
@@ -526,7 +572,7 @@ int test_surface_write_ushort2() {
 int test_surface_write_float4() {
   bool pass = true;
 
-  unsigned int width = 4;
+  const unsigned int width = 4;
 
   cudaArray_t inputArray;
   cudaSurfaceObject_t surf = createSurface<float4>(inputArray, width, 0);
@@ -565,6 +611,8 @@ int test_surface_write_float4() {
       }
   }
   cudaFree(output);
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   pass = true;
   return 0;
 }
@@ -572,8 +620,8 @@ int test_surface_write_float4() {
 int test_surface_write_int4() {
   bool pass = true;
 
-  unsigned int width = 2;
-  unsigned int height = 3;
+  const unsigned int width = 2;
+  const unsigned int height = 3;
 
   cudaArray_t inputArray;
 
@@ -593,7 +641,8 @@ int test_surface_write_int4() {
   cudaDeviceSynchronize();
   int *output;
   cudaMallocManaged(&output, sizeof(expect));
-  cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(int4), cudaMemcpyDeviceToHost);
+  // cudaMemcpyFromArray(output, inputArray, 0, 0, width * height * sizeof(int4), cudaMemcpyDeviceToHost);
+    cudaMemcpy2DFromArray(output, sizeof(int4)*width, inputArray, 0, 0, width * sizeof(int4), height,cudaMemcpyDeviceToHost);
   cudaDeviceSynchronize();
   for (int i = 0; i < width * height; i++) {
 
@@ -610,6 +659,8 @@ int test_surface_write_int4() {
       }
   }
   cudaFree(output);
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   pass = true;
   return 0;
 }
@@ -620,9 +671,9 @@ int test_surface_write_int4() {
 int test_surface_write_uint4() {
   bool pass = true;
 
-  unsigned int width = 2;
-  unsigned int height = 3;
-  unsigned int depth = 3;
+  const unsigned int width = 2;
+  const unsigned int height = 3;
+  const unsigned int depth = 3;
   cudaArray_t inputArray;
   cudaExtent extent = make_cudaExtent(width, height, depth);
 
@@ -678,6 +729,8 @@ int test_surface_write_uint4() {
   delete []hostData;
   cudaFree(inputData);
   pass = true;
+  cudaDestroyTextureObject(surf);
+  cudaFreeArray(inputArray);
   return 0;
 }
 
@@ -685,6 +738,7 @@ int main() {
   bool pass = true;
   {// Test the surface write function with different data type.
   test_surface_write_uint1();
+  // test_surface_driver();
   test_surface_write_char2();
   test_surface_write_int1();
   test_surface_write_short1();
