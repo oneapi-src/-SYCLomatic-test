@@ -540,7 +540,7 @@ int test_surface_write_ushort2() {
   cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(ushort2) * width * height * depth, cudaMemcpyHostToDevice);
   #endif
   cudaDeviceSynchronize();
-  ushort *hostData = new ushort[sizeof(expect)];
+  unsigned short *hostData = new unsigned short[sizeof(expect)];
   cudaMemcpy3DParms copyParams = {0};
   copyParams.srcArray = inputArray;
   copyParams.dstPtr = make_cudaPitchedPtr(hostData, width * sizeof(ushort2), width, height);
@@ -700,10 +700,10 @@ int test_surface_write_uint4() {
   #if 1
   surfDwrite<<<dimGrid, dimBlock>>>(inputData, surf, width, height, depth); 
   #else
-  cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(uint) * width * height * depth, cudaMemcpyHostToDevice);
+  cudaMemcpyToArray(inputArray, 0, 0, expect, sizeof(uint4) * width * height * depth, cudaMemcpyHostToDevice);
   #endif
   cudaDeviceSynchronize();
-  uint *hostData = new uint[width * height * depth * 4];
+  unsigned int *hostData = new unsigned int[width * height * depth * 4];
   cudaMemcpy3DParms copyParams = {0};
   copyParams.srcArray = inputArray;
   copyParams.dstPtr = make_cudaPitchedPtr(hostData, width * sizeof(uint4), width, height);
