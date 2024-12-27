@@ -10,6 +10,7 @@
 #include <iostream>
 #include <cuda_runtime.h>
 #include <cuda.h>
+
 #define PRINT_PASS 1
 
 using namespace std;
