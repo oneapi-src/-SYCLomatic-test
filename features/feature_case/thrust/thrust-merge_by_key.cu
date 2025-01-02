@@ -300,7 +300,8 @@ int main() {
       !test_device<int,char>()      ||
       !test_device<long,long>()      ||
       !test_device<long long,long long>() ||
-      !test_device<float,int>())
+      !test_device<float,int>() ||
+      !test_host<double,double>())
     return EXIT_FAILURE;  
     
   return EXIT_SUCCESS;
