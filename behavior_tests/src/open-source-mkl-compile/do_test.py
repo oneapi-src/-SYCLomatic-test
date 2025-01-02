@@ -26,7 +26,7 @@ def migrate_test():
 
 
 def build_test():
-    cmp_opts = ["-I${ONEMKLROOT}/include"]
+    cmp_opts = ["-I${ONEMKLROOT}/include", "-I${ONEMKLROOT}/include/oneapi/mkl"]
     ret = False
     ret = compile_files(["main.dp.cpp"], cmp_opts)
     return ret
