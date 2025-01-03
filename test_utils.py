@@ -172,7 +172,7 @@ def do_migrate(src, in_root, out_root, extra_args = []):
         cmd += ' --out-root ' + out_root
     if extra_args:
         for arg in extra_args:
-            cmd +=  ' --extra-arg=\" ' + arg + '\"'
+            cmd +=  ' --extra-arg=\"' + arg + '\" '
     if test_config.migrate_option:
         cmd += ' ' + test_config.migrate_option
     return call_subprocess(cmd)

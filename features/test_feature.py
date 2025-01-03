@@ -62,7 +62,7 @@ exec_tests = ['asm', 'asm_bar', 'asm_mem', 'asm_atom', 'asm_arith', 'asm_vinst',
               'operator_eq', 'operator_neq', 'operator_lege', 'thrust_system', 'thrust_reverse_copy',
               'thrust_device_new_delete', 'thrust_temporary_buffer', 'thrust_malloc_free', 'codepin', 'thrust_unique_count',
               'thrust_advance_trans_op_itr', 'cuda_stream_query', "matmul", "matmul_2", "transform",  "context_push_n_pop",
-              "graphics_interop_d3d11", 'graph', 'asm_shfl', 'asm_shfl_sync', 'asm_shfl_sync_with_exp', 'asm_membar_fence',
+              'graphics_interop_d3d11', 'extMem_interop_vk', 'graph', 'asm_shfl', 'asm_shfl_sync', 'asm_shfl_sync_with_exp', 'asm_membar_fence',
               'cub_block_store']
 
 occupancy_calculation_exper = ['occupancy_calculation']
@@ -222,6 +222,9 @@ def build_test():
 
     if test_config.current_test.startswith('ccl-'):
         link_opts.append('-lccl -lmpi')
+
+    if test_config.current_test == 'extMem_interop_vk':
+        link_opts.append('-lvulkan')
 
     if "codepin" in test_config.current_test:
         test_config.out_root = test_config.out_root + "_codepin_sycl"

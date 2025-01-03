@@ -368,6 +368,7 @@
     <test testName="matmul_2" configFile="config/TEMPLATE_cublasLt.xml" />
     <test testName="transform" configFile="config/TEMPLATE_cublasLt.xml" />
     <test testName="graphics_interop_d3d11" configFile="config/TEMPLATE_cudaGraphics_Interop.xml" />
+    <test testName="extMem_interop_vk" configFile="config/TEMPLATE_extMem_Interop.xml" />
     <test testName="graph" configFile="config/TEMPLATE_graph.xml" />
     <test testName="peer_access_using_driver_api" configFile="config/TEMPLATE_peer_access_using_driver_api.xml" />
     <test testName="context_push_n_pop" configFile="config/TEMPLATE_context_push_n_pop.xml" />
