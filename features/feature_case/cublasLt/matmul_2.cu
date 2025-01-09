@@ -756,6 +756,110 @@ bool test_batch() {
   return !error;
 }
 
+// clang-format off
+// alpha * A    * B           + C                   = alpha * A*B        + C                   = D
+// 2       6 10    5  7 -1 3   1000 3000 5000 7000    2       0 22 14 28   1000 3000 5000 7000   1000 3044 5028 7056
+//         7 11   -3 -2  2 1   2000 4000 6000 8000            2 27 15 32   2000 4000 6000 8000   2004 4054 6030 8064
+// clang-format on
+bool test_bgradb() {
+  printf("========test_bgradb=========\n");
+  cublasLtHandle_t ltHandle;
+  cublasLtCreate(&ltHandle);
+  void *Adev;
+  void *Bdev;
+  void *Cdev;
+  void *Ddev;
+  cudaMalloc(&Adev, 4 * sizeof(float));
+  cudaMalloc(&Bdev, 8 * sizeof(float));
+  cudaMalloc(&Cdev, 8 * sizeof(float));
+  cudaMalloc(&Ddev, 8 * sizeof(float));
+
+  float Ahost[4] = {6, 7, 10, 11};
+  float Bhost[8] = {5, 7, -1, 3, -3, -2,  2,  1};
+  float Chost[8] = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000};
+
+  cudaMemcpy(Adev, Ahost, 4 * sizeof(float), cudaMemcpyHostToDevice);
+  cudaMemcpy(Bdev, Bhost, 8 * sizeof(float), cudaMemcpyHostToDevice);
+  cudaMemcpy(Cdev, Chost, 8 * sizeof(float), cudaMemcpyHostToDevice);
+
+  cublasLtMatrixLayout_t Adesc_col_major = NULL,
+                         Bdesc_col_major = NULL,
+                         Cdesc_col_major = NULL,
+                         Ddesc_col_major = NULL;
+  cublasLtMatrixLayoutCreate(&Adesc_col_major, CUDA_R_32F, 2, 2, 2);
+  cublasLtMatrixLayoutCreate(&Bdesc_col_major, CUDA_R_32F, 4, 2, 4);
+  cublasLtMatrixLayoutCreate(&Cdesc_col_major, CUDA_R_32F, 2, 4, 2);
+  cublasLtMatrixLayoutCreate(&Ddesc_col_major, CUDA_R_32F, 2, 4, 2);
+
+  float alpha = 2;
+  float beta = 1;
+  float *bias_vec_dev;
+  cudaMalloc(&bias_vec_dev, sizeof(float) * 4);
+
+  // Matmul
+  cublasLtMatmulDesc_t matmulDesc = NULL;
+  cublasLtMatmulDescCreate(&matmulDesc, CUBLAS_COMPUTE_32F, CUDA_R_32F);
+  auto transb = CUBLAS_OP_T;
+  cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_TRANSB, &transb, sizeof(transb));
+  cublasLtEpilogue_t ep = CUBLASLT_EPILOGUE_BGRADB;
+  cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_EPILOGUE, &ep, sizeof(ep));
+  cublasLtMatmulDescSetAttribute(matmulDesc, CUBLASLT_MATMUL_DESC_BIAS_POINTER, &bias_vec_dev, sizeof(bias_vec_dev));
+  cublasLtMatmul(ltHandle, matmulDesc, &alpha, Adev, Adesc_col_major, Bdev, Bdesc_col_major, &beta, Cdev, Cdesc_col_major, Ddev, Ddesc_col_major, NULL, NULL, 0, 0);
+  cudaStreamSynchronize(0);
+  cublasLtMatmulDescDestroy(matmulDesc);
+
+  // Check result
+  float Dhost[8];
+  cudaMemcpy(Dhost, Ddev, 8 * sizeof(float), cudaMemcpyDeviceToHost);
+  float bias_vec_host[4];
+  cudaMemcpy(bias_vec_host, bias_vec_dev, 4 * sizeof(float), cudaMemcpyDeviceToHost);
+
+  bool error = false;
+  float D_ref[8] = {1000, 2004, 3044, 4054, 5028, 6030, 7056, 8064};
+  for (int i = 0; i < 8; i++) {
+    if (std::abs(Dhost[i] - D_ref[i]) > 0.01) {
+      error = true;
+      break;
+    }
+  }
+
+  float bias_vec_ref[4] = {2, 5, 1, 4};
+  for (int i = 0; i < 2; i++) {
+    if (std::abs(bias_vec_host[i] - bias_vec_ref[i]) > 0.01) {
+      error = true;
+      break;
+    }
+  }
+
+  printf("d:\n");
+  for (int i = 0; i < 8; i++)
+    printf("%f, ", Dhost[i]);
+  printf("\n");
+  printf("bias_vec:\n");
+  for (int i = 0; i < 4; i++)
+    printf("%f, ", bias_vec_host[i]);
+  printf("\n");
+
+  if (error) {
+    printf("error\n");
+  } else {
+    printf("success\n");
+  }
+
+  cublasLtDestroy(ltHandle);
+  cublasLtMatrixLayoutDestroy(Adesc_col_major);
+  cublasLtMatrixLayoutDestroy(Bdesc_col_major);
+  cublasLtMatrixLayoutDestroy(Cdesc_col_major);
+  cublasLtMatrixLayoutDestroy(Ddesc_col_major);
+  cudaFree(Adev);
+  cudaFree(Bdev);
+  cudaFree(Cdev);
+  cudaFree(Ddev);
+  cudaFree(bias_vec_dev);
+  
+  return !error;
+}
+
 int main() {
   bool pass = true;
   pass = test_gelu() && pass;
@@ -767,6 +871,7 @@ int main() {
 #ifndef DPCT_USM_LEVEL_NONE
   pass = test_batch() && pass;
 #endif
+  pass = test_bgradb() && pass;
 
   if (pass)
     printf("matmul_2 all passed.\n");
