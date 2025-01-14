@@ -24,8 +24,6 @@ int main(int argc, char **argv) {
 
     CUgraphNode cugn;
 
-    CUgraphicsResource cugr;
-
     nvmlDevice_t nvmld;
 
     nvmlReturn_t nvmlr;
