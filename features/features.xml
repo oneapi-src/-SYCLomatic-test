@@ -4,7 +4,7 @@
   <description>Feature test</description>
 
   <tests>
-    <test testName="asm" configFile="config/TEMPLATE_asm.xml" />
+    <test testName="asm" configFile="config/TEMPLATE_asm_excluding_syclcompat.xml" />
     <test testName="asm_bar" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_mem" configFile="config/TEMPLATE_asm.xml" />
     <test testName="asm_atom" configFile="config/TEMPLATE_asm.xml" />
