@@ -99,110 +99,6 @@ void transform(cublasLtHandle_t ltHandle, const void *in, int ld_in,
   cublasLtMatrixTransformDescDestroy(transform_desc);
 }
 
-// igemmlt<COL_TURING, 32, 0>
-bool test1() {
-  cublasLtHandle_t ltHandle;
-  cublasLtCreate(&ltHandle);
-  const constexpr int m = 4;
-  const constexpr int n = 2;
-  const constexpr int k = 3;
-  int lda = m;
-  int ldb = n;
-  int ldc = m;
-  void *Adev;
-  void *Bdev;
-  void *Cdev;
-  cudaMalloc(&Adev, m * k * sizeof(int8_t));
-  cudaMalloc(&Bdev, n * k * sizeof(int8_t));
-  cudaMalloc(&Cdev, m * n * sizeof(int32_t));
-
-  int8_t Ahost[m * k] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
-  int8_t Bhost[n * k] = {5, 4, -3, -2, 1, 0};
-
-  cudaMemcpy(Adev, Ahost, m * k * sizeof(int8_t), cudaMemcpyHostToDevice);
-  cudaMemcpy(Bdev, Bhost, n * k * sizeof(int8_t), cudaMemcpyHostToDevice);
-
-  cublasLtMatrixLayout_t Adesc_col_major = NULL, Bdesc_col_major = NULL,
-                         Cdesc_col_major = NULL;
-  cublasLtMatrixLayoutCreate(&Adesc_col_major, CUDA_R_8I, m, k, lda);
-  cublasLtMatrixLayoutCreate(&Bdesc_col_major, CUDA_R_8I, n, k, ldb);
-  cublasLtMatrixLayoutCreate(&Cdesc_col_major, CUDA_R_32I, m, n, ldc);
-
-  // Convert A and B
-  cublasLtMatrixLayout_t Adesc_col32 = NULL, Bdesc_col4_4r2_8c = NULL,
-                         Cdesc_col32 = NULL;
-  int8_t *A_col32, *B_col4_4r2_8c;
-  int32_t *C_col32;
-  cudaMalloc(&A_col32, m * 32 * sizeof(std::int8_t));
-  cudaMalloc(&B_col4_4r2_8c, ((n + 8 - 1) / 8) * 8 * 32 * sizeof(std::int8_t));
-  cudaMalloc(&C_col32, m * 32 * sizeof(std::int32_t));
-  cublasLtMatrixLayoutCreate(&Adesc_col32, CUDA_R_8I, m, k, m * 32);
-  cublasLtMatrixLayoutCreate(&Bdesc_col4_4r2_8c, CUDA_R_8I, k, n,
-                             ((n + 8 - 1) / 8) * 8 * 32);
-  cublasLtMatrixLayoutCreate(&Cdesc_col32, CUDA_R_32I, m, n, m * 32);
-  cublasLtOrder_t col32 = CUBLASLT_ORDER_COL32;
-  cublasLtOrder_t col4_4r2_8c = CUBLASLT_ORDER_COL4_4R2_8C;
-  cublasLtMatrixLayoutSetAttribute(Adesc_col32, CUBLASLT_MATRIX_LAYOUT_ORDER,
-                                   &col32, sizeof(col32));
-  cublasLtMatrixLayoutSetAttribute(Bdesc_col4_4r2_8c,
-                                   CUBLASLT_MATRIX_LAYOUT_ORDER, &col4_4r2_8c,
-                                   sizeof(col4_4r2_8c));
-  cublasLtMatrixLayoutSetAttribute(Cdesc_col32, CUBLASLT_MATRIX_LAYOUT_ORDER,
-                                   &col32, sizeof(col32));
-
-  transform(ltHandle, Adev, lda, Adesc_col_major, A_col32, m * 32, Adesc_col32);
-  transform(ltHandle, Bdev, ldb, Bdesc_col_major, B_col4_4r2_8c, 8 * 32,
-            Bdesc_col4_4r2_8c);
-
-  // Matmul
-  igemmlt<COL_TURING, 32, 0>(ltHandle, m, n, k, A_col32, B_col4_4r2_8c, C_col32,
-                             nullptr, m * 32, ((n + 8 - 1) / 8) * 8 * 32,
-                             m * 32);
-
-  // Convert C
-  transform(ltHandle, C_col32, m * 32, Cdesc_col32, Cdev, ldc, Cdesc_col_major);
-  cudaStreamSynchronize(0);
-
-  // Check result
-  int32_t Chost[m * n];
-  cudaMemcpy(Chost, Cdev, m * n * sizeof(int32_t), cudaMemcpyDeviceToHost);
-
-  bool error = false;
-  int32_t C_ref[m * n] = {14, 17, 20, 23, 4, 6, 8, 10};
-  for (int i = 0; i < m * n; i++) {
-    if (Chost[i] != C_ref[i]) {
-      error = true;
-      break;
-    }
-  }
-  printf("c:\n");
-  for (int i = 0; i < m * n; i++)
-    printf("%d, ", Chost[i]);
-  printf("\n");
-
-  if (error) {
-    printf("error\n");
-  } else {
-    printf("success\n");
-  }
-
-  cublasLtDestroy(ltHandle);
-  cublasLtMatrixLayoutDestroy(Adesc_col32);
-  cublasLtMatrixLayoutDestroy(Bdesc_col4_4r2_8c);
-  cublasLtMatrixLayoutDestroy(Cdesc_col32);
-  cublasLtMatrixLayoutDestroy(Adesc_col_major);
-  cublasLtMatrixLayoutDestroy(Bdesc_col_major);
-  cublasLtMatrixLayoutDestroy(Cdesc_col_major);
-  cudaFree(Adev);
-  cudaFree(Bdev);
-  cudaFree(Cdev);
-  cudaFree(A_col32);
-  cudaFree(B_col4_4r2_8c);
-  cudaFree(C_col32);
-
-  return !error;
-}
-
 // igemmlt<COL_TURING, 8, 0>
 bool test2() {
   cublasLtHandle_t ltHandle;
@@ -413,111 +309,6 @@ bool test3() {
   cudaFree(alpha);
   cudaFree(A_col32);
   cudaFree(B_col4_4r2_8c);
-  cudaFree(C_col32);
-
-  return !error;
-}
-
-// igemmlt<COL_AMPERE, 32, 0>
-bool test4() {
-  cublasLtHandle_t ltHandle;
-  cublasLtCreate(&ltHandle);
-  const constexpr int m = 4;
-  const constexpr int n = 2;
-  const constexpr int k = 3;
-  int lda = m;
-  int ldb = n;
-  int ldc = m;
-  void *Adev;
-  void *Bdev;
-  void *Cdev;
-  cudaMalloc(&Adev, m * k * sizeof(int8_t));
-  cudaMalloc(&Bdev, n * k * sizeof(int8_t));
-  cudaMalloc(&Cdev, m * n * sizeof(int32_t));
-
-  int8_t Ahost[m * k] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
-  int8_t Bhost[n * k] = {5, 4, -3, -2, 1, 0};
-
-  cudaMemcpy(Adev, Ahost, m * k * sizeof(int8_t), cudaMemcpyHostToDevice);
-  cudaMemcpy(Bdev, Bhost, n * k * sizeof(int8_t), cudaMemcpyHostToDevice);
-
-  cublasLtMatrixLayout_t Adesc_col_major = NULL, Bdesc_col_major = NULL,
-                         Cdesc_col_major = NULL;
-  cublasLtMatrixLayoutCreate(&Adesc_col_major, CUDA_R_8I, m, k, lda);
-  cublasLtMatrixLayoutCreate(&Bdesc_col_major, CUDA_R_8I, n, k, ldb);
-  cublasLtMatrixLayoutCreate(&Cdesc_col_major, CUDA_R_32I, m, n, ldc);
-
-  // Convert A and B
-  cublasLtMatrixLayout_t Adesc_col32 = NULL, Bdesc_col32_2r_4r4 = NULL,
-                         Cdesc_col32 = NULL;
-  int8_t *A_col32, *B_col32_2r_4r4;
-  int32_t *C_col32;
-  cudaMalloc(&A_col32, m * 32 * sizeof(std::int8_t));
-  cudaMalloc(&B_col32_2r_4r4,
-             ((n + 32 - 1) / 32) * 32 * 32 * sizeof(std::int8_t));
-  cudaMalloc(&C_col32, m * 32 * sizeof(std::int32_t));
-  cublasLtMatrixLayoutCreate(&Adesc_col32, CUDA_R_8I, m, k, m * 32);
-  cublasLtMatrixLayoutCreate(&Bdesc_col32_2r_4r4, CUDA_R_8I, k, n,
-                             ((n + 32 - 1) / 32) * 32 * 32);
-  cublasLtMatrixLayoutCreate(&Cdesc_col32, CUDA_R_32I, m, n, m * 32);
-  cublasLtOrder_t col32 = CUBLASLT_ORDER_COL32;
-  cublasLtOrder_t col32_2r_4r4 = CUBLASLT_ORDER_COL32_2R_4R4;
-  cublasLtMatrixLayoutSetAttribute(Adesc_col32, CUBLASLT_MATRIX_LAYOUT_ORDER,
-                                   &col32, sizeof(col32));
-  cublasLtMatrixLayoutSetAttribute(Bdesc_col32_2r_4r4,
-                                   CUBLASLT_MATRIX_LAYOUT_ORDER, &col32_2r_4r4,
-                                   sizeof(col32_2r_4r4));
-  cublasLtMatrixLayoutSetAttribute(Cdesc_col32, CUBLASLT_MATRIX_LAYOUT_ORDER,
-                                   &col32, sizeof(col32));
-
-  transform(ltHandle, Adev, lda, Adesc_col_major, A_col32, m * 32, Adesc_col32);
-  transform(ltHandle, Bdev, ldb, Bdesc_col_major, B_col32_2r_4r4, 8 * 32,
-            Bdesc_col32_2r_4r4);
-
-  // Matmul
-  igemmlt<COL_AMPERE, 32, 0>(ltHandle, m, n, k, A_col32, B_col32_2r_4r4,
-                             C_col32, nullptr, m * 32,
-                             ((n + 8 - 1) / 8) * 8 * 32, m * 32);
-
-  // Convert C
-  transform(ltHandle, C_col32, m * 32, Cdesc_col32, Cdev, ldc, Cdesc_col_major);
-  cudaStreamSynchronize(0);
-
-  // Check result
-  int32_t Chost[m * n];
-  cudaMemcpy(Chost, Cdev, m * n * sizeof(int32_t), cudaMemcpyDeviceToHost);
-
-  bool error = false;
-  int32_t C_ref[m * n] = {14, 17, 20, 23, 4, 6, 8, 10};
-  for (int i = 0; i < m * n; i++) {
-    if (Chost[i] != C_ref[i]) {
-      error = true;
-      break;
-    }
-  }
-  printf("c:\n");
-  for (int i = 0; i < m * n; i++)
-    printf("%d, ", Chost[i]);
-  printf("\n");
-
-  if (error) {
-    printf("error\n");
-  } else {
-    printf("success\n");
-  }
-
-  cublasLtDestroy(ltHandle);
-  cublasLtMatrixLayoutDestroy(Adesc_col32);
-  cublasLtMatrixLayoutDestroy(Bdesc_col32_2r_4r4);
-  cublasLtMatrixLayoutDestroy(Cdesc_col32);
-  cublasLtMatrixLayoutDestroy(Adesc_col_major);
-  cublasLtMatrixLayoutDestroy(Bdesc_col_major);
-  cublasLtMatrixLayoutDestroy(Cdesc_col_major);
-  cudaFree(Adev);
-  cudaFree(Bdev);
-  cudaFree(Cdev);
-  cudaFree(A_col32);
-  cudaFree(B_col32_2r_4r4);
   cudaFree(C_col32);
 
   return !error;
@@ -916,10 +707,9 @@ bool test_version() {
 
 int main() {
   bool pass = true;
-  pass = test1() && pass;
+  // test1 and test4 are moved to matmul_3.cu
   pass = test2() && pass;
   pass = test3() && pass;
-  pass = test4() && pass;
   pass = test5() && pass;
   pass = test6() && pass;
   pass = test7() && pass;
