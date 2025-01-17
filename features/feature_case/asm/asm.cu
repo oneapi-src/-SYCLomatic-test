@@ -1408,6 +1408,26 @@ __global__ void lop3(int *ec) {
   *ec = 0;
 }
 
+template <int lut, typename T> __device__ inline T lop3(T a, T b, T c) {
+  T res;
+  asm volatile("lop3.b32 %0, %1, %2, %3, %4;\n"
+               : "=r"(res)
+               : "r"(a), "r"(b), "r"(c), "n"(lut));
+  return res;
+}
+
+__global__ void lop3_template(int *ec) {
+  uint32_t X, Y, A = 1, B = 2, C = 3;
+  reference_of_lop3(X, A, B, C, 0x8);
+  Y = lop3<0x8>(A, B, C);
+  if (X != Y) {
+    *ec = Y;
+    return;
+  }
+
+  *ec = 0;
+}
+
 int main() {
   int ret = 0;
   int *d_ec = nullptr;
@@ -1483,6 +1503,9 @@ int main() {
 
   lop3<<<1, 1>>>(d_ec);
   wait_and_check("lop3");
+
+  lop3_template<<<1, 1>>>(d_ec);
+  wait_and_check("lop3_template");
 
   cudaFree(d_ec);
 
