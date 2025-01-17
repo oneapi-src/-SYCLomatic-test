@@ -366,17 +366,11 @@ int main() {
         // test 1/1
 
         // create device_vector and src vector
-        dpct::device_vector<int> dv(8);
         std::vector<int> src(8);
 
         src[0] = -3; src[1] = -2; src[2] = 1; src[3] = 0; src[4] = -1; src[5] = -4; src[6] = 2; src[7] = 3;
         // src: { -3, -2, 1, 0, -1, -4, 2, 3 }
-
-        // copy from src to dv
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            h.memcpy(dv.data(), src.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
+        dpct::device_vector<int> dv(src);
 
         {
             // call algorithm on dv
@@ -389,24 +383,18 @@ int main() {
             );
         }
 
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            // copy dv back to src
-            h.memcpy(src.data(), dv.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
-
         // check that src is now { 3, 2, 1, 0, -1, -4, 2, 3 }
         // actual result is no change in src elements
         test_name = "std::for_each using device_vector";
 
-        num_failing += ASSERT_EQUAL(test_name, src[0], 3);
-        num_failing += ASSERT_EQUAL(test_name, src[1], 2);
-        num_failing += ASSERT_EQUAL(test_name, src[2], 1);
-        num_failing += ASSERT_EQUAL(test_name, src[3], 0);
-        num_failing += ASSERT_EQUAL(test_name, src[4], -1);
-        num_failing += ASSERT_EQUAL(test_name, src[5], -4);
-        num_failing += ASSERT_EQUAL(test_name, src[6], 2);
-        num_failing += ASSERT_EQUAL(test_name, src[7], 3);
+        num_failing += ASSERT_EQUAL(test_name, dv[0], 3);
+        num_failing += ASSERT_EQUAL(test_name, dv[1], 2);
+        num_failing += ASSERT_EQUAL(test_name, dv[2], 1);
+        num_failing += ASSERT_EQUAL(test_name, dv[3], 0);
+        num_failing += ASSERT_EQUAL(test_name, dv[4], -1);
+        num_failing += ASSERT_EQUAL(test_name, dv[5], -4);
+        num_failing += ASSERT_EQUAL(test_name, dv[6], 2);
+        num_failing += ASSERT_EQUAL(test_name, dv[7], 3);
 
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;

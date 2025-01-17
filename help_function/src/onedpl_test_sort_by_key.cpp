@@ -144,6 +144,8 @@ int main() {
         }
     }
 
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE
     {
     // Test One, call to dpct::sort using USM allocations
         // create queue
@@ -199,6 +201,7 @@ int main() {
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif //DPCT_USM_LEVEL_NONE
 
     {
     // Test Two, test calls to dpct::sort using device vectors
@@ -274,6 +277,8 @@ int main() {
         }
     }
 
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE
     {
     // Test Three, call to dpct::stable_sort using USM allocations
         // create queue
@@ -331,6 +336,7 @@ int main() {
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif // DPCT_USM_LEVEL_NONE
 
     { // Test Four, test calls to dpct::stable_sort with duplicate key values
         sycl::buffer<int, 1> keys_buf{ sycl::range<1>(16) };

@@ -40,6 +40,9 @@ int main(){
     int failed_tests = 0;
     int num_failing = 0;
 
+
+    // These tests assume USM is available, disable when it isn't
+#ifndef DPCT_USM_LEVEL_NONE
     {
         // Test One, test normal call to std::exclusive_scan with std::plus<> and USM allocations
         // create queue
@@ -100,6 +103,7 @@ int main(){
         failed_tests += test_passed(num_failing, test_name);
         num_failing = 0;
     }
+#endif //DPCT_USM_LEVEL_NONE
 
     {
         // Test Two, test normal call to std::exclusive_scan with std::plus<> with overlapping source and destination

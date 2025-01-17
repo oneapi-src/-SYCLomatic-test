@@ -226,11 +226,8 @@ int main() {
     // dcpt::copy_if with device_vector
 
     {
-        // **FAILS AT RUNTIME**
 
         // create src and dst device_vector
-        dpct::device_vector<int> src_dv(8);
-        dpct::device_vector<int> dst_dv(8);
         std::vector<int> src_vec(8);
         std::vector<int> dst_vec(8);
 
@@ -239,17 +236,8 @@ int main() {
             dst_vec[i] = 0;
         }
 
-        //copy from src_vec to src_dv
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            h.memcpy(src_dv.data(), src_vec.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
-
-        //copy from dst_vec to dst_dv
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            h.memcpy(dst_dv.data(), dst_vec.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
+        dpct::device_vector<int> src_dv(src_vec);
+        dpct::device_vector<int> dst_dv(dst_vec);
 
         // src_dv: { 0, 1, 2, 3, 4, 5, 6, 7 }
         // dst_dv: { 0, 0, 0, 0, 0, 0, 0, 0 }
@@ -269,22 +257,16 @@ int main() {
             );
         }
 
-        dpct::get_default_queue().submit([&](sycl::handler& h) {
-            // copy from dst_dv back to dst_vec
-            h.memcpy(dst_vec.data(), dst_dv.data(), 8 * sizeof(int));
-        });
-        dpct::get_default_queue().wait();
-
         std::string test_name = "copy_if with device_vector";
 
         // expected dst_vec: { 5, 7, 0, 0, 0, 0, 0, 0 }
         for (int i = 0; i != 8; ++i) {
             if (i == 0)
-                num_failing += ASSERT_EQUAL(test_name, dst_vec[i], 5);
+                num_failing += ASSERT_EQUAL(test_name, dst_dv[i], 5);
             else if (i == 1)
-                num_failing += ASSERT_EQUAL(test_name, dst_vec[i], 7);
+                num_failing += ASSERT_EQUAL(test_name, dst_dv[i], 7);
             else
-                num_failing += ASSERT_EQUAL(test_name, dst_vec[i], 0);
+                num_failing += ASSERT_EQUAL(test_name, dst_dv[i], 0);
         }
 
         failed_tests += test_passed(num_failing, test_name);
