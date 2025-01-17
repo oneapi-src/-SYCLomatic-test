@@ -32,7 +32,7 @@ options = [("in-root", "Attribute", ["Analysis", "Migration", "BuildScript"], "a
 ("output-file", "Attribute", ["Migration"], "a"),
 ("rule-file", "Attribute", ["Migration", "BuildScript", "Analysis"], "a"),
 ("usm-level", "Attribute", ["Migration", "Analysis"], "none"),
-("migrate-build-script", "Attribute", ["Migration", "Analysis"], "CMake"),
+("migrate-build-script", "Attribute", ["Migration", "BuildScript", "Analysis"], "CMake"),
 ("format-range", "Attribute", ["Migration"], "all"),
 ("format-style", "Attribute", ["Migration"], "custom"),
 ("no-dry-pattern", "Attribute", ["Migration", "Analysis"], ""),
@@ -81,7 +81,7 @@ def check_result(cmd, action, attributes):
         if action[2][0] in attr[2]:
             continue
         if not is_sub_string(expect.format(attr[0]), test_config.command_output):
-            print("\"" + expect.format(attr[0]) + "\"not found")
+            print("\"" + expect.format(attr[0]) + "\" not found")
             return False
     return True
 

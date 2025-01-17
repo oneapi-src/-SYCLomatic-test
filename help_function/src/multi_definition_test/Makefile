@@ -37,10 +37,10 @@ $(TARGET_0): $(OBJS_0)
 	$(CC) -o $@ $^ $(LIB) 
 
 $(TARGET_0_OBJ_0):$(TARGET_0_SRC_0)
-	c++ -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
+	$(CC) -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
 
 $(TARGET_0_OBJ_1):$(TARGET_0_SRC_1)
-	c++ -c ${TARGET_0_SRC_1} -o ${TARGET_0_OBJ_1} $(TARGET_0_FLAG_1)
+	$(CC) -c ${TARGET_0_SRC_1} -o ${TARGET_0_OBJ_1} $(TARGET_0_FLAG_1)
 
 clean:
 	rm -f  ${OBJS_0} $(TARGET)
