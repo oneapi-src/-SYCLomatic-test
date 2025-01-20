@@ -45,6 +45,7 @@
         <test testName="ngtn-database-fail" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="nominmax_bd" configFile="config/TEMPLATE_behavior_tests.xml" />
         <test testName="bad_input_1" configFile="config/TEMPLATE_behavior_tests.xml" />
+        <test testName="cmp_cmds_c_opt_test" configFile="config/TEMPLATE_behavior_tests_lin.xml" />
         <test testName="cmps_cl_compile_test_1" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="cmps_cl_compile_test_2" configFile="config/TEMPLATE_behavior_tests_win.xml" />
         <test testName="cmps_cuda_compile_test_1" configFile="config/TEMPLATE_behavior_tests_win.xml" />

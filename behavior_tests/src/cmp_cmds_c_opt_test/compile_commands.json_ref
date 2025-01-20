@@ -1,0 +1,22 @@
+[
+    {
+        "command": "nvcc  -O2 -DKERNEL_USE_PROFILE=1 -DRUN_ON_GPU=1 -o one -allow-unsupported-compiler -D__CUDACC__=1 one.cu",
+        "directory": "${TEST_DIRECTORY}",
+        "file": "${TEST_DIRECTORY}/one.cu"
+    },
+    {
+        "command": "nvcc -c  -O2 -DKERNEL_USE_PROFILE=1 -DRUN_ON_GPU=1 -D__CUDACC__=1 two.cu",
+        "directory": "${TEST_DIRECTORY}",
+        "file": "${TEST_DIRECTORY}/two.cu"
+    },
+    {
+        "command": "nvcc -c  -O2 -DKERNEL_USE_PROFILE=1 -DRUN_ON_GPU=1 -D__CUDACC__=1 three.cu",
+        "directory": "${TEST_DIRECTORY}",
+        "file": "${TEST_DIRECTORY}/three.cu"
+    },
+    {
+        "command": "nvcc -c  -O2 -DKERNEL_USE_PROFILE=1 -DRUN_ON_GPU=1 -D__CUDACC__=1 four.cu",
+        "directory": "${TEST_DIRECTORY}",
+        "file": "${TEST_DIRECTORY}/four.cu"
+    }
+]
