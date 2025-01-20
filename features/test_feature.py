@@ -116,7 +116,7 @@ def migrate_test():
         src.append(' --rule-file=./user_defined_rules/rules.yaml')
     if test_config.current_test == 'user_defined_rules_2':
         dpct_dir = os.path.dirname(shutil.which("dpct"))
-        src.append(' --rule-file=' + dpct_dir + '/../extensions/pytorch_api_rule_rules/pytorch_api.yaml ')
+        src.append(' --rule-file=' + dpct_dir + '/../extensions/pytorch_api_rules/pytorch_api.yaml ')
         include_dir = os.path.abspath('user_defined_rules_2')
         src.append(' --extra-arg="-I ' + include_dir + '" ')
         return do_migrate(src, 'user_defined_rules_2/src', test_config.out_root, extra_args)
