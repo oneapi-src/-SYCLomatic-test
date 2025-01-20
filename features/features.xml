@@ -307,7 +307,7 @@
     <test testName="merge1004to1007" configFile="config/TEMPLATE_misc.xml" />
     <test testName="result_type_overload" configFile="config/TEMPLATE_misc_skip_cuda.xml" />
     <test testName="user_defined_rules" configFile="config/TEMPLATE_user_defined_rules.xml" />
-    <!-- <test testName="user_defined_rules_2" configFile="config/TEMPLATE_user_defined_rules_2.xml" splitGroup="double"/> -->
+    <test testName="user_defined_rules_2" configFile="config/TEMPLATE_user_defined_rules_2.xml" splitGroup="double"/>
     <test testName="get_library_version" configFile="config/TEMPLATE_misc.xml" />
     <test testName="group-local-memory" configFile="config/TEMPLATE_thrust-qmc.xml" splitGroup="double"/>
     <test testName="cublas-extension" configFile="config/TEMPLATE_cuBlas_11.xml" splitGroup="double"/>
