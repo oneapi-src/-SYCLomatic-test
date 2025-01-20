@@ -609,6 +609,7 @@ __device__ int cvt() {
   float f32;
   double f64;
   uint16_t f16;
+  uint16_t bf16;
 
   { asm("cvt.u16.s16 %0, %1;" : "=h"(u16) : "h"((int16_t)0x1234)); if (!(u16 == 0x1234)) { return 1; } };
   { asm("cvt.s32.s16 %0, %1;" : "=r"(s32) : "h"((int16_t)0x1234)); if (!(s32 == 0x1234)) { return 2; } };
@@ -688,7 +689,8 @@ __device__ int cvt() {
   { asm("cvt.rp.f64.s64 %0, %1;" : "=d"(f64) : "l"(3ll)); if (!(f64 == 3.0)) { return 65; } };
   { asm("cvt.rn.f64.u64 %0, %1;" : "=d"(f64) : "l"(3ll)); if (!(f64 == 3.0)) { return 66; } };
 
-  
+  { asm("cvt.rn.bf16.f32 %0, %1;" : "=h"(bf16) : "f"(3.14f)); if (!(bf16 == 0x4049)) { return 67; } };
+
   return 0;
 }
 
