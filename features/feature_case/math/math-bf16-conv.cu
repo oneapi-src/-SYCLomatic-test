@@ -950,46 +950,6 @@ void testLdcvCases(const vector<pair<__nv_bfloat162, int>> &TestCases) {
   }
 }
 
-__global__ void ldg(float *const Result, __nv_bfloat16 *Input1) {
-  *Result = __ldg(Input1);
-}
-
-void testLdgCases(const vector<pair<__nv_bfloat16, int>> &TestCases) {
-  float *Result;
-  cudaMallocManaged(&Result, sizeof(*Result));
-  for (const auto &TestCase : TestCases) {
-    __nv_bfloat16 *Input;
-    cudaMallocManaged(&Input, sizeof(*Input));
-    setValue<<<1, 1>>>(Input, TestCase.first);
-    cudaDeviceSynchronize();
-    ldg<<<1, 1>>>(Result, Input);
-    cudaDeviceSynchronize();
-    checkResult("__ldg", {TestCase.first}, TestCase.first, *Result,
-                TestCase.second);
-  }
-}
-
-__global__ void ldg(float *const Result, __nv_bfloat162 *Input1) {
-  auto ret = __ldg(Input1);
-  Result[0] = __bfloat162float(ret.x);
-  Result[1] = __bfloat162float(ret.y);
-}
-
-void testLdgCases(const vector<pair<__nv_bfloat162, int>> &TestCases) {
-  float *Result;
-  cudaMallocManaged(&Result, 2 * sizeof(*Result));
-  for (const auto &TestCase : TestCases) {
-    __nv_bfloat162 *Input;
-    cudaMallocManaged(&Input, sizeof(*Input));
-    setValue<<<1, 1>>>(Input, TestCase.first);
-    cudaDeviceSynchronize();
-    ldg<<<1, 1>>>(Result, Input);
-    cudaDeviceSynchronize();
-    checkResult("__ldg", {TestCase.first}, TestCase.first,
-                {Result[0], Result[1]}, TestCase.second);
-  }
-}
-
 __global__ void ldlu(float *const Result, __nv_bfloat16 *Input1) {
   *Result = __ldlu(Input1);
 }
@@ -1562,20 +1522,6 @@ int main() {
       {100.6, 14},
   });
   testLdcvCases({
-      {{-0.3, -0.4}, 16},
-      {{0, 0.7}, 16},
-      {{1, 100.6}, 14},
-      {{100.6, 1}, 14},
-  });
-  testLdgCases({
-      {-0.3, 16},
-      {-0.4, 16},
-      {0, 37},
-      {0.7, 16},
-      {1, 15},
-      {100.6, 14},
-  });
-  testLdgCases({
       {{-0.3, -0.4}, 16},
       {{0, 0.7}, 16},
       {{1, 100.6}, 14},
