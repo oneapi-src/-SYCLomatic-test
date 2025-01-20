@@ -7,6 +7,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <stdio.h>
+#include <vector>
 
 const int blockSize = 256;
 const int numBlocks = (10 + blockSize - 1) / blockSize;
@@ -37,9 +38,9 @@ int main() {
 
   cudaMalloc(&d_a, 10 * sizeof(float));
 
-  init<<<numBlocks, blockSize, 0, stream>>>(d_a);
-
   cudaStreamBeginCapture(stream, cudaStreamCaptureModeGlobal);
+
+  init<<<numBlocks, blockSize, 0, stream>>>(d_a);
 
   incrementA<<<numBlocks, blockSize, 0, stream>>>(d_a);
 
@@ -58,6 +59,23 @@ int main() {
       printf("Results do not match\n");
       return -1;
     }
+  }
+
+  // Get all nodes in the graph
+  size_t numNodes;
+  cudaGraphGetNodes(graph, nullptr, &numNodes);
+  std::vector<cudaGraphNode_t> nodes(numNodes);
+  cudaGraphGetNodes(graph, nodes.data(), &numNodes);
+
+  // Get root nodes in the graph
+  size_t numRootNodes;
+  cudaGraphGetRootNodes(graph, nullptr, &numRootNodes);
+  std::vector<cudaGraphNode_t> rootNodes(numRootNodes);
+  cudaGraphGetRootNodes(graph, rootNodes.data(), &numRootNodes);
+
+  if (numNodes != 2 || numRootNodes != 1) {
+    printf("Number of nodes or root nodes do not match\n");
+    return -1;
   }
 
   printf("Passed\n");
